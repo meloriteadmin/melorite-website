@@ -8,19 +8,19 @@ import TeamTabs from "@/components/TeamTabs";
 import SecurityIntegrationsPanels from "@/components/SecurityIntegrationsPanels";
 
 const STATS = [
-  { label: "Start with what you need", value: 1, suffix: " app", desc: "then add more as you grow" },
-  { label: "One connected view", value: 1, suffix: " platform", desc: "for your business data and workflows" },
-  { label: "Core business functions", value: 12, suffix: "+", desc: "covered by a growing suite of apps" },
-  { label: "Flexible by design", value: 100, suffix: "%", desc: "configured around your operating model" },
-  { label: "Shared workflows", value: 1, suffix: " ecosystem", desc: "across teams, apps, and processes" },
-  { label: "Built to scale", value: 1, suffix: " foundation", desc: "from a single team to the whole organisation" },
+  { label: "One platform", value: "", desc: "Shared foundation across business functions." },
+  { label: "Modular by design", value: "", desc: "Start with what you need." },
+  { label: "Connected data", value: "", desc: "Keep business context consistent." },
+  { label: "Flexible workflows", value: "", desc: "Adapt Melorite to the way your teams operate." },
+  { label: "Role-based control", value: "", desc: "Give the right access to the right people." },
+  { label: "Built to scale", value: "", desc: "Expand teams, apps and workflows over time." },
 ];
 
 const TESTIMONIALS = [
-  { quote: "Melorite gives our teams a shared system of record without forcing every department into the same process.", by: "Operations leader", role: "Growing multi-location business", bg: "/assets/img/quote-bg-01.webp" },
-  { quote: "We started with CRM and expanded at our own pace. Every new app feels like part of the same business.", by: "Commercial director", role: "Professional services firm", bg: "/assets/img/quote-bg-02.webp" },
-  { quote: "Our sales, finance, and delivery teams can finally work from connected information instead of reconciling spreadsheets.", by: "Finance leader", role: "Scaling services company", bg: "/assets/img/quote-bg-03.webp" },
-  { quote: "The platform adapts to how our manufacturing operation works, from inventory through to customer service.", by: "Operations director", role: "Manufacturing business", bg: "/assets/img/quote-bg-04.webp" },
+  { quote: "Customer information should not stop at sales. Projects, finance and support should understand the same customer.", by: "Connected by default", role: "", bg: "/assets/img/quote-bg-01.webp" },
+  { quote: "Adopt the applications your business needs today without limiting what it can become tomorrow.", by: "Start small. Expand naturally.", role: "", bg: "/assets/img/quote-bg-02.webp" },
+  { quote: "Your software should adapt to your processes instead of forcing every organisation into the same workflow.", by: "Built around your business", role: "", bg: "/assets/img/quote-bg-03.webp" },
+  { quote: "Connect operational work with the information leadership needs to make better decisions.", by: "From activity to visibility", role: "", bg: "/assets/img/quote-bg-04.webp" },
 ];
 
 export default function HomePage() {
@@ -28,10 +28,10 @@ export default function HomePage() {
     <>
       <section className="hero">
         <div>
-          <span className="eyebrow">Melorite</span>
-          <h1>One connected platform<br />for your business</h1>
-          <p className="lede">Bring the apps, data, workflows, and teams that run your organisation into one modular business ecosystem.</p>
-          <div className="btn-row"><a href="#" className="btn">Talk to us</a></div>
+          <span className="eyebrow">The connected business platform</span>
+          <h1>One platform. Every part of your business, connected.</h1>
+          <p className="lede">Melorite brings your sales, finance, people, projects, operations, support, marketing, documents, analytics and automation into one connected business platform. Start with the applications you need today and expand as your business grows.</p>
+          <div className="btn-row"><a href="/platform" className="btn">Explore Melorite</a><a href="/contact" className="btn btn-outline">Talk to us</a></div>
         </div>
         <div className="hero-media">
           <img src="/assets/img/melorite/hero-platform.png" alt="Melorite business platform" />
@@ -120,11 +120,9 @@ export default function HomePage() {
       <section className="trusted">
         <div className="container">
           <Reveal as="div">
-            <h2>Built for organisations across<br />industries and stages of growth</h2>
+            <h2>Flexible enough for different<br />ways of doing business</h2>
             <div className="trusted-grid">
-              {["strava", "polestar", "merck", "apollo.io", "robinhood", "amgen", "electrolux", "piab"].map((l) => (
-                <img key={l} src={`/assets/img/partners/${l}.svg`} alt={l} />
-              ))}
+              {["Financial services", "Professional services", "Healthcare", "Education", "Real estate", "Manufacturing", "Technology", "Retail"].map((industry) => <span key={industry}>{industry}</span>)}
             </div>
           </Reveal>
         </div>
@@ -137,23 +135,17 @@ export default function HomePage() {
           </Reveal>
           <Reveal as="div" stagger className="pricing-grid">
             <div className="price-card">
-              <h3>Enterprise</h3>
+              <h3>Starter</h3>
               <div className="price">Custom pricing</div>
-              <a href="#" className="btn">Book an intro</a>
+              <a href="/contact" className="btn">Talk to us</a>
               <ul>
-                <li>&#10003; Unlimited members per workspace and documents per integration</li>
-                <li>&#10003; Enterprise integrations</li>
-                <li>&#10003; Domain verification, SAML-based SSO, and SCIM</li>
-                <li>&#10003; Configurable business apps and workflows</li>
-                <li>&#10003; Cross-functional reporting and visibility</li>
-                <li>&#10003; Dedicated success team, priority support, and SLA</li>
-                <li>&#10003; MCP client for building your own integrations</li>
+                <li>&#10003; Core business workspace</li><li>&#10003; Selected Melorite applications</li><li>&#10003; Standard roles & permissions</li><li>&#10003; Core reporting</li><li>&#10003; Standard support</li>
               </ul>
             </div>
             <div className="price-card featured">
-              <h3>Team</h3>
-              <div className="price">$30 <span>per user / month</span></div>
-              <a href="#" className="btn btn-light">Sign up</a>
+              <h3>Growth</h3>
+              <div className="price">Custom pricing</div>
+              <a href="/contact" className="btn btn-light">Talk to us</a>
               <ul>
                 <li>&#10003; Core apps for growing teams</li>
                 <li>&#10003; Flexible member and role management</li>
@@ -164,9 +156,9 @@ export default function HomePage() {
               </ul>
             </div>
             <div className="price-card">
-              <h3>Free</h3>
-              <div className="price">$0</div>
-              <a href="#" className="btn">Try it free</a>
+              <h3>Enterprise</h3>
+              <div className="price">Custom</div>
+              <a href="/contact" className="btn">Contact sales</a>
               <ul>
                 <li>&#10003; Explore the Melorite platform</li>
                 <li>&#10003; Build your first app setup</li>

@@ -1,13 +1,9 @@
-const DEFAULT_LOGOS = [
-  "piab", "merck", "robinhood", "swile", "hinge", "polestar", "foodora", "asics", "kearney", "brex",
-];
+const DEFAULT_ITEMS = ["CRM", "Finance", "HR", "Projects", "Support", "Marketing", "Documents", "Analytics", "Automation", "AI", "Operations", "Collaboration"];
 
-export default function Marquee({ logos = DEFAULT_LOGOS }) {
+export default function Marquee({ items = DEFAULT_ITEMS }) {
   const group = (key) => (
     <div className="marquee-group" aria-hidden={key === "b" ? true : undefined} key={key}>
-      {logos.map((name) => (
-        <img key={name} src={`/assets/img/partners/${name}.svg`} alt={key === "a" ? name : ""} />
-      ))}
+      {items.map((item) => <span className="marquee-capability" key={item}>{item}</span>)}
     </div>
   );
   return (

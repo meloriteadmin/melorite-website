@@ -1,0 +1,6 @@
+import AppPage from "@/components/AppPage";
+
+export const metadata = { title: "The Melorite Platform" };
+export default function PlatformPage() {
+  return <AppPage app={{ name: "Melorite Platform", eyebrow: "Platform overview", title: "The foundation underneath every Melorite application", lede: "Melorite applications are built on a shared platform that connects business data, identity, permissions, workflows, automation and reporting.", image: "/assets/img/melorite/hero-platform.png", featuresHead: "A shared business foundation", featuresCopy: "Different applications can operate on connected information rather than becoming isolated systems.", connected: "Start with the applications creating the most friction today, then expand toward a connected operating platform over time.", features: [{ title: "Shared business data", body: "Keep customer, team and operational context connected across applications." }, { title: "Connected workflows", body: "Coordinate work between teams without relying on disconnected handoffs." }, { title: "Identity and permissions", body: "Structure access around organisations, teams, roles and responsibilities." }, { title: "Automation and reporting", body: "Create clearer processes and shared visibility as your business grows." }] }} />;
+}

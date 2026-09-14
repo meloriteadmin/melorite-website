@@ -75,10 +75,10 @@ export default function Header() {
           </nav>
 
           <div className="header-right">
-            <a href="#" className="header-link">About</a>
-            <a href="#" className="header-link">Partners</a>
-            <a href="#" className="login-link">Log in</a>
-            <a href="#" className="btn">Talk to us</a>
+            <Link href="/platform" className="header-link">About</Link>
+            <Link href="/contact" className="header-link">Partners</Link>
+            <Link href="/contact" className="login-link">Log in</Link>
+            <Link href="/contact" className="btn">Talk to us</Link>
             <button
               className={`burger${mobileOpen ? " open" : ""}`}
               aria-label="Menu"

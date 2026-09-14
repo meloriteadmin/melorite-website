@@ -2,20 +2,22 @@ const APPS = {
   label: "Apps",
   items: [
     { group: "Business management", links: [
-      { href: "/ai-agents", label: "CRM & sales" },
-      { href: "/enterprise-search", label: "Finance & accounting" },
-      { href: "/sana-learn", label: "People & payroll" },
-      { href: "/sana-learn/learning-management", label: "Projects & operations" },
+      { href: "/apps/crm-sales", label: "CRM & sales" },
+      { href: "/apps/finance-accounting", label: "Finance & accounting" },
+      { href: "/apps/people-payroll", label: "People & payroll" },
+      { href: "/apps/projects-operations", label: "Projects & operations" },
+      { href: "/apps/customer-support", label: "Customer support" },
+      { href: "/apps/marketing", label: "Marketing" },
     ]},
     { group: "Connected work", links: [
-      { href: "/integrations", label: "Collaboration & documents" },
-      { href: "/sana-learn/integrations", label: "Automation & reporting" },
+      { href: "/enterprise-search", label: "Documents & collaboration" },
+      { href: "/integrations", label: "Analytics, automation & AI" },
     ]},
   ],
 };
 
 const PLATFORM = { label: "Platform", items: [{ group: null, links: [
-  { href: "/", label: "Overview" }, { href: "/integrations", label: "Connected data" },
+  { href: "/", label: "Platform overview" }, { href: "/integrations", label: "Connected data & integrations" },
   { href: "/security", label: "Security & controls" }, { href: "/pricing", label: "Plans" },
 ]}] };
 
@@ -45,9 +47,9 @@ export function getNav() { return NAV_SANA; }
 
 export const FOOTER = {
   sana: { title: "Platform", links: [
-    { href: "/", label: "Overview" }, { href: "/ai-agents", label: "CRM & sales" },
-    { href: "/enterprise-search", label: "Finance & accounting" }, { href: "/sana-learn", label: "People & payroll" },
-    { href: "/sana-learn/learning-management", label: "Projects & operations" }, { href: "/integrations", label: "Integrations" },
+    { href: "/", label: "Platform overview" }, { href: "/apps/crm-sales", label: "CRM & sales" },
+    { href: "/apps/finance-accounting", label: "Finance & accounting" }, { href: "/apps/people-payroll", label: "People & payroll" },
+    { href: "/apps/projects-operations", label: "Projects & operations" }, { href: "/integrations", label: "Integrations" },
     { href: "/security", label: "Security" }, { href: "/pricing", label: "Pricing" },
   ]},
   sanaLearn: { title: "Solutions", links: [

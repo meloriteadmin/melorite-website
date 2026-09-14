@@ -10,5 +10,15 @@ const APPS = {
   marketing: { name: "Marketing", eyebrow: "Marketing", title: "Connect marketing activity to the rest of the customer journey", lede: "Plan campaigns, organise marketing activity, manage audiences and connect marketing outcomes with leads, customers and revenue.", image: "/assets/img/melorite/crm-sales.png", featuresHead: "Marketing in business context", featuresCopy: "Keep campaign planning, audience activity and outcomes connected to the rest of the organisation.", connected: "Marketing can work from the same customer and commercial context as sales and service teams.", features: [{ title: "Campaign management", body: "Plan activity around clear outcomes and ownership." }, { title: "Audience organisation", body: "Organise the audiences your business serves." }, { title: "Lead capture", body: "Connect early interest with the sales journey." }, { title: "Content workflows", body: "Coordinate approvals, tasks and campaign delivery." }, { title: "Campaign reporting", body: "Understand outcomes alongside CRM and commercial context." }] },
 };
 export function generateStaticParams() { return Object.keys(APPS).map((slug) => ({ slug })); }
-export function generateMetadata({ params }) { const app = APPS[params.slug]; return { title: app ? `${app.name} | Melorite` : "Melorite" }; }
-export default function Page({ params }) { const app = APPS[params.slug]; if (!app) notFound(); return <AppPage app={app} />; }
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const app = APPS[slug];
+  return { title: app ? `${app.name} | Melorite` : "Melorite" };
+}
+
+export default async function Page({ params }) {
+  const { slug } = await params;
+  const app = APPS[slug];
+  if (!app) notFound();
+  return <AppPage app={app} />;
+}

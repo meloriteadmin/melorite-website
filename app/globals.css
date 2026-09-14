@@ -37,6 +37,13 @@
   --iceblue: #e4eff7;
   --indigo: #4c3df6;
   --green: #19c332;
+  --pastel-blue: #eef5ff;
+  --pastel-mint: #eefaf5;
+  --pastel-lavender: #f5f0ff;
+  --pastel-peach: #fff3ec;
+  --pastel-aqua: #edf9fa;
+  --pastel-rose: #fff0f5;
+  --pastel-cyan: #ecf8ff;
 
   --container-max: 1496px;
   --container-pad: 32px;
@@ -394,6 +401,11 @@ section.bg-black { background: var(--off-black); color: var(--white); }
   transition: background-color .3s var(--ease), color .3s var(--ease);
 }
 .platform-tabs-nav button.active { background: var(--black); color: var(--white); }
+.platform-tabs-nav button:not(.pause-toggle):nth-child(1):hover { background: var(--pastel-blue); }
+.platform-tabs-nav button:not(.pause-toggle):nth-child(2):hover { background: var(--pastel-mint); }
+.platform-tabs-nav button:not(.pause-toggle):nth-child(3):hover { background: var(--pastel-lavender); }
+.platform-tabs-nav button:not(.pause-toggle):nth-child(4):hover { background: var(--pastel-peach); }
+.platform-tabs-nav button:not(.pause-toggle):nth-child(5):hover { background: var(--pastel-cyan); }
 .platform-tabs-nav .pause-toggle {
   width: 4.4rem; height: 4.4rem; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
@@ -423,6 +435,11 @@ section.bg-black { background: var(--off-black); color: var(--white); }
   padding: 4rem;
   transition: opacity .4s ease, background-image .4s ease;
 }
+.mockup-frame.pastel-blue { background-color: var(--pastel-blue); }
+.mockup-frame.pastel-mint { background-color: var(--pastel-mint); }
+.mockup-frame.pastel-lavender { background-color: var(--pastel-lavender); }
+.mockup-frame.pastel-peach { background-color: var(--pastel-peach); }
+.mockup-frame.pastel-cyan { background-color: var(--pastel-cyan); }
 
 .browser-window {
   width: 100%;
@@ -540,7 +557,7 @@ section.bg-black { background: var(--off-black); color: var(--white); }
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.2rem 1.2rem; border-radius: 1.2rem;
 }
-.model-popover .model-row.selected { background: var(--lightgrey); }
+.model-popover .model-row.selected { background: var(--pastel-lavender); }
 .model-popover .model-row .name { font-size: 1.5rem; }
 .model-popover .model-row .desc { font-size: 1.2rem; color: var(--darkergrey); }
 .model-popover .model-row .check { width: 1.6rem; height: 1.6rem; }
@@ -552,7 +569,7 @@ section.bg-black { background: var(--off-black); color: var(--white); }
 .team-tabs-list li.active { color: var(--black); }
 .team-tabs-list li.active .arrow { opacity: 1; }
 .team-tabs-copy .lede { margin: 0 0 2.4rem; max-width: none; }
-.team-tabs-media { border-radius: var(--radius-card-lg); overflow: hidden; position: relative; background: var(--sand); }
+.team-tabs-media { border-radius: var(--radius-card-lg); overflow: hidden; position: relative; background: var(--pastel-blue); }
 .team-tabs-media img { width: 100%; display: block; }
 .team-tabs-media .prompt-bar {
   position: absolute; left: 4%; right: 4%; bottom: 6%;
@@ -575,7 +592,7 @@ section.bg-black { background: var(--off-black); color: var(--white); }
 .partnership-copy .lede, .feature-split-copy .lede { max-width: none; margin-bottom: 3.2rem; }
 .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: .4rem 2rem; margin-bottom: 3.2rem; }
 .checklist li { display: flex; align-items: center; gap: 1rem; padding: 1rem 0; font-size: 1.6rem; border-top: 1px solid var(--black-08); }
-.checklist li .check-icon { width: 2rem; height: 2rem; border-radius: 50%; background: var(--lightgrey); display: inline-flex; align-items: center; justify-content: center; flex: none; font-size: 1.1rem; }
+.checklist li .check-icon { width: 2rem; height: 2rem; border-radius: 50%; background: var(--pastel-mint); display: inline-flex; align-items: center; justify-content: center; flex: none; font-size: 1.1rem; }
 
 /* -------------------- benefits list (capability / solutions pages) -------------------- */
 .benefits-list { display: flex; flex-direction: column; gap: 1px; background: var(--black-08); border-radius: var(--radius-card-lg); overflow: hidden; }
@@ -586,7 +603,8 @@ section.bg-black { background: var(--off-black); color: var(--white); }
 
 /* -------------------- integrations + security -------------------- */
 .integrations-security { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; margin-top: 4rem; }
-.panel { background: var(--lightgrey); border-radius: var(--radius-card-lg); padding: 4rem; }
+.panel { background: var(--pastel-blue); border-radius: var(--radius-card-lg); padding: 4rem; }
+.panel + .panel { background: var(--pastel-mint); }
 .panel h4 { font-size: 2rem; margin-bottom: 3.2rem; }
 .icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem 1.6rem; margin-bottom: 3.2rem; }
 .icon-grid .icon-item { display: flex; align-items: center; gap: 1rem; font-size: 1.5rem; }
@@ -598,8 +616,9 @@ section.bg-black { background: var(--off-black); color: var(--white); }
 .integrations-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4rem; gap: 2rem; flex-wrap: wrap; }
 .integrations-search { display: flex; align-items: center; gap: 1rem; background: var(--lightgrey); border-radius: var(--radius-pill); padding: 1.2rem 2rem; font-size: 1.5rem; color: var(--darkergrey); flex: 1; max-width: 40rem; }
 .integrations-full-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.6rem; }
-.integration-tile { background: var(--lightgrey); border-radius: 1.6rem; padding: 2rem 1.6rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; transition: transform .3s var(--ease), background-color .3s var(--ease); }
-.integration-tile:hover { background: var(--sand); transform: translateY(-4px); }
+.integration-tile { background: var(--pastel-blue); border-radius: 1.6rem; padding: 2rem 1.6rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1.6rem; transition: transform .3s var(--ease), background-color .3s var(--ease); }
+.integration-tile:nth-child(3n+2) { background: var(--pastel-mint); }.integration-tile:nth-child(3n) { background: var(--pastel-lavender); }
+.integration-tile:hover { background: var(--pastel-peach); transform: translateY(-4px); }
 .integration-tile .tile-icon { width: 3.6rem; height: 3.6rem; border-radius: .9rem; background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 500; }
 .integration-tile .tile-name { font-size: 1.4rem; }
 

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const TABS = [
   {
     key: "crm",
+    pastel: "pastel-blue",
     label: "CRM & sales",
     title: "Turn every customer<br/>interaction into momentum.",
     bg: "/assets/img/melorite/crm-sales.png",
@@ -18,6 +19,7 @@ const TABS = [
   },
   {
     key: "finance",
+    pastel: "pastel-mint",
     label: "Finance",
     title: "Keep finance connected<br/>to the business.",
     bg: "/assets/img/melorite/hero-platform.png",
@@ -31,6 +33,7 @@ const TABS = [
   },
   {
     key: "people",
+    pastel: "pastel-lavender",
     label: "People",
     title: "Support every stage<br/>of the employee journey.",
     bg: "/assets/img/melorite/hero-platform.png",
@@ -44,6 +47,7 @@ const TABS = [
   },
   {
     key: "operations",
+    pastel: "pastel-peach",
     label: "Operations",
     title: "Plan, deliver, and<br/>improve daily work.",
     bg: "/assets/img/melorite/hero-platform.png",
@@ -57,6 +61,7 @@ const TABS = [
   },
   {
     key: "insights",
+    pastel: "pastel-cyan",
     label: "Insights",
     title: "See what is happening<br/>across your business.",
     bg: "/assets/img/melorite/crm-sales.png",
@@ -106,7 +111,7 @@ export default function PlatformTabs() {
 
       <div className="platform-stage">
         <h3 dangerouslySetInnerHTML={{ __html: tab.title }} />
-        <div className="mockup-frame" style={{ backgroundImage: `url('${tab.bg}')` }}>
+        <div className={`mockup-frame ${tab.pastel}`} style={{ backgroundImage: `linear-gradient(rgba(255,255,255,.16), rgba(255,255,255,.16)), url('${tab.bg}')` }}>
           <div className="browser-window">
             <div className="browser-topbar">
               <span className="dot red" /><span className="dot yellow" /><span className="dot green" />

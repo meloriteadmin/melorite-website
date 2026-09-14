@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import FAQAccordion from "@/components/FAQAccordion";
 
-export const metadata = { title: "Enterprise-grade protection and security | Sana" };
+export const metadata = { title: "Security and controls for connected work | Melorite" };
 
 const FEATURES = [
   { icon: "🛡️", title: "SOC-2", body: "Sana meets the AICPA SOC requirements for customer data management." },
@@ -36,9 +36,9 @@ export default function SecurityPage() {
       <section className="page-hero">
         <div className="container">
           <Reveal as="div">
-            <span className="eyebrow">Sana &nbsp;&rsaquo;&nbsp; Capabilities</span>
+            <span className="eyebrow">Melorite &nbsp;&rsaquo;&nbsp; Platform</span>
             <h1>Enterprise-grade<br />protection and security</h1>
-            <p className="lede">Sana is an industry pioneer and leading learning and knowledge platform provider. We design with data privacy, information security, and legal compliance at the very top of our priorities.</p>
+            <p className="lede">Melorite is designed for connected business operations, with privacy, information security, and practical controls at the centre of every implementation.</p>
             <div className="btn-row">
               <a href="#" className="btn">Book an intro</a>
             </div>

@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import IntegrationsGrid from "./IntegrationsGrid";
 
-export const metadata = { title: "Connect all your knowledge sources instantly | Sana Integrations" };
+export const metadata = { title: "Connect your business systems | Melorite" };
 
 export default function IntegrationsPage() {
   return (
@@ -9,9 +9,9 @@ export default function IntegrationsPage() {
       <section className="page-hero">
         <div className="container">
           <Reveal as="div">
-            <span className="eyebrow">Sana &nbsp;&rsaquo;&nbsp; Integrations</span>
+            <span className="eyebrow">Melorite &nbsp;&rsaquo;&nbsp; Connected data</span>
             <h1>Connect all your knowledge<br />sources instantly</h1>
-            <p className="lede">100+ apps automatically synced with Sana. With a comprehensive suite of integrations, Sana becomes your company&rsquo;s single source of knowledge.</p>
+            <p className="lede">Connect the systems your teams already depend on, so customer, people, finance, and operational information can move through shared workflows.</p>
             <div className="btn-row">
               <a href="#" className="btn">Book an intro</a>
             </div>

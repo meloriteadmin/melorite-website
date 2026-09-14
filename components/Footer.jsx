@@ -22,14 +22,16 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-col">
-            <div className="logo" style={{ color: "var(--white)", marginBottom: "1.6rem" }}>Sana</div>
+            <div className="logo footer-logo" style={{ marginBottom: "1.6rem" }}>
+              <img src="/assets/brand/melorite-logo-light.png" alt="Melorite" />
+            </div>
           </div>
           <Column col={FOOTER.sana} />
           <Column col={FOOTER.sanaLearn} />
           <Column col={FOOTER.company} />
         </div>
         <div className="footer-bottom">
-          <span>© Sana Labs AB 2026</span>
+          <span>© Melorite 2026</span>
           <div className="footer-social">
             <a href="#">LinkedIn</a>
             <a href="#">Instagram</a>

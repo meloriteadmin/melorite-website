@@ -1,7 +1,7 @@
 import Reveal from "@/components/Reveal";
 import Marquee from "@/components/Marquee";
 
-export const metadata = { title: "The future of enterprise learning | AI-Powered LMS | Sana Learn" };
+export const metadata = { title: "People, payroll and learning operations | Melorite" };
 
 const FEATURES = [
   { icon: "🎓", title: "1:1 learning experience", body: "A personal tutor at every learner's fingertips.", id: "learning-management" },
@@ -29,7 +29,7 @@ export default function SanaLearnPage() {
     <>
       <section className="hero">
         <Reveal as="div">
-          <span className="eyebrow">Sana Learn</span>
+          <span className="eyebrow">Melorite People</span>
           <h1>The future of<br />enterprise learning</h1>
           <p className="lede">Sana Learn brings the best of an LMS, LXP, authoring tool, and virtual classroom into one AI-native learning platform.</p>
           <div className="btn-row"><a href="#" className="btn">Book an intro</a></div>
@@ -41,7 +41,7 @@ export default function SanaLearnPage() {
       <section>
         <div className="container">
           <Reveal as="div" className="section-head">
-            <h2>Meet Sana Learn</h2>
+          <h2>Meet Melorite People</h2>
             <p className="lede">Say goodbye to fragmented learning tools. Sana Learn is the only platform designed to move you beyond one-size-fits-all content to a truly dynamic, personalized learning experience at scale.</p>
           </Reveal>
           <Reveal as="div" stagger className="feature-grid" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>

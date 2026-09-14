@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 import StatCounter from "@/components/StatCounter";
 import EnterpriseGradeBlock from "@/components/EnterpriseGradeBlock";
 
-export const metadata = { title: "AI search that finds what you actually need | Sana" };
+export const metadata = { title: "Finance and accounting connected to your business | Melorite" };
 
 export default function EnterpriseSearchPage() {
   return (
@@ -10,7 +10,7 @@ export default function EnterpriseSearchPage() {
       <section className="page-hero">
         <div className="container">
           <Reveal as="div">
-            <span className="eyebrow">Sana &nbsp;&rsaquo;&nbsp; Capabilities</span>
+            <span className="eyebrow">Melorite &nbsp;&rsaquo;&nbsp; Business apps</span>
             <h1>Beyond search</h1>
             <p className="lede">Get instant, up-to-date answers to your most complex work questions without having to dig for information across your company&rsquo;s apps.</p>
             <div className="btn-row">

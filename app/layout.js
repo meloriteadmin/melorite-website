@@ -4,8 +4,8 @@ import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 
 export const metadata = {
-  title: "Business reviews done with AI | Sana",
-  description: "Accelerate work with AI agents that collaborate, automate, and think alongside your teams.",
+  title: "One connected platform for your business | Melorite",
+  description: "Modular business apps and industry solutions that connect every part of your organisation.",
 };
 
 export default function RootLayout({ children }) {

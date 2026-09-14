@@ -4,70 +4,68 @@ import { useEffect, useRef, useState } from "react";
 
 const TABS = [
   {
-    key: "automate",
-    label: "Automate",
-    title: "Run complex,<br/>multi-step processes.",
+    key: "crm",
+    label: "CRM & sales",
+    title: "Turn every customer<br/>interaction into momentum.",
     bg: "/assets/img/agents-features-bg.webp",
-    card: "Meeting Context Review",
+    card: "Opportunity Workspace",
     steps: [
-      "When a new meeting is created, review its details and participants. Find other meetings with the same title or overlapping attendees.",
-      "Search for earlier meetings with the same title and/or participants in internal knowledge base.",
-      "Search for messages on Slack from participants that could be related to the meeting topic.",
-      "Search for issues on Linear and Jira from participants that are related to the meeting topic.",
-      "Search for documents that could contain more context about the meeting.",
-      "Compile a summary report with the event details and the gathered information.",
+      "Capture leads, accounts, contacts, and activity in one connected customer view.",
+      "Guide teams through repeatable sales stages and follow-up tasks.",
+      "Connect proposals, conversations, and deal context to every opportunity.",
+      "Give leaders a live view of pipeline, performance, and forecasts.",
     ],
   },
   {
-    key: "create",
-    label: "Create",
-    title: "Generate collaborative<br/>content in any format",
+    key: "finance",
+    label: "Finance",
+    title: "Keep finance connected<br/>to the business.",
     bg: "/assets/img/agents-banner-01.webp",
-    card: "Deck Builder",
+    card: "Finance Workspace",
     steps: [
-      "Pull the latest quarterly numbers and key talking points from connected docs.",
-      "Draft a slide-by-slide outline aligned to the brand template.",
-      "Generate speaker notes for each section.",
-      "Export a polished deck ready to share with stakeholders.",
+      "Manage invoices, expenses, budgets, and financial activity from one place.",
+      "Connect financial data to sales, projects, and operations in real time.",
+      "Give finance teams the context behind every number.",
+      "Create reports that are ready for action, not reconciliation.",
     ],
   },
   {
-    key: "analyze",
-    label: "Analyze",
-    title: "Turn data into live<br/>dashboards and reports",
+    key: "people",
+    label: "People",
+    title: "Support every stage<br/>of the employee journey.",
     bg: "/assets/img/agents-model-agnostic.webp",
-    card: "Revenue Analyzer",
+    card: "People & Payroll",
     steps: [
-      "Connect live data from Salesforce and the finance warehouse.",
-      "Detect trends and flag anomalies automatically.",
-      "Summarize findings into an executive-ready report.",
-      "Refresh the dashboard on a recurring schedule.",
+      "Bring employee records, time, leave, and payroll processes together.",
+      "Create clear workflows for onboarding, approvals, and development.",
+      "Give people teams consistent, connected employee information.",
+      "Help managers make informed decisions with shared visibility.",
     ],
   },
   {
-    key: "act",
-    label: "Act",
-    title: "Take instant actions<br/>across your tools",
+    key: "operations",
+    label: "Operations",
+    title: "Plan, deliver, and<br/>improve daily work.",
     bg: "/assets/img/agents-partnerships.webp",
-    card: "Deal Updater",
+    card: "Operations Hub",
     steps: [
-      "Update the CRM record with the latest call notes.",
-      "Schedule a follow-up meeting with the prospect.",
-      "Send a recap message to the deal Slack channel.",
-      "Create follow-up tasks for the account team.",
+      "Coordinate projects, tasks, and resources across departments.",
+      "Connect operational work with customers, finance, and people data.",
+      "Standardise approvals and repeatable business processes.",
+      "Track progress and resolve work before it becomes a bottleneck.",
     ],
   },
   {
-    key: "find",
-    label: "Find",
-    title: "All the latest company<br/>docs and data",
+    key: "insights",
+    label: "Insights",
+    title: "See what is happening<br/>across your business.",
     bg: "/assets/img/agents_carousel_search.webp",
-    card: "Company Search",
+    card: "Reporting & Analytics",
     steps: [
-      'Searching Confluence, Drive, and Notion for "Q3 pricing strategy"…',
-      "Found 3 relevant documents and 2 related Slack threads.",
-      "Surfacing the most recently updated source first.",
-      "Answer compiled with citations back to every source.",
+      "Bring data from your Melorite apps into meaningful reports.",
+      "Monitor the metrics that matter to each team and leader.",
+      "Move from disconnected updates to shared business visibility.",
+      "Use connected information to make confident decisions.",
     ],
   },
 ];
@@ -112,14 +110,14 @@ export default function PlatformTabs() {
           <div className="browser-window">
             <div className="browser-topbar">
               <span className="dot red" /><span className="dot yellow" /><span className="dot green" />
-              <span className="browser-url">sana.ai</span>
+              <span className="browser-url">melorite.com</span>
             </div>
             <div className="browser-body">
               <div className="workflow-card">
                 <div className="workflow-card-head">
                   <span className="wf-icon">&#9889;</span>
                   <span>{tab.card}</span>
-                  <span className="wf-tag">Productivity</span>
+                  <span className="wf-tag">Melorite app</span>
                 </div>
                 <ul className="workflow-steps">
                   {tab.steps.map((s, i) => (

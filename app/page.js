@@ -8,23 +8,19 @@ import TeamTabs from "@/components/TeamTabs";
 import SecurityIntegrationsPanels from "@/components/SecurityIntegrationsPanels";
 
 const STATS = [
-  { label: "Fintech scale-up", value: 10, suffix: " hours", desc: "saved per week, per employee" },
-  { label: "Global law firm", value: 62, suffix: "%", desc: "prep time saved" },
-  { label: "Leading manufacturer", value: 95, suffix: "%", desc: "faster product answers" },
-  { label: "Mining manufacturer", value: 50, suffix: "%", desc: "time saved in R&D" },
-  { label: "Renewable energy company", value: 66, suffix: "%", desc: "time saved in R&D" },
-  { label: "Industrial leader", value: 2, suffix: "×", desc: "more customer service issues resolved" },
+  { label: "Start with what you need", value: 1, suffix: " app", desc: "then add more as you grow" },
+  { label: "One connected view", value: 1, suffix: " platform", desc: "for your business data and workflows" },
+  { label: "Core business functions", value: 12, suffix: "+", desc: "covered by a growing suite of apps" },
+  { label: "Flexible by design", value: 100, suffix: "%", desc: "configured around your operating model" },
+  { label: "Shared workflows", value: 1, suffix: " ecosystem", desc: "across teams, apps, and processes" },
+  { label: "Built to scale", value: 1, suffix: " foundation", desc: "from a single team to the whole organisation" },
 ];
 
 const TESTIMONIALS = [
-  { quote: "All of a sudden, a valuation memo that our CFO previously spent almost a week preparing was completed within three or four hours.", by: "Chief Sustainability Officer", role: "Leading renewable energy company", bg: "/assets/img/quote-bg-01.webp" },
-  { quote: "If we removed Sana Agents, there would be a revolt.", by: "Managing Director", role: "Global private equity firm", bg: "/assets/img/quote-bg-02.webp" },
-  { quote: "With Sana, our sales prep is now 10x quicker. Instead of spending hours gathering data manually, our team can instantly access the research insights they need.", by: "Product Operations Lead", role: "International research and analytics firm", bg: "/assets/img/quote-bg-03.webp" },
-  { quote: "We’re leveraging our AI agents to find and compare product information, build sales arguments, support R&D, and much more.", by: "CEO", role: "Global industrial automation company", bg: "/assets/img/quote-bg-04.webp" },
-  { quote: "Sana gives us control over the AI, allowing us to choose the material it accesses and tailor its parameters to our specific needs.", by: "Executive Vice President", role: "Global medical technology provider", bg: "/assets/img/quote-bg-05.webp" },
-  { quote: "With Sana Agents, even colleagues who aren’t tech-savvy can leverage AI in their everyday work.", by: "Head of Digitalization", role: "Major real estate group", bg: "/assets/img/quote-bg-06.webp" },
-  { quote: "With Sana, we’re creating assistants to accelerate everything from deal analysis to portfolio reviews.", by: "Chief Digital Officer", role: "Leading private equity firm", bg: "/assets/img/quote-bg-07.webp" },
-  { quote: "Asking Sana in Slack for someone’s actions from the last meeting—it’s a game-changer.", by: "CTO", role: "Leading mobility startup", bg: "/assets/img/quote-bg-08.webp" },
+  { quote: "Melorite gives our teams a shared system of record without forcing every department into the same process.", by: "Operations leader", role: "Growing multi-location business", bg: "/assets/img/quote-bg-01.webp" },
+  { quote: "We started with CRM and expanded at our own pace. Every new app feels like part of the same business.", by: "Commercial director", role: "Professional services firm", bg: "/assets/img/quote-bg-02.webp" },
+  { quote: "Our sales, finance, and delivery teams can finally work from connected information instead of reconciling spreadsheets.", by: "Finance leader", role: "Scaling services company", bg: "/assets/img/quote-bg-03.webp" },
+  { quote: "The platform adapts to how our manufacturing operation works, from inventory through to customer service.", by: "Operations director", role: "Manufacturing business", bg: "/assets/img/quote-bg-04.webp" },
 ];
 
 export default function HomePage() {
@@ -32,13 +28,13 @@ export default function HomePage() {
     <>
       <section className="hero">
         <div>
-          <span className="eyebrow">Sana</span>
-          <h1>Business reviews<br />done with AI</h1>
-          <p className="lede">Accelerate work with AI agents that collaborate, automate, and think alongside your teams.</p>
-          <div className="btn-row"><a href="#" className="btn">Book an intro</a></div>
+          <span className="eyebrow">Melorite</span>
+          <h1>One connected platform<br />for your business</h1>
+          <p className="lede">Bring the apps, data, workflows, and teams that run your organisation into one modular business ecosystem.</p>
+          <div className="btn-row"><a href="#" className="btn">Talk to us</a></div>
         </div>
         <div className="hero-media">
-          <img src="/assets/img/hero.webp" alt="Sana hero" />
+          <img src="/assets/img/hero.webp" alt="Melorite business platform" />
         </div>
       </section>
 
@@ -47,9 +43,9 @@ export default function HomePage() {
       <section>
         <div className="container">
           <Reveal as="div" className="section-head">
-            <h2>Your all-in-one<br />AI platform for real work</h2>
-            <p className="lede">A seamless, beautiful way to bring AI into your company&rsquo;s apps, knowledge, and culture.</p>
-            <a href="#" className="btn" style={{ marginTop: "2.4rem" }}>Book an intro</a>
+            <h2>Everything your business<br />needs to move as one</h2>
+            <p className="lede">Choose the business apps you need today, connect them through shared data and workflows, and expand your setup as your operations grow.</p>
+            <a href="#" className="btn" style={{ marginTop: "2.4rem" }}>Explore Melorite</a>
           </Reveal>
 
           <Reveal as="div">
@@ -87,19 +83,18 @@ export default function HomePage() {
               <img src="/assets/img/agents-partnerships.webp" alt="Driving AI adoption together" />
             </Reveal>
             <Reveal as="div" className="partnership-copy">
-              <span className="eyebrow">Enterprise partnership services</span>
-              <h2>Driving AI adoption together</h2>
-              <p className="lede">AI is revolutionizing work in real time. Our partnership-led approach helps your organization become truly AI-first.</p>
+              <span className="eyebrow">Implementation partnership</span>
+              <h2>Make your operating model work better</h2>
+              <p className="lede">Melorite is configured around your people, processes, and industry—so you can connect the work that matters without rebuilding how your business runs.</p>
               <ul className="checklist">
-                <li><span className="check-icon">&#10003;</span> Dedicated deployment lead</li>
-                <li><span className="check-icon">&#10003;</span> Complete implementation support</li>
-                <li><span className="check-icon">&#10003;</span> Tailored onboarding</li>
-                <li><span className="check-icon">&#10003;</span> Priority support</li>
-                <li><span className="check-icon">&#10003;</span> AI strategy and consulting</li>
-                <li><span className="check-icon">&#10003;</span> Change management model</li>
-                <li><span className="check-icon">&#10003;</span> Community, events, and resources</li>
+                <li><span className="check-icon">&#10003;</span> Discovery and solution design</li>
+                <li><span className="check-icon">&#10003;</span> App and workflow configuration</li>
+                <li><span className="check-icon">&#10003;</span> Connected-data planning</li>
+                <li><span className="check-icon">&#10003;</span> Team onboarding and adoption</li>
+                <li><span className="check-icon">&#10003;</span> Industry-specific setup</li>
+                <li><span className="check-icon">&#10003;</span> Ongoing platform guidance</li>
               </ul>
-              <a href="#" className="btn">Book an intro</a>
+              <a href="#" className="btn">Plan your rollout</a>
             </Reveal>
           </div>
         </div>
@@ -111,12 +106,12 @@ export default function HomePage() {
         <div className="container">
           <Reveal as="div" className="ios-banner">
             <div className="copy">
-              <div className="eyebrow-tag">Agents iOS app</div>
-              <h3>A polymath in your pocket</h3>
-              <p>Connect all your work apps to get instant answers to anything and solve hours of complex tasks in seconds. Missed a meeting? The recap is just a tap away. Built on any LLM you want. Now available on iOS.</p>
+              <div className="eyebrow-tag">Built for connected work</div>
+              <h3>Your business, working together</h3>
+              <p>From customer conversations and project delivery to payroll, inventory, reporting, and support, Melorite gives each team the right tools while keeping the entire organisation connected.</p>
             </div>
             <div className="ios-banner-media">
-              <img src="/assets/img/agents-ios-app.webp" alt="Agents iOS app" />
+              <img src="/assets/img/agents-ios-app.webp" alt="Connected business apps" />
             </div>
           </Reveal>
         </div>
@@ -125,7 +120,7 @@ export default function HomePage() {
       <section className="trusted">
         <div className="container">
           <Reveal as="div">
-            <h2>Sana is trusted by leading<br />enterprises across industries</h2>
+            <h2>Built for organisations across<br />industries and stages of growth</h2>
             <div className="trusted-grid">
               {["strava", "polestar", "merck", "apollo.io", "robinhood", "amgen", "electrolux", "piab"].map((l) => (
                 <img key={l} src={`/assets/img/partners/${l}.svg`} alt={l} />
@@ -149,8 +144,8 @@ export default function HomePage() {
                 <li>&#10003; Unlimited members per workspace and documents per integration</li>
                 <li>&#10003; Enterprise integrations</li>
                 <li>&#10003; Domain verification, SAML-based SSO, and SCIM</li>
-                <li>&#10003; Extended range of LLMs</li>
-                <li>&#10003; Analytics dashboard to measure impact</li>
+                <li>&#10003; Configurable business apps and workflows</li>
+                <li>&#10003; Cross-functional reporting and visibility</li>
                 <li>&#10003; Dedicated success team, priority support, and SLA</li>
                 <li>&#10003; MCP client for building your own integrations</li>
               </ul>
@@ -160,13 +155,12 @@ export default function HomePage() {
               <div className="price">$30 <span>per user / month</span></div>
               <a href="#" className="btn btn-light">Sign up</a>
               <ul>
-                <li>&#10003; Unlimited queries and meeting recordings</li>
-                <li>&#10003; Up to 50 members per workspace</li>
-                <li>&#10003; Our most popular integrations incl. Asana, Gmail, Outlook email, Zendesk, and more.</li>
-                <li>&#10003; OpenAI and Claude model selection</li>
-                <li>&#10003; Enterprise data processing agreement</li>
-                <li>&#10003; 10,000 documents per integration</li>
-                <li>&#10003; Priority in email and chat support</li>
+                <li>&#10003; Core apps for growing teams</li>
+                <li>&#10003; Flexible member and role management</li>
+                <li>&#10003; Connected CRM, finance, people, and operations workflows</li>
+                <li>&#10003; Collaboration and document tools</li>
+                <li>&#10003; Shared reports and dashboards</li>
+                <li>&#10003; Standard implementation support</li>
               </ul>
             </div>
             <div className="price-card">
@@ -174,12 +168,11 @@ export default function HomePage() {
               <div className="price">$0</div>
               <a href="#" className="btn">Try it free</a>
               <ul>
-                <li>&#10003; 10 meetings per month &mdash; invite members for more</li>
-                <li>&#10003; Up to 5 members per workspace</li>
-                <li>&#10003; Unlimited assistants and prompt templates</li>
-                <li>&#10003; Meeting integrations with Calendar, Drive, Meet, Teams, and Zoom</li>
-                <li>&#10003; Data integrations with Confluence, Google Drive, OneDrive, Notion, and Sharepoint</li>
-                <li>&#10003; 1,000 documents per integration</li>
+                <li>&#10003; Explore the Melorite platform</li>
+                <li>&#10003; Build your first app setup</li>
+                <li>&#10003; See connected workflow examples</li>
+                <li>&#10003; Access platform resources</li>
+                <li>&#10003; Plan a future rollout</li>
                 <li>&#10003; Help center support</li>
               </ul>
             </div>

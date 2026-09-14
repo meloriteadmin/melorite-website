@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 import FAQAccordion from "@/components/FAQAccordion";
 import PricingCalculator from "./PricingCalculator";
 
-export const metadata = { title: "Flexible plans that grow with your learning needs | Sana Learn" };
+export const metadata = { title: "Flexible plans that grow with your business | Melorite" };
 
 const FAQS = [
   { q: "How is pricing calculated?", a: "Sana Learn is priced per user per month. The figure shown above is indicative; book an intro call so our team can understand your organisation's needs, and we will follow up with tailored pricing." },
@@ -22,7 +22,7 @@ export default function PricingPage() {
       <section className="page-hero">
         <div className="container">
           <Reveal as="div">
-            <span className="eyebrow">Sana Learn &nbsp;&rsaquo;&nbsp; Pricing</span>
+            <span className="eyebrow">Melorite &nbsp;&rsaquo;&nbsp; Pricing</span>
             <h1>Flexible plans that grow<br />with your learning needs</h1>
             <p className="lede">Built to scale, with per-user pricing tailored to your organization&rsquo;s size and needs.</p>
           </Reveal>

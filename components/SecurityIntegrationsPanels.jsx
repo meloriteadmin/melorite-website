@@ -19,13 +19,13 @@ export default function SecurityIntegrationsPanels() {
     <section>
       <div className="container">
         <Reveal as="div" className="section-head">
-          <h2>Enterprise-grade<br />integrations and security</h2>
-          <p className="lede">Sana connects with 100+ applications and unifies your company&rsquo;s data securely.</p>
+          <h2>Connected data,<br />controlled your way</h2>
+          <p className="lede">Bring the systems your teams already rely on into a connected business ecosystem, with the controls your organisation needs.</p>
         </Reveal>
 
         <div className="integrations-security">
           <Reveal as="div" className="panel">
-            <h4>Connect your daily tools automatically</h4>
+            <h4>Connect the tools your teams already use</h4>
             <div className="icon-grid">
               {INTEGRATIONS.map(([icon, name]) => (
                 <div className="icon-item" key={icon}>
@@ -38,7 +38,7 @@ export default function SecurityIntegrationsPanels() {
           </Reveal>
 
           <Reveal as="div" className="panel">
-            <h4>Security you can stand by</h4>
+            <h4>Controls built for confident growth</h4>
             <div className="icon-grid">
               {SECURITY.map(([icon, name]) => (
                 <div className="icon-item" key={icon}>

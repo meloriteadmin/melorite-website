@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 import StatCounter from "@/components/StatCounter";
 import EnterpriseGradeBlock from "@/components/EnterpriseGradeBlock";
 
-export const metadata = { title: "Your team. Superpowered by AI agents. | Sana" };
+export const metadata = { title: "Connected CRM & sales | Melorite" };
 
 export default function AiAgentsPage() {
   return (
@@ -10,12 +10,12 @@ export default function AiAgentsPage() {
       <section className="page-hero">
         <div className="container">
           <Reveal as="div">
-            <span className="eyebrow">Sana &nbsp;&rsaquo;&nbsp; Capabilities</span>
-            <h1>AI agents in minutes<br />not months</h1>
-            <p className="lede">Drive business value with custom AI agents grounded in all your company&rsquo;s knowledge. No code required.</p>
+            <span className="eyebrow">Melorite &nbsp;&rsaquo;&nbsp; Business apps</span>
+            <h1>CRM and sales,<br />connected to your business</h1>
+            <p className="lede">Give your teams one place to manage customers, opportunities, activities, and the workflows that move revenue forward.</p>
             <div className="btn-row">
-              <a href="#" className="btn">Try it free</a>
-              <a href="#" className="btn btn-outline">Book an intro</a>
+              <a href="#" className="btn">Explore CRM</a>
+              <a href="#" className="btn btn-outline">Talk to us</a>
             </div>
           </Reveal>
         </div>
@@ -24,9 +24,9 @@ export default function AiAgentsPage() {
       <section className="tight">
         <div className="container">
           <Reveal as="div" stagger className="stats-grid cols-3">
-            <StatCounter label="Global law firm" value={62} suffix="%" desc="time savings automating compiling and analysis of legal docs" />
-            <StatCounter label="European fintech scaleup" value={10} suffix="h" desc="time savings using an AI agent for new hire onboarding" />
-            <StatCounter label="Leading manufacturer" value={95} suffix="%" desc="faster product answers using an AI agent" />
+            <StatCounter label="Customer view" value={1} suffix="" desc="connected record for every account and contact" />
+            <StatCounter label="Sales process" value={1} suffix="" desc="shared pipeline across teams and locations" />
+            <StatCounter label="Business context" value={360} suffix="°" desc="visibility from first conversation to delivery" />
           </Reveal>
         </div>
       </section>
@@ -35,11 +35,11 @@ export default function AiAgentsPage() {
         <div className="container">
           <div className="feature-split">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents-banner-01.webp" alt="Sana meeting recall" />
+              <img src="/assets/img/agents-banner-01.webp" alt="Melorite CRM workspace" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
-              <h2>Remembers all<br />your meetings</h2>
-              <p className="lede">More than a note-taker, Sana understands, summarizes, and stores your meetings to help you act smart and fast on next steps.</p>
+              <h2>Every customer detail,<br />in the right place</h2>
+              <p className="lede">Connect conversations, tasks, proposals, documents, and delivery information to the relationships your team manages every day.</p>
             </Reveal>
           </div>
         </div>
@@ -49,8 +49,8 @@ export default function AiAgentsPage() {
         <div className="container">
           <Reveal as="div" className="quote-grid" style={{ gridTemplateColumns: "1fr" }}>
             <div className="quote-card">
-              <p>&ldquo;Sana gives us control over the AI, allowing us to choose the material it accesses and tailor its parameters to our specific needs.&rdquo;</p>
-              <div className="byline"><strong>Peter Jidesjö</strong>Executive Vice President, Permobil</div>
+              <p>&ldquo;Melorite lets us see the full customer journey without asking teams to work in disconnected systems.&rdquo;</p>
+              <div className="byline"><strong>Commercial leader</strong>Growing services business</div>
             </div>
           </Reveal>
         </div>
@@ -59,13 +59,13 @@ export default function AiAgentsPage() {
       <section className="bg-black">
         <div className="container">
           <Reveal as="div" className="section-head left" style={{ color: "var(--white)" }}>
-            <h2>Knowledge you<br />can trust</h2>
-            <p className="lede" style={{ color: "var(--grey)" }}>Your agents will cite their sources across internal and public documentation, and deep link to relevant sources.</p>
+            <h2>Visibility you<br />can act on</h2>
+            <p className="lede" style={{ color: "var(--grey)" }}>Sales data stays connected to finance, projects, support, and operations—so decisions are made with the full business context.</p>
           </Reveal>
           <Reveal as="div" stagger className="stats-grid cols-3" style={{ borderBottom: "none", color: "var(--white)" }}>
-            <StatCounter label="Up to" value={50} suffix="%" desc="productivity increase" />
-            <StatCounter label="Up to" value={3} suffix="x" desc="faster knowledge retrieval" />
-            <StatCounter label="Up to" value={40} suffix="%" desc="cost savings" />
+            <StatCounter label="One" value={1} suffix="" desc="shared source of customer information" />
+            <StatCounter label="Live" value={1} suffix="" desc="connected pipeline and delivery view" />
+            <StatCounter label="Better" value={100} suffix="%" desc="context for every customer decision" />
           </Reveal>
         </div>
       </section>
@@ -77,8 +77,8 @@ export default function AiAgentsPage() {
               <img src="/assets/img/agents-model-agnostic.webp" alt="Integrated in your daily tools" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
-              <h2>Integrated in your<br />daily tools</h2>
-              <p className="lede">Let the support come to you. With Sana you can configure your assistants to act on tasks directly from tools like Slack and Salesforce.</p>
+              <h2>Built into your<br />daily workflows</h2>
+              <p className="lede">Move work forward with sales workflows that connect customer activity to the people, finance, project, and operations apps your organisation uses.</p>
             </Reveal>
           </div>
         </div>
@@ -88,8 +88,8 @@ export default function AiAgentsPage() {
         <div className="container">
           <Reveal as="div" className="quote-grid" style={{ gridTemplateColumns: "1fr" }}>
             <div className="quote-card">
-              <p>&ldquo;Asking Sana in Slack for someone&rsquo;s actions from the last meeting, or our definition of retention&mdash;it&rsquo;s a game-changer.&rdquo;</p>
-              <div className="byline"><strong>Anders Ivarsson</strong>CTO, Voi</div>
+              <p>&ldquo;Our customer teams work faster because the information they need is already connected to the process they are in.&rdquo;</p>
+              <div className="byline"><strong>Operations director</strong>Multi-team organisation</div>
             </div>
           </Reveal>
         </div>
@@ -98,24 +98,24 @@ export default function AiAgentsPage() {
       <section>
         <div className="container">
           <Reveal as="div" className="section-head">
-            <span className="eyebrow">State-of-the-art RAG and multi-step reasoning</span>
-            <h2>Agents that plan,<br />reason, and learn</h2>
+            <span className="eyebrow">A connected revenue foundation</span>
+            <h2>Built for every<br />stage of growth</h2>
           </Reveal>
           <Reveal as="div" stagger className="feature-grid">
             <div className="feature-card">
               <div className="feature-icon">🧠</div>
-              <h3>Agents that plan, reason, and learn</h3>
-              <p>To go beyond basic question answering, Sana understands the user&rsquo;s intent and acts accordingly&mdash;reasoning in multiple steps about what knowledge sources are relevant, how they should be combined, and what action to take.</p>
+              <h3>Flexible sales workflows</h3>
+              <p>Configure the stages, approvals, activities, and handoffs that reflect how your business sells—without separating sales from the rest of the organisation.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">📎</div>
-              <h3>Multimodal understanding</h3>
-              <p>Sana connects to all your company&rsquo;s knowledge and can understand everything from PDFs and spreadsheets to meeting recordings and CRM assets, across text, tables, images, and graphs.</p>
+              <h3>Connected customer data</h3>
+              <p>Keep the relationships, documents, offers, service history, and project context behind every customer in a single connected ecosystem.</p>
             </div>
             <div className="feature-card">
               <div className="feature-icon">✦</div>
-              <h3>Generative UI</h3>
-              <p>Sana goes beyond the text in / text out chat interface with dynamically generated UI components&mdash;widgets for taking actions and workflows for batch multi-step document analysis.</p>
+              <h3>Reporting that reaches further</h3>
+              <p>Understand pipeline health, sales performance, and customer activity alongside the operational and financial information that explains what happens next.</p>
             </div>
           </Reveal>
         </div>
@@ -135,8 +135,8 @@ export default function AiAgentsPage() {
       <section className="reduced-padding">
         <div className="container">
           <Reveal as="div" className="section-head">
-            <h2>No LLM lock-ins</h2>
-            <p className="lede">Your assistants, your rules. Choose the best model for the task and optimize performance continuously.</p>
+            <h2>No disconnected growth</h2>
+            <p className="lede">Start with CRM and sales, then add the apps and industry configurations that make Melorite your central business platform.</p>
           </Reveal>
         </div>
       </section>

@@ -12,14 +12,13 @@ const HAS_ICON = new Set([
 ]);
 
 const FAQS = [
-  { q: "How secure is Sana Agents?", a: "Sana Agents is single tenant, SOC2 and ISO 27001 certified, and GDPR compliant. All data is encrypted at rest with AES 256 and in transit with TLS 1.2+. Enterprise users can be authenticated with Single-Sign-On (SSO), and integrated systems can mirror the underlying system permissions." },
-  { q: "Which integrations does Sana Agents have?", a: "Enterprise customers can use a wide range of off-the-shelf connectors, with new connectors added continuously. Free tier users can currently add integrations to Google Drive, Sharepoint, Google Calendar, and Outlook Calendar. Enterprise customers can also build custom integrations." },
-  { q: "Can Sana Agents browse the web?", a: "Sana Agents can combine your internal knowledge with anything from the public web. Users can control the scope for each question, and administrators can enable or disable web browsing for any assistant." },
-  { q: "Which types of data can Sana Agents handle?", a: "Sana Agents excels at reading documents (PDF, PowerPoint, Word, Docs), structured files (Excel, Sheets, CSV), and videos (MP4), and connects to third-party systems such as CRMs for additional data types." },
-  { q: "How does Sana Agents store my data?", a: "Data added through integrations or uploads is indexed and stored in a cloud instance with logical data isolation. Enterprise organizations can get their own single-tenant deployment, with data encrypted at rest (AES 256) and in transit (TLS 1.2+)." },
-  { q: "How are data permissions handled?", a: "Documents can be added via direct upload, private integration, or shared integration, and accessibility depends on how each was added and the admin settings configured for it." },
-  { q: "Which LLMs does Sana Agents use? Are third-party models trained on my data?", a: "Sana Agents is built agnostic to the underlying LLM. Enterprise users can select between a range of models and providers, none of which are trained on your Content Data, with a Zero-Day Retention policy used wherever possible." },
-  { q: "Which languages does Sana Agents support?", a: "The assistant can speak more than 50 languages." },
+  { q: "What is Melorite?", a: "Melorite is a unified, modular business platform. It brings together connected apps for core functions such as sales, finance, people, operations, support, documents, automation, analytics, and collaboration." },
+  { q: "Can we start with a single app?", a: "Yes. Organisations can begin with the app that solves their immediate need, then add more Melorite apps as their teams, processes, and reporting requirements grow." },
+  { q: "How do Melorite apps work together?", a: "Melorite apps are designed to share data and workflows, helping teams work from connected information instead of moving between disconnected tools and manual handoffs." },
+  { q: "Does Melorite support industry-specific workflows?", a: "Yes. Melorite can be configured around the terminology, processes, controls, and operational needs of sectors such as real estate, healthcare, education, professional services, retail, manufacturing, hospitality, recruitment, and logistics." },
+  { q: "Can Melorite connect to our existing tools?", a: "Melorite supports connected workflows with the systems your organisation already relies on, helping you bring business information into a more unified operating environment." },
+  { q: "How are permissions handled?", a: "Role-based access and administrative controls can be configured to reflect how your organisation works, so people see the business information and workflows relevant to their responsibilities." },
+  { q: "Can Melorite scale with our organisation?", a: "Melorite is designed to scale from focused team use to a complete suite of connected business applications used across an entire organisation." },
 ];
 
 export default function SolutionPage({ data }) {
@@ -29,10 +28,10 @@ export default function SolutionPage({ data }) {
         <div className="container solution-hero-grid">
           <Reveal as="div">
             <h1>{data.title}</h1>
-            <div className="solution-hero-sub">Sana</div>
+            <div className="solution-hero-sub">Melorite</div>
             <div className="btn-row">
-              <a href="#" className="btn">Book an intro</a>
-              <a href="#" className="btn btn-outline">Find your plan</a>
+              <a href="#" className="btn">Talk to us</a>
+              <a href="#" className="btn btn-outline">Explore apps</a>
             </div>
           </Reveal>
           <Reveal as="p" className="lede solution-hero-lede">{data.lede}</Reveal>
@@ -52,7 +51,7 @@ export default function SolutionPage({ data }) {
       <section className="tight">
         <div className="container solution-quote-grid">
           <Reveal as="div">
-            <span className="eyebrow">Driving AI ROI<br />for {data.title.toLowerCase()} teams</span>
+            <span className="eyebrow">Connected workflows<br />for {data.title.toLowerCase()} teams</span>
           </Reveal>
           <Reveal as="div" className="quote-with-avatar">
             <blockquote>&ldquo;{data.quote}&rdquo;</blockquote>
@@ -94,8 +93,8 @@ export default function SolutionPage({ data }) {
       <section className="reduced-padding">
         <div className="container">
           <Reveal as="div" className="section-head left">
-            <span className="eyebrow">Custom integrations</span>
-            <h2>Connect your AI agents to<br />all your most-important tools</h2>
+            <span className="eyebrow">Connected ecosystem</span>
+            <h2>Connect your business apps to<br />the tools your teams rely on</h2>
             <a href="/integrations" className="btn" style={{ marginTop: "1.6rem" }}>See all integrations</a>
           </Reveal>
           <Reveal as="div" stagger className="integration-cards-grid">
@@ -116,8 +115,8 @@ export default function SolutionPage({ data }) {
       <section className="reduced-padding">
         <div className="container">
           <Reveal as="div" className="section-head">
-            <h2>No training on your {data.title.toLowerCase()} data.</h2>
-            <p className="lede">Full enterprise-grade security and support.</p>
+            <h2>Built around your {data.title.toLowerCase()} workflows.</h2>
+            <p className="lede">A flexible platform foundation with the controls and support your organisation needs.</p>
           </Reveal>
         </div>
       </section>

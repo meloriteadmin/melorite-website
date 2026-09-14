@@ -36,7 +36,9 @@ export default function Header() {
     <>
       <header className={`site-header${scrolled ? " scrolled" : ""}`} id="siteHeader">
         <div className="container">
-          <Link href="/" className="logo">Sana</Link>
+          <Link href="/" className="logo" aria-label="Melorite home">
+            <img src="/assets/brand/melorite-logo.png" alt="Melorite" />
+          </Link>
 
           <nav className="site-nav">
             <ul>
@@ -73,10 +75,10 @@ export default function Header() {
           </nav>
 
           <div className="header-right">
-            <a href="#" className="header-link">Mission</a>
-            <a href="#" className="header-link">Careers</a>
+            <a href="#" className="header-link">About</a>
+            <a href="#" className="header-link">Partners</a>
             <a href="#" className="login-link">Log in</a>
-            <a href="#" className="btn">Book an intro</a>
+            <a href="#" className="btn">Talk to us</a>
             <button
               className={`burger${mobileOpen ? " open" : ""}`}
               aria-label="Menu"
@@ -112,9 +114,9 @@ export default function Header() {
             </details>
           )
         )}
-        <Link href="#" className="top-link">Mission</Link>
-        <Link href="#" className="top-link">Careers</Link>
-        <a href="#" className="btn">Book an intro</a>
+        <Link href="#" className="top-link">About</Link>
+        <Link href="#" className="top-link">Partners</Link>
+        <a href="#" className="btn">Talk to us</a>
       </div>
     </>
   );

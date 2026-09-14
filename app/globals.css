@@ -184,8 +184,24 @@ h3 {
   display: flex;
   align-items: center;
 }
-.logo img { display: block; width: 10.2rem; height: auto; }
-.footer-logo img { width: 12.5rem; }
+.logo {
+  flex: 0 0 auto;
+  min-width: max-content;
+  overflow: visible;
+}
+.logo img {
+  display: block;
+  width: 12.8rem;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+}
+.footer-logo img { width: 16rem; }
+
+@media (max-width: 760px) {
+  .logo img { width: 12rem; }
+  .footer-logo img { width: 15rem; }
+}
 
 .site-nav { display: flex; align-items: center; margin-left: 4.8rem; }
 .site-nav > ul { display: flex; align-items: center; gap: 1.4rem; }

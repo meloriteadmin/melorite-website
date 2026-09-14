@@ -35,7 +35,7 @@ export default function AiAgentsPage() {
         <div className="container">
           <div className="feature-split">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents-banner-01.webp" alt="Melorite CRM workspace" />
+              <img src="/assets/img/melorite/crm-sales.png" alt="Melorite CRM workspace" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
               <h2>Every customer detail,<br />in the right place</h2>
@@ -74,7 +74,7 @@ export default function AiAgentsPage() {
         <div className="container">
           <div className="feature-split reverse">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents-model-agnostic.webp" alt="Integrated in your daily tools" />
+              <img src="/assets/img/melorite/hero-platform.png" alt="Connected business workflows" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
               <h2>Built into your<br />daily workflows</h2>

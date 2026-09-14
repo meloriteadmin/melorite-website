@@ -41,7 +41,7 @@ export default function SolutionPage({ data }) {
       <section className="no-padding">
         <div className="container">
           <Reveal as="div" className="hero-media">
-            <img src="/assets/img/agents-model-agnostic.webp" alt={data.title} />
+            <img src="/assets/img/melorite/hero-platform.png" alt={`${data.title} teams using Melorite`} />
           </Reveal>
         </div>
       </section>

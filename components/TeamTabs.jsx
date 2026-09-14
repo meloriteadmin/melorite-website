@@ -32,7 +32,7 @@ export default function TeamTabs() {
         <a href={team.href} className="btn">Explore solution</a>
       </div>
       <div className="team-tabs-media">
-        <img src="/assets/img/agents-banner-01.webp" alt="Melorite workspace" />
+        <img src="/assets/img/melorite/crm-sales.png" alt="Melorite sales workspace" />
         <div className="prompt-bar">
           <div className="prompt-input">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" /></svg>

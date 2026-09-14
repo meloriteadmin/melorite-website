@@ -39,7 +39,7 @@ export default function LearningManagementPage() {
         <div className="container">
           <div className="feature-split">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents-banner-01.webp" alt="All your programs on autopilot" />
+              <img src="/assets/img/melorite/hero-platform.png" alt="Melorite people operations workspace" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
               <h2>All your programs<br />on autopilot</h2>
@@ -89,7 +89,7 @@ export default function LearningManagementPage() {
         <div className="container">
           <div className="feature-split reverse">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents-model-agnostic.webp" alt="Real-time data and instant insights" />
+              <img src="/assets/img/melorite/crm-sales.png" alt="Connected people and payroll insights" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
               <h2>Real-time data and<br />instant insights</h2>

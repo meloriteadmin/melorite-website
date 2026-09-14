@@ -5,7 +5,7 @@ export default function ModelAgnostic() {
     <section>
       <div className="container">
         <Reveal as="div" className="model-agnostic">
-          <img className="bg" src="/assets/img/agents-model-agnostic.webp" alt="Model agnostic" />
+          <img className="bg" src="/assets/img/melorite/hero-platform.png" alt="Connected Melorite business platform" />
           <div className="model-popover">
             <div className="model-row selected">
               <div><div className="name">Connected by default</div><div className="desc">Shared business data across apps</div></div>

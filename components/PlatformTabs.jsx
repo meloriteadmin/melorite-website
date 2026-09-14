@@ -7,7 +7,7 @@ const TABS = [
     key: "crm",
     label: "CRM & sales",
     title: "Turn every customer<br/>interaction into momentum.",
-    bg: "/assets/img/agents-features-bg.webp",
+    bg: "/assets/img/melorite/crm-sales.png",
     card: "Opportunity Workspace",
     steps: [
       "Capture leads, accounts, contacts, and activity in one connected customer view.",
@@ -20,7 +20,7 @@ const TABS = [
     key: "finance",
     label: "Finance",
     title: "Keep finance connected<br/>to the business.",
-    bg: "/assets/img/agents-banner-01.webp",
+    bg: "/assets/img/melorite/hero-platform.png",
     card: "Finance Workspace",
     steps: [
       "Manage invoices, expenses, budgets, and financial activity from one place.",
@@ -33,7 +33,7 @@ const TABS = [
     key: "people",
     label: "People",
     title: "Support every stage<br/>of the employee journey.",
-    bg: "/assets/img/agents-model-agnostic.webp",
+    bg: "/assets/img/melorite/hero-platform.png",
     card: "People & Payroll",
     steps: [
       "Bring employee records, time, leave, and payroll processes together.",
@@ -46,7 +46,7 @@ const TABS = [
     key: "operations",
     label: "Operations",
     title: "Plan, deliver, and<br/>improve daily work.",
-    bg: "/assets/img/agents-partnerships.webp",
+    bg: "/assets/img/melorite/hero-platform.png",
     card: "Operations Hub",
     steps: [
       "Coordinate projects, tasks, and resources across departments.",
@@ -59,7 +59,7 @@ const TABS = [
     key: "insights",
     label: "Insights",
     title: "See what is happening<br/>across your business.",
-    bg: "/assets/img/agents_carousel_search.webp",
+    bg: "/assets/img/melorite/crm-sales.png",
     card: "Reporting & Analytics",
     steps: [
       "Bring data from your Melorite apps into meaningful reports.",

@@ -34,7 +34,7 @@ export default function HomePage() {
           <div className="btn-row"><a href="#" className="btn">Talk to us</a></div>
         </div>
         <div className="hero-media">
-          <img src="/assets/img/hero.webp" alt="Melorite business platform" />
+          <img src="/assets/img/melorite/hero-platform.png" alt="Melorite business platform" />
         </div>
       </section>
 
@@ -80,7 +80,7 @@ export default function HomePage() {
         <div className="container">
           <div className="partnership">
             <Reveal as="div" className="partnership-media">
-              <img src="/assets/img/agents-partnerships.webp" alt="Driving AI adoption together" />
+              <img src="/assets/img/melorite/hero-platform.png" alt="Melorite implementation planning session" />
             </Reveal>
             <Reveal as="div" className="partnership-copy">
               <span className="eyebrow">Implementation partnership</span>
@@ -111,7 +111,7 @@ export default function HomePage() {
               <p>From customer conversations and project delivery to payroll, inventory, reporting, and support, Melorite gives each team the right tools while keeping the entire organisation connected.</p>
             </div>
             <div className="ios-banner-media">
-              <img src="/assets/img/agents-ios-app.webp" alt="Connected business apps" />
+              <img src="/assets/img/melorite/crm-sales.png" alt="Connected business applications in use" />
             </div>
           </Reveal>
         </div>

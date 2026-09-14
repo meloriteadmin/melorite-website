@@ -25,7 +25,7 @@ export default function EnterpriseSearchPage() {
         <div className="container">
           <div className="feature-split">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents_carousel_search.webp" alt="Search every app and file in seconds" />
+              <img src="/assets/img/melorite/hero-platform.png" alt="Connected finance and accounting workflows" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
               <h2>Search every app<br />and file in seconds</h2>
@@ -64,7 +64,7 @@ export default function EnterpriseSearchPage() {
         <div className="container">
           <div className="feature-split reverse">
             <Reveal as="div" className="feature-split-media">
-              <img src="/assets/img/agents-features-bg.webp" alt="Real-time indexing" />
+              <img src="/assets/img/melorite/crm-sales.png" alt="Business data connected in real time" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
               <h2>The latest sources.<br />Personalized to you.</h2>

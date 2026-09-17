@@ -1,0 +1,4 @@
+import ContactForm from "@/components/ContactForm";
+import Reveal from "@/components/Reveal";
+export const metadata = { title: "Get started with Melorite" };
+export default function GetStartedPage() { return <><section className="page-hero"><div className="container"><Reveal as="div"><span className="eyebrow">Get started</span><h1>See how Melorite can fit your business.</h1><p className="lede">Tell us what you want to manage. We will help you identify the right Business Apps, Industry Pack and implementation path.</p></Reveal></div></section><section className="no-padding"><div className="container"><Reveal as="div" className="contact-form-block"><div><h2>Build a connected starting point.</h2><p className="lede">Start with one area, connect several products, or plan a complete operating platform. There is no need to decide everything before the first conversation.</p></div><ContactForm demo /></Reveal></div></section></>; }

@@ -17,7 +17,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const NAV = getNav(pathname);
+  const navItems = getNav(pathname);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -42,7 +42,7 @@ export default function Header() {
 
           <nav className="site-nav">
             <ul>
-              {NAV.map((item) => (
+              {navItems.map((item) => (
                 <li key={item.label} className={item.items ? "has-sub-menu" : undefined}>
                   {item.href ? (
                     <Link href={item.href}>{item.label}</Link>
@@ -75,10 +75,9 @@ export default function Header() {
           </nav>
 
           <div className="header-right">
-            <Link href="/platform" className="header-link">About</Link>
-            <Link href="/contact" className="header-link">Partners</Link>
-            <Link href="/contact" className="login-link">Log in</Link>
-            <Link href="/contact" className="btn">Talk to us</Link>
+            <Link href="/login" className="header-link">Sign in</Link>
+            <Link href="/demo" className="header-link">Request demo</Link>
+            <Link href="/get-started" className="btn">Get started</Link>
             <button
               className={`burger${mobileOpen ? " open" : ""}`}
               aria-label="Menu"
@@ -91,7 +90,7 @@ export default function Header() {
       </header>
 
       <div className={`mobile-nav${mobileOpen ? " open" : ""}`}>
-        {NAV.map((item) =>
+        {navItems.map((item) =>
           item.href ? (
             <Link key={item.label} href={item.href} className="top-link">
               {item.label}
@@ -114,9 +113,9 @@ export default function Header() {
             </details>
           )
         )}
-        <Link href="#" className="top-link">About</Link>
-        <Link href="#" className="top-link">Partners</Link>
-        <a href="#" className="btn">Talk to us</a>
+        <Link href="/login" className="top-link">Sign in</Link>
+        <Link href="/demo" className="top-link">Request demo</Link>
+        <Link href="/get-started" className="btn">Get started</Link>
       </div>
     </>
   );

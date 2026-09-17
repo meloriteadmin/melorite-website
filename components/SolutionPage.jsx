@@ -28,10 +28,10 @@ export default function SolutionPage({ data }) {
         <div className="container solution-hero-grid">
           <Reveal as="div">
             <h1>{data.title}</h1>
-            <div className="solution-hero-sub">Melorite</div>
+            <div className="solution-hero-sub">Industry solution</div>
             <div className="btn-row">
-              <a href="#" className="btn">Talk to us</a>
-              <a href="#" className="btn btn-outline">Explore apps</a>
+              <a href="/contact" className="btn">Talk to us</a>
+              <a href="/platform" className="btn btn-outline">Explore the platform</a>
             </div>
           </Reveal>
           <Reveal as="p" className="lede solution-hero-lede">{data.lede}</Reveal>

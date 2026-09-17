@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 import StatCounter from "@/components/StatCounter";
 import EnterpriseGradeBlock from "@/components/EnterpriseGradeBlock";
 
-export const metadata = { title: "Finance and accounting connected to your business | Melorite" };
+export const metadata = { title: "Documents and connected knowledge | Melorite" };
 
 export default function EnterpriseSearchPage() {
   return (
@@ -11,11 +11,11 @@ export default function EnterpriseSearchPage() {
         <div className="container">
           <Reveal as="div">
             <span className="eyebrow">Melorite &nbsp;&rsaquo;&nbsp; Business apps</span>
-            <h1>Beyond search</h1>
-            <p className="lede">Get instant, up-to-date answers to your most complex work questions without having to dig for information across your company&rsquo;s apps.</p>
+            <h1>Documents and knowledge, connected to the work they support.</h1>
+            <p className="lede">Melorite Documents gives teams a shared home for files, folders, templates, contracts, approvals, knowledge and archives - all connected to your business records and workflows.</p>
             <div className="btn-row">
-              <a href="#" className="btn">Try it free</a>
-              <a href="#" className="btn btn-outline">Book an intro</a>
+              <a href="/contact" className="btn">Talk to us</a>
+              <a href="/apps/documents" className="btn btn-outline">Explore Documents</a>
             </div>
           </Reveal>
         </div>
@@ -28,8 +28,8 @@ export default function EnterpriseSearchPage() {
               <img src="/assets/img/melorite/hero-platform.png" alt="Connected finance and accounting workflows" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
-              <h2>Search every app<br />and file in seconds</h2>
-              <p className="lede">Knowledge exists in multiple forms. Sana can find whatever you&rsquo;re looking for, down to the details of your past calls.</p>
+              <h2>One trusted home<br />for business knowledge</h2>
+              <p className="lede">Keep files and knowledge structured around the customers, projects, people and processes they support.</p>
             </Reveal>
           </div>
         </div>
@@ -39,8 +39,8 @@ export default function EnterpriseSearchPage() {
         <div className="container">
           <Reveal as="div" className="quote-grid" style={{ gridTemplateColumns: "1fr" }}>
             <div className="quote-card">
-              <p>&ldquo;The workload on our People team has drastically reduced since HR policies became indexed and accessible in Sana.&rdquo;</p>
-              <div className="byline"><strong>Anders Orsedal</strong>CTO and Co-founder, Juni</div>
+              <p>&ldquo;The best business documents are not isolated files. They are part of the work, decision and relationship they support.&rdquo;</p>
+              <div className="byline"><strong>Melorite Documents</strong>Shared platform service</div>
             </div>
           </Reveal>
         </div>
@@ -49,13 +49,13 @@ export default function EnterpriseSearchPage() {
       <section className="bg-black">
         <div className="container">
           <Reveal as="div" className="section-head left" style={{ color: "var(--white)" }}>
-            <h2>Get answers.<br />Not just links.</h2>
-            <p className="lede" style={{ color: "var(--grey)" }}>Sometimes you need a file. Most of the time, you&rsquo;re trying to solve a problem. Sana helps you do both.</p>
+            <h2>Knowledge with<br />business context.</h2>
+            <p className="lede" style={{ color: "var(--grey)" }}>Documents, templates, approvals and archives become more useful when they are connected to the records and workflows around them.</p>
           </Reveal>
           <Reveal as="div" stagger className="stats-grid cols-3" style={{ borderBottom: "none", color: "var(--white)" }}>
-            <StatCounter label="Up to" value={50} suffix="%" desc="productivity increase" />
-            <StatCounter label="Up to" value={3} suffix="x" desc="faster knowledge retrieval" />
-            <StatCounter label="Up to" value={40} suffix="%" desc="cost savings" />
+            <StatCounter label="One" value="" suffix="" desc="shared document service" />
+            <StatCounter label="Across" value="" suffix="" desc="apps and industry solutions" />
+            <StatCounter label="With" value="" suffix="" desc="templates, approvals and archives" />
           </Reveal>
         </div>
       </section>
@@ -67,8 +67,8 @@ export default function EnterpriseSearchPage() {
               <img src="/assets/img/melorite/crm-sales.png" alt="Business data connected in real time" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
-              <h2>The latest sources.<br />Personalized to you.</h2>
-              <p className="lede">Real-time indexing gives you access to the latest and greatest company information. With results that keep improving over time.</p>
+              <h2>Controlled documents.<br />Clearer handoffs.</h2>
+              <p className="lede">Use reusable templates, approval paths and connected activity records to keep important business information current and usable.</p>
             </Reveal>
           </div>
         </div>
@@ -81,8 +81,8 @@ export default function EnterpriseSearchPage() {
               <img src="/assets/img/browser.svg" alt="Deploy quickly" />
             </Reveal>
             <Reveal as="div" className="feature-split-copy">
-              <h2>Deploy quickly.<br />And with full flexibility.</h2>
-              <p className="lede">Whether you&rsquo;re using off-the-shelf connectors or Sana&rsquo;s API, you&rsquo;ll be up and running fast.</p>
+              <h2>Designed for the<br />whole platform.</h2>
+              <p className="lede">The shared platform core supports files, activities, communications, integrations and APIs across every active Melorite service.</p>
             </Reveal>
           </div>
         </div>
@@ -92,8 +92,8 @@ export default function EnterpriseSearchPage() {
         <div className="container">
           <Reveal as="div" className="quote-grid" style={{ gridTemplateColumns: "1fr" }}>
             <div className="quote-card">
-              <p>&ldquo;Imagine having a system that not only holds all the know-how your team has ever accumulated but also connects the dots in ways we might not see on our own.&rdquo;</p>
-              <div className="byline"><strong>Johannes Sundlo</strong>HR Director, Ex-Spotify</div>
+              <p>&ldquo;One source of truth is not only about storage. It is about giving every record a clear owner and making it available wherever the work needs it.&rdquo;</p>
+              <div className="byline"><strong>Melorite platform design</strong>Shared data principle</div>
             </div>
           </Reveal>
         </div>
@@ -102,9 +102,9 @@ export default function EnterpriseSearchPage() {
       <section className="reduced-padding">
         <div className="container">
           <Reveal as="div" className="section-head">
-            <span className="eyebrow">Safe, secure, and supported at every step</span>
-            <h2>ISO 27001 certified<br />and GDPR compliant</h2>
-            <p className="lede">Data encrypted at rest with AES 256 and in transit with TLS 1.2+</p>
+            <span className="eyebrow">Shared platform controls</span>
+            <h2>Files, activities and audit<br />on one foundation</h2>
+            <p className="lede">Read more about Melorite&rsquo;s tenant isolation, operational visibility and platform controls.</p>
           </Reveal>
         </div>
       </section>

@@ -26,18 +26,12 @@ export default function Footer() {
               <img src="/assets/brand/melorite-logo-light.png" alt="Melorite" />
             </div>
           </div>
-          <Column col={FOOTER.sana} />
-          <Column col={FOOTER.sanaLearn} />
+          <Column col={FOOTER.platform} />
+          <Column col={FOOTER.products} />
           <Column col={FOOTER.company} />
         </div>
         <div className="footer-bottom">
-          <span>© Melorite 2026</span>
-          <div className="footer-social">
-            <a href="#">LinkedIn</a>
-            <a href="#">Instagram</a>
-            <a href="#">X</a>
-            <a href="#">YouTube</a>
-          </div>
+          <span>© Melorite. All rights reserved.</span>
         </div>
       </div>
     </footer>

@@ -7,7 +7,7 @@ const TEAMS = [
   { key: "support", label: "Customer support", copy: "Give service teams the customer history, workflows, documents, and operational context they need to resolve every request.", href: "/solutions/teams/customer-support" },
   { key: "ops", label: "Operations", copy: "Coordinate projects, processes, resources, and approvals with connected workflows that keep work moving across departments.", href: "/solutions/teams/in-house-operations" },
   { key: "finance", label: "Finance", copy: "Connect accounting, expenses, invoices, budgets, and business performance so finance can work from the full picture.", href: "/enterprise-search" },
-  { key: "people", label: "People & payroll", copy: "Bring employee information, payroll processes, time, leave, and onboarding together in one people operations hub.", href: "/sana-learn" },
+  { key: "people", label: "People & payroll", copy: "Bring employee information, payroll processes, time, leave, and onboarding together in one people operations hub.", href: "/apps/hr" },
   { key: "industrial", label: "Industry solutions", copy: "Configure Melorite around the workflows, terminology, controls, and operating requirements of your specific sector.", href: "/solutions/industries/industrial-companies" },
 ];
 

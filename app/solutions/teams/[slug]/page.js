@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const data = TEAMS[slug];
   if (!data) return {};
-  return { title: `${data.metaTitle} | Sana` };
+  return { title: `${data.metaTitle} | Melorite` };
 }
 
 export default async function TeamPage({ params }) {

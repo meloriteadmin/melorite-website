@@ -1,4 +1,0 @@
-import Link from "next/link";
-import Reveal from "@/components/Reveal";
-export const metadata = { title: "Sign in | Melorite" };
-export default function LoginPage() { return <section className="page-hero"><div className="container"><Reveal as="div" className="login-panel"><span className="eyebrow">Melorite workspace</span><h1>Sign in to your workspace.</h1><p className="lede">Use your organisation credentials to continue to Melorite.</p><form className="contact-form"><label>Work email<input required type="email" placeholder="name@company.com" /></label><label>Password<input required type="password" placeholder="••••••••" /></label><button className="btn" type="submit">Sign in</button></form><div className="login-links"><Link href="/get-started">Request access</Link><a href="#">Forgot password?</a></div></Reveal></div></section> }

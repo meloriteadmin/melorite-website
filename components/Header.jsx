@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getNav } from "@/data/nav";
 
 function Chevron() {
@@ -16,6 +16,8 @@ function Chevron() {
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const headerRef = useRef(null);
   const pathname = usePathname();
   const navItems = getNav(pathname);
 
@@ -28,13 +30,20 @@ export default function Header() {
 
   useEffect(() => {
     document.body.classList.toggle("noscroll", mobileOpen);
-    setMobileOpen(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+    return () => document.body.classList.remove("noscroll");
+  }, [mobileOpen]);
+
+  useEffect(() => {
+    const closeOnOutsideClick = (event) => {
+      if (!headerRef.current?.contains(event.target)) setOpenMenu(null);
+    };
+    document.addEventListener("pointerdown", closeOnOutsideClick);
+    return () => document.removeEventListener("pointerdown", closeOnOutsideClick);
+  }, []);
 
   return (
     <>
-      <header className={`site-header${scrolled ? " scrolled" : ""}`} id="siteHeader">
+      <header ref={headerRef} className={`site-header${scrolled ? " scrolled" : ""}`} id="siteHeader">
         <div className="container">
           <Link href="/" className="logo" aria-label="Melorite home">
             <img src="/assets/brand/melorite-logo.png" alt="Melorite" />
@@ -43,23 +52,23 @@ export default function Header() {
           <nav className="site-nav">
             <ul>
               {navItems.map((item) => (
-                <li key={item.label} className={item.items ? "has-sub-menu" : undefined}>
+                <li key={item.label} className={`${item.items ? "has-sub-menu" : ""}${openMenu === item.label ? " open" : ""}`}>
                   {item.href ? (
                     <Link href={item.href}>{item.label}</Link>
                   ) : (
-                    <button type="button">
+                    <button type="button" aria-expanded={openMenu === item.label} aria-controls={`${item.label.toLowerCase()}-menu`} onClick={() => setOpenMenu((current) => current === item.label ? null : item.label)}>
                       {item.label} <Chevron />
                     </button>
                   )}
                   {item.items && (
-                    <div className={`sub-menu-menus${item.wide ? " wide" : ""}`}>
+                    <div id={`${item.label.toLowerCase()}-menu`} className="sub-menu-menus">
                       {item.items.map((group, gi) => (
                         <div className="sub-menu-menu" key={gi}>
                           {group.group && <div className="sub-menu-menu-title">{group.group}</div>}
                           <ul>
                             {group.links.map((l) => (
                               <li key={l.label}>
-                                <Link href={l.href} className={pathname === l.href ? "active" : undefined}>
+                                <Link href={l.href} className={pathname === l.href ? "active" : undefined} onClick={() => setOpenMenu(null)}>
                                   {l.label}
                                 </Link>
                               </li>
@@ -75,7 +84,6 @@ export default function Header() {
           </nav>
 
           <div className="header-right">
-            <Link href="/login" className="header-link">Sign in</Link>
             <Link href="/demo" className="header-link">Request demo</Link>
             <Link href="/get-started" className="btn">Get started</Link>
             <button
@@ -92,7 +100,7 @@ export default function Header() {
       <div className={`mobile-nav${mobileOpen ? " open" : ""}`}>
         {navItems.map((item) =>
           item.href ? (
-            <Link key={item.label} href={item.href} className="top-link">
+            <Link key={item.label} href={item.href} className="top-link" onClick={() => setMobileOpen(false)}>
               {item.label}
             </Link>
           ) : (
@@ -104,7 +112,7 @@ export default function Header() {
                   <ul>
                     {group.links.map((l) => (
                       <li key={l.label}>
-                        <Link href={l.href}>{l.label}</Link>
+                        <Link href={l.href} onClick={() => setMobileOpen(false)}>{l.label}</Link>
                       </li>
                     ))}
                   </ul>
@@ -113,9 +121,8 @@ export default function Header() {
             </details>
           )
         )}
-        <Link href="/login" className="top-link">Sign in</Link>
-        <Link href="/demo" className="top-link">Request demo</Link>
-        <Link href="/get-started" className="btn">Get started</Link>
+        <Link href="/demo" className="top-link" onClick={() => setMobileOpen(false)}>Request demo</Link>
+        <Link href="/get-started" className="btn" onClick={() => setMobileOpen(false)}>Get started</Link>
       </div>
     </>
   );

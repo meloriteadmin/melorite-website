@@ -26,8 +26,9 @@ export default function Footer() {
               <img src="/assets/brand/melorite-logo-light.png" alt="Melorite" />
             </div>
           </div>
-          <Column col={FOOTER.platform} />
           <Column col={FOOTER.products} />
+          <Column col={FOOTER.industries} />
+          <Column col={FOOTER.platform} />
           <Column col={FOOTER.company} />
         </div>
         <div className="footer-bottom">

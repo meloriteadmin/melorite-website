@@ -1,41 +1,35 @@
-const PLATFORM = {
-  label: "Platform",
-  items: [{ group: "Explore Melorite", links: [
-    { href: "/platform", label: "Overview" }, { href: "/platform#connected-data", label: "Connected data" },
-    { href: "/platform#automation", label: "Automation & AI" }, { href: "/integrations", label: "Integrations" },
-    { href: "/security", label: "Security" },
-  ] }],
-};
-const PRODUCTS = { label: "Products", wide: true, items: [
-  { group: "Customer", links: [{ href: "/products/crm", label: "CRM" }, { href: "/products/sales", label: "Sales" }, { href: "/products/service", label: "Support" }, { href: "/products/marketing", label: "Marketing" }] },
-  { group: "Work", links: [{ href: "/products/projects", label: "Projects" }, { href: "/products/operations", label: "Operations" }, { href: "/products/documents", label: "Documents" }, { href: "/products/automation", label: "Automation" }] },
-  { group: "Business", links: [{ href: "/products/finance", label: "Finance" }, { href: "/products/hr", label: "People" }, { href: "/products/analytics", label: "Analytics" }, { href: "/products", label: "View all products →" }] },
-] };
-const INDUSTRIES = { label: "Solutions", wide: true, items: [
-  { group: "By business stage", links: [{ href: "/industries", label: "Small business" }, { href: "/industries", label: "Growing business" }, { href: "/industries", label: "Enterprise" }] },
-  { group: "By industry", links: [{ href: "/industries", label: "Real estate" }, { href: "/industries", label: "Healthcare" }, { href: "/industries", label: "Professional services" }, { href: "/industries", label: "Retail" }] },
-  { group: "", links: [{ href: "/industries", label: "Manufacturing" }, { href: "/industries", label: "Education" }, { href: "/industries", label: "Hospitality" }, { href: "/industries", label: "View all industries →" }] },
-] };
-const PRICING = { label: "Pricing", href: "/pricing" };
-const ABOUT = { label: "Resources", href: "/about" };
+const PRODUCTS = { label: "Products", items: [{ group: "Business products", links: [
+  { href: "/products/crm-sales", label: "CRM & Sales" },
+  { href: "/products/finance-accounting", label: "Finance & Accounting" },
+  { href: "/products/people-hr", label: "People & HR" },
+  { href: "/products/projects-operations", label: "Projects & Operations" },
+  { href: "/products/collaboration-documents", label: "Collaboration & Documents" },
+] }] };
+const INDUSTRIES = { label: "Industries", items: [{ group: "Industries", links: [
+  { href: "/industries/professional-services", label: "Professional Services" },
+  { href: "/industries/retail-commerce", label: "Retail & Commerce" },
+  { href: "/industries/manufacturing-distribution", label: "Manufacturing & Distribution" },
+  { href: "/industries/real-estate-construction", label: "Real Estate & Construction" },
+  { href: "/industries/healthcare-services", label: "Healthcare & Services" },
+] }] };
+const COMPANY = { label: "Company", items: [{ group: "Company", links: [
+  { href: "/about", label: "About Melorite" },
+  { href: "/contact", label: "Contact" },
+] }] };
 
-export const NAV = [PRODUCTS, INDUSTRIES, PLATFORM, PRICING, ABOUT];
+export const NAV = [PRODUCTS, INDUSTRIES, { label: "Platform", href: "/platform" }, { label: "Solutions", href: "/solutions" }, COMPANY];
 export function getNav() { return NAV; }
 
 export const FOOTER = {
+  products: { title: "Products", links: PRODUCTS.items[0].links },
+  industries: { title: "Industries", links: INDUSTRIES.items[0].links },
   platform: { title: "Platform", links: [
-    { href: "/platform", label: "Overview" }, { href: "/products", label: "Products" },
-    { href: "/platform#automation", label: "Automation & AI" }, { href: "/apps/analytics", label: "Analytics" },
-    { href: "/security", label: "Security" },
-  ] },
-  products: { title: "Products", links: [
-    { href: "/apps/crm", label: "CRM" }, { href: "/apps/finance", label: "Finance" },
-    { href: "/apps/hr", label: "HR" }, { href: "/apps/projects", label: "Projects" },
-    { href: "/apps/operations", label: "Operations" }, { href: "/apps/service", label: "Support" },
+    { href: "/platform", label: "Platform overview" }, { href: "/platform#automation", label: "Automation" },
+    { href: "/platform#connected-data", label: "Analytics" }, { href: "/platform#security", label: "Security" },
+    { href: "/integrations", label: "Integrations" },
   ] },
   company: { title: "Company", links: [
     { href: "/about", label: "About" }, { href: "/contact", label: "Contact" },
-    { href: "/pricing", label: "Pricing" }, { href: "/partners", label: "Partners" },
-    { href: "#", label: "Privacy" }, { href: "#", label: "Terms" },
+    { href: "/privacy", label: "Privacy Policy" }, { href: "/terms", label: "Terms & Conditions" },
   ] },
 };

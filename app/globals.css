@@ -209,16 +209,18 @@ h3 {
 .logo {
   flex: 0 0 auto;
   min-width: max-content;
-  overflow: visible;
+  height: auto;
+  display: flex;
+  align-items: center;
 }
+
 .logo img {
   display: block;
-  width: 12.8rem;
+  width: 18rem;
+  height: auto;
   max-width: none;
-  height: 3.15rem;
   object-fit: contain;
-  object-position: center;
-  transform: translateY(-1px);
+  transform: none;
 }
 .marquee-capability { display: inline-flex; align-items: center; justify-content: center; min-width: 13rem; font-size: 1.5rem; color: var(--darkergrey); }
 .trusted-grid span { display: flex; align-items: center; justify-content: center; min-height: 5rem; font-size: 1.6rem; color: var(--darkergrey); text-align: center; }
@@ -380,6 +382,61 @@ h3 {
 .mobile-nav-group ul a { font-size: 1.6rem; color: var(--darkergrey); }
 .mobile-nav .top-link { display: block; padding: 1.6rem 0; font-size: 2rem; border-bottom: 1px solid var(--black-08); }
 .mobile-nav .btn { margin-top: 2.4rem; width: 100%; }
+
+/* Final header: one measured alignment system for the logo, controls and menus. */
+.site-header .container { height: 100%; gap: 0; }
+.logo { height: 3.45rem; align-items: center; }
+.logo img { transform: none; }
+.site-nav { height: 100%; transform: none; }
+.site-nav > ul { height: 100%; }
+.site-nav > ul > li { display: flex; align-items: center; height: 100%; }
+.site-nav > ul > li > a,
+.site-nav > ul > li > button {
+  height: 3.45rem;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1;
+}
+.header-right { height: 100%; }
+.header-right .header-link,
+.header-right .btn {
+  height: 3.45rem;
+  min-height: 3.45rem;
+  line-height: 1;
+}
+.site-nav > ul > li.has-sub-menu:hover > button { background: var(--lightgrey); }
+.site-nav > ul > li.has-sub-menu.open > button,
+.site-nav > ul > li > a:hover { background: var(--lightgrey); }
+.has-sub-menu.open .inline-icon { transform: rotate(180deg); }
+.sub-menu-menus,
+.sub-menu-menus.wide {
+  top: calc(100% + .2rem);
+  left: 50%;
+  width: 29rem;
+  min-width: 0;
+  gap: 0;
+  padding: .7rem;
+  transform: translate(-50%, 6px);
+}
+.has-sub-menu:hover .sub-menu-menus { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+.has-sub-menu.open .sub-menu-menus { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+.has-sub-menu:hover .inline-icon { transform: rotate(180deg); }
+.sub-menu-menu { min-width: 0; }
+.sub-menu-menu ul li a { white-space: normal; }
+.legal-page { text-align: left; }
+.legal-page .container { max-width: 88rem; }
+.legal-page h2 { margin: 4rem 0 1.2rem; font-size: 2.6rem; }
+.legal-page p { max-width: 70rem; margin-bottom: 1.6rem; font-size: 1.7rem; line-height: 1.6; }
+.legal-page a { color: var(--color-monday-violet); text-decoration: underline; }
+.form-section { padding: 7rem 0 10rem; }
+
+@media (max-width: 960px) {
+  .site-header, .site-header.scrolled { height: 6.4rem; }
+  .site-nav, .header-right .header-link { display: none; }
+  .burger { display: inline-flex; margin-right: -.8rem; }
+  .header-right { gap: 1.2rem; }
+  .mobile-nav { inset: 6.4rem 0 0; }
+}
 
 /* ===========================================================
    Hero (generic, reused across pages)
@@ -822,7 +879,7 @@ section.bg-black { background: var(--off-black); color: var(--white); }
   color: var(--white);
   padding: 8rem 0 3rem;
 }
-.footer-top { display: grid; grid-template-columns: 1.2fr repeat(3, 1fr); gap: 4rem; padding-bottom: 6rem; }
+.footer-top { display: grid; grid-template-columns: 1.2fr repeat(4, 1fr); gap: 4rem; padding-bottom: 6rem; }
 .footer-col h5 { font-size: 1.6rem; margin-bottom: 2rem; color: var(--grey); font-weight: 400; }
 .footer-col ul { display: flex; flex-direction: column; gap: 1.2rem; }
 .footer-col ul li a { font-size: 1.5rem; color: var(--white); opacity: .8; transition: opacity .25s var(--ease); }

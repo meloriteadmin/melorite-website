@@ -1,26 +1,221 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ------------------------------------------------------------------
+   Melorite design tokens
+   ------------------------------------------------------------------ */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-brand: #2563eb;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-navy: #0a2540;
+  --color-navy-900: #061a2f;
+  --color-navy-800: #0d2e4f;
+  --color-ink: #111111;
+  --color-paper: #f8fafc;
+  --color-muted: #64748b;
+  --color-line: #e5eaf1;
+  --color-line-strong: #d6dde8;
+  --color-accent: #a0278c;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  --shadow-soft: 0 1px 2px rgb(10 37 64 / 0.04), 0 4px 16px -4px rgb(10 37 64 / 0.08);
+  --shadow-ui: 0 1px 1px rgb(10 37 64 / 0.04), 0 12px 32px -12px rgb(10 37 64 / 0.18),
+    0 40px 80px -40px rgb(10 37 64 / 0.22);
+  --shadow-float: 0 1px 1px rgb(10 37 64 / 0.05), 0 10px 30px -10px rgb(10 37 64 / 0.25);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-dash: dash 1.6s linear infinite;
+  --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-expo) infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -20; }
+  }
+  @keyframes acc-down {
+    from { height: 0; opacity: 0; }
+    to { height: var(--radix-accordion-content-height); opacity: 1; }
+  }
+  @keyframes acc-up {
+    from { height: var(--radix-accordion-content-height); opacity: 1; }
+    to { height: 0; opacity: 0; }
+  }
+  @keyframes pulse-dot {
+    0% { box-shadow: 0 0 0 0 rgb(37 99 235 / 0.45); }
+    70%, 100% { box-shadow: 0 0 0 8px rgb(37 99 235 / 0); }
   }
 }
 
+/* ------------------------------------------------------------------
+   Base
+   ------------------------------------------------------------------ */
+:root {
+  --gutter: 20px;
+  color-scheme: light;
+}
+@media (min-width: 768px) {
+  :root { --gutter: 32px; }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 56px; }
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-brand-100);
+  color: var(--color-navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+/* ------------------------------------------------------------------
+   Layout + typography utilities
+   ------------------------------------------------------------------ */
+@utility container-x {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility text-display {
+  font-size: clamp(2.5rem, 1.35rem + 5.6vw, 6.25rem);
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+
+@utility text-h1 {
+  font-size: clamp(2.25rem, 1.4rem + 3.9vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+}
+
+@utility text-h2 {
+  font-size: clamp(2rem, 1.35rem + 2.9vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.038em;
+  font-weight: 600;
+}
+
+@utility text-h3 {
+  font-size: clamp(1.375rem, 1.15rem + 0.9vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+}
+
+@utility text-lead {
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.1875rem);
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+}
+
+@utility section-y {
+  padding-block: clamp(5rem, 3.5rem + 6vw, 10rem);
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, rgb(10 37 64 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(10 37 64 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility bg-dots {
+  background-image: radial-gradient(rgb(10 37 64 / 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@utility mask-radial {
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 72%);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* ------------------------------------------------------------------
+   Page transitions (React ViewTransition)
+   ------------------------------------------------------------------ */
+::view-transition-old(.page-fade) {
+  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both vt-fade-out;
+}
+::view-transition-new(.page-fade) {
+  animation: 420ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both vt-fade-in;
+}
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion
+   ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }

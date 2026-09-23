@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Melorite — marketing website
 
-## Getting Started
+Five-page product marketing site for Melorite: **Home, Platform, Products, Solutions, Company**.
 
-First, run the development server:
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Motion · GSAP ScrollTrigger · Lenis · Radix primitives (shadcn/ui-style) · React Hook Form + Zod · Lucide.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # optional in development
+npm run dev                  # http://localhost:3000
+npm run build && npm start   # production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content architecture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All product, industry and page content is data-driven — adding an app or industry is a data change, not a component change.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| File | Holds |
+| --- | --- |
+| `src/data/products.ts` | 16 Business Apps: names, categories, modules, capabilities, use case, preview data, availability |
+| `src/data/industries.ts` | 15 Industry Solutions: modules, dependent apps, workflows, use case, availability, optional `image` |
+| `src/data/workflows.ts` | Cross-app flows with per-hand-off status (`available` / `rolling-out`) and shared records |
+| `src/data/platform.ts` | Platform capabilities and implemented security measures |
+| `src/data/navigation.ts`, `site.ts`, `faqs.ts`, `company.ts` | Navigation, site config, FAQs, principles, form options |
 
-## Learn More
+Names, descriptions and module lists mirror the platform's code-owned catalogue (`@melorite/core` in `melorite-platform`). When the platform catalogue changes, update these files.
 
-To learn more about Next.js, take a look at the following resources:
+**Availability labels** (review before launch — they are displayed publicly):
+- Business Apps → `available`
+- Industry Solutions → `early-access`
+- Integrations capability → `early-access`
+- Ledger postings from procurement/payroll and campaign → CRM activity/attribution hand-offs → `rolling-out`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Product visuals
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Product previews are **coded, illustrative mockups** of the real Client Workspace shell (utility bar, app switcher, global search, module sidebar, metric strip, tables/boards) rendered from catalogue data in `src/components/mockups/`. They scale with container-query units, so they stay crisp at any size and cause no layout shift. All figures are sample data and labelled as such. The internal Control Center screenshots were intentionally **not** used, because they expose internal admin UI and test data.
 
-## Deploy on Vercel
+Industry cards use art-directed visuals built from each solution's modules and accent colour. To use approved photography, set `image: "/images/solutions/<file>.jpg"` on an industry.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Enquiry handling
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`POST /api/enquiries` (`src/app/api/enquiries/route.ts`) validates with the same Zod schema as the form (`src/lib/enquiry-schema.ts`), then:
+
+1. **Production:** forwards the enquiry as JSON to `ENQUIRY_WEBHOOK_URL` (optionally HMAC-signed with `ENQUIRY_WEBHOOK_SECRET`). If it isn't configured or delivery fails, the visitor sees an error — never a false success.
+2. **Development:** without a webhook, appends to `.data/enquiries.jsonl` (git-ignored).
+
+Spam prevention: honeypot field, minimum fill time, and a best-effort per-IP rate limit (5 per 10 min per instance — use a shared store such as Redis if you run multiple instances). The public site never calls internal platform admin APIs.
+
+Details chosen elsewhere (Workspace Builder, Solution Finder, product/industry demo buttons) carry into the form via `?enquiry=&apps=&industry=&challenges=`.
+
+## Motion & accessibility
+
+- Motion for component interactions; GSAP ScrollTrigger only for the hero convergence (`src/lib/gsap.ts`, loaded only there); Lenis smooth scroll (disabled for reduced motion and touch).
+- `MotionConfig reducedMotion="user"` plus CSS reduced-motion overrides; autoplay (product tabs, solutions hero) stops under reduced motion.
+- Page transitions use React `ViewTransition` (subtle fade; browsers without support navigate normally).
+- Keyboard-operable tabs, accordions, builder and selectors; Radix Dialog mobile menu (focus trap, Escape, focus return); skip link; visible focus rings.
+
+## Before launch
+
+- [ ] Confirm availability labels in `src/data/*`
+- [ ] Set `ENQUIRY_WEBHOOK_URL` (and secret) to the approved CRM/intake endpoint
+- [ ] Add verified contact details and official social links (`site.ts` / env)
+- [ ] Publish Privacy Policy and Terms, then set `NEXT_PUBLIC_PRIVACY_URL` / `NEXT_PUBLIC_TERMS_URL` — the form collects personal data
+- [ ] Replace or approve the logo asset (`public/brand/`) — the platform app currently uses a different "bars" mark

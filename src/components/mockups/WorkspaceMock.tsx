@@ -13,6 +13,7 @@ import {
   Folder, GitBranch, Grid2x2, LayoutDashboard, ListChecks, Package, Plus, Receipt, Search, Settings,
   Star, Target, TrendingUp, Users, Workflow, Warehouse, Upload, type LucideIcon,
 } from "lucide-react";
+import Image from "next/image";
 import type { Product } from "@/data/products";
 import { Icon } from "@/lib/icons";
 import { cn, tint } from "@/lib/utils";
@@ -47,48 +48,61 @@ export function MockFrame({
   designWidth = 1280,
   chrome = true,
   url,
+  readable = false,
 }: {
   children: React.ReactNode;
   className?: string;
   designWidth?: number;
   chrome?: boolean;
   url?: string;
+  /** On phones, render at a legible scale inside a swipeable frame instead of shrinking. */
+  readable?: boolean;
 }) {
   return (
-    <div className={cn("@container w-full", className)}>
+    <div className={cn("w-full", className)}>
       <div
-        className="overflow-hidden rounded-[1.4em] bg-white text-[#1d2433] ring-1 ring-[#0a2540]/10 shadow-ui"
-        style={{ fontSize: `calc(100cqw / ${designWidth / 10})` }}
+        className={cn(readable && "no-scrollbar max-sm:-mx-[var(--gutter)] max-sm:overflow-x-auto max-sm:px-[var(--gutter)] max-sm:pb-1")}
+        data-lenis-prevent={readable || undefined}
       >
-        {chrome && (
-          <div className="flex h-[3.6em] items-center gap-[1.6em] border-b border-[#e8edf3] bg-[#f6f8fb] px-[1.6em]">
-            <div className="flex gap-[0.6em]" aria-hidden>
-              <span className="size-[1.1em] rounded-full bg-[#ff5f57]" />
-              <span className="size-[1.1em] rounded-full bg-[#febc2e]" />
-              <span className="size-[1.1em] rounded-full bg-[#28c840]" />
+        <div className={cn("@container", readable && "max-sm:w-[760px]")}>
+          {/* Screenshot bezel: consistent across the site */}
+          <div className="rounded-[20px] bg-gradient-to-b from-white to-paper p-[5px] shadow-ui ring-1 ring-line">
+            <div
+              className="overflow-hidden rounded-[15px] bg-white text-[#1d2433] ring-1 ring-line/80"
+              style={{ fontSize: `calc(100cqw / ${designWidth / 10})` }}
+            >
+              {chrome && (
+                <div className="flex h-[3.2em] items-center gap-[1.6em] border-b border-[#eef1f5] bg-[#fafbfd] px-[1.6em]">
+                  <div className="flex gap-[0.55em]" aria-hidden>
+                    <span className="size-[1em] rounded-full bg-[#e2e8f0]" />
+                    <span className="size-[1em] rounded-full bg-[#e2e8f0]" />
+                    <span className="size-[1em] rounded-full bg-[#e2e8f0]" />
+                  </div>
+                  <div className="mx-auto flex h-[2.1em] w-[38%] items-center justify-center rounded-[0.6em] bg-white text-[1.1em] text-[#94a3b8] ring-1 ring-[#eef1f5]">
+                    <span className="text-[0.9em]">{url ?? "app.melorite.com"}</span>
+                  </div>
+                  <div className="w-[4em]" />
+                </div>
+              )}
+              {children}
             </div>
-            <div className="mx-auto flex h-[2.3em] w-[42%] items-center justify-center rounded-[0.7em] bg-white text-[1.15em] text-[#64748b] ring-1 ring-[#e3e8ef]">
-              <span className="text-[0.9em]">{url ?? "app.melorite.com"}</span>
-            </div>
-            <div className="w-[4.5em]" />
           </div>
-        )}
-        {children}
+        </div>
       </div>
+      {readable && <p className="mt-3 text-center text-[12px] text-muted sm:hidden">Swipe to explore the interface →</p>}
     </div>
   );
 }
 
 function BarsLogo() {
   return (
-    <span className="inline-flex items-center gap-[0.7em]">
-      <span className="flex h-[1.8em] items-end gap-[0.3em]" aria-hidden>
-        <i className="block w-[0.4em] rounded-[0.2em] bg-[#2563eb]" style={{ height: "0.8em" }} />
-        <i className="block w-[0.4em] rounded-[0.2em] bg-[#2563eb]" style={{ height: "1.3em" }} />
-        <i className="block w-[0.4em] rounded-[0.2em] bg-[#0a2540]" style={{ height: "1.8em" }} />
-      </span>
-      <span className="text-[1.7em] font-bold tracking-[-0.02em] text-[#0a2540]">melorite</span>
-    </span>
+    <Image
+      src="/brand/melorite-wordmark.png"
+      alt="Melorite"
+      width={240}
+      height={51}
+      className="h-[2.25em] w-auto"
+    />
   );
 }
 
@@ -384,14 +398,16 @@ export function WorkspaceMock({
   className,
   chrome = true,
   compact = false,
+  readable = true,
 }: {
   product: Product;
   className?: string;
   chrome?: boolean;
   compact?: boolean;
+  readable?: boolean;
 }) {
   return (
-    <MockFrame className={className} chrome={chrome} url={`app.melorite.com/${product.slug}`}>
+    <MockFrame className={className} chrome={chrome} readable={readable} url={`app.melorite.com/${product.slug}`}>
       <GlobalHeader appName={product.shortName} />
       <div className="flex">
         {!compact && <Sidebar title={product.shortName} items={product.modules} accent={product.accent} />}
@@ -430,15 +446,17 @@ export function LauncherMock({
   highlight,
   chrome = true,
   title = "Good morning, Priya",
+  readable = false,
 }: {
   apps: Product[];
   className?: string;
   highlight?: string[];
   chrome?: boolean;
   title?: string;
+  readable?: boolean;
 }) {
   return (
-    <MockFrame className={className} chrome={chrome} url="app.melorite.com/home">
+    <MockFrame className={className} chrome={chrome} readable={readable} url="app.melorite.com/home">
       <GlobalHeader appName="Workspace" />
       <div className="grid grid-cols-[1fr_30em] gap-[2em] bg-[#fbfcfe] p-[2.4em]">
         <div>

@@ -45,7 +45,7 @@ export function OrgManagement() {
             const apps = ent[org.id];
             const landing = apps.length === 0 ? "No applications enabled" : apps.length === 1 ? `Lands directly in ${productById(apps[0])!.shortName}` : "Opens Workspace Home";
             return (
-              <RevealItem key={org.id} className="flex flex-col overflow-hidden rounded-[24px] bg-white ring-1 ring-line">
+              <RevealItem key={org.id} className="flex flex-col overflow-hidden rounded-[20px] bg-white ring-1 ring-line">
                 <div className="border-b border-line p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">

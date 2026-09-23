@@ -54,11 +54,11 @@ export function IndustryShowcase() {
           </div>
 
           <div id="industry-panel" role="tabpanel" aria-live="polite" className="lg:col-span-9">
-            <div className="grid">
+            <div className="grid grid-cols-1">
               <AnimatePresence initial={false}>
                 <motion.div
                   key={ind.id}
-                  className="[grid-area:1/1]"
+                  className="min-w-0 [grid-area:1/1]"
                   initial={{ clipPath: "inset(0 0 100% 0 round 20px)" }}
                   animate={{ clipPath: "inset(0 0 0% 0 round 20px)" }}
                   exit={{ opacity: 0, transition: { duration: 0.3, delay: 0.35 } }}

@@ -16,7 +16,7 @@ export function Principles() {
             <RevealItem
               key={p.id}
               className={cn(
-                "group relative flex flex-col justify-between overflow-hidden rounded-[24px] p-7 ring-1 transition-shadow duration-500 hover:shadow-[0_24px_48px_-28px_rgba(10,37,64,0.35)] md:p-8",
+                "group relative flex flex-col justify-between overflow-hidden rounded-[20px] p-7 ring-1 transition-shadow duration-500 hover:shadow-[0_24px_48px_-28px_rgba(10,37,64,0.35)] md:p-8",
                 i === 0 ? "min-h-[320px] bg-navy text-white ring-navy md:col-span-2" : "min-h-[220px] bg-white ring-line",
                 SPANS[i],
               )}

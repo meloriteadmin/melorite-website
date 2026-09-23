@@ -101,7 +101,7 @@ export function ConnectedSystems() {
         </div>
 
         <Reveal delay={0.1} className="mt-14">
-          <div className="overflow-hidden rounded-[28px] bg-white ring-1 ring-line">
+          <div className="overflow-hidden rounded-[20px] border border-line bg-white shadow-soft">
             <div
               ref={stageRef}
               className={cn(

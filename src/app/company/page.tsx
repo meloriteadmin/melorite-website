@@ -30,7 +30,6 @@ export default function CompanyPage() {
       <Vision />
       <Principles />
       <Approach />
-      <div className="pt-16 md:pt-24" />
       <ContactIntro />
       <ContactSection />
       <CTASection

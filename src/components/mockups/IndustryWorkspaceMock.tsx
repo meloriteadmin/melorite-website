@@ -13,12 +13,12 @@ import { MockFrame } from "./WorkspaceMock";
 
 const SAMPLE = [128, 42, 17, 9, 64, 23, 11, 36, 5, 88];
 
-export function IndustryWorkspaceMock({ industry, className, chrome = true }: { industry: Industry; className?: string; chrome?: boolean }) {
+export function IndustryWorkspaceMock({ industry, className, chrome = true, readable = true }: { industry: Industry; className?: string; chrome?: boolean; readable?: boolean }) {
   const a = industry.accent;
   const nav = ["Overview", ...industry.modules.slice(0, 7), "Workflows", "Reports", "Settings"];
   const wf = industry.workflows[0];
   return (
-    <MockFrame className={className} chrome={chrome} url={`app.melorite.com/${industry.slug}`}>
+    <MockFrame className={className} chrome={chrome} readable={readable} url={`app.melorite.com/${industry.slug}`}>
       <div className="flex h-[5.4em] items-center justify-between border-b border-[#e8edf3] px-[2em]">
         <span className="flex items-center gap-[1em]">
           <span className="grid size-[3.2em] place-items-center rounded-[0.8em]" style={{ background: tint(a, 0.12), color: a }}>

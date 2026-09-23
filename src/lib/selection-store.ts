@@ -29,7 +29,7 @@ export function useSelection(store: ReturnType<typeof createSelection>) {
 export const productSelection = createSelection("crm");
 export const industrySelection = createSelection("hospital");
 
-/** Scroll to an element id, via Lenis when active. */
+/** Scroll to an element id, using native scrolling unless a legacy controller is present. */
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;

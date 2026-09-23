@@ -54,7 +54,7 @@ export function SolutionFinder() {
           </AnimatePresence>
         </div>
 
-        <form onSubmit={submit} className="space-y-8 rounded-[24px] bg-white p-6 text-navy md:p-9 lg:col-span-7">
+        <form onSubmit={submit} className="space-y-8 rounded-[20px] bg-white p-6 text-navy md:p-9 lg:col-span-7">
           <div>
             <label htmlFor="finder-industry" className="text-[15px] font-semibold">
               1. Your industry

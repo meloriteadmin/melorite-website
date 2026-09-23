@@ -107,7 +107,7 @@ export function WhyConnected() {
         <SectionHeading align="center" className="mx-auto max-w-[820px]" eyebrow="Why connected products matter" title={["Powerful individually.", "More useful together."]} />
         <RevealGroup className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-3">
           {ITEMS.map(({ title, body, Visual }) => (
-            <RevealItem key={title} className="flex flex-col overflow-hidden rounded-[24px] bg-paper ring-1 ring-line">
+            <RevealItem key={title} className="flex flex-col overflow-hidden rounded-[20px] bg-paper ring-1 ring-line">
               <div className="flex h-[220px] items-center justify-center p-6">
                 <Visual />
               </div>

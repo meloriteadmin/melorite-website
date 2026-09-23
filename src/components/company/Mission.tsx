@@ -15,7 +15,7 @@ function DisconnectedToConnected() {
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[460px]" aria-hidden>
       <motion.div
-        className="absolute inset-[8%] rounded-[28px] border border-dashed border-brand/30"
+        className="absolute inset-[8%] rounded-[20px] border border-dashed border-brand/30"
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.5 }}

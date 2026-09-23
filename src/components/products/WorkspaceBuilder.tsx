@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
-import { Check, Plus, RotateCcw } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import { productCategories, products, productById } from "@/data/products";
 import { Icon } from "@/lib/icons";
 import { cn, tint } from "@/lib/utils";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ButtonLink } from "@/components/shared/Button";
 import { MockFrame } from "@/components/mockups/WorkspaceMock";
+import { Checkbox } from "@/components/ui/checkbox";
 
 /** Illustrative explorer only — no prices, no provisioning. */
 export function WorkspaceBuilder() {
@@ -36,25 +37,33 @@ export function WorkspaceBuilder() {
               <div className="space-y-6">
                 {productCategories.map((c) => (
                   <div key={c.id}>
-                    <div className="mb-2.5 font-mono text-[10.5px] uppercase tracking-[0.14em] text-white/40">{c.name}</div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="mb-2.5 text-[12px] font-medium uppercase tracking-[0.08em] text-white/45">{c.name}</div>
+                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2">
                       {products
                         .filter((p) => p.category === c.id)
                         .map((p) => {
                           const on = selected.includes(p.id);
+                          const id = `builder-${p.id}`;
                           return (
                             <label
                               key={p.id}
+                              htmlFor={id}
                               className={cn(
-                                "relative inline-flex cursor-pointer select-none items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3.5 text-[14px] font-medium ring-1 transition-all duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-brand-200",
-                                on ? "bg-white text-navy ring-white" : "bg-white/[0.04] text-white/80 ring-white/15 hover:bg-white/10",
+                                "flex cursor-pointer select-none items-center gap-3 rounded-[12px] border p-3 transition-[background-color,border-color,box-shadow] duration-200",
+                                on ? "border-white bg-white text-navy shadow-[0_8px_24px_-12px_rgb(0_0_0/0.5)]" : "border-white/12 bg-white/[0.03] text-white/80 hover:border-white/25 hover:bg-white/[0.06]",
                               )}
                             >
-                              <input type="checkbox" className="sr-only" checked={on} onChange={() => toggle(p.id)} />
-                              <span className="grid size-7 place-items-center rounded-full transition-colors" style={on ? { background: tint(p.accent, 0.14), color: p.accent } : { background: "rgba(255,255,255,0.08)", color: "#fff" }}>
-                                {on ? <Check className="size-3.5" aria-hidden /> : <Plus className="size-3.5" aria-hidden />}
+                              <span className="grid size-8 shrink-0 place-items-center rounded-[8px]" style={on ? { background: tint(p.accent, 0.12), color: p.accent } : { background: "rgba(255,255,255,0.06)", color: "#fff" }}>
+                                <Icon name={p.icon} className="size-4" />
                               </span>
-                              {p.shortName}
+                              <span className="min-w-0 flex-1 truncate text-[14px] font-medium">{p.shortName}</span>
+                              <Checkbox
+                                id={id}
+                                checked={on}
+                                onCheckedChange={() => toggle(p.id)}
+                                aria-label={`Include ${p.name}`}
+                                className={cn(!on && "border-white/30 bg-transparent")}
+                              />
                             </label>
                           );
                         })}

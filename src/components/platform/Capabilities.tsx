@@ -9,6 +9,7 @@ import { cn, EASE } from "@/lib/utils";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { StatusBadge } from "@/components/shared/StatusBadge";
 import { MockFrame } from "@/components/mockups/WorkspaceMock";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 function CapabilityPreview({ id }: { id: string }) {
   const c = platformCapabilities.find((x) => x.id === id)!;
@@ -53,33 +54,29 @@ export function Capabilities() {
       <div className="container-x">
         <SectionHeading eyebrow="Platform capabilities" title={["Built once.", "Shared by every application."]} description="Platform-level capabilities that every Melorite application relies on." />
 
-        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
-          <div role="tablist" aria-orientation="vertical" aria-label="Capabilities" className="flex flex-col divide-y divide-line border-y border-line lg:col-span-5">
+        <Tabs value={active} onValueChange={setActive} orientation="vertical" className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12">
+          <TabsList variant="line" aria-label="Capabilities" className="h-auto w-full flex-col items-stretch gap-0 divide-y divide-line rounded-none border-y border-line p-0 lg:col-span-5">
             {platformCapabilities.map((cap) => {
               const on = cap.id === active;
               return (
                 <div key={cap.id}>
-                  <button
-                    role="tab"
-                    id={`cap-${cap.id}`}
-                    aria-selected={on}
-                    aria-controls="cap-panel"
-                    onClick={() => setActive(cap.id)}
-                    className="group flex w-full items-center gap-4 py-4 text-left"
+                  <TabsTrigger
+                    value={cap.id}
+                    className="group h-auto w-full justify-start gap-4 rounded-none px-0 py-4 text-left after:hidden data-[state=active]:bg-transparent data-[state=active]:shadow-none"
                   >
                     <span className={cn("grid size-9 shrink-0 place-items-center rounded-[10px] transition-colors", on ? "bg-brand text-white" : "bg-white text-muted ring-1 ring-line group-hover:text-navy")}>
                       <Icon name={cap.icon} className="size-[18px]" />
                     </span>
-                    <span className={cn("text-[16.5px] font-medium tracking-[-0.015em] transition-colors", on ? "text-navy" : "text-slate-500 group-hover:text-navy")}>{cap.title}</span>
+                    <span className={cn("text-[16px] font-medium tracking-[-0.015em] transition-colors", on ? "text-navy" : "text-slate-500 group-hover:text-navy")}>{cap.title}</span>
                     {cap.status !== "available" && <StatusBadge status={cap.status} className="ml-auto" />}
-                  </button>
+                  </TabsTrigger>
                   <AnimatePresence initial={false}>
                     {on && (
                       <motion.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.45, ease: EASE }}
+                        transition={{ duration: 0.4, ease: EASE }}
                         className="overflow-hidden"
                       >
                         <p className="pb-5 pl-[52px] text-[15px] leading-relaxed text-muted">{cap.description}</p>
@@ -89,27 +86,29 @@ export function Capabilities() {
                 </div>
               );
             })}
-          </div>
+          </TabsList>
 
-          <div id="cap-panel" role="tabpanel" aria-labelledby={`cap-${c.id}`} className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <div className="lg:sticky lg:top-28">
-              <AnimatePresence mode="wait">
-                <motion.div key={c.id} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.4, ease: EASE }}>
-                  <CapabilityPreview id={c.id} />
-                  <div className="mt-5 flex gap-4 rounded-[18px] bg-white p-5 ring-1 ring-line">
-                    <span className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-amber-50 text-amber-600">
-                      <Lightbulb className="size-[18px]" aria-hidden />
-                    </span>
-                    <div>
-                      <div className="text-[13px] font-semibold uppercase tracking-wide text-navy">In practice</div>
-                      <p className="mt-1 text-[15px] leading-relaxed text-muted">{c.useCase}</p>
+              <TabsContent value={c.id} forceMount>
+                <AnimatePresence mode="wait">
+                  <motion.div key={c.id} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.35, ease: EASE }}>
+                    <CapabilityPreview id={c.id} />
+                    <div className="mt-5 flex gap-4 rounded-[16px] border border-line bg-white p-5">
+                      <span className="grid size-9 shrink-0 place-items-center rounded-[10px] bg-brand-50 text-brand">
+                        <Lightbulb className="size-[18px]" aria-hidden />
+                      </span>
+                      <div>
+                        <div className="text-[13px] font-semibold text-navy">In practice</div>
+                        <p className="mt-1 text-[15px] leading-relaxed text-muted">{c.useCase}</p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
+                  </motion.div>
+                </AnimatePresence>
+              </TabsContent>
             </div>
           </div>
-        </div>
+        </Tabs>
       </div>
     </section>
   );

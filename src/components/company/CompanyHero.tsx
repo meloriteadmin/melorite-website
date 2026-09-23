@@ -63,24 +63,28 @@ function ConnectedGrid() {
 
 export function CompanyHero() {
   return (
-    <section className="px-3 pt-[84px] md:px-4 md:pt-[88px]">
-      <div className="relative isolate overflow-hidden rounded-[28px] bg-navy text-white">
-        <ConnectionField className="opacity-40" />
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_80%_20%,rgba(37,99,235,0.35),transparent_70%)]" aria-hidden />
-        <div className="container-x grid grid-cols-1 items-center gap-12 py-20 md:py-28 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}>
-              <Eyebrow dark>About Melorite</Eyebrow>
-            </motion.div>
-            <TextReveal as="h1" trigger="mount" delay={0.15} lines={["Building a more", "connected way", "to do business."]} className="text-h1 mt-6 text-white" />
-            <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.55 }} className="text-lead mt-7 max-w-[52ch] text-white/65">
-              Melorite is being built around a simple idea: businesses should be able to manage the tools and processes they need through one connected platform, without being forced into unnecessary complexity.
-            </motion.p>
-          </div>
-          <div className="lg:col-span-6">
-            <ConnectedGrid />
-          </div>
+    <section className="relative overflow-hidden pb-16 pt-[112px] md:pb-24 md:pt-[136px]">
+      <div className="absolute inset-0 -z-10 bg-grid [mask-image:radial-gradient(ellipse_50%_50%_at_15%_10%,black,transparent)]" aria-hidden />
+      <div className="container-x grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="lg:col-span-6">
+          <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: EASE }}>
+            <Eyebrow>About Melorite</Eyebrow>
+          </motion.div>
+          <TextReveal as="h1" trigger="mount" delay={0.1} lines={["Building a more", "connected way", "to do business."]} highlight={["connected"]} className="text-display mt-6 text-navy" />
+          <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease: EASE, delay: 0.5 }} className="text-lead mt-7 max-w-[50ch] text-muted">
+            Melorite is being built around a simple idea: businesses should be able to manage the tools and processes they need through one connected platform, without being forced into unnecessary complexity.
+          </motion.p>
         </div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
+          className="relative isolate overflow-hidden rounded-[20px] bg-navy p-6 shadow-ui sm:p-10 lg:col-span-6"
+        >
+          <ConnectionField className="opacity-30" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_70%_30%,rgba(37,99,235,0.35),transparent_70%)]" aria-hidden />
+          <ConnectedGrid />
+        </motion.div>
       </div>
     </section>
   );

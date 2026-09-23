@@ -7,15 +7,19 @@ import { industryById } from "@/data/industries";
 import { Icon } from "@/lib/icons";
 import { cn, EASE, tint } from "@/lib/utils";
 import { SectionHeading } from "@/components/shared/SectionHeading";
+import { cardVariants } from "@/components/ui/card";
 import { RevealGroup, RevealItem } from "@/components/animation/Reveal";
 
 function Tile({ title, body, children, className }: { title: string; body: string; children: React.ReactNode; className?: string }) {
   return (
-    <RevealItem className={cn("group relative flex flex-col overflow-hidden rounded-[24px] bg-white ring-1 ring-line", className)}>
-      <div className="relative flex min-h-[220px] flex-1 items-center justify-center overflow-hidden bg-paper/60 p-6">{children}</div>
-      <div className="border-t border-line p-6 md:p-7">
-        <h3 className="text-[19px] font-semibold tracking-[-0.02em] text-navy">{title}</h3>
-        <p className="mt-2 max-w-[48ch] text-[14.5px] leading-relaxed text-muted">{body}</p>
+    <RevealItem className={cn(cardVariants({ variant: "default", padding: "none" }), "group relative gap-0 overflow-hidden", className)}>
+      <div className="relative flex min-h-[220px] flex-1 items-center justify-center overflow-hidden bg-[linear-gradient(180deg,var(--color-paper),#fff)] p-6">
+        <div className="absolute inset-0 bg-dots opacity-50 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" aria-hidden />
+        <div className="relative flex w-full justify-center">{children}</div>
+      </div>
+      <div className="border-t border-line p-6">
+        <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-navy">{title}</h3>
+        <p className="mt-1.5 max-w-[48ch] text-[14.5px] leading-relaxed text-muted">{body}</p>
       </div>
     </RevealItem>
   );
@@ -183,9 +187,9 @@ function GrowVisual() {
 
 export function Advantages() {
   return (
-    <section className="section-y">
+    <section className="section-y bg-paper border-t border-line">
       <div className="container-x">
-        <SectionHeading eyebrow="Platform advantages" title={["Designed around", "the way businesses operate."]} />
+        <SectionHeading eyebrow="Core capabilities" title={["Designed around", "the way businesses operate."]} description="The platform capabilities every Melorite application is built on." />
         <RevealGroup className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6 lg:gap-5">
           <Tile className="lg:col-span-4" title="Unified workspace" body="Every enabled application lives in one workspace with one sign-in, one search and one place for notifications and approvals.">
             <UnifiedVisual />

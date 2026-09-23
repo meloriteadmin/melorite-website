@@ -1,34 +1,17 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 import { Magnetic } from "@/components/animation/Magnetic";
 
-type Variant = "primary" | "secondary" | "dark" | "ghost" | "light" | "outline-light";
+type Variant = "primary" | "secondary" | "outline" | "dark" | "ghost" | "light" | "outline-light" | "text";
 type Size = "sm" | "md" | "lg";
 
-const variants: Record<Variant, string> = {
-  primary:
-    "bg-brand text-white shadow-[0_1px_0_rgb(255_255_255/0.2)_inset,0_8px_20px_-8px_rgb(37_99_235/0.7)] hover:bg-brand-600",
-  secondary: "bg-white text-navy ring-1 ring-line-strong hover:ring-navy/30 hover:bg-paper",
-  dark: "bg-navy text-white hover:bg-navy-800",
-  ghost: "text-navy hover:bg-navy/5",
-  light: "bg-white text-navy hover:bg-brand-50",
-  "outline-light": "text-white ring-1 ring-white/25 hover:bg-white/10 hover:ring-white/40",
-};
+const SIZE: Record<Size, "sm" | "default" | "lg"> = { sm: "sm", md: "default", lg: "lg" };
 
-const sizes: Record<Size, string> = {
-  sm: "h-9 px-3.5 text-[13.5px] gap-1.5 rounded-[10px]",
-  md: "h-11 px-5 text-[15px] gap-2 rounded-[11px]",
-  lg: "h-[52px] px-6 text-[15.5px] gap-2.5 rounded-[12px]",
-};
-
+/** Class helper for links styled as buttons — delegates to the shadcn Button variants. */
 export function buttonClasses(variant: Variant = "primary", size: Size = "md", className?: string) {
-  return cn(
-    "group/btn relative inline-flex select-none items-center justify-center whitespace-nowrap font-medium tracking-[-0.01em] transition-[background-color,box-shadow,color,transform] duration-200 ease-out active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60",
-    variants[variant],
-    sizes[size],
-    className,
-  );
+  return cn(buttonVariants({ variant, size: SIZE[size] }), className);
 }
 
 type ButtonLinkProps = {
@@ -39,7 +22,6 @@ type ButtonLinkProps = {
   arrow?: boolean;
   magnetic?: boolean;
   className?: string;
-  prefetch?: boolean;
 };
 
 export function ButtonLink({ href, children, variant = "primary", size = "md", arrow = false, magnetic = false, className }: ButtonLinkProps) {
@@ -52,7 +34,7 @@ export function ButtonLink({ href, children, variant = "primary", size = "md", a
   return magnetic ? <Magnetic>{link}</Magnetic> : link;
 }
 
-/** Arrow that slides on hover of the parent `group/btn`. */
+/** Arrow that slides through on hover of the parent `group/btn`. */
 export function Arrow({ className }: { className?: string }) {
   return (
     <span className={cn("relative inline-flex size-4 overflow-hidden", className)} aria-hidden>
@@ -62,14 +44,15 @@ export function Arrow({ className }: { className?: string }) {
   );
 }
 
-/** Inline text link with animated arrow. */
+/** Text button — inline link with animated arrow. */
 export function TextLink({ href, children, className, dark }: { href: string; children: React.ReactNode; className?: string; dark?: boolean }) {
   return (
     <Link
       href={href}
       className={cn(
-        "group/btn inline-flex items-center gap-1.5 text-[15px] font-medium tracking-[-0.01em] transition-colors",
-        dark ? "text-white hover:text-brand-200" : "text-brand hover:text-brand-700",
+        buttonVariants({ variant: "text" }),
+        "gap-1.5 text-[14.5px]",
+        dark && "text-white hover:text-brand-200",
         className,
       )}
     >

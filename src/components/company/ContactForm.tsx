@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
-import { AlertCircle, Check, CheckCircle2, ChevronDown, Loader2 } from "lucide-react";
+import { AlertCircle, Check, CheckCircle2, Loader2 } from "lucide-react";
 import { products, productCategories } from "@/data/products";
 import { industries } from "@/data/industries";
 import { companySizes, enquiryTypes } from "@/data/company";
@@ -13,17 +13,19 @@ import { enquirySchema, industryIds, productIds, type EnquiryInput } from "@/lib
 import { Icon } from "@/lib/icons";
 import { cn, EASE, tint } from "@/lib/utils";
 import { buttonClasses, Arrow } from "@/components/shared/Button";
-
-const inputCls =
-  "h-12 w-full rounded-[12px] bg-white px-4 text-[15.5px] text-navy ring-1 ring-line-strong transition-shadow placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand aria-[invalid=true]:ring-2 aria-[invalid=true]:ring-red-500/70";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 function Field({ id, label, error, optional, children, className }: { id: string; label: string; error?: string; optional?: boolean; children: React.ReactNode; className?: string }) {
   return (
     <div className={className}>
-      <label htmlFor={id} className="mb-2 flex items-baseline justify-between text-[14px] font-medium text-navy">
+      <Label htmlFor={id} className="mb-2 flex items-baseline justify-between text-[14px] font-medium text-navy">
         {label}
         {optional && <span className="text-[12.5px] font-normal text-muted">Optional</span>}
-      </label>
+      </Label>
       {children}
       <AnimatePresence initial={false}>
         {error && (
@@ -115,7 +117,7 @@ export function ContactForm() {
 
   if (status.state === "success") {
     return (
-      <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, ease: EASE }} className="flex min-h-[520px] flex-col items-center justify-center rounded-[28px] bg-white p-10 text-center ring-1 ring-line" role="status" aria-live="polite">
+      <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, ease: EASE }} className="flex min-h-[520px] flex-col items-center justify-center rounded-[20px] border border-line bg-white p-10 text-center shadow-soft" role="status" aria-live="polite">
         <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }} className="grid size-16 place-items-center rounded-full bg-emerald-50 text-emerald-600">
           <CheckCircle2 className="size-8" aria-hidden />
         </motion.span>
@@ -137,10 +139,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="relative rounded-[28px] bg-white p-6 ring-1 ring-line md:p-10" aria-busy={isSubmitting}>
-      <Suspense fallback={null}>
-        <ParamsSync onParams={applyParams} />
-      </Suspense>
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate className="relative rounded-[20px] border border-line bg-white p-6 shadow-soft md:p-9" aria-busy={isSubmitting}>
       {/* Enquiry type */}
       <fieldset>
         <legend className="mb-3 text-[14px] font-medium text-navy">Type of enquiry</legend>
@@ -148,13 +147,19 @@ export function ContactForm() {
           control={control}
           name="enquiryType"
           render={({ field }) => (
-            <div role="radiogroup" className="grid grid-cols-2 gap-2 md:grid-cols-4">
+            <div role="radiogroup" aria-label="Type of enquiry" className="grid grid-cols-2 gap-1 rounded-[12px] bg-secondary p-1 ring-1 ring-inset ring-border md:grid-cols-4">
               {enquiryTypes.map((t) => {
                 const on = field.value === t.value;
                 return (
-                  <label key={t.value} className={cn("relative flex cursor-pointer items-center justify-center rounded-[12px] px-3 py-3 text-center text-[14px] font-medium ring-1 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand", on ? "text-white ring-navy" : "text-slate-600 ring-line-strong hover:text-navy")}>
-                    <input type="radio" className="sr-only" name={field.name} value={t.value} checked={on} onChange={() => field.onChange(t.value)} />
-                    {on && <motion.span layoutId="enq-type" className="absolute inset-0 rounded-[12px] bg-navy" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
+                  <label
+                    key={t.value}
+                    className={cn(
+                      "relative flex cursor-pointer items-center justify-center rounded-[9px] px-3 py-2.5 text-center text-[14px] font-medium transition-colors has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/35",
+                      on ? "text-navy" : "text-slate-500 hover:text-navy",
+                    )}
+                  >
+                    <input type="radio" className="sr-only" name={field.name} value={t.value} aria-label={t.label} checked={on} onChange={() => field.onChange(t.value)} />
+                    {on && <motion.span layoutId="enq-type" className="absolute inset-0 rounded-[9px] bg-white shadow-[0_1px_2px_rgb(10_37_64/0.08),0_0_0_1px_rgb(10_37_64/0.04)]" transition={{ type: "spring", stiffness: 420, damping: 34 }} />}
                     <span className="relative">{t.label}</span>
                   </label>
                 );
@@ -166,47 +171,57 @@ export function ContactForm() {
 
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
         <Field id="fullName" label="Full name" error={errors.fullName?.message}>
-          <input id="fullName" autoComplete="name" className={inputCls} {...register("fullName")} {...a11y("fullName")} />
+          <Input id="fullName" autoComplete="name" {...register("fullName")} {...a11y("fullName")} />
         </Field>
         <Field id="workEmail" label="Work email" error={errors.workEmail?.message}>
-          <input id="workEmail" type="email" inputMode="email" autoComplete="email" className={inputCls} {...register("workEmail")} {...a11y("workEmail")} />
+          <Input id="workEmail" type="email" inputMode="email" autoComplete="email" {...register("workEmail")} {...a11y("workEmail")} />
         </Field>
         <Field id="phone" label="Phone number" optional error={errors.phone?.message}>
-          <input id="phone" type="tel" inputMode="tel" autoComplete="tel" className={inputCls} {...register("phone")} {...a11y("phone")} />
+          <Input id="phone" type="tel" inputMode="tel" autoComplete="tel" {...register("phone")} {...a11y("phone")} />
         </Field>
         <Field id="companyName" label="Company name" error={errors.companyName?.message}>
-          <input id="companyName" autoComplete="organization" className={inputCls} {...register("companyName")} {...a11y("companyName")} />
+          <Input id="companyName" autoComplete="organization" {...register("companyName")} {...a11y("companyName")} />
         </Field>
         <Field id="industry" label="Industry" error={errors.industry?.message}>
-          <div className="relative">
-            <select id="industry" className={cn(inputCls, "appearance-none pr-10")} {...register("industry")} {...a11y("industry")}>
-              <option value="" disabled>
-                Select industry
-              </option>
-              {industries.map((i) => (
-                <option key={i.id} value={i.id}>
-                  {i.fullName}
-                </option>
-              ))}
-              <option value="other">Other</option>
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-muted" aria-hidden />
-          </div>
+          <Controller
+            control={control}
+            name="industry"
+            render={({ field }) => (
+              <Select value={field.value || undefined} onValueChange={(v) => v && field.onChange(v)} name={field.name}>
+                <SelectTrigger id="industry" className="w-full" onBlur={field.onBlur} {...a11y("industry")}>
+                  <SelectValue placeholder="Select industry" />
+                </SelectTrigger>
+                <SelectContent position="popper" className="max-h-[320px]">
+                  {industries.map((i) => (
+                    <SelectItem key={i.id} value={i.id}>
+                      {i.fullName}
+                    </SelectItem>
+                  ))}
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+          />
         </Field>
         <Field id="companySize" label="Company size" error={errors.companySize?.message}>
-          <div className="relative">
-            <select id="companySize" className={cn(inputCls, "appearance-none pr-10")} {...register("companySize")} {...a11y("companySize")}>
-              <option value="" disabled>
-                Number of employees
-              </option>
-              {companySizes.map((s) => (
-                <option key={s} value={s}>
-                  {s} employees
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 size-4 -translate-y-1/2 text-muted" aria-hidden />
-          </div>
+          <Controller
+            control={control}
+            name="companySize"
+            render={({ field }) => (
+              <Select value={field.value || undefined} onValueChange={(v) => v && field.onChange(v)} name={field.name}>
+                <SelectTrigger id="companySize" className="w-full" onBlur={field.onBlur} {...a11y("companySize")}>
+                  <SelectValue placeholder="Number of employees" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  {companySizes.map((sz) => (
+                    <SelectItem key={sz} value={sz}>
+                      {sz} employees
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
         </Field>
       </div>
 
@@ -219,46 +234,31 @@ export function ContactForm() {
           control={control}
           name="applications"
           render={({ field }) => (
-            <div className="space-y-3">
-              {productCategories.map((c) => (
-                <div key={c.id} className="flex flex-wrap gap-1.5">
-                  {products
-                    .filter((p) => p.category === c.id)
-                    .map((p) => {
-                      const on = field.value.includes(p.id);
-                      return (
-                        <label
-                          key={p.id}
-                          className={cn("inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3 py-1.5 text-[13.5px] font-medium ring-1 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand", on ? "" : "text-slate-600 ring-line-strong hover:text-navy")}
-                          style={on ? { background: tint(p.accent, 0.1), color: p.accent, boxShadow: `inset 0 0 0 1px ${tint(p.accent, 0.4)}` } : undefined}
-                        >
-                          <input
-                            type="checkbox"
-                            className="sr-only"
-                            checked={on}
-                            onChange={() => field.onChange(on ? field.value.filter((x) => x !== p.id) : [...field.value, p.id])}
-                          />
-                          {on ? <Check className="size-3.5" aria-hidden /> : <Icon name={p.icon} className="size-3.5" />}
-                          {p.shortName}
-                        </label>
-                      );
-                    })}
-                </div>
-              ))}
+            <div className="flex flex-wrap gap-1.5">
+              {productCategories.flatMap((c) => products.filter((p) => p.category === c.id)).map((p) => {
+                const on = field.value.includes(p.id);
+                return (
+                  <label
+                    key={p.id}
+                    className={cn(
+                      "inline-flex cursor-pointer items-center gap-1.5 rounded-[8px] border px-2.5 py-1.5 text-[13.5px] font-medium transition-colors has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-ring/35",
+                      on ? "border-transparent" : "border-line text-slate-600 hover:border-line-strong hover:text-navy",
+                    )}
+                    style={on ? { background: tint(p.accent, 0.1), color: p.accent, boxShadow: `inset 0 0 0 1px ${tint(p.accent, 0.4)}` } : undefined}
+                  >
+                    <input type="checkbox" className="sr-only" aria-label={p.name} checked={on} onChange={() => field.onChange(on ? field.value.filter((x) => x !== p.id) : [...field.value, p.id])} />
+                    {on ? <Check className="size-3.5" aria-hidden /> : <Icon name={p.icon} className="size-3.5" />}
+                    {p.shortName}
+                  </label>
+                );
+              })}
             </div>
           )}
         />
       </fieldset>
 
       <Field id="message" label="Message" error={errors.message?.message} className="mt-8">
-        <textarea
-          id="message"
-          rows={5}
-          placeholder="Tell us about your business, your current tools and what you'd like to achieve."
-          className={cn(inputCls, "h-auto resize-y py-3 leading-relaxed")}
-          {...register("message")}
-          {...a11y("message")}
-        />
+        <Textarea id="message" rows={5} placeholder="Tell us about your business, your current tools and what you'd like to achieve." {...register("message")} {...a11y("message")} />
       </Field>
 
       {/* Honeypot — hidden from people and assistive tech */}
@@ -269,10 +269,18 @@ export function ContactForm() {
       <input type="hidden" {...register("startedAt", { valueAsNumber: true })} />
 
       <div className="mt-6">
-        <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-slate-600">
-          <input id="consent" type="checkbox" className="mt-1 size-4 shrink-0 accent-[var(--color-brand)]" {...register("consent")} {...a11y("consent")} />
-          I agree that Melorite may contact me about this enquiry.
-        </label>
+        <Controller
+          control={control}
+          name="consent"
+          render={({ field }) => (
+            <div className="flex items-start gap-3">
+              <Checkbox id="consent" name="consent" className="mt-0.5" checked={field.value === true} onCheckedChange={(v) => field.onChange(v === true ? true : undefined)} onBlur={field.onBlur} {...a11y("consent")} />
+              <Label htmlFor="consent" className="cursor-pointer text-[14px] font-normal leading-relaxed text-slate-600">
+                I agree that Melorite may contact me about this enquiry.
+              </Label>
+            </div>
+          )}
+        />
         {errors.consent && (
           <p id="consent-error" role="alert" className="flex items-center gap-1.5 pt-2 text-[13px] text-red-600">
             <AlertCircle className="size-3.5" aria-hidden /> {errors.consent.message}
@@ -289,7 +297,7 @@ export function ContactForm() {
         )}
       </AnimatePresence>
 
-      <div className="mt-8 flex flex-col-reverse items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-8 flex flex-col-reverse items-start gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-[12.5px] text-muted">We&apos;ll only use your details to respond to this enquiry.</p>
         <button type="submit" disabled={isSubmitting} className={buttonClasses("primary", "lg", "w-full sm:w-auto")}>
           {isSubmitting ? (
@@ -303,6 +311,10 @@ export function ContactForm() {
           )}
         </button>
       </div>
+      {/* Last in the tree so its effect runs after the Controllers subscribe. */}
+      <Suspense fallback={null}>
+        <ParamsSync onParams={applyParams} />
+      </Suspense>
     </form>
   );
 }

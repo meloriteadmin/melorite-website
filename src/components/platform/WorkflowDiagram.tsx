@@ -69,7 +69,7 @@ export function WorkflowDiagram() {
         </Reveal>
 
         {/* Scroll-activated workflow */}
-        <div ref={ref} className="mt-24 rounded-[28px] bg-paper p-6 ring-1 ring-line md:p-10">
+        <div ref={ref} className="mt-24 rounded-[20px] bg-paper p-6 ring-1 ring-line md:p-10">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Verified flow</div>
@@ -123,11 +123,11 @@ export function WorkflowDiagram() {
               </motion.div>
             </AnimatePresence>
             <div className="lg:col-span-8">
-              <div className="grid">
+              <div className="grid grid-cols-1">
                 <AnimatePresence initial={false}>
                   <motion.div
                     key={app.id}
-                    className="[grid-area:1/1]"
+                    className="min-w-0 [grid-area:1/1]"
                     initial={{ opacity: 0, clipPath: "inset(0 0 12% 0 round 16px)" }}
                     animate={{ opacity: 1, clipPath: "inset(0 0 0% 0 round 16px)" }}
                     exit={{ opacity: 0 }}

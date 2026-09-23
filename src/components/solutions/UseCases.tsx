@@ -20,7 +20,7 @@ export function UseCases() {
             const flip = n % 2 === 1;
             return (
               <Reveal key={id} y={30}>
-                <article className="grid grid-cols-1 overflow-hidden rounded-[28px] bg-white ring-1 ring-line lg:grid-cols-12">
+                <article className="grid grid-cols-1 overflow-hidden rounded-[20px] bg-white ring-1 ring-line lg:grid-cols-12">
                   <div className={cn("relative p-5 md:p-8 lg:col-span-7", flip && "lg:order-2")} style={{ background: `linear-gradient(160deg, ${tint(ind.accent, 0.1)}, ${tint(ind.accent, 0.02)})` }}>
                     <ImageReveal direction={flip ? "right" : "left"}>
                       <IndustryWorkspaceMock industry={ind} />

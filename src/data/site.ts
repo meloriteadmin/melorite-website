@@ -4,8 +4,8 @@ export const site = {
   tagline: "One connected platform that adapts to the way your business works.",
   description:
     "Bring your essential business applications together with Melorite. Explore a modular platform designed to support connected operations and industry-specific requirements.",
-  logo: "/brand/melorite-logo.png",
-  logoWhite: "/brand/melorite-logo-white.png",
+  logo: "/brand/melorite-wordmark.png",
+  logoWhite: "/brand/melorite-wordmark-white.png",
   /**
    * Verified public contact details. Leave a value `null` until it has been
    * approved — components hide anything that is not set.

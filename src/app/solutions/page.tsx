@@ -33,7 +33,6 @@ export default function SolutionsPage() {
       <UseCases />
       <SolutionFinder />
       <FAQ items={solutionFaqs} title={["Solutions", "questions."]} />
-      <div className="pt-24 md:pt-32" />
       <CTASection
         title={["Let's build around", "your business needs."]}
         description="Tell us about your industry, operations and requirements. Our team can help you explore the relevant Melorite capabilities."

@@ -12,7 +12,7 @@ const PATH = ["Request", "Authenticated session", "Entitlement check", "Organiza
 
 function IsolationDiagram() {
   return (
-    <div className="relative overflow-hidden rounded-[24px] bg-navy p-6 text-white md:p-8">
+    <div className="relative overflow-hidden rounded-[20px] bg-navy p-6 text-white md:p-8">
       <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden />
       <div className="relative">
         <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50">Every request</div>

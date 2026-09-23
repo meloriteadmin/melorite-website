@@ -3,9 +3,9 @@
  * (`@melorite/core` → `industryBlueprints`). Each solution extends the shared
  * Business Apps rather than duplicating them; `apps` lists those dependencies.
  *
- * `image` is optional: when set to a path under /public/images/solutions it is
- * used in cards and showcases; otherwise an art-directed visual is rendered from
- * the solution's own modules and accent colour.
+ * `image` is industry photography (Unsplash License, credited). Replace with
+ * approved in-house photography by changing `src` — any path under /public or
+ * an allowed remote host works.
  */
 import type { Availability } from "./products";
 
@@ -30,7 +30,8 @@ export type Industry = {
     capabilities: string[];
     benefit: string;
   };
-  image?: string;
+  /** Industry photograph (Unsplash License) with credit, shown in cards and heroes. */
+  image?: { src: string; alt: string; credit: string };
   status: Availability;
   featured?: boolean;
 };
@@ -68,6 +69,7 @@ export const industries: Industry[] = [
       capabilities: ["Appointments & OPD", "IPD & Beds", "Pharmacy on shared Inventory", "Billing through Finance"],
       benefit: "Care teams and billing work from the same patient journey, so discharge and settlement follow naturally from care.",
     },
+    image: { src: "https://images.unsplash.com/photo-1576671081741-c538eafccfff", alt: "Clinician caring for a patient in a hospital room", credit: "National Cancer Institute" },
     status: "early-access",
     featured: true,
   },
@@ -95,6 +97,7 @@ export const industries: Industry[] = [
       capabilities: ["Appointments", "Treatment packages", "Follow-up reminders", "Billing through Finance"],
       benefit: "Every session and follow-up is visible against the patient, with consumables drawn from shared stock.",
     },
+    image: { src: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133", alt: "Doctor talking with a patient in a clinic", credit: "National Cancer Institute" },
     status: "early-access",
   },
   {
@@ -121,6 +124,7 @@ export const industries: Industry[] = [
       capabilities: ["Units & availability", "Site visits & bookings", "Milestone collections", "Partner attribution"],
       benefit: "Sales, collections and handover teams share one live view of every unit and every buyer.",
     },
+    image: { src: "https://images.unsplash.com/photo-1515263487990-61b07816b324", alt: "Modern residential building", credit: "Luke van Zyl" },
     status: "early-access",
     featured: true,
   },
@@ -148,6 +152,7 @@ export const industries: Industry[] = [
       capabilities: ["BOQ & estimates", "Site progress", "Material at site", "Measurements & bills"],
       benefit: "Billing is based on recorded measurements against the BOQ, with materials traced from purchase to site.",
     },
+    image: { src: "https://images.unsplash.com/photo-1593436878396-e943a3cac98f", alt: "Construction crew on a building site", credit: "Mika Baumeister" },
     status: "early-access",
     featured: true,
   },
@@ -175,6 +180,7 @@ export const industries: Industry[] = [
       capabilities: ["BOM & routings", "Production orders", "Quality & NCR", "Traceability"],
       benefit: "Production, purchasing and stock work from the same item master and the same stock ledger.",
     },
+    image: { src: "https://images.unsplash.com/photo-1717386255773-1e3037c81788", alt: "Automated production line in a factory", credit: "Homa Appliances" },
     status: "early-access",
     featured: true,
   },
@@ -202,6 +208,7 @@ export const industries: Industry[] = [
       capabilities: ["POS", "Returns & exchanges", "Loyalty", "Replenishment"],
       benefit: "A sale, return or exchange is reflected in stock, finance and the customer's history.",
     },
+    image: { src: "https://images.unsplash.com/photo-1441986300917-64674bd600d8", alt: "Clothing store interior", credit: "Clark Street Mercantile" },
     status: "early-access",
   },
   {
@@ -228,6 +235,7 @@ export const industries: Industry[] = [
       capabilities: ["Shipments & trips", "Tracking events", "Proof of delivery", "Freight billing"],
       benefit: "Once delivery is confirmed, the shipment is ready for billing and any exception has a clear owner.",
     },
+    image: { src: "https://images.unsplash.com/photo-1786081061992-640cfd629fdc", alt: "Freight truck on a highway at night", credit: "Nishat Samadzai" },
     status: "early-access",
     featured: true,
   },
@@ -254,6 +262,7 @@ export const industries: Industry[] = [
       capabilities: ["Order desk", "Allocation", "Dispatch", "Collections"],
       benefit: "Dealer orders are checked, allocated and dispatched using the same stock and customer records as the rest of the business.",
     },
+    image: { src: "https://images.unsplash.com/photo-1709804945989-c8be542e04db", alt: "Stacked inventory in a distribution warehouse", credit: "Ali Mkumbwa" },
     status: "early-access",
   },
   {
@@ -280,6 +289,7 @@ export const industries: Industry[] = [
       capabilities: ["Reservations", "Front desk", "Housekeeping", "Guest requests"],
       benefit: "Checkout triggers housekeeping and inspection, and the room becomes available as soon as it is ready.",
     },
+    image: { src: "https://images.unsplash.com/photo-1724230758718-406bab979e67", alt: "Front desk at a hospitality venue", credit: "Zoshua Colah" },
     status: "early-access",
   },
   {
@@ -305,6 +315,7 @@ export const industries: Industry[] = [
       capabilities: ["Engagements & retainers", "Deliverables", "Review & approval", "Resource planning"],
       benefit: "Deliverables and time are captured against the engagement, ready for invoicing and renewal.",
     },
+    image: { src: "https://images.unsplash.com/photo-1690378820474-b468b8ee64d3", alt: "Consulting team working together", credit: "Lyubomyr Reverchuk" },
     status: "early-access",
   },
   {
@@ -330,6 +341,7 @@ export const industries: Industry[] = [
       capabilities: ["Requisitions", "Candidate pipeline", "Submissions", "Staffing timesheets"],
       benefit: "Placements flow into timesheets that serve both payroll and client billing.",
     },
+    image: { src: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21", alt: "Candidate interview in progress", credit: "Christina @ wocintechchat.com" },
     status: "early-access",
   },
   {
@@ -355,6 +367,7 @@ export const industries: Industry[] = [
       capabilities: ["Service schedules", "Work orders", "Inspections", "Client SLA"],
       benefit: "Scheduled and reactive work is recorded site by site, ready for SLA reporting and billing.",
     },
+    image: { src: "https://images.unsplash.com/photo-1621905251918-48416bd8575a", alt: "Technician servicing building equipment", credit: "Emmanuel Ikwuegbu" },
     status: "early-access",
   },
   {
@@ -379,6 +392,7 @@ export const industries: Industry[] = [
       capabilities: ["Job cards", "Inspections", "Parts from Inventory", "Invoicing through Finance"],
       benefit: "Parts and labour recorded on the job card flow straight to the invoice.",
     },
+    image: { src: "https://images.unsplash.com/photo-1771340012319-0b4fca008b54", alt: "Mechanic working on a car in a service bay", credit: "Dextar Studio" },
     status: "early-access",
   },
   {
@@ -405,6 +419,7 @@ export const industries: Industry[] = [
       capabilities: ["Admissions", "Timetable & attendance", "Exams & results", "Fees through Finance"],
       benefit: "Each student's admission, attendance, results and fees sit on one record.",
     },
+    image: { src: "https://images.unsplash.com/photo-1581726707445-75cbe4efc586", alt: "Students in a lecture", credit: "Taylor Flowe" },
     status: "early-access",
     featured: true,
   },
@@ -432,6 +447,7 @@ export const industries: Industry[] = [
       capabilities: ["Donors & donations", "Memberships", "Programmes", "Grants"],
       benefit: "Donations and grants are allocated to programmes, with receipts and reporting on the same platform.",
     },
+    image: { src: "https://images.unsplash.com/photo-1560220604-1985ebfe28b1", alt: "Volunteers working together", credit: "Rashpal Singh" },
     status: "early-access",
   },
 ];

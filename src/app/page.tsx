@@ -4,11 +4,10 @@ import { site } from "@/data/site";
 import { PageTransition } from "@/components/animation/PageTransition";
 import { Hero } from "@/components/home/Hero";
 import { ConnectedSystems } from "@/components/home/ConnectedSystems";
-import { Ecosystem } from "@/components/home/Ecosystem";
 import { CTASection } from "@/components/shared/CTASection";
 
 // Below-the-fold sections are split into their own chunks.
-const ModularPlatform = dynamic(() => import("@/components/home/ModularPlatform").then((m) => m.ModularPlatform));
+const ConnectedBeams = dynamic(() => import("@/components/home/ConnectedBeams").then((m) => m.ConnectedBeams));
 const FeaturedProducts = dynamic(() => import("@/components/home/FeaturedProducts").then((m) => m.FeaturedProducts));
 const FeaturedSolutions = dynamic(() => import("@/components/home/FeaturedSolutions").then((m) => m.FeaturedSolutions));
 const ConnectedWorkflows = dynamic(() => import("@/components/home/ConnectedWorkflows").then((m) => m.ConnectedWorkflows));
@@ -48,11 +47,10 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
       <ConnectedSystems />
-      <Ecosystem />
-      <ModularPlatform />
       <FeaturedProducts />
-      <FeaturedSolutions />
+      <ConnectedBeams />
       <ConnectedWorkflows />
+      <FeaturedSolutions />
       <Advantages />
       <CTASection
         title={["Bring your business", "together with Melorite."]}

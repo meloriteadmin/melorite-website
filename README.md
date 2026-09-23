@@ -2,7 +2,7 @@
 
 Five-page product marketing site for Melorite: **Home, Platform, Products, Solutions, Company**.
 
-Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Motion · GSAP ScrollTrigger · Lenis · Radix primitives (shadcn/ui-style) · React Hook Form + Zod · Lucide.
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Motion · Lenis · shadcn/ui (Radix) · React Hook Form + Zod · Lucide.
 
 ```bash
 npm install
@@ -10,6 +10,15 @@ cp .env.example .env.local   # optional in development
 npm run dev                  # http://localhost:3000
 npm run build && npm start   # production
 ```
+
+## Design system
+
+- **Tokens** live in `src/app/globals.css` (`@theme`): Melorite palette (blue `#2563EB`, navy `#0A2540`, text `#111827`, muted `#64748B`, border `#E2E8F0`, plum `#A0278C` used sparingly) mapped onto shadcn/ui semantic tokens (`primary`, `secondary`, `accent`, `border`, `ring`…). Type scale: `text-display` (home hero only) › `text-h1` (page heroes) › `text-h2` (sections) › `text-h3` (cards). Radii: 10px buttons, 16px cards, 20px product frames.
+- **shadcn/ui** (`src/components/ui/`, configured by `components.json`): Button, Card, Badge, Tabs, Accordion, Navigation Menu, Sheet, Dialog, Input, Textarea, Select, Checkbox, Label, Tooltip, Separator, Skeleton — all restyled with Melorite variants (e.g. Button `primary | secondary | outline | ghost | text | dark | light | outline-light`, Card `default | interactive | muted | dark`, Badge `section | success | info | warning`).
+- **21st.dev components** from the public registries of libraries published on 21st.dev, customised to the design system: Magic UI `AnimatedBeam` (connected workspace diagram), `BorderBeam` (hero frame), `DotPattern` (rewritten to a single SVG pattern for performance), `Marquee` (app strip); motion-primitives `TextEffect` (hero copy), `TransitionPanel` (product tabs), `AnimatedBackground`. The 21st.dev install registry itself requires an account login, so components were installed from these libraries' own public registries.
+- **Product screenshots** share one frame (`MockFrame`): 20px bezel, light border, soft shadow. On phones, primary screenshots render at a legible scale inside a swipeable frame rather than shrinking.
+- **Motion**: one heading reveal (line mask; word mask for heroes only), Motion for interactions, Lenis smooth scroll (off for reduced motion/touch). Nothing moves elements based on scroll position (parallax/scroll-scrubbed transforms caused jitter with smooth scrolling); scroll only drives progress lines.
+- **Dev QA flag**: append `?qa` in development to complete Motion animations instantly and use native scrolling (useful for screenshots/automated checks). Ignored in production.
 
 ## Content architecture
 
@@ -35,7 +44,7 @@ Names, descriptions and module lists mirror the platform's code-owned catalogue 
 
 Product previews are **coded, illustrative mockups** of the real Client Workspace shell (utility bar, app switcher, global search, module sidebar, metric strip, tables/boards) rendered from catalogue data in `src/components/mockups/`. They scale with container-query units, so they stay crisp at any size and cause no layout shift. All figures are sample data and labelled as such. The internal Control Center screenshots were intentionally **not** used, because they expose internal admin UI and test data.
 
-Industry cards use art-directed visuals built from each solution's modules and accent colour. To use approved photography, set `image: "/images/solutions/<file>.jpg"` on an industry.
+Industry imagery uses curated photographs from Unsplash (Unsplash License — free for commercial use, credited in `src/data/industries.ts`). Replace any photo with approved in-house photography by changing `image.src` (a `/public` path or an allowed remote host in `next.config.ts`).
 
 ## Enquiry handling
 
@@ -50,10 +59,10 @@ Details chosen elsewhere (Workspace Builder, Solution Finder, product/industry d
 
 ## Motion & accessibility
 
-- Motion for component interactions; GSAP ScrollTrigger only for the hero convergence (`src/lib/gsap.ts`, loaded only there); Lenis smooth scroll (disabled for reduced motion and touch).
-- `MotionConfig reducedMotion="user"` plus CSS reduced-motion overrides; autoplay (product tabs, solutions hero) stops under reduced motion.
+- Motion for component interactions; Lenis smooth scroll (disabled for reduced motion and touch). No scroll-linked element movement.
+- `MotionConfig reducedMotion="user"` plus CSS reduced-motion overrides; autoplay (featured product tabs) stops under reduced motion.
 - Page transitions use React `ViewTransition` (subtle fade; browsers without support navigate normally).
-- Keyboard-operable tabs, accordions, builder and selectors; Radix Dialog mobile menu (focus trap, Escape, focus return); skip link; visible focus rings.
+- Keyboard-operable tabs, accordions, builder and selectors; shadcn Sheet mobile menu and Navigation Menu mega menus (focus trap, Escape, focus return, arrow keys); skip link; visible focus rings.
 
 ## Before launch
 
@@ -61,4 +70,5 @@ Details chosen elsewhere (Workspace Builder, Solution Finder, product/industry d
 - [ ] Set `ENQUIRY_WEBHOOK_URL` (and secret) to the approved CRM/intake endpoint
 - [ ] Add verified contact details and official social links (`site.ts` / env)
 - [ ] Publish Privacy Policy and Terms, then set `NEXT_PUBLIC_PRIVACY_URL` / `NEXT_PUBLIC_TERMS_URL` — the form collects personal data
+- [ ] Review the industry photographs (or replace them with your own)
 - [ ] Replace or approve the logo asset (`public/brand/`) — the platform app currently uses a different "bars" mark

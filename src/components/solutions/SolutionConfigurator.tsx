@@ -60,7 +60,7 @@ export function SolutionConfigurator() {
 
         <div ref={ref} className="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1.4fr_auto_1.2fr] lg:items-stretch">
           {/* Stage 1: Core */}
-          <div className="flex flex-col rounded-[24px] bg-navy p-6 text-white">
+          <div className="flex flex-col rounded-[20px] bg-navy p-6 text-white">
             <StageLabel n={1} active={stage >= 0} dark />
             <div className="mt-6 flex flex-1 flex-col items-center justify-center gap-3 py-6">
               <span className="grid size-16 place-items-center rounded-[18px] bg-white/10">
@@ -74,7 +74,7 @@ export function SolutionConfigurator() {
           <Arrow active={stage >= 1} />
 
           {/* Stage 2: Apps */}
-          <div className="rounded-[24px] bg-white p-6 ring-1 ring-line">
+          <div className="rounded-[20px] bg-white p-6 ring-1 ring-line">
             <StageLabel n={2} active={stage >= 1} />
             <div className="mt-5 grid grid-cols-4 gap-2">
               {products.map((p) => {
@@ -101,7 +101,7 @@ export function SolutionConfigurator() {
           <Arrow active={stage >= 2} />
 
           {/* Stage 3: Industry workspace */}
-          <div className="relative overflow-hidden rounded-[24px] p-6 ring-1 ring-line" style={{ background: tint(ind.accent, 0.06) }}>
+          <div className="relative overflow-hidden rounded-[20px] p-6 ring-1 ring-line" style={{ background: tint(ind.accent, 0.06) }}>
             <StageLabel n={3} active={stage >= 2} />
             <AnimatePresence mode="wait">
               {stage >= 2 ? (

@@ -34,7 +34,6 @@ export default function ProductsPage() {
       <WorkspaceBuilder />
       <WhyConnected />
       <FAQ items={productFaqs} title={["Product", "questions."]} />
-      <div className="pt-24 md:pt-32" />
       <CTASection
         title={["Find the right combination", "for your business."]}
         description="Tell us which applications interest you and we'll walk you through how they work together."

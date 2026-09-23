@@ -2,59 +2,42 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import Lenis from "lenis";
-import { MotionConfig } from "motion/react";
+import type Lenis from "lenis";
+import { MotionConfig, MotionGlobalConfig } from "motion/react";
 
 declare global {
   interface Window {
+    /** Reserved for legacy in-page links; native scrolling is used site-wide. */
     __lenis?: Lenis;
   }
 }
 
+/** Dev-only QA flag (`?qa`): complete Motion animations instantly and use native scroll, for screenshots/tests. */
+const QA = typeof window !== "undefined" && process.env.NODE_ENV !== "production" && /[?&]qa\b/.test(window.location.search);
+if (QA) MotionGlobalConfig.skipAnimations = true;
+
 /**
- * Global providers: Lenis smooth scrolling (disabled for reduced motion and
- * coarse pointers, where native scrolling feels better) and Motion's
- * reduced-motion handling. GSAP components hook into `window.__lenis`.
+ * Global motion provider. Native browser scrolling is deliberately used here:
+ * JavaScript scroll interpolation can fight trackpad momentum and rubber-band
+ * scrolling, producing a visible up/down vibration on rapid input.
  */
 export function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const prevPath = useRef(pathname);
 
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    if (reduce || coarse) return;
-
-    const lenis = new Lenis({
-      autoRaf: true,
-      anchors: { offset: -88 },
-      lerp: 0.11,
-      wheelMultiplier: 1,
-      prevent: (node) => node.closest("[data-lenis-prevent], dialog, [role=dialog]") !== null,
-    });
-    window.__lenis = lenis;
-    return () => {
-      lenis.destroy();
-      window.__lenis = undefined;
-    };
-  }, []);
-
-  // Keep Lenis in sync with client-side navigations (scroll to top or to the hash target).
+  // Keep client-side navigation predictable without altering wheel/trackpad input.
   // Skipped on first load so the browser's own scroll restoration and hash handling apply.
   useEffect(() => {
     if (prevPath.current === pathname) return;
     prevPath.current = pathname;
-    const lenis = window.__lenis;
-    if (!lenis) return;
     const hash = window.location.hash;
     requestAnimationFrame(() => {
       if (hash) {
         const el = document.querySelector(hash);
-        if (el) lenis.scrollTo(el as HTMLElement, { offset: -88, immediate: true, force: true });
+        if (el) el.scrollIntoView({ block: "start" });
       } else {
-        lenis.scrollTo(0, { immediate: true, force: true });
+        window.scrollTo({ top: 0, behavior: "auto" });
       }
-      lenis.resize();
     });
   }, [pathname]);
 

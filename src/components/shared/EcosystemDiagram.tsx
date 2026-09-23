@@ -172,7 +172,7 @@ export function EcosystemDiagram({
         </div>
       </div>
 
-      <div className="flex flex-col justify-center rounded-[24px] bg-white p-7 ring-1 ring-line md:p-9 lg:col-span-5">{Panel}</div>
+      <div className="flex flex-col justify-center rounded-[20px] bg-white p-7 ring-1 ring-line md:p-9 lg:col-span-5">{Panel}</div>
     </div>
   );
 }

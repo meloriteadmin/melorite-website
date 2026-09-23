@@ -9,14 +9,14 @@ import { ContactForm } from "./ContactForm";
 
 export function ContactIntro() {
   return (
-    <section className="px-3 md:px-4">
-      <div className="relative isolate overflow-hidden rounded-[28px] bg-navy text-white">
+    <section>
+      <div className="relative isolate overflow-hidden bg-navy text-white">
         <ConnectionField className="opacity-50" />
         <div className="container-x relative py-24 md:py-32">
           <Reveal y={10}>
             <Eyebrow dark>Let&apos;s connect</Eyebrow>
           </Reveal>
-          <TextReveal as="h2" lines={["Your business has", "its own way of working.", "Let's talk about it."]} className="text-h1 mt-6 max-w-[20ch] text-white" />
+          <TextReveal as="h2" lines={["Your business has", "its own way of working.", "Let's talk about it."]} className="text-h1 mt-6 max-w-[22ch] text-white" />
           <Reveal delay={0.2}>
             <p className="text-lead mt-7 max-w-[52ch] text-white/65">Whether you&apos;re exploring a single application or a more connected business platform, tell us what you&apos;re looking for.</p>
           </Reveal>

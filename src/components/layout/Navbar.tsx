@@ -2,130 +2,92 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
 import { mainNav } from "@/data/navigation";
 import { site } from "@/data/site";
-import { cn, EASE } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/Logo";
 import { ButtonLink } from "@/components/shared/Button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 import { ProductsMenu, SolutionsMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 
-type MenuId = "products" | "solutions" | null;
-
+/**
+ * Sticky enterprise navigation. White with a hairline border at rest; gains a
+ * soft shadow and backdrop blur once the page scrolls. Mega menus use the
+ * shadcn Navigation Menu (keyboard + screen-reader support from Radix).
+ */
 export function Navbar() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [hovered, setHovered] = useState<string | null>(null);
-  const [menu, setMenu] = useState<MenuId>(null);
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    // Hysteresis: turn on past 24px, off below 4px — no toggling back and forth near the top.
+    const onScroll = () => setScrolled((was) => (was ? window.scrollY > 4 : window.scrollY > 24));
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close menus on route change (during render) and on Escape.
-  const [lastPath, setLastPath] = useState(pathname);
-  if (pathname !== lastPath) {
-    setLastPath(pathname);
-    setMenu(null);
-  }
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenu(null);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const open = (id: MenuId) => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    setMenu(id);
-  };
-  const scheduleClose = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setMenu(null), 140);
-  };
-
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-  const solid = scrolled || menu !== null;
 
   return (
     <header
-      ref={navRef}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,backdrop-filter] duration-300",
-        solid ? "bg-white/85 shadow-[0_1px_0_var(--color-line)] backdrop-blur-xl backdrop-saturate-150" : "bg-transparent",
+        // Solid white (no backdrop-filter): blur over masked hero backgrounds flickers in Chromium while scrolling.
+        "fixed inset-x-0 top-0 z-50 border-b border-line/80 bg-white transition-shadow duration-300",
+        scrolled && "shadow-[0_6px_24px_-12px_rgb(10_37_64/0.16)]",
       )}
-      onMouseLeave={scheduleClose}
-      onBlur={(e) => {
-        if (!navRef.current?.contains(e.relatedTarget as Node)) setMenu(null);
-      }}
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
         Skip to content
       </a>
-      <motion.div
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: EASE }}
-        className="container-x flex h-[72px] items-center justify-between gap-6"
-      >
-        <Link href="/" aria-label="Melorite home" className="shrink-0 rounded-md">
-          <Logo priority className="h-[24px] md:h-[26px]" />
+      <div className="container-x flex h-16 items-center justify-between gap-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        <Link href="/" aria-label="Melorite home" className="justify-self-start rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none">
+          <Logo priority className="h-[22px] md:h-6" />
         </Link>
 
-        <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-1" onMouseLeave={() => setHovered(null)}>
+        <NavigationMenu aria-label="Main" className="hidden lg:flex">
+          <NavigationMenuList>
             {mainNav.map((item) => {
               const active = isActive(item.href);
+              const underline = active && (
+                <span className="absolute inset-x-3 -bottom-[13px] h-[2px] rounded-full bg-brand" aria-hidden />
+              );
+              if (item.menu) {
+                return (
+                  <NavigationMenuItem key={item.href}>
+                    <NavigationMenuTrigger data-active={active || undefined}>
+                      {item.label}
+                      {underline}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>{item.menu === "products" ? <ProductsMenu /> : <SolutionsMenu />}</NavigationMenuContent>
+                  </NavigationMenuItem>
+                );
+              }
               return (
-                <li
-                  key={item.href}
-                  className="relative"
-                  onMouseEnter={() => {
-                    setHovered(item.href);
-                    if (item.menu) open(item.menu);
-                    else scheduleClose();
-                  }}
-                >
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    aria-haspopup={item.menu ? "true" : undefined}
-                    aria-expanded={item.menu ? menu === item.menu : undefined}
-                    onFocus={() => item.menu && open(item.menu)}
-                    className={cn(
-                      "relative z-10 flex h-10 items-center gap-1 rounded-[10px] px-3.5 text-[14.5px] font-medium tracking-[-0.01em] transition-colors",
-                      active ? "text-navy" : "text-slate-600 hover:text-navy",
-                    )}
-                  >
-                    {item.label}
-                    {item.menu && (
-                      <ChevronDown className={cn("size-3.5 opacity-60 transition-transform duration-300", menu === item.menu && "rotate-180")} aria-hidden />
-                    )}
-                    {active && (
-                      <motion.span layoutId="nav-active" className="absolute inset-x-3.5 -bottom-[3px] h-[2px] rounded-full bg-brand" transition={{ type: "spring", stiffness: 420, damping: 36 }} />
-                    )}
-                  </Link>
-                  {hovered === item.href && (
-                    <motion.span
-                      layoutId="nav-hover"
-                      className="absolute inset-0 rounded-[10px] bg-navy/[0.045]"
-                      transition={{ type: "spring", stiffness: 420, damping: 36 }}
-                    />
-                  )}
-                </li>
+                <NavigationMenuItem key={item.href}>
+                  <NavigationMenuLink asChild active={active}>
+                    <Link href={item.href} aria-current={active ? "page" : undefined} className={cn(navigationMenuTriggerStyle(), "relative")}>
+                      {item.label}
+                      {underline}
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
               );
             })}
-          </ul>
-        </nav>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-self-end gap-2">
           <ButtonLink href={site.salesHref} variant="ghost" size="sm" className="hidden md:inline-flex">
             Contact Sales
           </ButtonLink>
@@ -134,34 +96,7 @@ export function Navbar() {
           </ButtonLink>
           <MobileMenu />
         </div>
-      </motion.div>
-
-      <AnimatePresence>
-        {menu && (
-          <motion.div
-            key="mega"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8, transition: { duration: 0.18 } }}
-            transition={{ duration: 0.35, ease: EASE }}
-            className="absolute inset-x-0 top-full hidden border-t border-line bg-white shadow-[0_24px_48px_-24px_rgba(10,37,64,0.25)] lg:block"
-            onMouseEnter={() => open(menu)}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={menu}
-                initial={{ opacity: 0, x: menu === "products" ? -10 : 10 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: EASE }}
-                className="container-x py-8"
-              >
-                {menu === "products" ? <ProductsMenu onNavigate={() => setMenu(null)} /> : <SolutionsMenu onNavigate={() => setMenu(null)} />}
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </div>
     </header>
   );
 }

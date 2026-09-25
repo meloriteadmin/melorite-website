@@ -13,7 +13,7 @@ const Capabilities = dynamic(() => import("@/components/platform/Capabilities").
 const GrowthTimeline = dynamic(() => import("@/components/platform/GrowthTimeline").then((m) => m.GrowthTimeline));
 const SecuritySection = dynamic(() => import("@/components/platform/SecuritySection").then((m) => m.SecuritySection));
 
-const title = "Melorite Platform | A Connected Foundation for Business";
+const title = "Unified Business Platform";
 const description =
   "See how Melorite works: one Client Workspace, a modular architecture, entitlement-based application access, shared business records and a security-first platform core.";
 

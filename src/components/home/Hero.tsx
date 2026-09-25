@@ -37,7 +37,7 @@ export function Hero() {
             className="group inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-white py-1 pl-1 pr-3 text-[12.5px] font-medium text-navy shadow-[0_1px_2px_rgb(10_37_64/0.06)] ring-1 ring-line transition hover:ring-line-strong sm:text-[13px]"
           >
             <span className="hidden rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-semibold text-brand ring-1 ring-brand/15 sm:inline">Platform</span>
-            A more connected way to run your business
+            The connected business platform
             <ChevronRight className="size-3.5 text-muted transition-transform group-hover:translate-x-0.5" aria-hidden />
           </Link>
         </motion.div>
@@ -53,7 +53,7 @@ export function Hero() {
         />
 
         <TextEffect as="p" per="word" preset="fade-in-blur" delay={0.55} speedReveal={2.4} className="text-lead mt-6 max-w-[56ch] text-muted">
-          Melorite brings Business Applications, AI and industry-specific workflows into one connected platform.
+          Bring customers, finance, people, commerce, projects, service, operations, AI and industry workflows into one connected workspace.
         </TextEffect>
 
         <motion.div
@@ -75,7 +75,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 1 }}
           className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[13px] text-muted"
         >
-          {["7 Business Applications", "2 AI Products", "6 Industry Solutions"].map((t) => (
+          {["Flexible applications", "Connected workflows", "Industry-specific solutions", "AI built across the platform"].map((t) => (
             <li key={t} className="inline-flex items-center gap-1.5">
               <span className="size-1 rounded-full bg-brand" aria-hidden />
               {t}

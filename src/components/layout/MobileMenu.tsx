@@ -35,9 +35,9 @@ export function MobileMenu() {
   const close = () => setOpen(false);
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
   const lists = {
-    business: businessApplications.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/business-applications/${p.slug}` })),
-    ai: [{ id: "agent", label: "AI Agent", icon: "Sparkles", accent: "#2563eb", href: "/ai/agent" }, { id: "calling", label: "AI Calling", icon: "PhoneCall", accent: "#7c3aed", href: "/ai/calling" }],
-    industries: industrySolutions.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/industries/${p.slug}` })),
+    products: [...businessApplications.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/products/${p.slug}` })), { id: "agent", label: "AI Agent", icon: "Sparkles", accent: "#2563eb", href: "/ai/agent" }, { id: "calling", label: "AI Calling", icon: "PhoneCall", accent: "#7c3aed", href: "/ai/calling" }],
+    solutions: industrySolutions.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/solutions/${p.slug}` })),
+    company: [{ id: "about", label: "About Melorite", icon: "Building2", accent: "#2563eb", href: "/company" }, { id: "resources", label: "Resources", icon: "BookOpen", accent: "#7c3aed", href: "/resources" }, { id: "contact", label: "Contact", icon: "Mail", accent: "#ea580c", href: "/contact" }],
   };
 
   return (

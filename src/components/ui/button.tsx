@@ -15,9 +15,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-primary text-primary-foreground shadow-[0_1px_2px_rgb(10_37_64/0.16)] hover:bg-brand-600 hover:shadow-[0_3px_8px_rgb(37_99_235/0.22)]",
+          "bg-primary text-primary-foreground shadow-[0_1px_2px_rgb(17_24_39/0.16)] hover:bg-brand-600 hover:shadow-[0_3px_8px_rgb(255_40_40/0.2)]",
         default:
-          "bg-primary text-primary-foreground shadow-[0_1px_2px_rgb(10_37_64/0.16)] hover:bg-brand-600 hover:shadow-[0_3px_8px_rgb(37_99_235/0.22)]",
+          "bg-primary text-primary-foreground shadow-[0_1px_2px_rgb(17_24_39/0.16)] hover:bg-brand-600 hover:shadow-[0_3px_8px_rgb(255_40_40/0.2)]",
         secondary:
           "bg-white text-navy shadow-[0_1px_2px_rgb(10_37_64/0.06)] ring-1 ring-border ring-inset hover:bg-paper hover:ring-line-strong",
         outline: "bg-transparent text-navy ring-1 ring-line-strong ring-inset hover:bg-accent",

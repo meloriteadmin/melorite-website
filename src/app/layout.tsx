@@ -12,11 +12,14 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Melorite | One Connected Business Platform",
-    template: "%s",
+    default: "Melorite | Connected Business Platform",
+    template: "%s | Melorite",
   },
   description: site.description,
   applicationName: "Melorite",
+  authors: [{ name: "Melorite" }],
+  creator: "Melorite",
+  publisher: "Melorite",
   openGraph: {
     type: "website",
     siteName: "Melorite",

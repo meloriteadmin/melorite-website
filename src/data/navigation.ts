@@ -1,17 +1,15 @@
 export type NavItem = {
   label: string;
   href: string;
-  menu?: "business" | "ai" | "industries";
+  menu?: "products" | "solutions" | "company";
 };
 
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
-  { label: "Business Applications", href: "/business-applications", menu: "business" },
-  { label: "Melorite AI", href: "/ai", menu: "ai" },
-  { label: "Industry Solutions", href: "/industries", menu: "industries" },
-  { label: "Resources", href: "/resources" },
-  { label: "Company", href: "/company" },
+  { label: "Products", href: "/products", menu: "products" },
+  { label: "Solutions", href: "/solutions", menu: "solutions" },
+  { label: "Company", href: "/company", menu: "company" },
 ];
 
 export const footerNav = [

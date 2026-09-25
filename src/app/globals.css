@@ -30,20 +30,21 @@
 }
 
 @theme {
-  --color-brand: #2563eb;
-  --color-brand-600: #1d4ed8;
-  --color-brand-700: #1e40af;
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-navy: #0a2540;
-  --color-navy-900: #061a2f;
-  --color-navy-800: #0d2e4f;
+  --color-brand: #ff2828;
+  --color-brand-600: #e81e1e;
+  --color-brand-700: #c81919;
+  --color-brand-50: #fff1f1;
+  --color-brand-100: #ffe1e1;
+  --color-brand-200: #ffc7c7;
+  --color-ui-blue: #2563eb;
+  --color-navy: #0a0a0a;
+  --color-navy-900: #050505;
+  --color-navy-800: #171717;
   --color-ink: #111827;
-  --color-paper: #f8fafc;
-  --color-muted: #64748b;
-  --color-line: #e2e8f0;
-  --color-line-strong: #cbd5e1;
+  --color-paper: #f7f8fa;
+  --color-muted: #667085;
+  --color-line: #e4e8ee;
+  --color-line-strong: #d0d5dd;
   --color-plum: #a0278c;
 
   /* shadcn/ui semantic tokens, mapped to the Melorite palette */
@@ -53,17 +54,17 @@
   --color-card-foreground: #111827;
   --color-popover: #ffffff;
   --color-popover-foreground: #111827;
-  --color-primary: #2563eb;
+  --color-primary: #ff2828;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #f1f5f9;
-  --color-secondary-foreground: #0a2540;
+  --color-secondary: #f3f5f7;
+  --color-secondary-foreground: #0a0a0a;
   --color-muted-foreground: #64748b;
-  --color-accent: #f1f5f9;
-  --color-accent-foreground: #0a2540;
+  --color-accent: #f3f5f7;
+  --color-accent-foreground: #0a0a0a;
   --color-destructive: #dc2626;
-  --color-border: #e2e8f0;
-  --color-input: #cbd5e1;
-  --color-ring: #2563eb;
+  --color-border: #e4e8ee;
+  --color-input: #d0d5dd;
+  --color-ring: #ff2828;
 
   --radius-sm: 6px;
   --radius-md: 10px;
@@ -71,10 +72,9 @@
   --radius-xl: 20px;
   --radius-2xl: 24px;
 
-  --shadow-soft: 0 1px 2px rgb(10 37 64 / 0.04), 0 4px 16px -4px rgb(10 37 64 / 0.08);
-  --shadow-ui: 0 0 0 1px rgb(10 37 64 / 0.04), 0 2px 4px rgb(10 37 64 / 0.03),
-    0 24px 48px -16px rgb(10 37 64 / 0.16);
-  --shadow-float: 0 1px 1px rgb(10 37 64 / 0.05), 0 10px 30px -10px rgb(10 37 64 / 0.25);
+  --shadow-soft: 0 1px 2px rgb(17 24 39 / 0.04), 0 3px 10px -5px rgb(17 24 39 / 0.07);
+  --shadow-ui: 0 0 0 1px rgb(17 24 39 / 0.03), 0 2px 5px rgb(17 24 39 / 0.04), 0 18px 36px -20px rgb(17 24 39 / 0.16);
+  --shadow-float: 0 1px 2px rgb(17 24 39 / 0.07), 0 10px 26px -14px rgb(17 24 39 / 0.18);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -190,8 +190,8 @@ html { scroll-behavior: smooth; }
 
 @utility bg-grid {
   background-image:
-    linear-gradient(to right, rgb(10 37 64 / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(10 37 64 / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(17 24 39 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(17 24 39 / 0.05) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 

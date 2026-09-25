@@ -13,10 +13,11 @@ const ConnectedWorkflows = dynamic(() => import("@/components/home/ConnectedWork
 const Advantages = dynamic(() => import("@/components/home/Advantages").then((m) => m.Advantages));
 
 export const metadata: Metadata = {
-  title: "Melorite | One Connected Business Platform",
+  title: "Connected Business Platform",
   description: site.description,
   alternates: { canonical: "/" },
-  openGraph: { title: "Melorite | One Connected Business Platform", description: site.description, url: "/" },
+  openGraph: { title: "Melorite | Connected Business Platform", description: site.description, url: "/", images: ["/opengraph-image"] },
+  twitter: { card: "summary_large_image" },
 };
 
 const jsonLd = {

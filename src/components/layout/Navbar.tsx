@@ -17,7 +17,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { AiMenu, BusinessMenu, IndustriesMenu } from "./MegaMenu";
+import { CompanyMenu, ProductsMenu, SolutionsMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 
 /**
@@ -43,14 +43,14 @@ export function Navbar() {
     <header
       className={cn(
         // Solid white (no backdrop-filter): blur over masked hero backgrounds flickers in Chromium while scrolling.
-        "fixed inset-x-0 top-0 z-50 border-b border-line/80 bg-white transition-shadow duration-300",
-        scrolled && "shadow-[0_6px_24px_-12px_rgb(10_37_64/0.16)]",
+        "fixed inset-x-0 top-0 z-50 border-b border-line/80 bg-white transition-[box-shadow,border-color] duration-300",
+        scrolled && "border-line-strong shadow-[0_5px_18px_-14px_rgb(17_24_39/0.22)]",
       )}
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
         Skip to content
       </a>
-      <div className="container-x flex h-16 items-center justify-between gap-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+      <div className={cn("container-x flex items-center justify-between gap-6 transition-[height] duration-300 lg:grid lg:grid-cols-[1fr_auto_1fr]", scrolled ? "h-[58px]" : "h-16")}>
         <Link href="/" aria-label="Melorite home" className="justify-self-start rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none">
           <Logo priority className="h-[22px] md:h-6" />
         </Link>
@@ -69,7 +69,7 @@ export function Navbar() {
                       {item.label}
                       {underline}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>{item.menu === "business" ? <BusinessMenu /> : item.menu === "ai" ? <AiMenu /> : <IndustriesMenu />}</NavigationMenuContent>
+                    <NavigationMenuContent>{item.menu === "products" ? <ProductsMenu /> : item.menu === "solutions" ? <SolutionsMenu /> : <CompanyMenu />}</NavigationMenuContent>
                   </NavigationMenuItem>
                 );
               }

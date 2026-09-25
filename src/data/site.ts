@@ -1,6 +1,23 @@
+const defaultSiteUrl = "https://melorite.com";
+
+function getSiteUrl() {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (!configuredUrl) return defaultSiteUrl;
+
+  try {
+    const url = new URL(configuredUrl);
+    return url.protocol === "http:" || url.protocol === "https:"
+      ? url.toString().replace(/\/$/, "")
+      : defaultSiteUrl;
+  } catch {
+    return defaultSiteUrl;
+  }
+}
+
 export const site = {
   name: "Melorite",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://melorite.com").replace(/\/$/, ""),
+  url: getSiteUrl(),
   tagline: "One connected platform that adapts to the way your business works.",
   description:
     "Bring your essential business applications together with Melorite. Explore a modular platform designed to support connected operations and industry-specific requirements.",

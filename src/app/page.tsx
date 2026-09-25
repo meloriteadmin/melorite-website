@@ -4,12 +4,11 @@ import { site } from "@/data/site";
 import { PageTransition } from "@/components/animation/PageTransition";
 import { Hero } from "@/components/home/Hero";
 import { ConnectedSystems } from "@/components/home/ConnectedSystems";
+import { OfferingLinks } from "@/components/home/OfferingLinks";
 import { CTASection } from "@/components/shared/CTASection";
 
 // Below-the-fold sections are split into their own chunks.
 const ConnectedBeams = dynamic(() => import("@/components/home/ConnectedBeams").then((m) => m.ConnectedBeams));
-const FeaturedProducts = dynamic(() => import("@/components/home/FeaturedProducts").then((m) => m.FeaturedProducts));
-const FeaturedSolutions = dynamic(() => import("@/components/home/FeaturedSolutions").then((m) => m.FeaturedSolutions));
 const ConnectedWorkflows = dynamic(() => import("@/components/home/ConnectedWorkflows").then((m) => m.ConnectedWorkflows));
 const Advantages = dynamic(() => import("@/components/home/Advantages").then((m) => m.Advantages));
 
@@ -47,16 +46,15 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
       <ConnectedSystems />
-      <FeaturedProducts />
+      <OfferingLinks />
       <ConnectedBeams />
       <ConnectedWorkflows />
-      <FeaturedSolutions />
       <Advantages />
       <CTASection
         title={["Bring your business", "together with Melorite."]}
         description="Explore a more connected way to manage your operations, with applications and capabilities tailored to your business."
         primary={{ label: "Book a Demo", href: site.demoHref }}
-        secondary={{ label: "Explore Products", href: "/products" }}
+        secondary={{ label: "Explore Business Applications", href: "/business-applications" }}
       />
     </PageTransition>
   );

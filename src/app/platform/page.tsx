@@ -39,7 +39,7 @@ export default function PlatformPage() {
         title={["See how Melorite", "fits your business."]}
         description="Walk through the workspace with our team and explore the applications that matter to you."
         primary={{ label: "Book a Demo", href: site.demoHref }}
-        secondary={{ label: "Explore Products", href: "/products" }}
+        secondary={{ label: "Explore Business Applications", href: "/business-applications" }}
       />
     </PageTransition>
   );

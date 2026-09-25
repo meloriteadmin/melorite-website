@@ -119,7 +119,7 @@ function AccessVisual() {
         </div>
       </div>
       <ul className="mt-3 space-y-2 text-[13px]">
-        {[["CRM", true], ["Finance", true], ["Projects", true], ["Payroll", false]].map(([n, on], i) => (
+        {[["CRM & Growth", true], ["Finance", true], ["Projects", true], ["HRMS", false]].map(([n, on], i) => (
           <motion.li
             key={n as string}
             initial={{ opacity: 0, x: -8 }}

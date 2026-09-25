@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
-import { footerNav, productHref, solutionHref } from "@/data/navigation";
-import { featuredProducts } from "@/data/products";
-import { featuredIndustries } from "@/data/industries";
+import { footerNav } from "@/data/navigation";
+import { businessApplications, industrySolutions } from "@/data/catalog";
 import { site } from "@/data/site";
 import { Logo } from "@/components/shared/Logo";
 import { ButtonLink } from "@/components/shared/Button";
@@ -25,8 +24,8 @@ export function Footer() {
 
   const columns = [
     footerNav[0],
-    { title: "Products", links: [...featuredProducts.map((p) => ({ label: p.shortName, href: productHref(p.id) })), { label: "All products", href: "/products" }] },
-    { title: "Solutions", links: [...featuredIndustries.slice(0, 5).map((i) => ({ label: i.name, href: solutionHref(i.id) })), { label: "All solutions", href: "/solutions" }] },
+    { title: "Business Applications", links: [...businessApplications.slice(0, 5).map((p) => ({ label: p.name, href: `/business-applications/${p.slug}` })), { label: "All applications", href: "/business-applications" }] },
+    { title: "Industry Solutions", links: [...industrySolutions.slice(0, 5).map((i) => ({ label: i.name, href: `/industries/${i.slug}` })), { label: "All solutions", href: "/industries" }] },
     footerNav[1],
   ];
 
@@ -80,7 +79,7 @@ export function Footer() {
                   </li>
                 )}
                 <li>
-                  <FooterLink href="/company#contact">Send an enquiry</FooterLink>
+                  <FooterLink href="/contact">Send an enquiry</FooterLink>
                 </li>
                 <li>
                   <FooterLink href={site.demoHref}>Request a demo</FooterLink>

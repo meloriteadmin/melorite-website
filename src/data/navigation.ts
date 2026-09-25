@@ -1,14 +1,16 @@
 export type NavItem = {
   label: string;
   href: string;
-  menu?: "products" | "solutions";
+  menu?: "business" | "ai" | "industries";
 };
 
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Platform", href: "/platform" },
-  { label: "Products", href: "/products", menu: "products" },
-  { label: "Solutions", href: "/solutions", menu: "solutions" },
+  { label: "Business Applications", href: "/business-applications", menu: "business" },
+  { label: "Melorite AI", href: "/ai", menu: "ai" },
+  { label: "Industry Solutions", href: "/industries", menu: "industries" },
+  { label: "Resources", href: "/resources" },
   { label: "Company", href: "/company" },
 ];
 
@@ -33,5 +35,5 @@ export const footerNav = [
   },
 ];
 
-export const productHref = (id: string) => `/products#product-${id}`;
-export const solutionHref = (id: string) => `/solutions#solution-${id}`;
+export const productHref = (slug: string) => `/business-applications/${slug}`;
+export const solutionHref = (slug: string) => `/industries/${slug}`;

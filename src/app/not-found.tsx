@@ -11,7 +11,7 @@ export default function NotFound() {
       <p className="text-lead mt-4 max-w-[44ch] text-muted">The page you&apos;re looking for doesn&apos;t exist or has moved.</p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <Link href="/" className={buttonClasses("primary", "md")}>Back to home</Link>
-        <Link href="/products" className={buttonClasses("secondary", "md")}>Explore products</Link>
+        <Link href="/business-applications" className={buttonClasses("secondary", "md")}>Explore Business Applications</Link>
       </div>
     </section>
   );

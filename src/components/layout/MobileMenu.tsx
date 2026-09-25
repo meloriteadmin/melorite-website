@@ -4,9 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
-import { mainNav, productHref, solutionHref } from "@/data/navigation";
-import { products } from "@/data/products";
-import { industries } from "@/data/industries";
+import { mainNav } from "@/data/navigation";
+import { businessApplications, industrySolutions } from "@/data/catalog";
 import { site } from "@/data/site";
 import { Icon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
@@ -36,8 +35,9 @@ export function MobileMenu() {
   const close = () => setOpen(false);
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
   const lists = {
-    products: products.map((p) => ({ id: p.id, label: p.shortName, icon: p.icon, accent: p.accent, href: productHref(p.id) })),
-    solutions: industries.map((i) => ({ id: i.id, label: i.name, icon: i.icon, accent: i.accent, href: solutionHref(i.id) })),
+    business: businessApplications.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/business-applications/${p.slug}` })),
+    ai: [{ id: "agent", label: "AI Agent", icon: "Sparkles", accent: "#2563eb", href: "/ai/agent" }, { id: "calling", label: "AI Calling", icon: "PhoneCall", accent: "#7c3aed", href: "/ai/calling" }],
+    industries: industrySolutions.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/industries/${p.slug}` })),
   };
 
   return (

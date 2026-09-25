@@ -17,6 +17,6 @@ export const site = {
   },
   /** Official social accounts only. Add URLs when they exist. */
   social: [] as { label: string; href: string }[],
-  demoHref: "/company?enquiry=demo#contact",
-  salesHref: "/company?enquiry=product#contact",
+  demoHref: "/book-demo",
+  salesHref: "/contact",
 } as const;

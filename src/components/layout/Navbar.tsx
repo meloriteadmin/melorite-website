@@ -17,7 +17,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ProductsMenu, SolutionsMenu } from "./MegaMenu";
+import { AiMenu, BusinessMenu, IndustriesMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 
 /**
@@ -69,7 +69,7 @@ export function Navbar() {
                       {item.label}
                       {underline}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent>{item.menu === "products" ? <ProductsMenu /> : <SolutionsMenu />}</NavigationMenuContent>
+                    <NavigationMenuContent>{item.menu === "business" ? <BusinessMenu /> : item.menu === "ai" ? <AiMenu /> : <IndustriesMenu />}</NavigationMenuContent>
                   </NavigationMenuItem>
                 );
               }

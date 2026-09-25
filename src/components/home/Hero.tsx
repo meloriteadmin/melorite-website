@@ -47,13 +47,13 @@ export function Hero() {
           by="word"
           trigger="mount"
           delay={0.15}
-          lines={["One connected platform", "for your entire business."]}
+          lines={["One connected platform that adapts", "to the way your business works."]}
           highlight={["connected"]}
           className="text-display mt-7 max-w-[17ch] text-balance text-navy"
         />
 
         <TextEffect as="p" per="word" preset="fade-in-blur" delay={0.55} speedReveal={2.4} className="text-lead mt-6 max-w-[56ch] text-muted">
-          Bring your business applications, processes and information together with Melorite. Start with the tools you need and expand as your business grows.
+          Melorite brings Business Applications, AI and industry-specific workflows into one connected platform.
         </TextEffect>
 
         <motion.div
@@ -75,7 +75,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 1 }}
           className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-[13px] text-muted"
         >
-          {["Flexible applications", "Connected workflows", "Industry-specific solutions"].map((t) => (
+          {["7 Business Applications", "2 AI Products", "6 Industry Solutions"].map((t) => (
             <li key={t} className="inline-flex items-center gap-1.5">
               <span className="size-1 rounded-full bg-brand" aria-hidden />
               {t}
@@ -107,7 +107,7 @@ export function Hero() {
       </div>
 
       <div className="relative pb-16 pt-14 md:pb-20">
-        <p className="mb-5 text-center text-[13px] text-muted">16 business applications, one connected workspace</p>
+        <p className="mb-5 text-center text-[13px] text-muted">7 Business Applications. 2 AI Products. 6 Industry Solutions. One connected platform.</p>
         <AppMarquee />
       </div>
     </section>

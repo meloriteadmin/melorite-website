@@ -90,23 +90,22 @@ export function ConnectedSystems() {
           <SectionHeading
             className="lg:col-span-7"
             eyebrow="Why Melorite"
-            title={["Your business is connected.", "Your software should be too."]}
-            highlight={["connected.", "too."]}
+            title={["Everything works together."]}
           />
           <Reveal className="lg:col-span-5" delay={0.1}>
             <p className="text-lead text-muted">
-              Drag the slider to see the difference between separate tools and one connected system.
+              See how one workspace changes the way work moves.
             </p>
           </Reveal>
         </div>
 
         <Reveal delay={0.1} className="mt-14">
-          <div className="overflow-hidden rounded-[20px] border border-line bg-white shadow-soft">
+          <div className="surface-frame overflow-hidden shadow-soft">
             <div
               ref={stageRef}
               className={cn(
                 "relative aspect-[4/3.4] transition-colors duration-700 sm:aspect-[16/7]",
-                connected ? "bg-[radial-gradient(60%_70%_at_50%_50%,#eff6ff,transparent)]" : "bg-dots",
+                connected ? "bg-[radial-gradient(60%_70%_at_50%_50%,#fff1f1,transparent)]" : "bg-dots",
               )}
             >
               <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden>
@@ -124,7 +123,7 @@ export function ConnectedSystems() {
                 ))}
               </svg>
               <motion.div
-                className="absolute left-1/2 top-1/2 z-10 grid size-[18%] max-w-[132px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[22%] bg-navy shadow-[0_20px_50px_-15px_rgba(10,37,64,0.6)] sm:size-[12%]"
+                className="absolute left-1/2 top-1/2 z-10 grid size-[18%] max-w-[132px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[22%] bg-navy shadow-[0_20px_50px_-15px_rgba(23,23,23,0.35)] sm:size-[12%]"
                 style={{ opacity: hubOpacity, scale: hubScale }}
                 aria-hidden
               >

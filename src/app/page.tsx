@@ -3,7 +3,6 @@ import dynamic from "next/dynamic";
 import { site } from "@/data/site";
 import { PageTransition } from "@/components/animation/PageTransition";
 import { Hero } from "@/components/home/Hero";
-import { ConnectedSystems } from "@/components/home/ConnectedSystems";
 import { OfferingLinks } from "@/components/home/OfferingLinks";
 import { CTASection } from "@/components/shared/CTASection";
 
@@ -46,7 +45,6 @@ export default function HomePage() {
     <PageTransition>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
-      <ConnectedSystems />
       <OfferingLinks />
       <ConnectedBeams />
       <ConnectedWorkflows />

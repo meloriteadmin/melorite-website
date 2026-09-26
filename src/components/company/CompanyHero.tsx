@@ -50,12 +50,12 @@ function ConnectedGrid() {
         })}
       </svg>
       <motion.div
-        className="absolute left-[61%] top-[58%] grid size-[14%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[22%] bg-brand shadow-[0_0_60px_10px_rgba(37,99,235,0.45)]"
+        className="absolute left-[61%] top-[58%] grid size-[14%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[22%] bg-brand shadow-[0_0_40px_8px_rgba(37,99,235,0.18)]"
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 2.6, duration: 0.7, ease: EASE }}
       >
-        <LogoMark className="w-[55%]" color="#fff" />
+        <LogoMark className="w-[55%]" />
       </motion.div>
     </div>
   );
@@ -79,10 +79,10 @@ export function CompanyHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.3 }}
-          className="relative isolate overflow-hidden rounded-[20px] bg-navy p-6 shadow-ui sm:p-10 lg:col-span-6"
+          className="relative isolate overflow-hidden rounded-2xl bg-pastel-sky p-6 shadow-ui sm:p-10 lg:col-span-6"
         >
-          <ConnectionField className="opacity-30" />
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_70%_30%,rgba(37,99,235,0.35),transparent_70%)]" aria-hidden />
+          <ConnectionField tone="light" className="opacity-30" />
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_70%_30%,rgba(37,99,235,0.12),transparent_70%)]" aria-hidden />
           <ConnectedGrid />
         </motion.div>
       </div>

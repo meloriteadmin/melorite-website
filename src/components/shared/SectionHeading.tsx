@@ -1,15 +1,11 @@
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 import { TextReveal } from "@/components/animation/TextReveal";
 import { Reveal } from "@/components/animation/Reveal";
 
-/** Section label (shadcn Badge, `section` variant). */
+/** Deliberately quiet label; hierarchy comes from type and position, not a badge. */
 export function Eyebrow({ children, dark, className }: { children: React.ReactNode; dark?: boolean; className?: string }) {
   return (
-    <Badge variant={dark ? "section-dark" : "section"} className={className}>
-      <span className={cn("size-1.5 rounded-full", dark ? "bg-brand-200" : "bg-brand")} aria-hidden />
-      {children}
-    </Badge>
+    <p className={cn("text-[13px] font-medium tracking-[-0.01em]", dark ? "text-white/60" : "text-muted", className)}>{children}</p>
   );
 }
 
@@ -40,7 +36,7 @@ export function SectionHeading({
   children,
 }: SectionHeadingProps) {
   return (
-    <div className={cn("flex max-w-[760px] flex-col", align === "center" && "mx-auto items-center text-center", className)}>
+    <div className={cn("flex max-w-[820px] flex-col", align === "center" && "mx-auto items-center text-center", className)}>
       {eyebrow && (
         <Reveal y={8} className="mb-5">
           <Eyebrow dark={dark}>{eyebrow}</Eyebrow>
@@ -54,7 +50,7 @@ export function SectionHeading({
       />
       {description && (
         <Reveal delay={0.12} y={12}>
-          <p className={cn("text-lead mt-5 max-w-[56ch]", dark ? "text-white/65" : "text-muted", align === "center" && "mx-auto")}>{description}</p>
+          <p className={cn("text-lead mt-6 max-w-[52ch]", dark ? "text-white/65" : "text-muted", align === "center" && "mx-auto")}>{description}</p>
         </Reveal>
       )}
       {children && (

@@ -33,28 +33,27 @@ export function SolutionFinder() {
   };
 
   return (
-    <section id="finder" className="section-y relative overflow-hidden bg-navy text-white">
-      <div className="absolute inset-0 bg-grid-dark opacity-60 [mask-image:radial-gradient(ellipse_60%_60%_at_20%_30%,black,transparent)]" aria-hidden />
+    <section id="finder" className="section-y relative overflow-hidden bg-pastel-lavender text-navy">
       <div className="container-x relative grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <SectionHeading dark eyebrow="Find the right solution" title={["Tell us how", "your business works."]} description="Answer three quick questions. We'll carry your answers into the enquiry form so our team can prepare." />
+          <SectionHeading eyebrow="Find the right solution" title={["Tell us how", "your business works."]} description="Answer three quick questions. We'll carry your answers into the enquiry form so our team can prepare." />
           <AnimatePresence>
             {(ind || cats.length > 0) && (
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4, ease: EASE }} className="mt-10 rounded-[20px] bg-white/[0.06] p-6 ring-1 ring-white/12">
-                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50">A possible starting point</div>
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.4, ease: EASE }} className="mt-10 rounded-xl bg-white/85 p-6 ring-1 ring-line">
+                <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">A possible starting point</div>
                 {ind && (
                   <p className="mt-3 flex items-center gap-2 text-[15px] font-medium">
-                    <Icon name={ind.icon} className="size-4 text-brand-200" /> {ind.fullName}
+                    <Icon name={ind.icon} className="size-4 text-brand" /> {ind.fullName}
                   </p>
                 )}
-                {apps.length > 0 && <p className="mt-2 text-[14px] text-white/70">With {apps.length} related Business Apps from your selected areas.</p>}
-                <p className="mt-4 text-[12.5px] leading-relaxed text-white/45">This is a suggestion to guide the conversation, not a confirmed recommendation or offer.</p>
+                {apps.length > 0 && <p className="mt-2 text-[14px] text-muted">With {apps.length} related Business Apps from your selected areas.</p>}
+                <p className="mt-4 text-[12.5px] leading-relaxed text-muted">This is a suggestion to guide the conversation, not a confirmed recommendation or offer.</p>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
 
-        <form onSubmit={submit} className="space-y-8 rounded-[20px] bg-white p-6 text-navy md:p-9 lg:col-span-7">
+        <form onSubmit={submit} className="space-y-8 rounded-xl bg-white p-6 text-navy ring-1 ring-line md:p-9 lg:col-span-7">
           <div>
             <label htmlFor="finder-industry" className="text-[15px] font-semibold">
               1. Your industry
@@ -98,7 +97,7 @@ export function SolutionFinder() {
               {CHALLENGES.map((c) => {
                 const on = challenges.includes(c);
                 return (
-                  <label key={c} className={cn("cursor-pointer rounded-full px-3.5 py-2 text-[14px] font-medium ring-1 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand", on ? "bg-navy text-white ring-navy" : "text-slate-600 ring-line-strong hover:text-navy")}>
+                  <label key={c} className={cn("cursor-pointer rounded-md px-3.5 py-2 text-[14px] font-medium ring-1 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand", on ? "bg-brand text-white ring-brand" : "text-slate-600 ring-line-strong hover:text-navy")}>
                     <input type="checkbox" className="sr-only" checked={on} onChange={() => toggle(challenges, setChallenges, c)} />
                     {c}
                   </label>

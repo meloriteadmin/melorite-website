@@ -21,7 +21,7 @@ export const aiProducts: AIProduct[] = [
   {
     id: "ai-calling",
     name: "AI Calling",
-    tagline: "AI-assisted calling for responsive, consistent customer engagement.",
+    tagline: "Business calls with clear next steps.",
     description: "Support calling workflows with structured outcomes, follow-ups and a clear connection to the customer record.",
     icon: "PhoneCall",
     accent: "#e0418a",

@@ -38,7 +38,7 @@ function Field({ id, label, error, optional, children, className }: { id: string
   );
 }
 
-type Status = { state: "idle" } | { state: "success"; reference: string } | { state: "error"; message: string };
+type Status = { state: "idle" } | { state: "success"; reference: string; emailClient: boolean } | { state: "error"; message: string };
 
 /** Reads URL params in its own Suspense boundary so the form itself is server-rendered. */
 function ParamsSync({ onParams }: { onParams: (p: URLSearchParams) => void }) {
@@ -98,9 +98,11 @@ export function ContactForm() {
     setStatus({ state: "idle" });
     try {
       const res = await fetch("/api/enquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; reference?: string; error?: string };
+      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; reference?: string; error?: string; delivery?: "webhook" | "email-client"; mailtoUrl?: string };
       if (!res.ok || !body.ok || !body.reference) throw new Error(body.error || "We couldn't send your enquiry. Please try again.");
-      setStatus({ state: "success", reference: body.reference });
+      const emailClient = body.delivery === "email-client";
+      setStatus({ state: "success", reference: body.reference, emailClient });
+      if (emailClient && body.mailtoUrl) window.location.assign(body.mailtoUrl);
       reset();
     } catch (err) {
       // Keep everything the visitor typed; only show the error.
@@ -121,8 +123,8 @@ export function ContactForm() {
         <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }} className="grid size-16 place-items-center rounded-full bg-emerald-50 text-emerald-600">
           <CheckCircle2 className="size-8" aria-hidden />
         </motion.span>
-        <h3 className="mt-6 text-[28px] font-semibold tracking-[-0.03em] text-navy">Thank you — we&apos;ve received your enquiry.</h3>
-        <p className="mt-3 max-w-[46ch] text-[15.5px] leading-relaxed text-muted">A member of the Melorite team will review your details and get back to you by email.</p>
+        <h3 className="mt-6 text-[28px] font-semibold tracking-[-0.03em] text-navy">{status.emailClient ? "Your email is ready to send." : "Thank you — we’ve received your enquiry."}</h3>
+        <p className="mt-3 max-w-[46ch] text-[15.5px] leading-relaxed text-muted">{status.emailClient ? "We opened a pre-addressed email to Melorite. Please press Send in your email app so the team can respond." : "A member of the Melorite team will review your details and get back to you by email."}</p>
         <p className="mt-6 rounded-full bg-paper px-4 py-1.5 font-mono text-[13px] text-navy ring-1 ring-line">Reference {status.reference}</p>
         <button
           type="button"

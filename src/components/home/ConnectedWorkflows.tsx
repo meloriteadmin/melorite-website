@@ -30,12 +30,10 @@ export function ConnectedWorkflows() {
   const page = (dir: 1 | -1) => track.current?.scrollBy({ left: dir * track.current.clientWidth * 0.7, behavior: "smooth" });
 
   return (
-    <section className="section-y relative overflow-hidden bg-navy text-white">
-      <div className="absolute inset-0 bg-grid-dark opacity-70 [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,black,transparent)]" aria-hidden />
+    <section className="section-y relative overflow-hidden bg-pastel-blue text-navy">
       <div className="container-x relative">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
           <SectionHeading
-            dark
             className="lg:col-span-7"
             eyebrow="Connected workflows"
             title={["Less switching.", "More connected work."]}
@@ -50,11 +48,11 @@ export function ConnectedWorkflows() {
                   aria-selected={f.id === flowId}
                   onClick={() => setFlowId(f.id)}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-[14px] font-medium transition-colors",
-                    f.id === flowId ? "text-navy" : "text-white/70 ring-1 ring-white/15 hover:text-white",
+                    "relative rounded-md px-4 py-2 text-[14px] font-medium transition-colors",
+                    f.id === flowId ? "text-navy" : "text-muted hover:bg-white/70 hover:text-navy",
                   )}
                 >
-                  {f.id === flowId && <motion.span layoutId="flow-tab" className="absolute inset-0 rounded-full bg-white" transition={{ type: "spring", stiffness: 380, damping: 34 }} />}
+                  {f.id === flowId && <motion.span layoutId="flow-tab" className="absolute inset-0 rounded-md bg-white ring-1 ring-line" transition={{ type: "spring", stiffness: 380, damping: 34 }} />}
                   <span className="relative">{f.name}</span>
                 </button>
               ))}
@@ -64,12 +62,12 @@ export function ConnectedWorkflows() {
 
         <div className="mt-12 flex flex-wrap items-center justify-between gap-4">
           <AnimatePresence mode="wait">
-            <motion.p key={flow.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-[16px] text-white/70">
+            <motion.p key={flow.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="text-[16px] text-muted">
               {flow.summary}
             </motion.p>
           </AnimatePresence>
-          <div className="flex items-center gap-5 text-[13px] text-white/60">
-            <span className="flex items-center gap-2"><i className="h-0.5 w-6 rounded bg-brand-200" /> Available</span>
+          <div className="flex items-center gap-5 text-[13px] text-muted">
+            <span className="flex items-center gap-2"><i className="h-0.5 w-6 rounded bg-brand" /> Available</span>
             <span className="flex items-center gap-2"><i className="h-0 w-6 border-t-2 border-dashed border-amber-300" /> Rolling out</span>
           </div>
         </div>
@@ -98,24 +96,24 @@ export function ConnectedWorkflows() {
                 >
                   {i > 0 && (
                     <div className="relative flex w-16 flex-col items-center md:w-24" aria-label={`Hand-off ${s.link === "available" ? "available" : "rolling out"}`}>
-                      <span className={cn("block w-full", s.link === "available" ? "h-0.5 bg-brand-200/70" : "border-t-2 border-dashed border-amber-300/80")} />
+                      <span className={cn("block w-full", s.link === "available" ? "h-0.5 bg-brand/70" : "border-t-2 border-dashed border-amber-300/80")} />
                       {s.link === "available" && (
-                        <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-white shadow-[0_0_12px_2px_rgba(147,197,253,0.8)] animate-[wf-dot_2.2s_linear_infinite]" style={{ animationDelay: `${i * 0.3}s` }} />
+                        <span className="absolute left-0 top-1/2 size-1.5 -translate-y-1/2 rounded-full bg-brand animate-[wf-dot_2.2s_linear_infinite]" style={{ animationDelay: `${i * 0.3}s` }} />
                       )}
                     </div>
                   )}
-                  <div className="w-[250px] rounded-[20px] bg-white/[0.06] p-5 ring-1 ring-white/12 backdrop-blur-sm transition-colors hover:bg-white/[0.09] md:w-[280px] md:p-6">
+                  <div className="w-[250px] rounded-xl bg-white/85 p-5 ring-1 ring-line transition-colors hover:bg-white md:w-[280px] md:p-6">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/45">Step {String(i + 1).padStart(2, "0")}</span>
+                      <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Step {String(i + 1).padStart(2, "0")}</span>
                       {s.link && <StatusBadge status={s.link} className="bg-white/90" />}
                     </div>
-                    <h3 className="mt-6 text-[22px] font-semibold tracking-[-0.02em]">{s.label}</h3>
-                    <p className="mt-2 min-h-[42px] text-[14px] leading-relaxed text-white/60">{s.detail}</p>
-                    <div className="mt-6 flex items-center gap-2 border-t border-white/10 pt-4">
-                      <span className="grid size-7 place-items-center rounded-[7px]" style={{ background: tint(app.accent, 0.22), color: "#fff" }}>
+                    <h3 className="mt-6 text-[22px] font-medium tracking-[-0.02em]">{s.label}</h3>
+                    <p className="mt-2 min-h-[42px] text-[14px] leading-relaxed text-muted">{s.detail}</p>
+                    <div className="mt-6 flex items-center gap-2 border-t border-line pt-4">
+                      <span className="grid size-7 place-items-center rounded-[7px]" style={{ background: tint(app.accent, 0.14), color: app.accent }}>
                         <Icon name={app.icon} className="size-3.5" />
                       </span>
-                      <span className="text-[13.5px] font-medium text-white/85">{app.shortName}</span>
+                      <span className="text-[13.5px] font-medium text-navy">{app.shortName}</span>
                     </div>
                   </div>
                 </motion.div>
@@ -127,19 +125,19 @@ export function ConnectedWorkflows() {
         <style>{`@keyframes wf-dot{from{left:0}to{left:100%}}`}</style>
 
         <div className="container-x mt-6 flex items-center gap-6">
-          <div className="h-px flex-1 overflow-hidden bg-white/10">
-            <motion.div className="h-full origin-left bg-white/70" style={{ scaleX: progress }} />
+          <div className="h-px flex-1 overflow-hidden bg-line">
+            <motion.div className="h-full origin-left bg-brand" style={{ scaleX: progress }} />
           </div>
           <div className="flex gap-2">
-            <button type="button" onClick={() => page(-1)} disabled={edges.start} aria-label="Previous steps" className="grid size-10 place-items-center rounded-full ring-1 ring-white/20 transition hover:bg-white/10 disabled:opacity-30">
+            <button type="button" onClick={() => page(-1)} disabled={edges.start} aria-label="Previous steps" className="grid size-10 place-items-center rounded-md bg-white ring-1 ring-line transition hover:bg-surface-warm disabled:opacity-30">
               <ArrowLeft className="size-4" />
             </button>
-            <button type="button" onClick={() => page(1)} disabled={edges.end} aria-label="Next steps" className="grid size-10 place-items-center rounded-full ring-1 ring-white/20 transition hover:bg-white/10 disabled:opacity-30">
+            <button type="button" onClick={() => page(1)} disabled={edges.end} aria-label="Next steps" className="grid size-10 place-items-center rounded-md bg-white ring-1 ring-line transition hover:bg-surface-warm disabled:opacity-30">
               <ArrowRight className="size-4" />
             </button>
           </div>
         </div>
-        <p className="container-x mt-6 text-[12.5px] text-white/40">
+        <p className="container-x mt-6 text-[12.5px] text-muted">
           Hand-offs happen between the applications an organization has enabled.
         </p>
       </div>

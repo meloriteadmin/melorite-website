@@ -8,6 +8,7 @@
    ------------------------------------------------------------------ */
 @theme inline {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
@@ -30,22 +31,38 @@
 }
 
 @theme {
-  --color-brand: #ff2828;
-  --color-brand-600: #e81e1e;
-  --color-brand-700: #c81919;
-  --color-brand-50: #fff1f1;
-  --color-brand-100: #ffe1e1;
-  --color-brand-200: #ffc7c7;
+  /* Primary interface accent: Melorite blue. */
+  --color-brand: #2563eb;
+  --color-brand-600: #1d4ed8;
+  --color-brand-700: #1e40af;
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
   --color-ui-blue: #2563eb;
-  --color-navy: #0a0a0a;
-  --color-navy-900: #050505;
-  --color-navy-800: #171717;
-  --color-ink: #111827;
-  --color-paper: #f7f8fa;
-  --color-muted: #667085;
-  --color-line: #e4e8ee;
-  --color-line-strong: #d0d5dd;
-  --color-plum: #a0278c;
+  --color-ink-black: #17191c;
+  --color-paper-white: #ffffff;
+  --color-surface-neutral: #f7f7f5;
+  --color-surface-warm: #faf9f6;
+  --color-pastel-blue: #eef4ff;
+  --color-pastel-lavender: #f5f0ff;
+  --color-pastel-green: #eff8f3;
+  --color-pastel-peach: #fff4ec;
+  --color-pastel-sky: #eef7fa;
+  --color-mist-gray: #f2f2f3;
+  --color-fog-white: #fafafb;
+  --color-slate-gray: #777b86;
+  --color-ash-gray: #979799;
+  --color-smoke-gray: #a3a6af;
+  --color-blush-peach: #fbe1d1;
+  --color-sienna-brown: #5d2a1a;
+  --color-navy: #0a2540;
+  --color-navy-900: #101010;
+  --color-navy-800: #242424;
+  --color-ink: #252525;
+  --color-paper: #f7f7f5;
+  --color-muted: #5f6368;
+  --color-line: #e7e7e4;
+  --color-line-strong: #d8d8d4;
 
   /* shadcn/ui semantic tokens, mapped to the Melorite palette */
   --color-background: #ffffff;
@@ -54,27 +71,27 @@
   --color-card-foreground: #111827;
   --color-popover: #ffffff;
   --color-popover-foreground: #111827;
-  --color-primary: #ff2828;
+  --color-primary: #2563eb;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #f3f5f7;
-  --color-secondary-foreground: #0a0a0a;
-  --color-muted-foreground: #64748b;
-  --color-accent: #f3f5f7;
-  --color-accent-foreground: #0a0a0a;
+  --color-secondary: #f2f2f3;
+  --color-secondary-foreground: #17191c;
+  --color-muted-foreground: #777b86;
+  --color-accent: #fafafb;
+  --color-accent-foreground: #17191c;
   --color-destructive: #dc2626;
-  --color-border: #e4e8ee;
-  --color-input: #d0d5dd;
-  --color-ring: #ff2828;
+  --color-border: #e7e7e4;
+  --color-input: #dededb;
+  --color-ring: #2563eb;
 
   --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
-  --radius-2xl: 24px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 16px;
 
-  --shadow-soft: 0 1px 2px rgb(17 24 39 / 0.04), 0 3px 10px -5px rgb(17 24 39 / 0.07);
-  --shadow-ui: 0 0 0 1px rgb(17 24 39 / 0.03), 0 2px 5px rgb(17 24 39 / 0.04), 0 18px 36px -20px rgb(17 24 39 / 0.16);
-  --shadow-float: 0 1px 2px rgb(17 24 39 / 0.07), 0 10px 26px -14px rgb(17 24 39 / 0.18);
+  --shadow-soft: 0 1px 2px rgb(24 24 27 / 0.02), 0 4px 12px -10px rgb(24 24 27 / 0.08);
+  --shadow-ui: 0 1px 2px rgb(24 24 27 / 0.03), 0 10px 22px -20px rgb(24 24 27 / 0.14);
+  --shadow-float: 0 1px 2px rgb(24 24 27 / 0.04), 0 14px 28px -22px rgb(24 24 27 / 0.16);
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -94,11 +111,24 @@
    Base
    ------------------------------------------------------------------ */
 :root {
+  /* Semantic surface system. Components use these through the Tailwind theme
+     above, while these raw tokens are available to bespoke product visuals. */
+  --background: #ffffff;
+  --foreground: #18181b;
+  --surface: #ffffff;
+  --surface-muted: #f7f7f5;
+  --surface-fog: #faf9f6;
+  --surface-accent: #eef4ff;
+  --muted: #5f6368;
+  --muted-foreground: #5f6368;
+  --border: #e7e7e4;
+  --brand: #2563eb;
+  --brand-hover: #1d4ed8;
   --gutter: 20px;
   color-scheme: light;
 }
 @media (min-width: 768px) {
-  :root { --gutter: 32px; }
+  :root { --gutter: 40px; }
 }
 @media (min-width: 1280px) {
   :root { --gutter: 56px; }
@@ -110,8 +140,8 @@ html {
 }
 
 body {
-  background: #ffffff;
-  color: var(--color-ink);
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
   overflow-x: clip;
@@ -151,24 +181,27 @@ html { scroll-behavior: smooth; }
 
 /* Type scale — hero > page > section > card. Only the hero gets display size. */
 @utility text-display {
-  font-size: clamp(2.5rem, 1.5rem + 4.4vw, 5.25rem);
-  line-height: 1.02;
-  letter-spacing: -0.042em;
-  font-weight: 600;
+  font-family: var(--font-editorial);
+  font-size: clamp(3rem, 2.2rem + 3.7vw, 5.25rem);
+  line-height: 1.01;
+  letter-spacing: -0.045em;
+  font-weight: 500;
 }
 
 @utility text-h1 {
-  font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
-  line-height: 1.04;
+  font-family: var(--font-editorial);
+  font-size: clamp(2.5rem, 2rem + 2.7vw, 4rem);
+  line-height: 1.06;
   letter-spacing: -0.038em;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 @utility text-h2 {
-  font-size: clamp(1.875rem, 1.4rem + 1.9vw, 3rem);
+  font-family: var(--font-editorial);
+  font-size: clamp(2.1rem, 1.7rem + 2.1vw, 3.4rem);
   line-height: 1.08;
-  letter-spacing: -0.032em;
-  font-weight: 600;
+  letter-spacing: -0.035em;
+  font-weight: 500;
 }
 
 @utility text-h3 {
@@ -179,14 +212,29 @@ html { scroll-behavior: smooth; }
 }
 
 @utility text-lead {
-  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  line-height: 1.65;
-  letter-spacing: -0.005em;
+  font-size: clamp(1rem, 0.97rem + 0.2vw, 1.125rem);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
 @utility section-y {
-  padding-block: clamp(4.5rem, 3.25rem + 4.5vw, 8rem);
+  padding-block: clamp(5rem, 4rem + 4.4vw, 8rem);
 }
+
+@utility marketing-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2vw, 2rem);
+}
+
+/* Shared non-card surface. It gives dense content an intentional, quiet frame
+   without turning every section into a stack of floating panels. */
+@utility surface-frame {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
 
 @utility bg-grid {
   background-image:

@@ -50,8 +50,9 @@ Industry imagery uses curated photographs from Unsplash (Unsplash License — fr
 
 `POST /api/enquiries` (`src/app/api/enquiries/route.ts`) validates with the same Zod schema as the form (`src/lib/enquiry-schema.ts`), then:
 
-1. **Production:** forwards the enquiry as JSON to `ENQUIRY_WEBHOOK_URL` (optionally HMAC-signed with `ENQUIRY_WEBHOOK_SECRET`). If it isn't configured or delivery fails, the visitor sees an error — never a false success.
-2. **Development:** without a webhook, appends to `.data/enquiries.jsonl` (git-ignored).
+1. **With `ENQUIRY_WEBHOOK_URL`:** forwards the enquiry as JSON (optionally HMAC-signed with `ENQUIRY_WEBHOOK_SECRET`) for fully automatic delivery to a CRM or email workflow.
+2. **Without a webhook:** opens a pre-addressed email to `meloriteadmin@gmail.com` in the visitor’s mail client. The visitor must press Send, so the site never claims an email has been sent when it has not.
+3. **Development:** the enquiry is also appended to `.data/enquiries.jsonl` (git-ignored) for local testing.
 
 Spam prevention: honeypot field, minimum fill time, and a best-effort per-IP rate limit (5 per 10 min per instance — use a shared store such as Redis if you run multiple instances). The public site never calls internal platform admin APIs.
 

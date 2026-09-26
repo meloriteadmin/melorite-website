@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-/** Melorite wordmark (official logo; 1200×253 source). `white` for dark surfaces. */
+/** Melorite wordmark supplied for the public website. `white` is retained for dark product illustrations. */
 export function Logo({ white, className, priority }: { white?: boolean; className?: string; priority?: boolean }) {
   return (
     <Image

@@ -112,7 +112,7 @@ function NavigationMenuViewport({
         data-slot="navigation-menu-viewport"
         data-lenis-prevent
         className={cn(
-          "origin-top-center relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] max-h-[calc(100dvh-5.5rem)] w-full overflow-x-hidden overflow-y-auto overscroll-contain rounded-[18px] border border-line bg-popover text-popover-foreground shadow-[0_28px_60px_-24px_rgb(10_37_64/0.35),0_2px_6px_rgb(10_37_64/0.04)] transition-[width,height] duration-300 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] md:w-[var(--radix-navigation-menu-viewport-width)]",
+          "origin-top-center relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] max-h-[calc(100dvh-5.5rem)] w-full overflow-x-hidden overflow-y-auto overscroll-contain rounded-xl border border-line bg-popover text-popover-foreground shadow-[0_20px_42px_-26px_rgb(23_23_23/0.25),0_2px_6px_rgb(23_23_23/0.03)] transition-[width,height] duration-200 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] md:w-[var(--radix-navigation-menu-viewport-width)]",
           className
         )}
         {...props}

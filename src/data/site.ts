@@ -28,8 +28,8 @@ export const site = {
    * approved — components hide anything that is not set.
    */
   contact: {
-    email: (process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? null) as string | null,
-    phone: (process.env.NEXT_PUBLIC_CONTACT_PHONE ?? null) as string | null,
+    email: (process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "meloriteadmin@gmail.com") as string | null,
+    phone: (process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "8482976478") as string | null,
     location: null as string | null,
   },
   /** Official social accounts only. Add URLs when they exist. */

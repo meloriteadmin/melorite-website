@@ -7,12 +7,12 @@ import { cn } from "@/lib/utils"
  * clickable cards (lift + stronger border on hover/focus), `muted` for inset
  * panels, `dark` for navy sections.
  */
-const cardVariants = cva("flex flex-col gap-6 rounded-[14px] text-card-foreground", {
+const cardVariants = cva("flex flex-col gap-5 rounded-xl text-card-foreground", {
   variants: {
     variant: {
-      default: "border border-border bg-card shadow-[0_1px_2px_rgb(10_37_64/0.03)]",
+      default: "border border-border bg-card shadow-[0_1px_2px_rgb(10_37_64/0.025)]",
       interactive:
-        "border border-border bg-card shadow-[0_1px_2px_rgb(10_37_64/0.03)] transition-[border-color,box-shadow] duration-200 ease-out hover:border-line-strong hover:shadow-[0_12px_28px_-18px_rgb(10_37_64/0.28)] focus-within:border-line-strong",
+        "border border-border bg-card transition-[border-color,box-shadow] duration-200 ease-out hover:border-line-strong hover:shadow-[0_12px_28px_-22px_rgb(10_37_64/0.22)] focus-within:border-line-strong",
       muted: "border border-border bg-paper",
       dark: "border border-white/10 bg-white/[0.04] text-white",
     },

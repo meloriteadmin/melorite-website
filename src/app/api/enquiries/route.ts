@@ -6,8 +6,8 @@
  *                            (e.g. a CRM intake endpoint or an automation webhook).
  *  - ENQUIRY_WEBHOOK_SECRET  Optional. When set, the body is signed with HMAC-SHA256 and
  *                            sent in the `X-Melorite-Signature` header.
- *  - Local development only: without a webhook, enquiries are appended to
- *    `.data/enquiries.jsonl` so the full flow can be tested.
+ *  - Without a webhook, the browser opens a pre-addressed email in the
+ *    visitor's own mail client, so the enquiry is sent directly to Melorite.
  *
  * The endpoint never reports success unless the enquiry was accepted by the
  * configured destination. This route is public and must never call internal
@@ -22,6 +22,7 @@ const MIN_FILL_MS = 2500;
 const MAX_AGE_MS = 1000 * 60 * 60 * 6;
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_WINDOW = 5;
+const ENQUIRY_RECIPIENT = process.env.CONTACT_EMAIL ?? "meloriteadmin@gmail.com";
 
 // Best-effort, per-instance rate limit. Use a shared store (e.g. Redis) when running multiple instances.
 const hits = new Map<string, number[]>();
@@ -36,6 +37,25 @@ function rateLimited(ip: string) {
 
 function json(body: unknown, status: number) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
+}
+
+function buildMailto(record: Record<string, unknown>) {
+  const lines = [
+    `Reference: ${record.reference}`,
+    `Name: ${record.fullName}`,
+    `Email: ${record.workEmail}`,
+    `Phone: ${record.phone || "Not provided"}`,
+    `Company: ${record.companyName}`,
+    `Industry: ${record.industry}`,
+    `Company size: ${record.companySize}`,
+    `Enquiry type: ${record.enquiryType}`,
+    `Applications: ${Array.isArray(record.applications) && record.applications.length ? record.applications.join(", ") : "None selected"}`,
+    "",
+    "Message:",
+    String(record.message || "No message provided."),
+  ];
+  const subject = `Melorite enquiry from ${record.fullName} (${record.reference})`;
+  return `mailto:${encodeURIComponent(ENQUIRY_RECIPIENT)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
 export async function POST(request: Request) {
@@ -83,14 +103,15 @@ export async function POST(request: Request) {
       const dir = path.join(process.cwd(), ".data");
       await mkdir(dir, { recursive: true });
       await appendFile(path.join(dir, "enquiries.jsonl"), body + "\n", "utf8");
-    } else {
-      console.error("[enquiries] ENQUIRY_WEBHOOK_URL is not configured; enquiry was not stored.");
-      return json({ ok: false, error: "Our enquiry service is temporarily unavailable. Please try again later." }, 503);
     }
   } catch (err) {
     console.error("[enquiries] delivery failed:", err instanceof Error ? err.message : err);
     return json({ ok: false, error: "We couldn't send your enquiry just now. Please try again in a moment." }, 502);
   }
 
-  return json({ ok: true, reference }, 201);
+  if (!webhook) {
+    return json({ ok: true, reference, delivery: "email-client", mailtoUrl: buildMailto(record) }, 202);
+  }
+
+  return json({ ok: true, reference, delivery: "webhook" }, 201);
 }

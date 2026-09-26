@@ -20,8 +20,8 @@ export function CTASection({
   secondary?: CTA;
 }) {
   return (
-    <section className="border-t border-line bg-white">
-      <div className="container-x flex flex-col gap-8 py-14 md:py-18 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
+    <section className="bg-white py-8 md:py-12">
+      <div className="container-x flex flex-col gap-8 rounded-xl bg-pastel-blue py-14 md:py-18 lg:flex-row lg:items-center lg:justify-between lg:gap-12">
           <div className="max-w-[700px]">
             {eyebrow && (
               <Reveal y={8} className="mb-4">

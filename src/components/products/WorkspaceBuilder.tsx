@@ -19,12 +19,11 @@ export function WorkspaceBuilder() {
   const landing = selected.length === 0 ? "Select an application to begin" : selected.length === 1 ? `Opens directly in ${productById(selected[0])!.shortName}` : "Opens Workspace Home with your apps";
 
   return (
-    <section id="builder" className="section-y relative overflow-hidden bg-navy text-white">
-      <div className="absolute inset-0 bg-grid-dark opacity-60 [mask-image:radial-gradient(ellipse_70%_60%_at_70%_40%,black,transparent)]" aria-hidden />
+    <section id="builder" className="section-y relative overflow-hidden bg-pastel-green text-navy">
       <div className="container-x relative">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
-          <SectionHeading dark className="lg:col-span-7" eyebrow="Build your own workspace" title={["Your business.", "Your combination of tools."]} />
-          <p className="text-lead text-white/60 lg:col-span-5">
+          <SectionHeading className="lg:col-span-7" eyebrow="Build your own workspace" title={["Your business.", "Your combination of tools."]} />
+          <p className="text-lead text-muted lg:col-span-5">
             Choose applications to see how they come together in one Melorite workspace. This is an illustration to help you explore — our team will confirm the right setup with you.
           </p>
         </div>
@@ -37,7 +36,7 @@ export function WorkspaceBuilder() {
               <div className="space-y-6">
                 {productCategories.map((c) => (
                   <div key={c.id}>
-                    <div className="mb-2.5 text-[12px] font-medium uppercase tracking-[0.08em] text-white/45">{c.name}</div>
+                    <div className="mb-2.5 text-[12px] font-medium uppercase tracking-[0.08em] text-muted">{c.name}</div>
                     <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-2">
                       {products
                         .filter((p) => p.category === c.id)
@@ -50,10 +49,10 @@ export function WorkspaceBuilder() {
                               htmlFor={id}
                               className={cn(
                                 "flex cursor-pointer select-none items-center gap-3 rounded-[12px] border p-3 transition-[background-color,border-color,box-shadow] duration-200",
-                                on ? "border-white bg-white text-navy shadow-[0_8px_24px_-12px_rgb(0_0_0/0.5)]" : "border-white/12 bg-white/[0.03] text-white/80 hover:border-white/25 hover:bg-white/[0.06]",
+                                on ? "border-line bg-white text-navy shadow-[0_8px_24px_-16px_rgba(10,37,64,0.18)]" : "border-line bg-white/65 text-navy hover:border-line-strong hover:bg-white",
                               )}
                             >
-                              <span className="grid size-8 shrink-0 place-items-center rounded-[8px]" style={on ? { background: tint(p.accent, 0.12), color: p.accent } : { background: "rgba(255,255,255,0.06)", color: "#fff" }}>
+                              <span className="grid size-8 shrink-0 place-items-center rounded-[8px]" style={on ? { background: tint(p.accent, 0.12), color: p.accent } : { background: tint(p.accent, 0.08), color: p.accent }}>
                                 <Icon name={p.icon} className="size-4" />
                               </span>
                               <span className="min-w-0 flex-1 truncate text-[14px] font-medium">{p.shortName}</span>
@@ -62,7 +61,7 @@ export function WorkspaceBuilder() {
                                 checked={on}
                                 onCheckedChange={() => toggle(p.id)}
                                 aria-label={`Include ${p.name}`}
-                                className={cn(!on && "border-white/30 bg-transparent")}
+                                className={cn(!on && "border-line-strong bg-transparent")}
                               />
                             </label>
                           );
@@ -124,11 +123,11 @@ export function WorkspaceBuilder() {
                   <ButtonLink href={href} size="lg" arrow magnetic>
                     Discuss Your Requirements
                   </ButtonLink>
-                  <button type="button" onClick={() => setSelected([])} className="inline-flex h-[52px] items-center gap-2 rounded-[12px] px-4 text-[15px] font-medium text-white/70 ring-1 ring-white/20 transition hover:bg-white/10 hover:text-white">
+                  <button type="button" onClick={() => setSelected([])} className="inline-flex h-[52px] items-center gap-2 rounded-[12px] bg-white/70 px-4 text-[15px] font-medium text-muted ring-1 ring-line transition hover:bg-white hover:text-navy">
                     <RotateCcw className="size-4" aria-hidden /> Reset
                   </button>
                 </div>
-                <p className="mt-4 text-[13px] text-white/45">Your selection is passed to the enquiry form so our team can prepare for the conversation.</p>
+                <p className="mt-4 text-[13px] text-muted">Your selection is passed to the enquiry form so our team can prepare for the conversation.</p>
               </div>
             </div>
           </div>

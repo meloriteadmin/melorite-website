@@ -33,5 +33,12 @@ export const footerNav = [
   },
 ];
 
-export const productHref = (slug: string) => `/business-applications/${slug}`;
-export const solutionHref = (slug: string) => `/industries/${slug}`;
+const legacyProductGroup: Record<string, string> = {
+  crm: "crm-growth", sales: "crm-growth", marketing: "crm-growth", campaigns: "crm-growth",
+  finance: "finance", hr: "hrms", payroll: "hrms", commerce: "commerce", projects: "projects",
+  service: "service", procurement: "procurement-inventory", inventory: "procurement-inventory",
+  operations: "projects", documents: "projects", automation: "crm-growth", analytics: "finance",
+};
+
+export const productHref = (slug: string) => `/products/${legacyProductGroup[slug] ?? slug}`;
+export const solutionHref = (slug: string) => `/solutions/${slug}`;

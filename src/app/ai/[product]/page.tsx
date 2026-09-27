@@ -23,5 +23,5 @@ export default async function AIProductPage({ params }: Props) {
   const product = aiProducts.find((item) => item.id === AI_PATHS[path]);
   if (!product) notFound();
   const offering = { slug: path, name: product.name, eyebrow: "Melorite AI", description: product.description, accent: product.accent, icon: product.icon, modules: product.capabilities, capabilities: product.capabilities, workflow: path === "agent" ? ["Ask in natural language", "Understand business context", "Review recommendations", "Execute permitted actions", "Keep work connected"] : ["Receive or place a call", "Understand the request", "Qualify or route", "Synchronize business context", "Hand off when needed"] };
-  return <PageTransition><OfferingStory offering={offering} kind="ai" hero={product.tagline} aiCalling={path === "calling"} /></PageTransition>;
+  return <PageTransition><OfferingStory offering={offering} kind="ai" aiCalling={path === "calling"} /></PageTransition>;
 }

@@ -48,7 +48,7 @@ export function FeaturedProducts() {
             description="Every Melorite application shares the same workspace, design and underlying records."
           />
           <Reveal delay={0.15}>
-            <TextLink href="/business-applications">Explore all Business Applications</TextLink>
+            <TextLink href="/products">Explore all Products</TextLink>
           </Reveal>
         </div>
 

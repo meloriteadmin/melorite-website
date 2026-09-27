@@ -53,7 +53,7 @@ export default function HomePage() {
         title={["Bring your business", "together with Melorite."]}
         description="Explore a more connected way to manage your operations, with applications and capabilities tailored to your business."
         primary={{ label: "Book a Demo", href: site.demoHref }}
-        secondary={{ label: "Explore Business Applications", href: "/business-applications" }}
+        secondary={{ label: "Explore Products", href: "/products" }}
       />
     </PageTransition>
   );

@@ -1,14 +1,8 @@
-import { ViewTransition } from "react";
-
 /**
- * Subtle cross-fade between routes via React's ViewTransition (browser View
- * Transitions API). Browsers without support navigate normally. Placed in each
- * page — layouts persist and would never trigger enter/exit.
+ * Animate only the route content as it enters. A document-level View Transition
+ * snapshots fixed UI as well, which can make the persistent navbar appear to
+ * reload even though the shared layout never unmounts.
  */
 export function PageTransition({ children }: { children: React.ReactNode }) {
-  return (
-    <ViewTransition enter="page-fade" exit="page-fade" default="none">
-      <div>{children}</div>
-    </ViewTransition>
-  );
+  return <div className="page-enter">{children}</div>;
 }

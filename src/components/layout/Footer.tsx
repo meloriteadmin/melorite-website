@@ -24,8 +24,8 @@ export function Footer() {
 
   const columns = [
     footerNav[0],
-    { title: "Business Applications", links: [...businessApplications.slice(0, 5).map((p) => ({ label: p.name, href: `/business-applications/${p.slug}` })), { label: "All applications", href: "/business-applications" }] },
-    { title: "Industry Solutions", links: [...industrySolutions.slice(0, 5).map((i) => ({ label: i.name, href: `/industries/${i.slug}` })), { label: "All solutions", href: "/industries" }] },
+    { title: "Business Applications", links: [...businessApplications.slice(0, 5).map((p) => ({ label: p.name, href: `/products/${p.slug}` })), { label: "All products", href: "/products" }] },
+    { title: "Industry Solutions", links: [...industrySolutions.slice(0, 5).map((i) => ({ label: i.name, href: `/solutions/${i.slug}` })), { label: "All solutions", href: "/solutions" }] },
     footerNav[1],
   ];
 

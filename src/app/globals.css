@@ -41,8 +41,8 @@
   --color-ui-blue: #2563eb;
   --color-ink-black: #17191c;
   --color-paper-white: #ffffff;
-  --color-surface-neutral: #f7f7f5;
-  --color-surface-warm: #faf9f6;
+  --color-surface-neutral: #f8f7f4;
+  --color-surface-warm: #fbf8f3;
   --color-pastel-blue: #eef4ff;
   --color-pastel-lavender: #f5f0ff;
   --color-pastel-green: #eff8f3;
@@ -59,7 +59,7 @@
   --color-navy-900: #101010;
   --color-navy-800: #242424;
   --color-ink: #252525;
-  --color-paper: #f7f7f5;
+  --color-paper: #f8f7f4;
   --color-muted: #5f6368;
   --color-line: #e7e7e4;
   --color-line-strong: #d8d8d4;
@@ -116,8 +116,8 @@
   --background: #ffffff;
   --foreground: #18181b;
   --surface: #ffffff;
-  --surface-muted: #f7f7f5;
-  --surface-fog: #faf9f6;
+  --surface-muted: #f8f7f4;
+  --surface-fog: #fbf8f3;
   --surface-accent: #eef4ff;
   --muted: #5f6368;
   --muted-foreground: #5f6368;
@@ -146,6 +146,31 @@ body {
   font-feature-settings: "ss01", "cv11";
   overflow-x: clip;
 }
+
+/* Soft atmospheric color used across marketing surfaces. The colors remain
+   intentionally low-contrast so content and product graphics stay primary. */
+.hero-atmosphere {
+  background: #fcfbf9;
+  filter: saturate(.92);
+}
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(72px);
+  opacity: .72;
+  transform: translateZ(0);
+}
+.hero-orb-blue { width: 42vw; height: 42vw; left: -12vw; top: 12%; background: #dfeaff; }
+.hero-orb-peach { width: 48vw; height: 48vw; right: -8vw; top: 18%; background: #ffd9cd; }
+.hero-orb-violet { width: 34vw; height: 34vw; left: 34%; top: 22%; background: #e9ddff; }
+.hero-orb-green { width: 30vw; height: 30vw; left: 38%; bottom: -12%; background: #dff3e7; }
+
+.pastel-card-blue { background: #eef4ff; border-color: #dbe7fb; }
+.pastel-card-peach { background: #fff3ec; border-color: #f6dfd2; }
+.pastel-card-violet { background: #f5f0ff; border-color: #e6dcf7; }
+.pastel-card-green { background: #eff8f3; border-color: #d9ecdf; }
+.pastel-card-sky { background: #eef7fa; border-color: #d8e9ee; }
+.pastel-card-rose { background: #fff1f3; border-color: #f4dce1; }
 
 ::selection {
   background: var(--color-brand-100);

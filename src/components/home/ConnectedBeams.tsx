@@ -113,8 +113,8 @@ export function ConnectedBeams() {
                 <BeamNode key={id} id={id} on={active === id} onSelect={() => setActive(id)} ref={refs[id as keyof typeof refs]} />
               ))}
             </div>
-            <div ref={hub} className="relative z-10 grid size-20 shrink-0 place-items-center rounded-[22px] bg-navy shadow-[0_20px_40px_-16px_rgb(10_37_64/0.6)] sm:size-24">
-              <LogoMark className="w-10 sm:w-12" color="#ffffff" />
+            <div ref={hub} className="relative z-10 grid size-20 shrink-0 place-items-center rounded-[22px] bg-[#e8e3ff] ring-1 ring-[#d8cff8] shadow-[0_20px_40px_-18px_rgb(107_91_153/0.3)] sm:size-24">
+              <LogoMark className="w-10 sm:w-12" />
               <span className="absolute -bottom-7 whitespace-nowrap text-[12px] font-medium text-muted">Melorite core</span>
             </div>
             <div className="flex flex-col gap-6 sm:gap-8">

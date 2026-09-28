@@ -123,12 +123,12 @@ export function ConnectedSystems() {
                 ))}
               </svg>
               <motion.div
-                className="absolute left-1/2 top-1/2 z-10 grid size-[18%] max-w-[132px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[22%] bg-navy shadow-[0_20px_50px_-15px_rgba(23,23,23,0.35)] sm:size-[12%]"
+                className="absolute left-1/2 top-1/2 z-10 grid size-[18%] max-w-[132px] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[22%] bg-[#e8e3ff] shadow-[0_20px_50px_-18px_rgba(107,91,153,0.3)] sm:size-[12%]"
                 style={{ opacity: hubOpacity, scale: hubScale }}
                 aria-hidden
               >
-                <LogoMark className="w-[52%]" color="#ffffff" />
-                <span className="absolute inset-0 rounded-[22%] ring-1 ring-white/20" />
+                <LogoMark className="w-[52%]" />
+                <span className="absolute inset-0 rounded-[22%] ring-1 ring-[#d8cff8]" />
               </motion.div>
               {apps.map((a, i) => (
                 <AppWindow key={a.id} product={a} p={p} layout={LAYOUT[i]} />

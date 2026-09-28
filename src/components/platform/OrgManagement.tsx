@@ -49,7 +49,7 @@ export function OrgManagement() {
                 <div className="border-b border-line p-6">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <span className="grid size-10 place-items-center rounded-[10px] bg-navy font-semibold text-white">{org.id.toUpperCase()}</span>
+                      <span className="grid size-10 place-items-center rounded-[10px] bg-[#e8e3ff] font-semibold text-[#43386f] ring-1 ring-[#d8cff8]">{org.id.toUpperCase()}</span>
                       <div>
                         <h3 className="text-[17px] font-semibold tracking-[-0.015em] text-navy">{org.name}</h3>
                         <p className="text-[13px] text-muted">{org.note}</p>

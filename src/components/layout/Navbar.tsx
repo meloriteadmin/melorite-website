@@ -42,9 +42,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        // Solid white (no backdrop-filter): blur over masked hero backgrounds flickers in Chromium while scrolling.
-        "site-navbar fixed inset-x-0 top-0 z-50 border-b border-transparent bg-white/95 transition-[box-shadow,border-color] duration-200",
-        scrolled && "border-line shadow-[0_1px_12px_rgb(0_0_0/0.03)]",
+        "site-navbar fixed inset-x-0 top-0 z-50 border-b border-black/[.06] bg-white text-[#171717] transition-[box-shadow,border-color] duration-200",
+        scrolled && "border-black/10 shadow-[0_8px_30px_-24px_rgb(0_0_0/0.35)]",
       )}
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
@@ -52,7 +51,7 @@ export function Navbar() {
       </a>
       <div className="container-x flex h-[72px] items-center justify-between gap-6 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         <Link href="/" aria-label="Melorite home" className="justify-self-start rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none">
-          <Logo priority className="h-[22px] md:h-6" />
+          <Logo priority className="h-[23px] md:h-[25px]" />
         </Link>
 
         <NavigationMenu aria-label="Main" className="hidden lg:flex">
@@ -60,7 +59,7 @@ export function Navbar() {
             {mainNav.map((item) => {
               const active = isActive(item.href);
               const underline = active && (
-                <span className="absolute inset-x-3 -bottom-[13px] h-[2px] rounded-full bg-brand" aria-hidden />
+                <span className="absolute inset-x-3 -bottom-[14px] h-[2px] rounded-full bg-[#171717]" aria-hidden />
               );
               if (item.menu) {
                 return (
@@ -88,10 +87,10 @@ export function Navbar() {
         </NavigationMenu>
 
         <div className="flex items-center justify-self-end gap-2">
-          <ButtonLink href={site.salesHref} variant="ghost" size="sm" className="hidden md:inline-flex">
+          <ButtonLink href={site.salesHref} variant="ghost" size="sm" className="hidden rounded-full px-4 text-[#171717] md:inline-flex">
             Contact Sales
           </ButtonLink>
-          <ButtonLink href={site.demoHref} size="sm" arrow className="hidden sm:inline-flex">
+          <ButtonLink href={site.demoHref} variant="dark" size="sm" arrow className="hidden rounded-full px-5 sm:inline-flex">
             Book a Demo
           </ButtonLink>
           <MobileMenu />

@@ -151,9 +151,9 @@ function DataVisual() {
         ))}
         <style>{`@keyframes dv-flow{from{stroke-dashoffset:64}to{stroke-dashoffset:0}}`}</style>
       </svg>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[12px] bg-navy px-3 py-2 text-center text-[12px] font-medium text-white shadow-float">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-[12px] bg-[#e8e3ff] px-3 py-2 text-center text-[12px] font-medium text-[#43386f] shadow-soft ring-1 ring-[#d8cff8]">
         Customer
-        <div className="text-[10.5px] text-white/60">one record</div>
+        <div className="text-[10.5px] text-[#75699a]">one record</div>
       </div>
       {apps.map((a, i) => (
         <span key={a.id} className="absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-white px-2.5 py-1 text-[12px] font-medium text-navy shadow-soft ring-1 ring-line" style={{ left: `${pos[i][0]}%`, top: `${pos[i][1]}%` }}>

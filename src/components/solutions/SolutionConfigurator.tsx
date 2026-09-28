@@ -60,14 +60,14 @@ export function SolutionConfigurator() {
 
         <div ref={ref} className="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_auto_1.4fr_auto_1.2fr] lg:items-stretch">
           {/* Stage 1: Core */}
-          <div className="flex flex-col rounded-[20px] bg-navy p-6 text-white">
-            <StageLabel n={1} active={stage >= 0} dark />
+          <div className="flex flex-col rounded-[20px] bg-[#e8e3ff] p-6 text-navy ring-1 ring-[#d8cff8]">
+            <StageLabel n={1} active={stage >= 0} />
             <div className="mt-6 flex flex-1 flex-col items-center justify-center gap-3 py-6">
-              <span className="grid size-16 place-items-center rounded-[18px] bg-white/10">
-                <LogoMark className="w-8" color="#fff" />
+              <span className="grid size-16 place-items-center rounded-[18px] bg-white/60 ring-1 ring-white/80">
+                <LogoMark className="w-8" />
               </span>
               <span className="text-[17px] font-semibold">Melorite Core</span>
-              <span className="max-w-[24ch] text-center text-[13px] text-white/55">Organization, access, shared records, audit and search.</span>
+              <span className="max-w-[24ch] text-center text-[13px] text-[#75699a]">Organization, access, shared records, audit and search.</span>
             </div>
           </div>
 

@@ -2,7 +2,7 @@
 
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
 import { AlertCircle, Check, CheckCircle2, Loader2 } from "lucide-react";
@@ -38,7 +38,34 @@ function Field({ id, label, error, optional, children, className }: { id: string
   );
 }
 
-type Status = { state: "idle" } | { state: "success"; reference: string; emailClient: boolean } | { state: "error"; message: string };
+type Status = { state: "idle" } | { state: "success"; reference: string } | { state: "error"; message: string };
+
+const enquiryCopy = {
+  demo: {
+    eyebrow: "Plan your walkthrough",
+    description: "Tell us what you want to see and suggest a convenient time. We’ll tailor the demonstration to your business.",
+    messageLabel: "What would you like to see?",
+    messagePlaceholder: "Tell us about the workflows, teams or challenges you want the demonstration to cover.",
+  },
+  product: {
+    eyebrow: "Choose your applications",
+    description: "Select the products you’re evaluating and tell us what you use today.",
+    messageLabel: "What do you need from Melorite?",
+    messagePlaceholder: "Describe your requirements, current process and the outcome you want to achieve.",
+  },
+  industry: {
+    eyebrow: "Tell us about your operation",
+    description: "Choose your industry so our team can respond with the most relevant workflows and solution context.",
+    messageLabel: "What should the solution support?",
+    messagePlaceholder: "Describe your operation, key workflows and the challenges you want to solve.",
+  },
+  general: {
+    eyebrow: "Send us a message",
+    description: "For partnerships, company questions or anything that doesn’t fit the other options.",
+    messageLabel: "Message",
+    messagePlaceholder: "How can the Melorite team help?",
+  },
+} as const;
 
 /** Reads URL params in its own Suspense boundary so the form itself is server-rendered. */
 function ParamsSync({ onParams }: { onParams: (p: URLSearchParams) => void }) {
@@ -69,12 +96,18 @@ export function ContactForm() {
       companySize: "",
       applications: [],
       enquiryType: "demo",
+      preferredDate: "",
+      preferredTime: "",
+      currentTools: "",
+      subject: "",
       message: "",
       consent: undefined as unknown as true,
       website: "",
       startedAt: 0,
     },
   });
+  const enquiryType = (useWatch({ control, name: "enquiryType" }) ?? "demo") as keyof typeof enquiryCopy;
+  const activeCopy = enquiryCopy[enquiryType];
 
   // Stamp render time for the spam check.
   useEffect(() => setValue("startedAt", Date.now()), [setValue]);
@@ -98,11 +131,9 @@ export function ContactForm() {
     setStatus({ state: "idle" });
     try {
       const res = await fetch("/api/enquiries", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
-      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; reference?: string; error?: string; delivery?: "webhook" | "email-client"; mailtoUrl?: string };
+      const body = (await res.json().catch(() => ({}))) as { ok?: boolean; reference?: string; error?: string; delivery?: "webhook" | "smtp" };
       if (!res.ok || !body.ok || !body.reference) throw new Error(body.error || "We couldn't send your enquiry. Please try again.");
-      const emailClient = body.delivery === "email-client";
-      setStatus({ state: "success", reference: body.reference, emailClient });
-      if (emailClient && body.mailtoUrl) window.location.assign(body.mailtoUrl);
+      setStatus({ state: "success", reference: body.reference });
       reset();
     } catch (err) {
       // Keep everything the visitor typed; only show the error.
@@ -123,8 +154,8 @@ export function ContactForm() {
         <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 260, damping: 18, delay: 0.15 }} className="grid size-16 place-items-center rounded-full bg-emerald-50 text-emerald-600">
           <CheckCircle2 className="size-8" aria-hidden />
         </motion.span>
-        <h3 className="mt-6 text-[28px] font-semibold tracking-[-0.03em] text-navy">{status.emailClient ? "Your email is ready to send." : "Thank you — we’ve received your enquiry."}</h3>
-        <p className="mt-3 max-w-[46ch] text-[15.5px] leading-relaxed text-muted">{status.emailClient ? "We opened a pre-addressed email to Melorite. Please press Send in your email app so the team can respond." : "A member of the Melorite team will review your details and get back to you by email."}</p>
+        <h3 className="mt-6 text-[28px] font-semibold tracking-[-0.03em] text-navy">Thank you — your enquiry has been sent.</h3>
+        <p className="mt-3 max-w-[46ch] text-[15.5px] leading-relaxed text-muted">A member of the Melorite team will review your details and reply to your email address.</p>
         <p className="mt-6 rounded-full bg-paper px-4 py-1.5 font-mono text-[13px] text-navy ring-1 ring-line">Reference {status.reference}</p>
         <button
           type="button"
@@ -171,6 +202,13 @@ export function ContactForm() {
         />
       </fieldset>
 
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div key={enquiryType} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.2, ease: EASE }} className="mt-5 rounded-xl border border-black/[.06] bg-[#f5f3ff] px-4 py-3.5">
+          <p className="text-[12px] font-semibold uppercase tracking-[.08em] text-violet-700">{activeCopy.eyebrow}</p>
+          <p className="mt-1 text-[13.5px] leading-relaxed text-slate-600">{activeCopy.description}</p>
+        </motion.div>
+      </AnimatePresence>
+
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-2">
         <Field id="fullName" label="Full name" error={errors.fullName?.message}>
           <Input id="fullName" autoComplete="name" {...register("fullName")} {...a11y("fullName")} />
@@ -181,10 +219,30 @@ export function ContactForm() {
         <Field id="phone" label="Phone number" optional error={errors.phone?.message}>
           <Input id="phone" type="tel" inputMode="tel" autoComplete="tel" {...register("phone")} {...a11y("phone")} />
         </Field>
-        <Field id="companyName" label="Company name" error={errors.companyName?.message}>
+        <Field id="companyName" label="Company name" optional={enquiryType === "general"} error={errors.companyName?.message}>
           <Input id="companyName" autoComplete="organization" {...register("companyName")} {...a11y("companyName")} />
         </Field>
-        <Field id="industry" label="Industry" error={errors.industry?.message}>
+        {enquiryType !== "general" && <Field id="companySize" label="Company size" error={errors.companySize?.message}>
+          <Controller
+            control={control}
+            name="companySize"
+            render={({ field }) => (
+              <Select value={field.value || undefined} onValueChange={(v) => v && field.onChange(v)} name={field.name}>
+                <SelectTrigger id="companySize" className="w-full" onBlur={field.onBlur} {...a11y("companySize")}>
+                  <SelectValue placeholder="Number of employees" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  {companySizes.map((sz) => (
+                    <SelectItem key={sz} value={sz}>
+                      {sz} employees
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
+        </Field>}
+        {(enquiryType === "demo" || enquiryType === "industry") && <Field id="industry" label="Industry" error={errors.industry?.message}>
           <Controller
             control={control}
             name="industry"
@@ -204,33 +262,16 @@ export function ContactForm() {
               </Select>
             )}
           />
-        </Field>
-        <Field id="companySize" label="Company size" error={errors.companySize?.message}>
-          <Controller
-            control={control}
-            name="companySize"
-            render={({ field }) => (
-              <Select value={field.value || undefined} onValueChange={(v) => v && field.onChange(v)} name={field.name}>
-                <SelectTrigger id="companySize" className="w-full" onBlur={field.onBlur} {...a11y("companySize")}>
-                  <SelectValue placeholder="Number of employees" />
-                </SelectTrigger>
-                <SelectContent position="popper">
-                  {companySizes.map((sz) => (
-                    <SelectItem key={sz} value={sz}>
-                      {sz} employees
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-          />
-        </Field>
+        </Field>}
+        {enquiryType === "general" && <Field id="subject" label="Subject" error={errors.subject?.message} className="md:col-span-2">
+          <Input id="subject" placeholder="What is your enquiry about?" {...register("subject")} {...a11y("subject")} />
+        </Field>}
       </div>
 
       {/* Applications */}
-      <fieldset className="mt-8">
+      {(enquiryType === "demo" || enquiryType === "product") && <fieldset className="mt-8">
         <legend className="mb-3 flex w-full items-baseline justify-between text-[14px] font-medium text-navy">
-          Applications of interest <span className="text-[12.5px] font-normal text-muted">Optional</span>
+          Applications of interest {enquiryType === "demo" && <span className="text-[12.5px] font-normal text-muted">Optional</span>}
         </legend>
         <Controller
           control={control}
@@ -257,10 +298,24 @@ export function ContactForm() {
             </div>
           )}
         />
-      </fieldset>
+        {errors.applications && <p id="applications-error" role="alert" className="flex items-center gap-1.5 pt-2 text-[13px] text-red-600"><AlertCircle className="size-3.5" aria-hidden /> {errors.applications.message}</p>}
+      </fieldset>}
 
-      <Field id="message" label="Message" error={errors.message?.message} className="mt-8">
-        <Textarea id="message" rows={5} placeholder="Tell us about your business, your current tools and what you'd like to achieve." {...register("message")} {...a11y("message")} />
+      {enquiryType === "demo" && <div className="mt-8 grid gap-5 md:grid-cols-2">
+        <Field id="preferredDate" label="Preferred date" optional error={errors.preferredDate?.message}>
+          <Input id="preferredDate" type="date" {...register("preferredDate")} {...a11y("preferredDate")} />
+        </Field>
+        <Field id="preferredTime" label="Preferred time" optional error={errors.preferredTime?.message}>
+          <Controller control={control} name="preferredTime" render={({ field }) => <Select value={field.value || undefined} onValueChange={(v) => v && field.onChange(v)} name={field.name}><SelectTrigger id="preferredTime" className="w-full" onBlur={field.onBlur} {...a11y("preferredTime")}><SelectValue placeholder="Choose a time window" /></SelectTrigger><SelectContent position="popper"><SelectItem value="morning">Morning</SelectItem><SelectItem value="afternoon">Afternoon</SelectItem><SelectItem value="evening">Evening</SelectItem><SelectItem value="flexible">I’m flexible</SelectItem></SelectContent></Select>} />
+        </Field>
+      </div>}
+
+      {enquiryType === "product" && <Field id="currentTools" label="Current tools or system" optional error={errors.currentTools?.message} className="mt-8">
+        <Input id="currentTools" placeholder="For example: spreadsheets, Zoho, Salesforce or another ERP" {...register("currentTools")} {...a11y("currentTools")} />
+      </Field>}
+
+      <Field id="message" label={activeCopy.messageLabel} error={errors.message?.message} className="mt-8">
+        <Textarea id="message" rows={5} placeholder={activeCopy.messagePlaceholder} {...register("message")} {...a11y("message")} />
       </Field>
 
       {/* Honeypot — hidden from people and assistive tech */}

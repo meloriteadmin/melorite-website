@@ -12,10 +12,10 @@ const PATH = ["Request", "Authenticated session", "Entitlement check", "Organiza
 
 function IsolationDiagram() {
   return (
-    <div className="relative overflow-hidden rounded-[20px] bg-navy p-6 text-white md:p-8">
-      <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden />
+    <div className="relative overflow-hidden rounded-[20px] bg-[#e8e3ff] p-6 text-navy ring-1 ring-[#d8cff8] md:p-8">
+      <div className="absolute inset-0 bg-grid opacity-40" aria-hidden />
       <div className="relative">
-        <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-white/50">Every request</div>
+        <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#75699a]">Every request</div>
         <ol className="mt-5 grid gap-2">
           {PATH.map((p, i) => (
             <motion.li
@@ -26,8 +26,8 @@ function IsolationDiagram() {
               transition={{ delay: i * 0.12, duration: 0.5, ease: EASE }}
               className="flex items-center gap-3"
             >
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-white/10 font-mono text-[11px]">{i + 1}</span>
-              <span className="flex-1 rounded-[10px] bg-white/[0.06] px-3.5 py-2.5 text-[14px] ring-1 ring-white/10">{p}</span>
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-white/65 font-mono text-[11px]">{i + 1}</span>
+              <span className="flex-1 rounded-[10px] bg-white/55 px-3.5 py-2.5 text-[14px] ring-1 ring-white/80">{p}</span>
             </motion.li>
           ))}
         </ol>
@@ -39,14 +39,14 @@ function IsolationDiagram() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.7 + i * 0.1, ease: EASE }}
-              className="rounded-[14px] border border-dashed border-brand-200/40 p-4"
+              className="rounded-[14px] border border-dashed border-[#b8addd] bg-white/35 p-4"
             >
               <div className="text-[13px] font-semibold">{o}</div>
               <div className="mt-2 space-y-1.5" aria-hidden>
-                <i className="block h-1.5 w-[80%] rounded-full bg-white/20" />
-                <i className="block h-1.5 w-[55%] rounded-full bg-white/20" />
+                <i className="block h-1.5 w-[80%] rounded-full bg-[#bdb2de]" />
+                <i className="block h-1.5 w-[55%] rounded-full bg-[#cfc6e8]" />
               </div>
-              <div className="mt-3 text-[11.5px] text-white/50">Isolated by organization</div>
+              <div className="mt-3 text-[11.5px] text-[#75699a]">Isolated by organization</div>
             </motion.div>
           ))}
         </div>

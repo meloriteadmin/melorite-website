@@ -22,13 +22,13 @@ function Layer({ show, index, title, children, tone = "light" }: { show: boolean
           transition={{ duration: 0.6, ease: EASE }}
           className={cn(
             "relative rounded-[20px] p-5 ring-1",
-            tone === "dark" && "bg-navy text-white ring-navy",
+            tone === "dark" && "bg-[#e8e3ff] text-navy ring-[#d8cff8]",
             tone === "light" && "bg-white ring-line shadow-soft",
             tone === "brand" && "bg-brand-50 ring-brand/20",
           )}
         >
           <div className="mb-3 flex items-center justify-between">
-            <span className={cn("font-mono text-[11px] uppercase tracking-[0.14em]", tone === "dark" ? "text-white/50" : "text-muted")}>
+            <span className={cn("font-mono text-[11px] uppercase tracking-[0.14em]", tone === "dark" ? "text-[#75699a]" : "text-muted")}>
               Layer {index} · {title}
             </span>
           </div>
@@ -48,12 +48,12 @@ function ArchitectureVisual({ step }: { step: number }) {
     <div className="flex flex-col-reverse gap-4">
       <Layer show index={1} title="Melorite core" tone="dark">
         <div className="flex items-center gap-4">
-          <span className="grid size-11 shrink-0 place-items-center rounded-[12px] bg-white/10">
-            <LogoMark className="w-6" color="#fff" />
+          <span className="grid size-11 shrink-0 place-items-center rounded-[12px] bg-white/60 ring-1 ring-white/80">
+            <LogoMark className="w-6" />
           </span>
           <div className="flex flex-wrap gap-1.5">
             {CORE.map((c) => (
-              <span key={c} className="rounded-full bg-white/10 px-2.5 py-1 text-[12px] text-white/85">{c}</span>
+              <span key={c} className="rounded-full bg-white/55 px-2.5 py-1 text-[12px] text-[#43386f]">{c}</span>
             ))}
           </div>
         </div>

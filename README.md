@@ -48,11 +48,13 @@ Industry imagery uses curated photographs from Unsplash (Unsplash License — fr
 
 ## Enquiry handling
 
-`POST /api/enquiries` (`src/app/api/enquiries/route.ts`) validates with the same Zod schema as the form (`src/lib/enquiry-schema.ts`), then:
+The enquiry form changes its fields and validation for Demo, Product, Industry and General enquiries. `POST /api/enquiries` (`src/app/api/enquiries/route.ts`) validates with the same Zod schema as the form (`src/lib/enquiry-schema.ts`), then:
 
-1. **With `ENQUIRY_WEBHOOK_URL`:** forwards the enquiry as JSON (optionally HMAC-signed with `ENQUIRY_WEBHOOK_SECRET`) for fully automatic delivery to a CRM or email workflow.
-2. **Without a webhook:** opens a pre-addressed email to `meloriteadmin@gmail.com` in the visitor’s mail client. The visitor must press Send, so the site never claims an email has been sent when it has not.
-3. **Development:** the enquiry is also appended to `.data/enquiries.jsonl` (git-ignored) for local testing.
+1. **With SMTP configured:** sends a formatted HTML and plain-text email directly to `CONTACT_EMAIL`. The visitor’s address is set as Reply-To.
+2. **With `ENQUIRY_WEBHOOK_URL`:** uses the webhook as a fallback when SMTP is unavailable.
+3. **Without either destination:** returns a clear configuration error and never reports a false success.
+
+For Gmail, create a Google App Password and set `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`, `SMTP_USER` and `SMTP_PASS`. Never commit the password.
 
 Spam prevention: honeypot field, minimum fill time, and a best-effort per-IP rate limit (5 per 10 min per instance — use a shared store such as Redis if you run multiple instances). The public site never calls internal platform admin APIs.
 
@@ -68,7 +70,7 @@ Details chosen elsewhere (Workspace Builder, Solution Finder, product/industry d
 ## Before launch
 
 - [ ] Confirm availability labels in `src/data/*`
-- [ ] Set `ENQUIRY_WEBHOOK_URL` (and secret) to the approved CRM/intake endpoint
+- [ ] Set the SMTP credentials and `CONTACT_EMAIL` (or configure the webhook fallback)
 - [ ] Add verified contact details and official social links (`site.ts` / env)
 - [ ] Publish Privacy Policy and Terms, then set `NEXT_PUBLIC_PRIVACY_URL` / `NEXT_PUBLIC_TERMS_URL` — the form collects personal data
 - [ ] Review the industry photographs (or replace them with your own)

@@ -112,11 +112,11 @@ export function EcosystemDiagram({
           <style>{`@keyframes eco-flow{to{stroke-dashoffset:-7.5}}`}</style>
         </svg>
 
-        <div className="absolute left-1/2 top-1/2 flex size-[22%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-navy text-center text-white shadow-[0_30px_60px_-20px_rgba(10,37,64,0.55)]">
+        <div className="absolute left-1/2 top-1/2 flex size-[22%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-[#e8e3ff] text-center text-[#43386f] shadow-[0_30px_60px_-24px_rgba(107,91,153,0.35)] ring-1 ring-[#d8cff8]">
           <span className="absolute inset-[-10%] animate-[spin_24s_linear_infinite] rounded-full border border-dashed border-brand/30" aria-hidden />
-          <LogoMark className="w-[34%]" color="#ffffff" />
+          <LogoMark className="w-[34%]" />
           <span className="mt-2 text-[15px] font-semibold tracking-[-0.01em]">{centerLabel}</span>
-          <span className="text-[11px] text-white/55">{centerSub}</span>
+          <span className="text-[11px] text-[#75699a]">{centerSub}</span>
         </div>
 
         <div role="tablist" aria-label={itemsLabel} aria-orientation="vertical">
@@ -144,7 +144,7 @@ export function EcosystemDiagram({
                 >
                   <Icon name={n.icon} className="size-7" />
                 </motion.span>
-                <span className={cn("whitespace-nowrap rounded-full px-2.5 py-1 text-[13px] font-medium transition-colors", on ? "bg-navy text-white" : "bg-white/80 text-navy")}>{n.label}</span>
+                <span className={cn("whitespace-nowrap rounded-full px-2.5 py-1 text-[13px] font-medium transition-colors", on ? "bg-[#e8e3ff] text-[#43386f]" : "bg-white/80 text-navy")}>{n.label}</span>
               </button>
             );
           })}
@@ -162,9 +162,9 @@ export function EcosystemDiagram({
                 role="tab"
                 aria-selected={on}
                 onClick={() => setActive(n.id)}
-                className={cn("flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[14px] font-medium ring-1 transition", on ? "bg-navy text-white ring-navy" : "bg-white text-navy ring-line")}
+                className={cn("flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-[14px] font-medium ring-1 transition", on ? "bg-[#e8e3ff] text-[#43386f] ring-[#d8cff8]" : "bg-white text-navy ring-line")}
               >
-                <Icon name={n.icon} className="size-4" style={{ color: on ? "#fff" : n.accent }} />
+                <Icon name={n.icon} className="size-4" style={{ color: n.accent }} />
                 {n.label}
               </button>
             );

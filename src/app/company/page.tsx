@@ -18,7 +18,7 @@ export default function CompanyPage() {
   return (
     <PageTransition>
       <PageHero label="About us" title="Running a business shouldn’t feel this hard." lead="Melorite makes it simpler, one business at a time." cta={false} />
-      <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(64px,8vw,120px)] text-[#2c2c2b]">
+      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <p className="mono-label text-black/45">Sound familiar?</p>
@@ -33,7 +33,7 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <section data-nav="dark" className="rails bg-[#080808] py-[clamp(72px,8vw,128px)] text-white">
+      <section data-nav="dark" className="rails bg-[#111735] py-[clamp(72px,8vw,128px)] text-white">
         <div className="rail-inner grid gap-12 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-20">
           <Reveal>
             <p className="mono-label text-white/45">Our vision</p>
@@ -50,7 +50,7 @@ export default function CompanyPage() {
 
       <WhyList id="why" />
 
-      <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(64px,8vw,120px)] text-[#2c2c2b]">
+      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           <Reveal><p className="mono-label text-black/45">Getting started</p><h2 className="h-section mt-3">Getting started is easy.</h2></Reveal>
           <ol className="mt-10 grid gap-px overflow-hidden border border-black/10 bg-black/10 md:grid-cols-3">

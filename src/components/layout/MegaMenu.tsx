@@ -7,7 +7,7 @@ export const productIcons: Record<string, LucideIcon> = { Users, Building2, Stet
 
 export function ProductsMenu() {
   return (
-    <div className="w-[min(640px,90vw)] p-3 text-[#2c2c2b]">
+    <div className="w-[min(640px,90vw)] p-3 text-[#111735]">
       <ul className="grid gap-1 sm:grid-cols-2">
         {products.map((p) => {
           const I = productIcons[p.icon];

@@ -19,7 +19,7 @@ export default function ProductsPage() {
   return (
     <PageTransition>
       <PageHero label="Products" title="Our products. Made for the way you work." body="Pick the product made for your business. Each one is ready to use from day one, and simple enough for your whole team." />
-      <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(64px,8vw,120px)] text-[#2c2c2b]">
+      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner space-y-[clamp(48px,6vw,88px)]">
           {products.map((p, i) => {
             const I = productIcons[p.icon];

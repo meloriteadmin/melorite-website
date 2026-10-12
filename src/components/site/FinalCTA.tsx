@@ -4,7 +4,7 @@ import { Reveal } from "@/components/animation/Reveal";
 
 export function FinalCTA({ title = "See it for yourself.", text = "Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." }: { title?: string; text?: string }) {
   return (
-    <section data-nav="dark" className="rails bg-[#080808] pb-[clamp(72px,8vw,120px)] pt-[clamp(40px,5vw,80px)] text-white">
+    <section data-nav="dark" className="rails bg-[#111735] pb-[clamp(72px,8vw,120px)] pt-[clamp(40px,5vw,80px)] text-white">
       <div className="rail-inner">
         <Reveal className="atmos-warm relative overflow-hidden rounded-[6px] px-6 py-[clamp(64px,9vw,128px)] text-center">
           <h2 className="h-section mx-auto max-w-[14em]">{title}</h2>

@@ -11,7 +11,7 @@ export function Stats() {
     ["24/7", "AI answering and calling"],
   ];
   return (
-    <section data-nav="dark" className="rails atmos-earth relative overflow-hidden bg-[#050608] pb-[clamp(72px,9vw,128px)] pt-[clamp(120px,16vw,230px)] text-white">
+    <section data-nav="dark" className="rails atmos-earth relative overflow-hidden bg-[#0c1129] pb-[clamp(72px,9vw,128px)] pt-[clamp(120px,16vw,230px)] text-white">
       <div className="atmos-stars pointer-events-none absolute inset-0 opacity-80" aria-hidden />
       <div className="rail-inner relative">
         <Reveal className="mx-auto max-w-[900px] text-center">

@@ -21,7 +21,7 @@ const signals = [
 
 export function LeadFlow() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f9f8f6] pb-6 pt-[clamp(88px,10vw,150px)] text-[#2c2c2b]">
+    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] pb-6 pt-[clamp(88px,10vw,150px)] text-[#111735]">
       <div className="rail-inner">
         <Reveal><h2 className="h-section max-w-[17ch]">Software made for your kind of business</h2></Reveal>
         <Reveal delay={0.08}><p className="mt-5 max-w-[52ch] text-[17px] text-black/55">Pick the product made for your business. Each one is ready to use from day one, and simple enough for your whole team.</p></Reveal>
@@ -33,7 +33,7 @@ export function LeadFlow() {
           </div>
         </Reveal>
 
-        <Reveal className="mt-[clamp(48px,6vw,88px)] rounded-[4px] border border-black/[.07] bg-[#fcfbfa] p-[clamp(20px,3.4vw,52px)]">
+        <Reveal className="mt-[clamp(48px,6vw,88px)] rounded-[4px] border border-black/[.07] bg-[#fbfbff] p-[clamp(20px,3.4vw,52px)]">
           <h3 className="h-card max-w-[24ch]">Every enquiry, call and follow-up, in one place</h3>
           <p className="mt-4 max-w-[50ch] text-[16px] leading-relaxed text-black/55">Melorite collects every lead and conversation, so you always know who to call next, what they asked for last time, and which deals are about to close.</p>
           <div className="mt-10 grid items-center gap-8 lg:grid-cols-[250px_minmax(80px,1fr)_auto_minmax(0,1.5fr)] lg:gap-0">

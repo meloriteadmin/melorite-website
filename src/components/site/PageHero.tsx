@@ -4,7 +4,7 @@ import { site } from "@/data/site";
 /** Dark rail hero shared by inner pages. */
 export function PageHero({ label, title, lead, body, visual, panel = "panel-warm", cta = true }: { label: string; title: React.ReactNode; lead?: string; body?: string; visual?: React.ReactNode; panel?: string; cta?: boolean }) {
   return (
-    <section data-nav="dark" className="rails bg-[#080808] pt-[64px] text-white">
+    <section data-nav="dark" className="rails bg-[#111735] pt-[64px] text-white">
       <div className="px-[clamp(8px,1.4vw,20px)] pb-5 pt-5">
         <div className="atmos-warm relative overflow-hidden rounded-[6px]">
           <div className={`rail-inner grid items-center gap-12 py-[clamp(56px,8vw,112px)] ${visual ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]" : ""}`}>

@@ -18,7 +18,7 @@ export function Footer() {
   const cols = [...columns, ...(legal.length ? [{ title: "Legal", links: legal.map((l) => [l.label, l.href]) }] : [])];
 
   return (
-    <footer data-nav="light" className="bg-[#f9f8f6] text-[#2c2c2b]">
+    <footer data-nav="light" className="bg-[#f6f7fe] text-[#111735]">
       <div className="px-5 pb-10 pt-[clamp(56px,7vw,100px)] md:px-[clamp(32px,7vw,108px)]">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_2.4fr]">
           <div><Logo className="h-[26px]" /><p className="mt-5 max-w-[30ch] text-[13.5px] leading-relaxed text-black/50">{site.tagline}</p><p className="mt-6 text-[13px] text-black/40">© {new Date().getFullYear()} Melorite</p></div>

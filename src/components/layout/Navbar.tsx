@@ -91,7 +91,7 @@ export function Navbar() {
           </NavigationMenu>
 
           <div className="flex items-center gap-2 lg:ml-3">
-            <Link href={site.salesHref} className={cn("pill pill-sm hidden md:inline-flex", dark ? "bg-white/10 text-white hover:bg-white/20" : "bg-black/[.06] text-[#1c1d1f] hover:bg-black/10")}>
+            <Link href={site.salesHref} className={cn("pill pill-sm hidden md:inline-flex", dark ? "bg-white/10 text-white hover:bg-white/20" : "bg-black/[.06] text-[#111735] hover:bg-black/10")}>
               Contact sales
             </Link>
             <Link href={site.demoHref} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>

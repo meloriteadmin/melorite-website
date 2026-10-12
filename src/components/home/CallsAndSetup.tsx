@@ -6,9 +6,9 @@ import { site } from "@/data/site";
 
 export function CallsAndSetup() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f9f8f6] pb-6 text-[#2c2c2b]">
+    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] pb-6 text-[#111735]">
       <div className="rail-inner">
-        <Reveal className="grid overflow-hidden rounded-[4px] border border-black/[.07] bg-[#fcfbfa] lg:grid-cols-2">
+        <Reveal className="grid overflow-hidden rounded-[4px] border border-black/[.07] bg-[#fbfbff] lg:grid-cols-2">
           <div className="p-[clamp(20px,3.4vw,48px)] lg:border-r lg:border-black/[.07]">
             <p className="mono-label flex items-center gap-2 text-black/45"><span className="size-1.5 rounded-full bg-[#5f63f2]" />Melorite AI Calling<span className="text-black/20">|</span>Phone</p>
             <h3 className="h-card mt-5 max-w-[20ch]">An extra team member on the phone, all day.</h3>

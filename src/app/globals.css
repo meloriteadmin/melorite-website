@@ -51,29 +51,29 @@
   --color-pastel-peach: #ededed;
   --color-pastel-sky: #ededed;
   --color-mist-gray: #f2f2f3;
-  --color-fog-white: #f9f8f6;
+  --color-fog-white: #f6f7fe;
   --color-slate-gray: #777b86;
   --color-ash-gray: #979799;
   --color-smoke-gray: #a3a6af;
   --color-blush-peach: #fbe1d1;
   --color-sienna-brown: #5d2a1a;
-  --color-navy: #2c2c2b;
-  --color-navy-900: #111111;
-  --color-navy-800: #2c2c2b;
+  --color-navy: #111735;
+  --color-navy-900: #0c1129;
+  --color-navy-800: #111735;
   --color-ink: #1f1f1f;
-  --color-paper: #f9f8f6;
+  --color-paper: #f6f7fe;
   --color-muted: #70706f;
   --color-line: #e4e2dd;
-  --color-line-strong: #2c2c2b;
+  --color-line-strong: #111735;
 
   /* shadcn/ui semantic tokens, mapped to the Melorite palette */
-  --color-background: #f9f8f6;
-  --color-foreground: #1f1f1f;
+  --color-background: #f6f7fe;
+  --color-foreground: #111735;
   --color-card: #ffffff;
   --color-card-foreground: #111827;
   --color-popover: #ffffff;
   --color-popover-foreground: #111827;
-  --color-primary: #1f1f1f;
+  --color-primary: #111735;
   --color-primary-foreground: #ffffff;
   --color-secondary: #f2f2f3;
   --color-secondary-foreground: #17191c;
@@ -115,8 +115,8 @@
 :root {
   /* Semantic surface system. Components use these through the Tailwind theme
      above, while these raw tokens are available to bespoke product visuals. */
-  --background: #f9f8f6;
-  --foreground: #1f1f1f;
+  --background: #f6f7fe;
+  --foreground: #111735;
   --surface: #ffffff;
   --surface-muted: #ededed;
   --surface-fog: #f3f3f3;
@@ -167,6 +167,10 @@ body {
 /* Keep document scrolling native. This preserves trackpad momentum and avoids
    competing scroll positions on fast upward/downward gestures. */
 html { scroll-behavior: smooth; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
@@ -310,7 +314,7 @@ html { scroll-behavior: smooth; }
 /* ------------------------------------------------------------------
    Aira-style editorial system (homepage + shell)
    ------------------------------------------------------------------ */
-:root { --ink-dark: #080808; --paper-warm: #f9f8f6; --text-ink: #2c2c2b; }
+:root { --ink-dark: #111735; --paper-warm: #f6f7fe; --text-ink: #111735; }
 
 .serif { font-family: var(--font-editorial); font-weight: 400; letter-spacing: -0.035em; }
 .h-hero { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2.9rem, 1.6rem + 4.6vw, 5.4rem); line-height: .98; letter-spacing: -0.04em; }
@@ -323,10 +327,10 @@ html { scroll-behavior: smooth; }
 /* Pill buttons, as used across the shell */
 .pill { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: 44px; padding: 0 22px; border-radius: 999px; font-size: 14.5px; font-weight: 500; letter-spacing: -0.005em; white-space: nowrap; transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease; }
 .pill:active { transform: scale(.985); }
-.pill-light { background: #fff; color: #1c1d1f; }
-.pill-light:hover { background: #e9e8e4; }
-.pill-dark { background: #1a1a1a; color: #fff; }
-.pill-dark:hover { background: #333; }
+.pill-light { background: #fff; color: #111735; }
+.pill-light:hover { background: #e6e8fb; }
+.pill-dark { background: #111735; color: #fff; }
+.pill-dark:hover { background: #1f2757; }
 .pill-ghost-dark { color: #fff; border: 1px solid rgba(255,255,255,.2); }
 .pill-ghost-dark:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.4); }
 .pill-sm { height: 36px; padding: 0 16px; font-size: 13.25px; }
@@ -341,8 +345,8 @@ html { scroll-behavior: smooth; }
 .rail-inner { padding-inline: clamp(32px, 7vw, 108px); position: relative; z-index: 1; }
 
 /* Navigation theme: follows the section underneath */
-.site-navbar[data-theme="dark"] { background: rgba(8,8,8,.92); color: #fff; border-color: rgba(255,255,255,.08); }
-.site-navbar[data-theme="light"] { background: rgba(249,248,246,.92); color: var(--text-ink); border-color: rgba(0,0,0,.06); }
+.site-navbar[data-theme="dark"] { background: rgba(17,23,53,.92); color: #fff; border-color: rgba(255,255,255,.08); }
+.site-navbar[data-theme="light"] { background: rgba(246,247,254,.92); color: var(--text-ink); border-color: rgba(0,0,0,.06); }
 .site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"],
 .site-navbar[data-theme="dark"] .nav-link { color: rgba(255,255,255,.82); }
 .site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"]:hover,
@@ -354,14 +358,22 @@ html { scroll-behavior: smooth; }
 
 /* Atmosphere for dark hero / stat panels (no photography required) */
 .atmos-warm { background:
-  radial-gradient(1100px 560px at 80% 90%, rgba(95,99,242,.38), transparent 62%),
-  radial-gradient(900px 520px at 10% 15%, rgba(40,52,120,.5), transparent 60%),
-  linear-gradient(180deg, #0c1024 0%, #080808 58%, #0d0f26 100%); }
+  radial-gradient(1100px 560px at 80% 92%, rgba(95,99,242,.45), transparent 62%),
+  radial-gradient(900px 520px at 8% 12%, rgba(95,99,242,.18), transparent 60%),
+  linear-gradient(180deg, #151c45 0%, #111735 60%, #161d4a 100%); }
 .atmos-earth { background:
-  radial-gradient(900px 700px at 8% 30%, rgba(60,90,140,.45), transparent 60%),
-  radial-gradient(700px 500px at 95% 70%, rgba(190,140,60,.12), transparent 60%),
-  #050608; }
+  radial-gradient(900px 700px at 8% 30%, rgba(95,99,242,.38), transparent 60%),
+  radial-gradient(700px 500px at 95% 70%, rgba(165,168,255,.14), transparent 60%),
+  #0c1129; }
 .atmos-stars { background-image: radial-gradient(rgba(165,168,255,.6) 1px, transparent 1.4px), radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.4px); background-size: 34px 34px, 71px 71px; background-position: 0 0, 17px 23px; mask-image: linear-gradient(135deg, transparent 20%, black 70%); }
 .panel-warm { background: radial-gradient(800px 500px at 70% 100%, rgba(95,99,242,.55), transparent 60%), linear-gradient(160deg, #1b2050, #0c1024); }
-.panel-mist { background: linear-gradient(180deg, #dfe6ea 0%, #b9c3c9 55%, #9aa6a5 100%); }
-.panel-dusk { background: linear-gradient(180deg, #cfd5d8, #aab4b8 60%, #8a9391); }
+.panel-mist { background: linear-gradient(180deg, #e4e6ff 0%, #bfc2fb 55%, #8f94f0 100%); }
+.panel-dusk { background: linear-gradient(180deg, #d5d7fb, #a9adf6 60%, #6a6ee8); }
+
+/* Nav link hover/focus/active: tinted pill that keeps the text readable on both themes */
+.site-navbar .nav-link,
+.site-navbar [data-slot="navigation-menu-trigger"] { background-color: transparent; }
+.site-navbar[data-theme="dark"] .nav-link:is(:hover, :focus-visible, [data-active="true"]),
+.site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"]:is(:hover, :focus-visible, [data-state="open"]) { background-color: rgba(255,255,255,.12) !important; color: #fff !important; }
+.site-navbar[data-theme="light"] .nav-link:is(:hover, :focus-visible, [data-active="true"]),
+.site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"]:is(:hover, :focus-visible, [data-state="open"]) { background-color: rgba(17,23,53,.07) !important; color: #111735 !important; }

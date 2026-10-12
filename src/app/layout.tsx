@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f9f8f6",
+  themeColor: "#f6f7fe",
   width: "device-width",
   initialScale: 1,
 };
@@ -40,7 +40,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${leagueSpartan.variable} ${fraunces.variable} antialiased`}>
-      <body className="min-h-dvh bg-[#f9f8f6]">
+      <body className="min-h-dvh bg-[#f6f7fe]">
         <Providers>
           <Navbar />
           <main id="main" tabIndex={-1} className="outline-none">

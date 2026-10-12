@@ -16,7 +16,7 @@ export default function CustomSolutionsPage() {
   return (
     <PageTransition>
       <PageHero label="Custom solutions" title="Custom solutions. Built around your business." lead="Sometimes ready-made software isn’t quite enough." body="Some businesses have a way of working that’s all their own. When that’s you, our team can add to Melorite or build something new around exactly how you work, with the same care we put into our own products." />
-      <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(64px,8vw,120px)] text-[#2c2c2b]">
+      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           <Reveal><h2 className="h-section max-w-[14ch]">What we can build for you</h2></Reveal>
           <div className="mt-10"><CellGrid items={customBuilds} /></div>

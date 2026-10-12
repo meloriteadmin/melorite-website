@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 
 export function WhyList({ id }: { id?: string }) {
   return (
-    <section id={id} data-nav="dark" className="rails scroll-mt-16 bg-[#080808] py-[clamp(80px,9vw,140px)] text-white">
+    <section id={id} data-nav="dark" className="rails scroll-mt-16 bg-[#111735] py-[clamp(80px,9vw,140px)] text-white">
       <div className="rail-inner grid gap-12 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:gap-20">
         <Reveal>
           <p className="mono-label text-white/45">Why Melorite</p>

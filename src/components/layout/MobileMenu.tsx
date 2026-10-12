@@ -26,12 +26,12 @@ export function MobileMenu() {
       <SheetTrigger asChild>
         <button type="button" aria-label="Open menu" className="grid size-10 place-items-center rounded-full bg-white text-[#111] lg:hidden"><Menu className="size-5" /></button>
       </SheetTrigger>
-      <SheetContent side="right" className="gap-0 border-0 bg-[#080808] p-0 text-white" data-lenis-prevent>
+      <SheetContent side="right" className="gap-0 border-0 bg-[#111735] p-0 text-white" data-lenis-prevent>
         <SheetHeader className="h-16 justify-center border-b border-white/10 px-5">
           <SheetTitle asChild><span><Logo white className="h-[22px]" /><span className="sr-only">Menu</span></span></SheetTitle>
           <SheetDescription className="sr-only">Site navigation</SheetDescription>
         </SheetHeader>
-        <nav className="flex-1 overflow-y-auto px-5 py-6" aria-label="Mobile">
+        <nav className="no-scrollbar flex-1 overflow-y-auto px-5 py-6" aria-label="Mobile">
           <p className="mono-label text-white/40">Products</p>
           <ul className="mt-3">
             {products.map((p) => (

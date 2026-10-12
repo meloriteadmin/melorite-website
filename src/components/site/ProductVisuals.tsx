@@ -1,6 +1,6 @@
 import { Check, CalendarDays, Phone, ShoppingBag, Sparkles } from "lucide-react";
 
-const card = "rounded-xl bg-white text-[#2c2c2b] shadow-[0_30px_60px_-24px_rgba(0,0,0,.55)]";
+const card = "rounded-xl bg-white text-[#111735] shadow-[0_30px_60px_-24px_rgba(0,0,0,.55)]";
 const lab = "mono-label !text-[8.5px] text-black/40";
 
 function Pill({ children, tone = "gray" }: { children: React.ReactNode; tone?: "gray" | "green" | "indigo" | "amber" | "red" }) {
@@ -10,7 +10,7 @@ function Pill({ children, tone = "gray" }: { children: React.ReactNode; tone?: "
 
 function Phone_({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-[min(290px,66%)] self-end overflow-hidden rounded-t-[34px] border-[7px] border-b-0 border-[#0d0d0d] bg-[#f7f6f4] text-[#2c2c2b] shadow-[0_30px_60px_-20px_rgba(0,0,0,.55)]">
+    <div className="w-[min(290px,66%)] self-end overflow-hidden rounded-t-[34px] border-[7px] border-b-0 border-[#0d0d0d] bg-[#f7f6f4] text-[#111735] shadow-[0_30px_60px_-20px_rgba(0,0,0,.55)]">
       <div className="mx-auto mt-2 h-5 w-[34%] rounded-full bg-black" />
       <div className="px-4 pb-6 pt-4">{children}</div>
     </div>

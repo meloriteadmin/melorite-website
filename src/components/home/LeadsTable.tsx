@@ -17,9 +17,9 @@ const nav: [typeof Search, string, boolean?][] = [[LayoutGrid, "Overview"], [Lis
 
 export function LeadsTable() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f9f8f6] pb-6 text-[#2c2c2b]">
+    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] pb-6 text-[#111735]">
       <div className="rail-inner">
-        <Reveal className="rounded-[4px] border border-black/[.07] bg-[#fcfbfa] p-[clamp(20px,3.4vw,52px)]">
+        <Reveal className="rounded-[4px] border border-black/[.07] bg-[#fbfbff] p-[clamp(20px,3.4vw,52px)]">
           <h3 className="h-card max-w-[30ch]">Never lose a lead again, with every deal and its stage in view</h3>
           <p className="mt-4 max-w-[58ch] text-[16px] leading-relaxed text-black/55">Melorite CRM collects leads from your website, ads and WhatsApp, sends each one to the right person, and reminds your team when to follow up.</p>
           <div className="mt-9 overflow-hidden border border-black/10 border-t-2 border-t-[#111735] bg-white">

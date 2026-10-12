@@ -15,7 +15,7 @@ export function CellGrid({ items }: { items: readonly string[] }) {
 
 export function GoodFor({ children }: { children: React.ReactNode }) {
   return (
-    <section data-nav="dark" className="rails bg-[#080808] py-[clamp(56px,6vw,96px)] text-white">
+    <section data-nav="dark" className="rails bg-[#111735] py-[clamp(56px,6vw,96px)] text-white">
       <div className="rail-inner grid gap-6 lg:grid-cols-[minmax(0,.6fr)_minmax(0,1.4fr)] lg:gap-16">
         <p className="mono-label pt-3 text-[#a5a8ff]">Good for</p>
         <p className="h-story max-w-[26ch]">{children}</p>

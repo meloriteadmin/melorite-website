@@ -6,7 +6,7 @@ import { ProductVisual, panelFor } from "@/components/site/ProductVisuals";
 
 export function ProductCards() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(80px,9vw,140px)] text-[#2c2c2b]">
+    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(80px,9vw,140px)] text-[#111735]">
       <div className="rail-inner">
         <div className="flex items-end justify-between gap-6">
           <Reveal>

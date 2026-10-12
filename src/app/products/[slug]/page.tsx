@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
     <PageTransition>
       <PageHero label={p.name} title={p.headline.join(" ")} lead={p.lead} body={p.body} panel={panelFor[p.slug]} visual={<ProductVisual slug={p.slug} />} />
 
-      <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(64px,8vw,120px)] text-[#2c2c2b]">
+      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           {p.slug === "ai-calling" ? (
             <>
@@ -71,7 +71,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 
       <GoodFor>{p.goodFor}</GoodFor>
 
-      <section data-nav="light" className="rails rails-light bg-[#f9f8f6] py-[clamp(64px,8vw,120px)] text-[#2c2c2b]">
+      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           <Reveal><p className="mono-label text-black/45">More from Melorite</p><h2 className="h-section mt-3">Other products</h2></Reveal>
           <ul className="mt-10 border-t border-black/10">

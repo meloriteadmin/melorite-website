@@ -8,7 +8,7 @@ const order = ["crm", "real-estate", "clinic", "agency", "commerce"] as const;
 
 export function Stories() {
   return (
-    <section data-nav="dark" className="rails bg-[#080808] text-white">
+    <section data-nav="dark" className="rails bg-[#111735] text-white">
       <div className="rail-inner">
         {order.map((slug, i) => {
           const p = productBySlug(slug)!;

@@ -18,9 +18,9 @@ function getSiteUrl() {
 export const site = {
   name: "Melorite",
   url: getSiteUrl(),
-  tagline: "One connected platform that adapts to the way your business works.",
+  tagline: "Software that fits your business. Built for your industry, simple for your team.",
   description:
-    "Bring your essential business applications together with Melorite. Explore a modular platform designed to support connected operations and industry-specific requirements.",
+    "Ready-to-use software for real estate, clinics, marketing agencies, online sellers and sales teams, plus AI calling that answers and makes your calls.",
   logo: "/brand/melorite-wordmark.png",
   logoWhite: "/brand/melorite-wordmark-white.png",
   /**

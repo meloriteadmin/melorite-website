@@ -1,61 +1,102 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowUp, Bell, Sparkles } from "lucide-react";
+import { Check, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { EASE } from "@/lib/utils";
-import { ButtonLink } from "@/components/shared/Button";
-import { AppMarquee } from "@/components/shared/AppMarquee";
 
-const entrance = (delay: number) => ({
-  initial: { opacity: 0, y: 22, scale: .98 },
-  animate: { opacity: 1, y: 0, scale: 1 },
-  transition: { duration: .75, ease: EASE, delay },
-});
+const reveal = (delay: number) => ({ initial: { opacity: 0, y: 22 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay, ease: EASE } });
 
-function RevenueCard() {
-  return <motion.div {...entrance(.8)} className="absolute -left-12 top-[31%] hidden w-[286px] rounded-2xl border border-blue-100/80 bg-[#eaf2ff]/95 p-5 shadow-float backdrop-blur lg:block xl:left-2">
-    <div className="grid grid-cols-[.8fr_1.2fr] gap-4"><div><p className="text-[26px] font-semibold tracking-[-.04em] text-[#174d83]">₹24.8L</p><p className="mt-1 text-[10px] font-medium text-[#3974a8]">↑ 8.4% this month</p><div className="mt-5 flex h-16 items-end gap-2">{[42,58,49,71,60,82,67].map((h,index)=><motion.i key={index} initial={{height:0}} animate={{height:`${h}%`}} transition={{duration:.65,ease:EASE,delay:1+index*.04}} className="flex-1 rounded-t bg-[#22629a]"/>)}</div></div><div className="border-l border-[#bfd6ee] pl-4"><p className="text-[11px] font-semibold text-[#174d83]">Revenue sources</p>{[["Commerce","₹11.2L"],["Projects","₹8.4L"],["Service","₹5.2L"]].map(([name,value])=><div key={name} className="flex justify-between border-b border-[#cadef0] py-2 text-[10px] text-[#3974a8] last:border-0"><span>{name}</span><strong>{value}</strong></div>)}</div></div>
-  </motion.div>;
-}
+const stats: [string, string][] = [["38", "New leads today"], ["12", "Site visits booked"], ["₹48L", "Deals closing"], ["94%", "Follow-ups done"]];
+const stages = [["Enquiry", "14"], ["Site visit", "9"], ["Negotiation", "5"], ["Booked", "3"]];
+const deals = [
+  { n: "Aarav Sharma — 3 BHK, Tower A", m: "Negotiation · ₹1.2 Cr", t: "Closing soon", on: true },
+  { n: "Meera Joshi — 2 BHK, Tower B", m: "Site visit · Sat, 11 am", t: "Scheduled" },
+  { n: "Kabir Nair — Plot 14", m: "Enquiry · From Instagram ad", t: "New lead" },
+];
+const team = [
+  { i: "PS", n: "Priya Sharma", r: "Call Aarav at 4:30 pm", t: "Today" },
+  { i: "AI", n: "Melorite AI Calling", r: "Booked 3 site visits overnight", t: "Done" },
+  { i: "RK", n: "Rohan Kulkarni", r: "Send payment schedule to Meera", t: "Tomorrow" },
+];
 
-function PipelineCard() {
-  const circumference = 2 * Math.PI * 38;
-  return <motion.div {...entrance(.95)} className="absolute -right-8 top-[43%] hidden w-[240px] rounded-2xl border border-orange-100/80 bg-[#fff1ea]/95 p-5 shadow-float backdrop-blur lg:block xl:right-3">
-    <p className="text-[12px] font-semibold text-[#713723]">Pipeline coverage</p><div className="mt-3 flex items-center justify-between gap-3"><div><p className="text-[24px] font-semibold tracking-[-.04em] text-[#713723]">3.2×</p><p className="mt-1 text-[10px] text-[#a26751]">↑ 12% vs target</p></div><svg viewBox="0 0 96 96" className="size-24 -rotate-90" aria-hidden><circle cx="48" cy="48" r="38" fill="none" stroke="#f2d7cd" strokeWidth="5"/><motion.circle cx="48" cy="48" r="38" fill="none" stroke="#8b432a" strokeWidth="5" strokeLinecap="round" strokeDasharray={circumference} initial={{strokeDashoffset:circumference}} animate={{strokeDashoffset:circumference*.24}} transition={{duration:1.1,ease:EASE,delay:1.15}}/></svg></div>
-  </motion.div>;
-}
-
-function DeliveryCard() {
-  return <motion.div {...entrance(1.05)} className="absolute bottom-[7%] left-[12%] hidden w-[270px] rounded-2xl border border-violet-100/80 bg-[#f3efff]/95 p-5 shadow-float backdrop-blur md:block">
-    <div className="flex items-center justify-between"><p className="text-[12px] font-semibold text-[#513b82]">Delivery momentum</p><span className="rounded-full bg-white/75 px-2 py-1 text-[9px] font-medium text-[#765da9]">This quarter</span></div><svg viewBox="0 0 230 76" className="mt-3 w-full" aria-hidden><path d="M6 65 C25 61,28 44,46 46 S68 32,84 36 S105 25,124 28 S150 14,168 19 S195 13,224 5" fill="none" stroke="#7054a8" strokeWidth="2.5" strokeLinecap="round"/><path d="M6 65H224" stroke="#d7cfeb" strokeDasharray="4 5"/><circle cx="224" cy="5" r="4" fill="#7054a8"/></svg><div className="mt-1 flex justify-between text-[9px] text-[#8c7bae]"><span>Planning</span><span>Delivery</span><span>Complete</span></div>
-  </motion.div>;
-}
-
-function AskCard() {
-  return <motion.div {...entrance(1.12)} className="absolute bottom-[5%] right-[18%] hidden w-[330px] rounded-2xl border border-emerald-100/80 bg-[#eefaf3]/95 p-4 shadow-float backdrop-blur md:block">
-    <div className="flex items-center gap-3"><span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#d7f1e1] text-[#26704b]"><Sparkles className="size-3.5"/></span><div className="min-w-0 flex-1"><p className="text-[10px] text-[#71907e]">Ask Melorite AI</p><p className="truncate text-[11px] font-medium text-[#244b38]">What needs attention today?</p></div><span className="grid size-8 place-items-center rounded-full bg-[#e8e3ff] text-[#5a4b91]"><ArrowUp className="size-3.5"/></span></div>
-  </motion.div>;
+function Monitor() {
+  return (
+    <div className="relative mx-auto w-full max-w-[860px]">
+      <div className="rounded-[10px] border border-white/10 bg-[#141414] p-[7px] shadow-[0_40px_80px_-30px_rgba(0,0,0,.9)] md:p-[10px]">
+        <div className="overflow-hidden rounded-[4px] bg-[#f6f5f2] p-3 text-[#2c2c2b] md:p-4">
+          <div className="rounded-md border border-black/5 bg-white p-3 shadow-sm md:p-4">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <div className="flex items-center gap-2.5">
+                <span className="text-[13px] font-medium md:text-[15px]">Good morning — 38 new leads came in</span>
+                <span className="hidden items-center gap-1 rounded-full bg-[#eeeffe] px-2 py-0.5 text-[9px] font-medium text-[#4b4fe0] sm:inline-flex"><Check className="size-2.5" />All follow-ups scheduled</span>
+              </div>
+              <span className="mono-label !text-[8px] text-black/45">Team activity <b className="ml-1 font-sans text-[15px] tracking-normal text-[#4b4fe0]">94%</b></span>
+            </div>
+            <div className="mt-3 grid grid-cols-2 border-t border-black/5 pt-3 sm:grid-cols-4">
+              {stats.map(([v, l], i) => (
+                <div key={l} className={`px-2 py-1 ${i ? "sm:border-l sm:border-black/5" : ""}`}>
+                  <p className="font-serif text-[17px] leading-none tracking-tight md:text-[21px]">{v}</p>
+                  <p className="mt-1 text-[9px] text-black/55 md:text-[10px]">{l}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="mt-3 grid gap-3 sm:grid-cols-[1.08fr_.92fr]">
+            <div className="rounded-md border border-black/5 bg-white p-3 md:p-4">
+              <div className="flex items-center justify-between"><span className="text-[13px] font-medium md:text-[15px]">Deal pipeline</span><span className="mono-label !text-[7px] text-black/40">31 open</span></div>
+              <div className="mt-2.5 grid grid-cols-4 gap-1">{stages.map(([s, c]) => <div key={s} className="rounded bg-black/[.04] px-1.5 py-1 text-center"><p className="text-[7.5px] text-black/50">{s}</p><p className="text-[11px] font-medium">{c}</p></div>)}</div>
+              <div className="mt-2.5 space-y-1.5">
+                {deals.map((d) => (
+                  <div key={d.n} className={`flex items-center justify-between gap-2 rounded-md border px-2.5 py-2 ${d.on ? "border-[#cfd1fb] bg-[#f4f4ff]" : "border-black/5 bg-[#fbfaf8]"}`}>
+                    <div className="min-w-0"><p className="truncate text-[10.5px] font-medium md:text-[11.5px]">{d.n}</p><p className="truncate text-[8.5px] text-black/50">{d.m}</p></div>
+                    <span className={`shrink-0 rounded-full px-1.5 py-0.5 text-[8px] ${d.on ? "bg-[#dcddfd] text-[#3c3fc4]" : "bg-black/[.06] text-black/60"}`}>{d.t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-md border border-black/5 bg-white p-3 md:p-4">
+              <div className="flex items-center justify-between"><span className="text-[13px] font-medium md:text-[15px]">Today</span><span className="mono-label !text-[7px] text-black/40">Team</span></div>
+              <div className="mt-2 divide-y divide-black/5">
+                {team.map((p) => (
+                  <div key={p.n} className="flex items-center gap-2.5 py-2">
+                    <span className={`grid size-7 shrink-0 place-items-center rounded-full text-[8.5px] font-medium text-white ${p.i === "AI" ? "bg-[#5f63f2]" : "bg-[#111735]"}`}>{p.i}</span>
+                    <div className="min-w-0 flex-1"><p className="truncate text-[10.5px] font-medium">{p.n}</p><p className="truncate text-[8.5px] text-black/50">{p.r}</p></div>
+                    <span className="grid size-5 place-items-center rounded-full border border-black/10 text-black/50"><Phone className="size-2.5" /></span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="mx-auto h-9 w-[16%] bg-gradient-to-b from-[#9a9a98] to-[#58585a] md:h-14" />
+      <div className="mx-auto h-1.5 w-[28%] rounded-full bg-[#3a3a3a]" />
+    </div>
+  );
 }
 
 export function Hero() {
-  return <>
-    <section className="relative min-h-[780px] overflow-hidden pb-20 pt-[116px] md:min-h-[860px] md:pt-[132px]">
-      <div className="hero-atmosphere absolute inset-0 -z-10" aria-hidden><span className="hero-orb hero-orb-blue"/><span className="hero-orb hero-orb-peach"/><span className="hero-orb hero-orb-violet"/><span className="hero-orb hero-orb-green"/><div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(255,255,255,.28)_56%,rgba(255,255,255,.8)_100%)]"/></div>
-      <RevenueCard/><PipelineCard/><DeliveryCard/><AskCard/>
-
-      <div className="container-x relative z-10 flex flex-col items-center text-center">
-        <motion.div {...entrance(.1)} className="inline-flex items-center gap-2 rounded-full border border-black/8 bg-white/60 px-4 py-2 text-[12px] font-medium text-[#242424] shadow-soft backdrop-blur-md"><Bell className="size-3.5"/><span className="size-1.5 rounded-full bg-[#ff6652]"/>15 offerings. One connected platform.<span aria-hidden>→</span></motion.div>
-
-        <motion.h1 initial={{opacity:0,y:26}} animate={{opacity:1,y:0}} transition={{duration:.85,ease:EASE,delay:.2}} className="mt-24 max-w-[1000px] font-editorial text-[clamp(3.25rem,7vw,6.8rem)] font-medium leading-[.96] tracking-[-.055em] text-[#111111] md:mt-28">
-          Your whole business,<br/><span className="italic font-normal">connected without the chaos.</span>
-        </motion.h1>
-        <motion.p {...entrance(.48)} className="mt-7 max-w-[650px] text-[clamp(1rem,1.3vw,1.2rem)] leading-relaxed tracking-[-.015em] text-[#4f4f4f]">Melorite brings business applications, AI and industry workflows into one calm, connected operating system.</motion.p>
-        <motion.div {...entrance(.62)} className="mt-8 flex flex-col items-center gap-3 sm:flex-row"><ButtonLink href="/products" size="lg" variant="dark" arrow magnetic>Explore Melorite</ButtonLink><ButtonLink href={site.demoHref} size="lg" variant="ghost">Book a Demo</ButtonLink></motion.div>
-
-        <motion.div {...entrance(.85)} className="mt-12 grid w-full max-w-[700px] grid-cols-3 gap-2 md:hidden">{[["₹24.8L","Revenue"],["3.2×","Pipeline"],["94%","On track"]].map(([value,label],index)=><div key={label} className={`rounded-xl border p-3 text-left ${["border-blue-100 bg-[#eaf2ff]","border-orange-100 bg-[#fff1ea]","border-violet-100 bg-[#f3efff]"][index]}`}><p className="text-[16px] font-semibold text-navy">{value}</p><p className="mt-1 text-[9px] text-muted">{label}</p></div>)}</motion.div>
+  return (
+    <section data-nav="dark" className="rails bg-[#080808] pt-[64px] text-white">
+      <div className="px-[clamp(8px,1.4vw,20px)] pb-5 pt-5">
+        <div className="atmos-warm relative min-h-[min(900px,calc(100svh-90px))] overflow-hidden rounded-[6px]">
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[26%] bg-gradient-to-b from-transparent via-[#1b2050]/50 to-[#3a3fb8]/40" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-[26%] h-px bg-white/10" />
+          <div className="rail-inner relative grid min-h-[inherit] items-center gap-12 py-16 lg:grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] lg:gap-6 lg:py-20">
+            <div className="lg:self-end lg:pb-24">
+              <motion.h1 {...reveal(0.1)} className="h-hero max-w-[11ch] text-white">Software that fits your business.</motion.h1>
+              <motion.p {...reveal(0.25)} className="mt-6 max-w-[34ch] text-[clamp(1.05rem,.95rem+.5vw,1.4rem)] font-light leading-snug text-white/60">Ready-to-use software for real estate, clinics, agencies, online sellers and sales teams, plus AI calling that answers and makes your calls.</motion.p>
+              <motion.div {...reveal(0.4)} className="mt-9 flex flex-wrap gap-3">
+                <Link href={site.demoHref} className="pill pill-light h-12 px-6">Book a demo</Link>
+                <Link href="/products" className="pill pill-ghost-dark h-12 px-6">Explore products</Link>
+              </motion.div>
+            </div>
+            <motion.div {...reveal(0.35)} className="lg:translate-y-6"><Monitor /></motion.div>
+          </div>
+        </div>
       </div>
     </section>
-    <div className="border-y border-line/70 bg-white py-8"><p className="container-x mb-6 text-center text-[11px] font-medium uppercase tracking-[.12em] text-muted">Seven business applications · Two AI products · Six industry solutions</p><AppMarquee/></div>
-  </>;
+  );
 }

@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { PageTransition } from "@/components/animation/PageTransition";
-import { ContactIntro, ContactSection } from "@/components/company/ContactSection";
+import { ContactPage } from "@/components/contact/ContactPage";
 
-const title = "Contact Melorite | Book a Demo";
-const description = "Talk to Melorite about Business Applications, Melorite AI, Industry Solutions or a complete connected platform.";
+const description = "Talk to Melorite about the product made for your business, a custom solution, or a free demo.";
+export const metadata: Metadata = { title: "Contact", description, alternates: { canonical: "/contact" }, openGraph: { title: "Contact Melorite", description, url: "/contact" } };
 
-export const metadata: Metadata = { title, description, alternates: { canonical: "/contact" }, openGraph: { title, description, url: "/contact" } };
-
-export default function ContactPage() {
-  return <PageTransition><ContactIntro /><ContactSection /></PageTransition>;
+export default function Page() {
+  return <ContactPage type="sales" />;
 }

@@ -5,9 +5,7 @@
 import { createHmac, randomUUID } from "node:crypto";
 import nodemailer from "nodemailer";
 import { enquirySchema } from "@/lib/enquiry-schema";
-import { products } from "@/data/products";
-import { industries } from "@/data/industries";
-import { enquiryTypes } from "@/data/company";
+import { products, enquiryTypes } from "@/data/products";
 
 export const runtime = "nodejs";
 
@@ -58,15 +56,11 @@ function emailFields(record: Record<string, unknown>) {
     ["Phone", record.phone || "Not provided"],
     ["Company", record.companyName || "Not provided"],
   ];
-  if (record.companySize) fields.push(["Company size", `${record.companySize} employees`]);
-  if (record.industry) fields.push(["Industry", labelFor(industries, record.industry)]);
-  if (Array.isArray(record.applications) && record.applications.length) {
-    fields.push(["Applications", record.applications.map((id) => labelFor(products, id)).join(", ")]);
+  if (Array.isArray(record.products) && record.products.length) {
+    fields.push(["Products", record.products.map((id) => labelFor(products, id)).join(", ")]);
   }
   if (record.preferredDate) fields.push(["Preferred date", record.preferredDate]);
   if (record.preferredTime) fields.push(["Preferred time", record.preferredTime]);
-  if (record.currentTools) fields.push(["Current tools", record.currentTools]);
-  if (record.subject) fields.push(["Subject", record.subject]);
   return fields;
 }
 
@@ -84,7 +78,7 @@ async function sendEnquiryEmail(record: Record<string, unknown>) {
   const fields = emailFields(record);
   const text = [...fields.map(([label, value]) => `${label}: ${value}`), "", "Message:", String(record.message || "No message provided.")].join("\n");
   const rows = fields.map(([label, value]) => `<tr><td style="padding:8px 16px 8px 0;color:#64748b;vertical-align:top;white-space:nowrap">${escapeHtml(label)}</td><td style="padding:8px 0;color:#111827;font-weight:600">${escapeHtml(value)}</td></tr>`).join("");
-  const html = `<div style="background:#f8f7f4;padding:32px;font-family:Arial,sans-serif;color:#111827"><div style="max-width:680px;margin:auto;background:#fff;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden"><div style="padding:28px 32px;background:linear-gradient(135deg,#eef4ff,#fff0e8)"><p style="margin:0 0 8px;color:#6d28d9;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">New ${escapeHtml(typeLabel)}</p><h1 style="margin:0;font-size:26px">${escapeHtml(name)} sent an enquiry</h1></div><div style="padding:24px 32px"><table style="width:100%;border-collapse:collapse;font-size:14px">${rows}</table><div style="margin-top:20px;padding:18px;border-radius:12px;background:#f8fafc"><p style="margin:0 0 8px;color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase">Message</p><p style="margin:0;line-height:1.65;white-space:pre-wrap">${escapeHtml(record.message || "No message provided.")}</p></div></div></div></div>`;
+  const html = `<div style="background:#f8f7f4;padding:32px;font-family:Arial,sans-serif;color:#111827"><div style="max-width:680px;margin:auto;background:#fff;border:1px solid #e5e7eb;border-radius:18px;overflow:hidden"><div style="padding:28px 32px;background:#111735"><p style="margin:0 0 8px;color:#a5a8ff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">New ${escapeHtml(typeLabel)}</p><h1 style="margin:0;font-size:26px;color:#fff">${escapeHtml(name)} sent an enquiry</h1></div><div style="padding:24px 32px"><table style="width:100%;border-collapse:collapse;font-size:14px">${rows}</table><div style="margin-top:20px;padding:18px;border-radius:12px;background:#f8fafc"><p style="margin:0 0 8px;color:#64748b;font-size:12px;font-weight:700;text-transform:uppercase">Message</p><p style="margin:0;line-height:1.65;white-space:pre-wrap">${escapeHtml(record.message || "No message provided.")}</p></div></div></div></div>`;
 
   await transporter.sendMail({
     from: process.env.SMTP_FROM ?? `Melorite Website <${user}>`,

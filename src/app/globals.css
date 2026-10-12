@@ -7,9 +7,11 @@
    Melorite design tokens
    ------------------------------------------------------------------ */
 @theme inline {
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-fraunces), Georgia, serif;
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-mono: ui-monospace, monospace;
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
@@ -31,47 +33,47 @@
 }
 
 @theme {
-  /* Primary interface accent: Melorite blue. */
-  --color-brand: #2563eb;
-  --color-brand-600: #1d4ed8;
-  --color-brand-700: #1e40af;
-  --color-brand-50: #eff6ff;
-  --color-brand-100: #dbeafe;
-  --color-brand-200: #bfdbfe;
-  --color-ui-blue: #2563eb;
+  /* Editorial shell is intentionally monochrome; product visuals retain their own data accents. */
+  --color-brand: #5f63f2;
+  --color-brand-600: #4b4fe0;
+  --color-brand-700: #3c3fc4;
+  --color-brand-50: #eeeffe;
+  --color-brand-100: #dcddfd;
+  --color-brand-200: #bcbffb;
+  --color-ui-blue: #1f1f1f;
   --color-ink-black: #17191c;
   --color-paper-white: #ffffff;
   --color-surface-neutral: #f8f7f4;
   --color-surface-warm: #fbf8f3;
-  --color-pastel-blue: #eef4ff;
-  --color-pastel-lavender: #f5f0ff;
-  --color-pastel-green: #eff8f3;
-  --color-pastel-peach: #fff4ec;
-  --color-pastel-sky: #eef7fa;
+  --color-pastel-blue: #ededed;
+  --color-pastel-lavender: #ededed;
+  --color-pastel-green: #ededed;
+  --color-pastel-peach: #ededed;
+  --color-pastel-sky: #ededed;
   --color-mist-gray: #f2f2f3;
-  --color-fog-white: #fafafb;
+  --color-fog-white: #f9f8f6;
   --color-slate-gray: #777b86;
   --color-ash-gray: #979799;
   --color-smoke-gray: #a3a6af;
   --color-blush-peach: #fbe1d1;
   --color-sienna-brown: #5d2a1a;
-  --color-navy: #0a2540;
-  --color-navy-900: #101010;
-  --color-navy-800: #242424;
-  --color-ink: #252525;
-  --color-paper: #f8f7f4;
-  --color-muted: #5f6368;
-  --color-line: #e7e7e4;
-  --color-line-strong: #d8d8d4;
+  --color-navy: #2c2c2b;
+  --color-navy-900: #111111;
+  --color-navy-800: #2c2c2b;
+  --color-ink: #1f1f1f;
+  --color-paper: #f9f8f6;
+  --color-muted: #70706f;
+  --color-line: #e4e2dd;
+  --color-line-strong: #2c2c2b;
 
   /* shadcn/ui semantic tokens, mapped to the Melorite palette */
-  --color-background: #ffffff;
-  --color-foreground: #111827;
+  --color-background: #f9f8f6;
+  --color-foreground: #1f1f1f;
   --color-card: #ffffff;
   --color-card-foreground: #111827;
   --color-popover: #ffffff;
   --color-popover-foreground: #111827;
-  --color-primary: #2563eb;
+  --color-primary: #1f1f1f;
   --color-primary-foreground: #ffffff;
   --color-secondary: #f2f2f3;
   --color-secondary-foreground: #17191c;
@@ -81,12 +83,12 @@
   --color-destructive: #dc2626;
   --color-border: #e7e7e4;
   --color-input: #dededb;
-  --color-ring: #2563eb;
+  --color-ring: #5f63f2;
 
   --radius-sm: 6px;
   --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
   --radius-2xl: 16px;
 
   --shadow-soft: 0 1px 2px rgb(24 24 27 / 0.02), 0 4px 12px -10px rgb(24 24 27 / 0.08);
@@ -113,17 +115,17 @@
 :root {
   /* Semantic surface system. Components use these through the Tailwind theme
      above, while these raw tokens are available to bespoke product visuals. */
-  --background: #ffffff;
-  --foreground: #18181b;
+  --background: #f9f8f6;
+  --foreground: #1f1f1f;
   --surface: #ffffff;
-  --surface-muted: #f8f7f4;
-  --surface-fog: #fbf8f3;
-  --surface-accent: #eef4ff;
-  --muted: #5f6368;
-  --muted-foreground: #5f6368;
-  --border: #e7e7e4;
-  --brand: #2563eb;
-  --brand-hover: #1d4ed8;
+  --surface-muted: #ededed;
+  --surface-fog: #f3f3f3;
+  --surface-accent: #e3e3e3;
+  --muted: #70706f;
+  --muted-foreground: #70706f;
+  --border: #e4e2dd;
+  --brand: #5f63f2;
+  --brand-hover: #4b4fe0;
   --gutter: 20px;
   color-scheme: light;
 }
@@ -146,31 +148,6 @@ body {
   font-feature-settings: "ss01", "cv11";
   overflow-x: clip;
 }
-
-/* Soft atmospheric color used across marketing surfaces. The colors remain
-   intentionally low-contrast so content and product graphics stay primary. */
-.hero-atmosphere {
-  background: #fcfbf9;
-  filter: saturate(.92);
-}
-.hero-orb {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(72px);
-  opacity: .72;
-  transform: translateZ(0);
-}
-.hero-orb-blue { width: 42vw; height: 42vw; left: -12vw; top: 12%; background: #dfeaff; }
-.hero-orb-peach { width: 48vw; height: 48vw; right: -8vw; top: 18%; background: #ffd9cd; }
-.hero-orb-violet { width: 34vw; height: 34vw; left: 34%; top: 22%; background: #e9ddff; }
-.hero-orb-green { width: 30vw; height: 30vw; left: 38%; bottom: -12%; background: #dff3e7; }
-
-.pastel-card-blue { background: #eef4ff; border-color: #dbe7fb; }
-.pastel-card-peach { background: #fff3ec; border-color: #f6dfd2; }
-.pastel-card-violet { background: #f5f0ff; border-color: #e6dcf7; }
-.pastel-card-green { background: #eff8f3; border-color: #d9ecdf; }
-.pastel-card-sky { background: #eef7fa; border-color: #d8e9ee; }
-.pastel-card-rose { background: #fff1f3; border-color: #f4dce1; }
 
 ::selection {
   background: var(--color-brand-100);
@@ -199,7 +176,7 @@ html { scroll-behavior: smooth; }
    ------------------------------------------------------------------ */
 @utility container-x {
   width: 100%;
-  max-width: 1440px;
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
@@ -207,15 +184,15 @@ html { scroll-behavior: smooth; }
 /* Type scale — hero > page > section > card. Only the hero gets display size. */
 @utility text-display {
   font-family: var(--font-editorial);
-  font-size: clamp(3rem, 2.2rem + 3.7vw, 5.25rem);
-  line-height: 1.01;
-  letter-spacing: -0.045em;
+  font-size: clamp(3.2rem, 2.2rem + 4.4vw, 6.25rem);
+  line-height: .98;
+  letter-spacing: -.055em;
   font-weight: 500;
 }
 
 @utility text-h1 {
   font-family: var(--font-editorial);
-  font-size: clamp(2.5rem, 2rem + 2.7vw, 4rem);
+  font-size: clamp(2.7rem, 2rem + 3vw, 4.5rem);
   line-height: 1.06;
   letter-spacing: -0.038em;
   font-weight: 500;
@@ -243,7 +220,7 @@ html { scroll-behavior: smooth; }
 }
 
 @utility section-y {
-  padding-block: clamp(5rem, 4rem + 4.4vw, 8rem);
+  padding-block: clamp(6rem, 5rem + 4vw, 8.75rem);
 }
 
 @utility marketing-grid {
@@ -258,6 +235,16 @@ html { scroll-behavior: smooth; }
   border: 1px solid var(--border);
   border-radius: 16px;
   background: var(--surface);
+}
+
+@utility section-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 
@@ -319,3 +306,62 @@ html { scroll-behavior: smooth; }
   }
   ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }
+
+/* ------------------------------------------------------------------
+   Aira-style editorial system (homepage + shell)
+   ------------------------------------------------------------------ */
+:root { --ink-dark: #080808; --paper-warm: #f9f8f6; --text-ink: #2c2c2b; }
+
+.serif { font-family: var(--font-editorial); font-weight: 400; letter-spacing: -0.035em; }
+.h-hero { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2.9rem, 1.6rem + 4.6vw, 5.4rem); line-height: .98; letter-spacing: -0.04em; }
+.h-section { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2.1rem, 1.5rem + 2.4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.035em; }
+.h-card { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(1.6rem, 1.3rem + 1.1vw, 2.2rem); line-height: 1.08; letter-spacing: -0.03em; }
+.h-story { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2rem, 1.4rem + 2vw, 3.1rem); line-height: 1.04; letter-spacing: -0.035em; }
+.mono-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+
+@layer components {
+/* Pill buttons, as used across the shell */
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: 44px; padding: 0 22px; border-radius: 999px; font-size: 14.5px; font-weight: 500; letter-spacing: -0.005em; white-space: nowrap; transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease; }
+.pill:active { transform: scale(.985); }
+.pill-light { background: #fff; color: #1c1d1f; }
+.pill-light:hover { background: #e9e8e4; }
+.pill-dark { background: #1a1a1a; color: #fff; }
+.pill-dark:hover { background: #333; }
+.pill-ghost-dark { color: #fff; border: 1px solid rgba(255,255,255,.2); }
+.pill-ghost-dark:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.4); }
+.pill-sm { height: 36px; padding: 0 16px; font-size: 13.25px; }
+}
+
+/* Vertical page grid lines (left/right rails) */
+.rails { position: relative; }
+.rails::before, .rails::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; pointer-events: none; z-index: 0; background: var(--rail, rgba(255,255,255,.09)); }
+.rails::before { left: clamp(16px, 4.2vw, 60px); }
+.rails::after { right: clamp(16px, 4.2vw, 60px); }
+.rails-light { --rail: rgba(0,0,0,.07); }
+.rail-inner { padding-inline: clamp(32px, 7vw, 108px); position: relative; z-index: 1; }
+
+/* Navigation theme: follows the section underneath */
+.site-navbar[data-theme="dark"] { background: rgba(8,8,8,.92); color: #fff; border-color: rgba(255,255,255,.08); }
+.site-navbar[data-theme="light"] { background: rgba(249,248,246,.92); color: var(--text-ink); border-color: rgba(0,0,0,.06); }
+.site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"],
+.site-navbar[data-theme="dark"] .nav-link { color: rgba(255,255,255,.82); }
+.site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"]:hover,
+.site-navbar[data-theme="dark"] .nav-link:hover { color: #fff; }
+.site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"],
+.site-navbar[data-theme="light"] .nav-link { color: #4b4b49; }
+.site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"]:hover,
+.site-navbar[data-theme="light"] .nav-link:hover { color: #000; }
+
+/* Atmosphere for dark hero / stat panels (no photography required) */
+.atmos-warm { background:
+  radial-gradient(1100px 560px at 80% 90%, rgba(95,99,242,.38), transparent 62%),
+  radial-gradient(900px 520px at 10% 15%, rgba(40,52,120,.5), transparent 60%),
+  linear-gradient(180deg, #0c1024 0%, #080808 58%, #0d0f26 100%); }
+.atmos-earth { background:
+  radial-gradient(900px 700px at 8% 30%, rgba(60,90,140,.45), transparent 60%),
+  radial-gradient(700px 500px at 95% 70%, rgba(190,140,60,.12), transparent 60%),
+  #050608; }
+.atmos-stars { background-image: radial-gradient(rgba(165,168,255,.6) 1px, transparent 1.4px), radial-gradient(rgba(255,255,255,.35) 1px, transparent 1.4px); background-size: 34px 34px, 71px 71px; background-position: 0 0, 17px 23px; mask-image: linear-gradient(135deg, transparent 20%, black 70%); }
+.panel-warm { background: radial-gradient(800px 500px at 70% 100%, rgba(95,99,242,.55), transparent 60%), linear-gradient(160deg, #1b2050, #0c1024); }
+.panel-mist { background: linear-gradient(180deg, #dfe6ea 0%, #b9c3c9 55%, #9aa6a5 100%); }
+.panel-dusk { background: linear-gradient(180deg, #cfd5d8, #aab4b8 60%, #8a9391); }

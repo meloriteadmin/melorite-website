@@ -2,113 +2,52 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu } from "lucide-react";
 import { mainNav } from "@/data/navigation";
-import { businessApplications, industrySolutions } from "@/data/catalog";
+import { products } from "@/data/products";
 import { site } from "@/data/site";
-import { Icon } from "@/lib/icons";
-import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/Logo";
-import { buttonClasses } from "@/components/shared/Button";
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
-/** Mobile/tablet navigation drawer (shadcn Sheet: focus trap, Escape, scroll lock). */
+/** Mobile/tablet navigation drawer (Radix Sheet: focus trap, Escape, scroll lock). */
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-
   const [lastPath, setLastPath] = useState(pathname);
   if (pathname !== lastPath) {
     setLastPath(pathname);
     setOpen(false);
   }
-  useEffect(() => {
-    const lenis = window.__lenis;
-    if (!lenis) return;
-    if (open) lenis.stop();
-    else lenis.start();
-  }, [open]);
-
   const close = () => setOpen(false);
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-  const lists = {
-    products: [...businessApplications.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/products/${p.slug}` })), { id: "agent", label: "AI Agent", icon: "Sparkles", accent: "#2563eb", href: "/ai/agent" }, { id: "calling", label: "AI Calling", icon: "PhoneCall", accent: "#7c3aed", href: "/ai/calling" }],
-    solutions: industrySolutions.map((p) => ({ id: p.slug, label: p.name, icon: p.icon, accent: p.accent, href: `/solutions/${p.slug}` })),
-    company: [{ id: "about", label: "About Melorite", icon: "Building2", accent: "#2563eb", href: "/company" }, { id: "resources", label: "Resources", icon: "BookOpen", accent: "#7c3aed", href: "/resources" }, { id: "contact", label: "Contact", icon: "Mail", accent: "#ea580c", href: "/contact" }],
-  };
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full border-black/10 text-[#171717] lg:hidden" aria-label="Open menu">
-          <Menu className="size-5" />
-        </Button>
+        <button type="button" aria-label="Open menu" className="grid size-10 place-items-center rounded-full bg-white text-[#111] lg:hidden"><Menu className="size-5" /></button>
       </SheetTrigger>
-      <SheetContent side="right" className="gap-0 p-0" data-lenis-prevent>
-        <SheetHeader className="h-16 justify-center border-b border-line px-5">
-          <SheetTitle asChild>
-            <span>
-              <Logo className="h-[22px]" />
-              <span className="sr-only">Menu</span>
-            </span>
-          </SheetTitle>
+      <SheetContent side="right" className="gap-0 border-0 bg-[#080808] p-0 text-white" data-lenis-prevent>
+        <SheetHeader className="h-16 justify-center border-b border-white/10 px-5">
+          <SheetTitle asChild><span><Logo white className="h-[22px]" /><span className="sr-only">Menu</span></span></SheetTitle>
           <SheetDescription className="sr-only">Site navigation</SheetDescription>
         </SheetHeader>
-
-        <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-5 py-3">
-          <Accordion type="single" collapsible>
-            {mainNav.map((item) => {
-              const active = isActive(item.href);
-              if (item.menu) {
-                const list = lists[item.menu];
-                return (
-                  <AccordionItem key={item.href} value={item.href} className="border-line">
-                    <AccordionTrigger className={cn("py-4 text-[17px]", active && "text-brand")}>{item.label}</AccordionTrigger>
-                    <AccordionContent className="pr-0">
-                      <ul className="grid grid-cols-2 gap-1">
-                        {list.map((l) => (
-                          <li key={l.id}>
-                            <Link href={l.href} onClick={close} className="flex items-center gap-2 rounded-[8px] px-2 py-2 text-[14px] font-medium text-navy hover:bg-accent">
-                              <Icon name={l.icon} className="size-4 shrink-0" style={{ color: l.accent }} />
-                              <span className="truncate">{l.label}</span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                      <Link href={item.href} onClick={close} className="mt-2 inline-block px-2 text-[14px] font-medium text-brand">
-                        View all {item.label.toLowerCase()} →
-                      </Link>
-                    </AccordionContent>
-                  </AccordionItem>
-                );
-              }
-              return (
-                <div key={item.href} className="border-b border-line">
-                  <Link
-                    href={item.href}
-                    onClick={close}
-                    aria-current={active ? "page" : undefined}
-                    className={cn("flex py-4 text-[17px] font-medium tracking-[-0.015em]", active ? "text-brand" : "text-navy")}
-                  >
-                    {item.label}
-                  </Link>
-                </div>
-              );
-            })}
-          </Accordion>
+        <nav className="flex-1 overflow-y-auto px-5 py-6" aria-label="Mobile">
+          <p className="mono-label text-white/40">Products</p>
+          <ul className="mt-3">
+            {products.map((p) => (
+              <li key={p.slug}><Link href={`/products/${p.slug}`} onClick={close} className="block border-b border-white/10 py-3.5 font-serif text-[24px] tracking-tight">{p.name}</Link></li>
+            ))}
+          </ul>
+          <ul className="mt-6">
+            {mainNav.filter((n) => !n.menu).map((n) => (
+              <li key={n.href}><Link href={n.href} onClick={close} className="block border-b border-white/10 py-3.5 font-serif text-[24px] tracking-tight">{n.label}</Link></li>
+            ))}
+          </ul>
         </nav>
-
-        <SheetFooter className="border-t border-line p-5">
-          <Link href={site.demoHref} onClick={close} className={buttonClasses("primary", "lg", "w-full")}>
-            Book a Demo
-          </Link>
-          <Link href={site.salesHref} onClick={close} className={buttonClasses("secondary", "lg", "w-full")}>
-            Contact Sales
-          </Link>
-        </SheetFooter>
+        <div className="flex gap-3 border-t border-white/10 p-5">
+          <Link href={site.salesHref} onClick={close} className="pill pill-ghost-dark flex-1">Contact sales</Link>
+          <Link href={site.demoHref} onClick={close} className="pill pill-light flex-1">Book a demo</Link>
+        </div>
       </SheetContent>
     </Sheet>
   );

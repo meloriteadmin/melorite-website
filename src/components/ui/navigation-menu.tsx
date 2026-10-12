@@ -58,7 +58,7 @@ function NavigationMenuItem({
 }
 
 const navigationMenuTriggerStyle = cva(
-  "group relative inline-flex h-9 w-max items-center justify-center rounded-full bg-transparent px-3.5 py-2 text-[14.5px] font-medium tracking-[-0.01em] text-[#292929] transition-colors outline-none hover:bg-black/[.045] hover:text-black focus-visible:ring-[3px] focus-visible:ring-black/15 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:bg-black/[.045] data-[state=open]:text-black data-[active=true]:text-black"
+  "group relative inline-flex h-9 w-max items-center justify-center rounded-full bg-transparent px-3 py-2 text-[13px] font-medium tracking-[-0.01em] text-[#33354a] transition-colors outline-none hover:text-navy focus-visible:ring-[3px] focus-visible:ring-brand/25 disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-navy data-[active=true]:text-navy"
 )
 
 function NavigationMenuTrigger({
@@ -112,7 +112,7 @@ function NavigationMenuViewport({
         data-slot="navigation-menu-viewport"
         data-lenis-prevent
         className={cn(
-          "origin-top-center relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] max-h-[calc(100dvh-5.5rem)] w-full overflow-x-hidden overflow-y-auto overscroll-contain rounded-xl border border-line bg-popover text-popover-foreground shadow-[0_20px_42px_-26px_rgb(23_23_23/0.25),0_2px_6px_rgb(23_23_23/0.03)] transition-[width,height] duration-200 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] md:w-[var(--radix-navigation-menu-viewport-width)]",
+          "origin-top-center relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] max-h-[calc(100dvh-5.5rem)] w-full overflow-x-hidden overflow-y-auto overscroll-contain rounded-lg border border-line bg-white text-popover-foreground shadow-[0_16px_38px_-24px_rgb(17_23_53/0.26)] transition-[width,height] duration-200 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] md:w-[var(--radix-navigation-menu-viewport-width)]",
           className
         )}
         {...props}

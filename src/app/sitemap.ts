@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...products.map(({ slug }) => ({ path: `/products/${slug}`, priority: 0.8 })),
     { path: "/custom-solutions", priority: 0.7 },
     { path: "/company", priority: 0.7 },
+    { path: "/why-melorite", priority: 0.7 },
     { path: "/contact", priority: 0.6 },
     { path: "/book-demo", priority: 0.6 },
   ];

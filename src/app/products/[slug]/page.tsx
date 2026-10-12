@@ -8,7 +8,7 @@ import { Reveal } from "@/components/animation/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { CellGrid, GoodFor } from "@/components/site/Cells";
-import { ProductVisual, panelFor } from "@/components/site/ProductVisuals";
+import { ProductVisual, tintFor } from "@/components/site/ProductVisuals";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -30,14 +30,14 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
 
   return (
     <PageTransition>
-      <PageHero label={p.name} title={p.headline.join(" ")} lead={p.lead} body={p.body} panel={panelFor[p.slug]} visual={<ProductVisual slug={p.slug} />} />
+      <PageHero label={p.name} title={p.headline.join(" ")} lead={p.lead} body={p.body} variant="photo" tint={tintFor[p.slug]} visual={<ProductVisual slug={p.slug} />} />
 
       <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           {p.slug === "ai-calling" ? (
             <>
               <Reveal><h2 className="h-section max-w-[16ch]">Inbound and outbound, handled.</h2></Reveal>
-              <div className="mt-12 grid gap-px overflow-hidden border border-black/10 bg-black/10 lg:grid-cols-2">
+              <div className="mt-12 grid gap-px overflow-hidden rounded-[18px] border border-black/10 bg-black/10 lg:grid-cols-2">
                 {(["inbound", "outbound"] as const).map((k) => (
                   <Reveal key={k} className="bg-white p-[clamp(24px,3.4vw,48px)]">
                     <p className="mono-label text-[#5f63f2]">{callFlows[k].title}</p>

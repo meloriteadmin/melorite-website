@@ -15,7 +15,10 @@ export const metadata: Metadata = {
 export default function CustomSolutionsPage() {
   return (
     <PageTransition>
-      <PageHero label="Custom solutions" title="Custom solutions. Built around your business." lead="Sometimes ready-made software isn’t quite enough." body="Some businesses have a way of working that’s all their own. When that’s you, our team can add to Melorite or build something new around exactly how you work, with the same care we put into our own products." />
+      <PageHero label="Custom solutions" title={<>Custom solutions.<br /><span className="text-black/35">Built around your business.</span></>} lead="Sometimes ready-made software isn’t quite enough." body="Some businesses have a way of working that’s all their own. When that’s you, our team can add to Melorite or build something new around exactly how you work, with the same care we put into our own products." variant="editorial" extra={
+        <div className="flex flex-wrap gap-2.5">
+          {["Custom workflows", "Client portals", "Integrations", "Reports & dashboards"].map((t) => <span key={t} className="rounded-full border border-[#111735]/10 bg-white/80 px-4 py-2 text-[14px]">{t}</span>)}
+        </div>} />
       <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           <Reveal><h2 className="h-section max-w-[14ch]">What we can build for you</h2></Reveal>

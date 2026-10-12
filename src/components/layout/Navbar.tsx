@@ -24,7 +24,7 @@ import { MobileMenu } from "./MobileMenu";
  */
 export function Navbar() {
   const pathname = usePathname();
-  const [theme, setTheme] = useState<"dark" | "light">(pathname === "/" ? "dark" : "light");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     // The bar adopts the theme of whichever [data-nav] section sits beneath it.

@@ -6,7 +6,6 @@ import { PageTransition } from "@/components/animation/PageTransition";
 import { Reveal } from "@/components/animation/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { FinalCTA } from "@/components/site/FinalCTA";
-import { WhyList } from "@/components/home/WhyList";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
 export default function CompanyPage() {
   return (
     <PageTransition>
-      <PageHero label="About us" title="Running a business shouldn’t feel this hard." lead="Melorite makes it simpler, one business at a time." cta={false} />
+      <PageHero label="About us" title="Running a business shouldn’t feel this hard." variant="news" body="Melorite makes it simpler, one business at a time." cta={false} />
       <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner grid gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal>
@@ -48,12 +47,10 @@ export default function CompanyPage() {
         </div>
       </section>
 
-      <WhyList id="why" />
-
       <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           <Reveal><p className="mono-label text-black/45">Getting started</p><h2 className="h-section mt-3">Getting started is easy.</h2></Reveal>
-          <ol className="mt-10 grid gap-px overflow-hidden border border-black/10 bg-black/10 md:grid-cols-3">
+          <ol className="mt-10 grid gap-px overflow-hidden rounded-[18px] border border-black/10 bg-black/10 md:grid-cols-3">
             {startSteps.map(([t, d], i) => (
               <Reveal key={t} delay={i * 0.07} className="bg-white p-8">
                 <span className="grid size-9 place-items-center rounded-full border border-black/20 text-[12px] font-medium">0{i + 1}</span>

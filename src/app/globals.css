@@ -377,3 +377,8 @@ html.lenis, html.lenis body { height: auto; }
 .site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"]:is(:hover, :focus-visible, [data-state="open"]) { background-color: rgba(255,255,255,.12) !important; color: #fff !important; }
 .site-navbar[data-theme="light"] .nav-link:is(:hover, :focus-visible, [data-active="true"]),
 .site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"]:is(:hover, :focus-visible, [data-state="open"]) { background-color: rgba(17,23,53,.07) !important; color: #111735 !important; }
+
+/* Slow drifting glow used behind the closing call-to-action */
+@keyframes drift { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(3%,-4%,0) scale(1.08); } }
+.drift { animation: drift 14s ease-in-out infinite; }
+.drift-b { animation: drift 18s ease-in-out -6s infinite reverse; }

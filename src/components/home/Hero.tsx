@@ -5,38 +5,9 @@ import { motion } from "motion/react";
 import { ArrowRight, Building2, Headset, Megaphone, Phone, Search, ShoppingBag, Sparkles, Stethoscope, Users } from "lucide-react";
 import { site } from "@/data/site";
 import { EASE } from "@/lib/utils";
+import { RibbonScene } from "@/components/site/RibbonScene";
 
 const reveal = (delay: number) => ({ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay, ease: EASE } });
-
-/** Thick glossy ribbon in brand indigo, drawn as layered strokes for a 3D tube feel. */
-function Ribbon({ d, w, delay = 0 }: { d: string; w: number; delay?: number }) {
-  return (
-    <motion.g animate={{ y: [0, -10, 0] }} transition={{ duration: 9, delay, repeat: Infinity, ease: "easeInOut" }}>
-      <path d={d} fill="none" stroke="#4a4ee0" strokeWidth={w + 6} strokeLinecap="round" opacity=".55" />
-      <path d={d} fill="none" stroke="url(#rib)" strokeWidth={w} strokeLinecap="round" />
-      <path d={d} fill="none" stroke="url(#hi)" strokeWidth={w * 0.34} strokeLinecap="round" transform={`translate(${-w * 0.12} ${-w * 0.2})`} opacity=".85" filter="url(#soft)" />
-    </motion.g>
-  );
-}
-
-function Scene() {
-  return (
-    <svg viewBox="0 0 1600 760" preserveAspectRatio="xMidYMid slice" className="pointer-events-none absolute inset-x-0 -top-[16%] h-[116%] w-full" aria-hidden>
-      <defs>
-        <linearGradient id="rib" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#a5a8ff" /><stop offset=".45" stopColor="#5f63f2" /><stop offset="1" stopColor="#3a3ec9" />
-        </linearGradient>
-        <linearGradient id="hi" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#ffffff" stopOpacity=".9" /><stop offset="1" stopColor="#c9cbff" stopOpacity=".1" />
-        </linearGradient>
-        <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="9" /></filter>
-      </defs>
-      <Ribbon d="M860 330 C1040 -40, 1540 -60, 1650 260 C1730 500, 1400 700, 1230 480" w={200} />
-      <Ribbon d="M-100 330 C60 130, 330 580, 640 420" w={180} delay={1.5} />
-      <Ribbon d="M-60 640 C150 500, 330 760, 520 660" w={130} delay={3} />
-    </svg>
-  );
-}
 
 const tabs: [typeof Users, string, boolean?][] = [[Users, "CRM", true], [Building2, "Real Estate"], [Stethoscope, "Clinic"], [Megaphone, "Agency"], [ShoppingBag, "Commerce"], [Headset, "AI Calling"]];
 const side = [["Today", true], ["Leads", false], ["Deals", false], ["Follow-ups", false], ["Site visits", false], ["Reports", false]] as const;
@@ -116,7 +87,7 @@ export function Hero() {
       </div>
 
       <div className="relative mt-[clamp(40px,6vw,80px)] h-[clamp(430px,52vw,760px)]">
-        <Scene />
+        <RibbonScene />
         <motion.div {...reveal(0.55)} className="relative mx-auto max-w-[1240px] px-5 md:px-8">
           <AppWindow />
         </motion.div>

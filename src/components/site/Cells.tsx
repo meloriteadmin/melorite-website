@@ -3,7 +3,7 @@ import { Reveal } from "@/components/animation/Reveal";
 /** Bordered 2-column grid of short capability statements (the “What it does” table). */
 export function CellGrid({ items }: { items: readonly string[] }) {
   return (
-    <div className="grid border-l border-t border-black/10 bg-white sm:grid-cols-2">
+    <div className="grid overflow-hidden rounded-[18px] border-l border-t border-black/10 bg-white sm:grid-cols-2">
       {items.map((t, i) => (
         <Reveal key={t} delay={(i % 2) * 0.06} className="flex min-h-[96px] items-center gap-4 border-b border-r border-black/10 p-6 text-[16.5px] leading-snug">
           <span className="font-serif text-[13px] text-[#5f63f2]">0{i + 1}</span>{t}

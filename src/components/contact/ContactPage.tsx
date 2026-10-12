@@ -9,7 +9,7 @@ import { ContactForm } from "./ContactForm";
 export function ContactPage({ type = "demo" }: { type?: string }) {
   return (
     <PageTransition>
-      <PageHero label="Contact" title={type === "demo" ? "Let’s build your Melorite workspace." : "Let’s discuss your business."} body="Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." cta={false} />
+      <PageHero label="Contact" title={type === "demo" ? "Let’s build your Melorite workspace." : "Let’s discuss your business."} body="Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." variant="glow" tint="#dcddfd" cta={false} />
       <section id="contact" data-nav="light" className="rails rails-light scroll-mt-16 bg-[#f6f7fe] py-[clamp(56px,7vw,110px)] text-[#111735]">
         <div className="rail-inner grid gap-12 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:gap-16">
           <div>

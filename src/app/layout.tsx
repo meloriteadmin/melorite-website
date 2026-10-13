@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Newsreader, Inter, League_Spartan } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/data/site";
 import { Providers } from "@/components/animation/SmoothScroll";
@@ -7,9 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingDemo } from "@/components/layout/FloatingDemo";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
-const leagueSpartan = League_Spartan({ variable: "--font-league-spartan", subsets: ["latin"], display: "swap" });
-const fraunces = Newsreader({ variable: "--font-fraunces", subsets: ["latin"], display: "swap", weight: ["300", "400", "500"], style: ["normal", "italic"] });
+const hanken = Hanken_Grotesk({ variable: "--font-hanken", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -39,7 +37,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${leagueSpartan.variable} ${fraunces.variable} antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${hanken.variable} antialiased`}>
       <body className="min-h-dvh bg-[#f6f7fe]">
         <Providers>
           <Navbar />

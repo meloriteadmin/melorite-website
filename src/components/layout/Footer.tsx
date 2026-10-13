@@ -6,7 +6,7 @@ import { Logo } from "@/components/shared/Logo";
 const columns = [
   { title: "Products", links: [...products.map((p) => [p.name, `/products/${p.slug}`]), ["All products", "/products"]] },
   { title: "Company", links: [["About us", "/company"], ["Why Melorite", "/why-melorite"], ["Custom solutions", "/custom-solutions"], ["Contact", "/contact"]] },
-  { title: "Get started", links: [["Book a demo", site.demoHref], ["Talk to sales", site.salesHref]] },
+  { title: "Get started", links: [["Book a demo", site.demoHref], ["Contact sales", site.salesHref]] },
   { title: "Connect", links: [...(site.contact.email ? [[site.contact.email, `mailto:${site.contact.email}`]] : []), ...(site.contact.phone ? [[site.contact.phone, `tel:${site.contact.phone.replace(/\s/g, "")}`]] : []), ...site.social.map((s) => [s.label, s.href])] },
 ] as { title: string; links: string[][] }[];
 

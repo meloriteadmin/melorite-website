@@ -1,28 +1,26 @@
 "use client";
 
 import { motion, type HTMLMotionProps } from "motion/react";
+import type { CSSProperties, HTMLAttributes } from "react";
 import { EASE, DURATION } from "@/lib/utils";
 
-type RevealProps = HTMLMotionProps<"div"> & {
+type RevealProps = HTMLAttributes<HTMLDivElement> & {
   delay?: number;
   y?: number;
   duration?: number;
-  once?: boolean;
-  amount?: number;
 };
 
-/** Scroll-triggered fade-up. */
-export function Reveal({ delay = 0, y = 24, duration = DURATION.reveal, once = true, amount = 0.25, children, ...rest }: RevealProps) {
+/** A progressive fade-up that never gates content on IntersectionObserver support. */
+export function Reveal({ delay = 0, y = 24, duration = DURATION.reveal, children, ...rest }: RevealProps) {
+  const { className = "", style, ...divProps } = rest;
   return (
-    <motion.div
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, amount }}
-      transition={{ duration, delay, ease: EASE }}
-      {...rest}
+    <div
+      className={`reveal-safe ${className}`}
+      style={{ ...style, "--reveal-y": `${y}px`, animationDelay: `${delay}s`, animationDuration: `${duration}s` } as CSSProperties}
+      {...divProps}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 

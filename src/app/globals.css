@@ -7,11 +7,11 @@
    Melorite design tokens
    ------------------------------------------------------------------ */
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-brand: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: var(--font-fraunces), Georgia, serif;
-  --font-serif: var(--font-fraunces), Georgia, serif;
-  --font-mono: ui-monospace, monospace;
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
@@ -296,6 +296,16 @@ html.lenis, html.lenis body { height: auto; }
 }
 @keyframes page-enter {
   from { opacity: 0; transform: translateY(8px); }
+}
+
+.reveal-safe {
+  animation-name: reveal-safe;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+@keyframes reveal-safe {
+  from { opacity: 0; transform: translateY(var(--reveal-y, 18px)); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ------------------------------------------------------------------

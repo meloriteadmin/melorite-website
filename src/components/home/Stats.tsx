@@ -1,36 +1,35 @@
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Reveal } from "@/components/animation/Reveal";
 import { products } from "@/data/products";
 import { site } from "@/data/site";
-import { Reveal } from "@/components/animation/Reveal";
+
+const stats: [string, string][] = [
+  [String(products.length), "focused products"],
+  ["5", "business types"],
+  ["Days", "to get started"],
+  ["24/7", "AI availability"],
+];
 
 export function Stats() {
-  const stats: [string, string][] = [
-    [String(products.length), "Ready-to-use products"],
-    ["5", "Kinds of business served"],
-    ["Days", "to go live, not months"],
-    ["24/7", "AI answering and calling"],
-  ];
   return (
-    <section data-nav="dark" className="rails atmos-earth relative overflow-hidden bg-[#0c1129] pb-[clamp(72px,9vw,128px)] pt-[clamp(120px,16vw,230px)] text-white">
-      <div className="atmos-stars pointer-events-none absolute inset-0 opacity-80" aria-hidden />
-      <div className="rail-inner relative">
-        <Reveal className="mx-auto max-w-[900px] text-center">
-          <h2 className="h-section mx-auto max-w-[15em] text-white">Ready for your industry. Simple to use. Easy to start.</h2>
-        </Reveal>
-        <Reveal delay={0.1} className="mx-auto mt-6 max-w-[620px] text-center text-[clamp(1rem,.95rem+.3vw,1.2rem)] text-white/65">
-          Melorite builds simple software for specific kinds of business, so your team doesn’t have to change how it works to fit the software.
-        </Reveal>
-        <Reveal delay={0.18} className="mt-9 flex flex-wrap justify-center gap-3">
-          <Link href={site.demoHref} className="pill pill-light h-12 px-6">Book a demo</Link>
-          <Link href="/products" className="pill pill-ghost-dark h-12 px-6">Explore products</Link>
-        </Reveal>
-        <div className="mt-[clamp(72px,9vw,120px)] grid grid-cols-2 gap-y-12 border-t border-white/10 pt-12 lg:grid-cols-4">
-          {stats.map(([v, l], i) => (
-            <Reveal key={l} delay={i * 0.07} className="lg:px-4">
-              <p className="font-serif text-[clamp(3.6rem,2.4rem+5vw,6.8rem)] font-light leading-none tracking-[-0.045em]">{v}</p>
-              <p className="mt-4 max-w-[22ch] text-[clamp(1rem,.95rem+.25vw,1.2rem)] leading-snug text-white/70">{l}</p>
-            </Reveal>
-          ))}
+    <section data-nav="light" className="rails rails-light bg-[#fbfbf8] py-[clamp(88px,11vw,160px)] text-[#111735]">
+      <div className="rail-inner mx-auto max-w-[1440px]">
+        <div className="grid gap-12 lg:grid-cols-[1.05fr_.95fr] lg:gap-20">
+          <Reveal>
+            <p className="mono-label text-[#5f63f2]">One connected platform</p>
+            <h2 className="h-section mt-5 max-w-[11ch]">Built around the work you already do.</h2>
+            <p className="mt-6 max-w-[46ch] text-[18px] leading-[1.55] text-[#111735]/60">Start with a product that understands your industry, then shape it around your team. No sprawling setup project. No software maze.</p>
+            <Link href={site.demoHref} className="pill pill-dark mt-8 h-12 px-7">See Melorite in action <ArrowUpRight className="size-4" /></Link>
+          </Reveal>
+          <div className="grid grid-cols-2 border-l border-t border-[#111735]/12">
+            {stats.map(([value, label], i) => (
+              <Reveal key={label} delay={i * 0.06} className="min-h-44 border-b border-r border-[#111735]/12 p-6 sm:min-h-52 sm:p-8">
+                <p className="text-[clamp(2.9rem,2rem+3vw,5rem)] font-bold leading-none tracking-[-.065em]">{value}</p>
+                <p className="mt-5 max-w-[15ch] text-[13px] font-semibold uppercase tracking-[.12em] text-[#111735]/48">{label}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

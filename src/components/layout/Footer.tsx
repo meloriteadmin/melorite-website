@@ -18,10 +18,10 @@ export function Footer() {
   const cols = [...columns, ...(legal.length ? [{ title: "Legal", links: legal.map((l) => [l.label, l.href]) }] : [])];
 
   return (
-    <footer data-nav="light" className="bg-[#f6f7fe] text-[#111735]">
-      <div className="px-5 pb-10 pt-[clamp(56px,7vw,100px)] md:px-[clamp(32px,7vw,108px)]">
+    <footer data-nav="light" className="bg-[#fbfbf8] text-[#111735]">
+      <div className="border-t border-[#111735]/10 px-5 pb-6 pt-[clamp(56px,7vw,100px)] md:px-[clamp(32px,7vw,108px)]">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_2.4fr]">
-          <div><Logo className="h-[26px]" /><p className="mt-5 max-w-[30ch] text-[13.5px] leading-relaxed text-black/50">{site.tagline}</p><p className="mt-6 text-[13px] text-black/40">© {new Date().getFullYear()} Melorite</p></div>
+          <div><Logo className="h-[26px]" /><p className="mt-5 max-w-[30ch] text-[13.5px] leading-relaxed text-black/50">{site.tagline}</p></div>
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4">
             {cols.map((c) => (
               <div key={c.title}>
@@ -29,7 +29,7 @@ export function Footer() {
                 <ul className="mt-5 space-y-3">
                   {c.links.map(([label, href]) => (
                     <li key={label + href}>
-                      <Link href={href} className="text-[14px] text-black/55 transition-colors hover:text-black">{label}</Link>
+                      <Link href={href} {...(/^https?:/.test(href) ? { target: "_blank", rel: "noopener noreferrer" } : {})} className="text-[14px] text-black/55 transition-colors hover:text-black">{label}</Link>
                     </li>
                   ))}
                 </ul>
@@ -37,7 +37,12 @@ export function Footer() {
             ))}
           </nav>
         </div>
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-3 border-t border-[#111735]/10 pt-6 text-[13px] text-black/45">
+          <p>© {new Date().getFullYear()} Melorite. All rights reserved.</p>
+          <a href="#main" className="transition-colors hover:text-black">Back to top ↑</a>
+        </div>
       </div>
+      <div aria-hidden className="footer-wordmark select-none overflow-hidden px-[2vw] text-center">melorite</div>
     </footer>
   );
 }

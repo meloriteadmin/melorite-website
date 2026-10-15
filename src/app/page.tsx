@@ -9,6 +9,7 @@ import { Stats } from "@/components/home/Stats";
 import { Stories } from "@/components/home/Stories";
 import { ProductCards } from "@/components/home/ProductCards";
 import { WhyList } from "@/components/home/WhyList";
+import { EditorialFeature } from "@/components/home/EditorialFeature";
 import { FinalCTA } from "@/components/site/FinalCTA";
 
 export const metadata: Metadata = {
@@ -36,6 +37,7 @@ export default function HomePage() {
       <LeadsTable />
       <CallsAndSetup />
       <Stats />
+      <EditorialFeature />
       <Stories />
       <ProductCards />
       <WhyList />

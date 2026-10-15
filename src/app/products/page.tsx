@@ -24,7 +24,7 @@ export default function ProductsPage() {
             <div key={slug} className={`absolute flex aspect-[1.15] w-[clamp(240px,34vw,460px)] items-center justify-center overflow-hidden rounded-[10px] border border-black/[.06] shadow-[0_30px_60px_-30px_rgba(17,23,53,.35)] ${pos}`} style={{ background: `linear-gradient(160deg, ${tintFor[slug]}, #fff 120%)` }}><ProductVisual slug={slug} /></div>
           ))}
         </div>} />
-      <section data-nav="light" className="rails rails-light bg-[#f6f7fe] py-[clamp(64px,8vw,120px)] text-[#111735]">
+      <section data-nav="light" className="rails rails-light bg-[#fbfbf8] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner space-y-[clamp(48px,6vw,88px)]">
           {products.map((p, i) => {
             const I = productIcons[p.icon];
@@ -37,7 +37,7 @@ export default function ProductsPage() {
                   <p className="mt-5 max-w-[42ch] text-[17px] leading-snug text-black/55">{p.summary}</p>
                   <Link href={`/products/${p.slug}`} className="pill pill-dark mt-8 h-12">Explore {p.short}<ArrowRight className="size-4" /></Link>
                 </div>
-                <div className={`${panelFor[p.slug]} flex min-h-[380px] items-center justify-center overflow-hidden rounded-[18px] py-10`}><ProductVisual slug={p.slug} /></div>
+                <div className={`${panelFor[p.slug]} media-frame flex min-h-[380px] items-center justify-center overflow-hidden py-10`}><ProductVisual slug={p.slug} /></div>
               </Reveal>
             );
           })}

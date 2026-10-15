@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import { League_Spartan } from "next/font/google";
 import "./globals.css";
 import { site } from "@/data/site";
 import { Providers } from "@/components/animation/SmoothScroll";
@@ -7,7 +7,11 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingDemo } from "@/components/layout/FloatingDemo";
 
-const hanken = Hanken_Grotesk({ variable: "--font-hanken", subsets: ["latin"], display: "swap" });
+const leagueSpartan = League_Spartan({
+  variable: "--font-league-spartan",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -30,15 +34,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f7fe",
+  themeColor: "#fbfbf8",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${hanken.variable} antialiased`}>
-      <body className="min-h-dvh bg-[#f6f7fe]">
+    <html lang="en" data-scroll-behavior="smooth" className={`${leagueSpartan.variable} antialiased`}>
+      <body className="min-h-dvh bg-[#fbfbf8]">
         <Providers>
           <Navbar />
           <main id="main" tabIndex={-1} className="outline-none">

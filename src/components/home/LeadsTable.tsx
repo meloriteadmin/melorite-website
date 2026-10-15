@@ -17,7 +17,7 @@ const nav: [typeof Search, string, boolean?][] = [[LayoutGrid, "Overview"], [Lis
 
 export function LeadsTable() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] pb-6 text-[#111735]">
+    <section data-nav="light" className="rails rails-light bg-[#fbfbf8] pb-6 text-[#111735]">
       <div className="rail-inner">
         <Reveal className="rounded-[4px] border border-black/[.07] bg-[#fbfbff] p-[clamp(20px,3.4vw,52px)]">
           <h3 className="h-card max-w-[30ch]">Never lose a lead again, with every deal and its stage in view</h3>

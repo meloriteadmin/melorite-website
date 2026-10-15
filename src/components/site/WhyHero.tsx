@@ -9,7 +9,7 @@ import { GridBg } from "@/components/site/PageHero";
 /** Hero for /why-melorite: light grid banner. */
 export function WhyHero() {
   return (
-    <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#f6f7fe] pt-[64px] text-[#111735]">
+    <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#fbfbf8] pt-[64px] text-[#111735]">
       <GridBg />
       <div className="rail-inner relative py-[clamp(72px,10vw,150px)]">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE }} className="grid items-end gap-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-16">

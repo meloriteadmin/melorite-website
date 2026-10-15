@@ -21,7 +21,7 @@ const signals = [
 
 export function LeadFlow() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] pb-6 pt-[clamp(88px,10vw,150px)] text-[#111735]">
+    <section data-nav="light" className="rails rails-light bg-[#fbfbf8] pb-6 pt-[clamp(88px,10vw,150px)] text-[#111735]">
       <div className="rail-inner">
         <Reveal><h2 className="h-section max-w-[17ch]">Software made for your kind of business</h2></Reveal>
         <Reveal delay={0.08}><p className="mt-5 max-w-[52ch] text-[17px] text-black/55">Pick the product made for your business. Each one is ready to use from day one, and simple enough for your whole team.</p></Reveal>

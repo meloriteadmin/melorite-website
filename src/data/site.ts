@@ -33,7 +33,10 @@ export const site = {
     location: null as string | null,
   },
   /** Official social accounts only. Add URLs when they exist. */
-  social: [] as { label: string; href: string }[],
+  social: [
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/melorite/" },
+    { label: "Instagram", href: "https://instagram.com/melorite_" },
+  ] as { label: string; href: string }[],
   demoHref: "/book-demo",
   salesHref: "/contact",
 } as const;

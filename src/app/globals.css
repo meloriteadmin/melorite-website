@@ -7,11 +7,11 @@
    Melorite design tokens
    ------------------------------------------------------------------ */
 @theme inline {
-  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-brand: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
@@ -51,7 +51,7 @@
   --color-pastel-peach: #ededed;
   --color-pastel-sky: #ededed;
   --color-mist-gray: #f2f2f3;
-  --color-fog-white: #f6f7fe;
+  --color-fog-white: #fbfbf8;
   --color-slate-gray: #777b86;
   --color-ash-gray: #979799;
   --color-smoke-gray: #a3a6af;
@@ -61,13 +61,13 @@
   --color-navy-900: #0c1129;
   --color-navy-800: #111735;
   --color-ink: #1f1f1f;
-  --color-paper: #f6f7fe;
+  --color-paper: #fbfbf8;
   --color-muted: #70706f;
   --color-line: #e4e2dd;
   --color-line-strong: #111735;
 
   /* shadcn/ui semantic tokens, mapped to the Melorite palette */
-  --color-background: #f6f7fe;
+  --color-background: #fbfbf8;
   --color-foreground: #111735;
   --color-card: #ffffff;
   --color-card-foreground: #111827;
@@ -115,18 +115,19 @@
 :root {
   /* Semantic surface system. Components use these through the Tailwind theme
      above, while these raw tokens are available to bespoke product visuals. */
-  --background: #f6f7fe;
+  --background: #fbfbf8;
   --foreground: #111735;
   --surface: #ffffff;
-  --surface-muted: #ededed;
-  --surface-fog: #f3f3f3;
-  --surface-accent: #e3e3e3;
+  --surface-muted: #f2f1eb;
+  --surface-fog: #f7f6f1;
+  --surface-accent: #ecebe4;
   --muted: #70706f;
   --muted-foreground: #70706f;
-  --border: #e4e2dd;
+  --border: #deddd5;
   --brand: #5f63f2;
   --brand-hover: #4b4fe0;
-  --gutter: 20px;
+  --gutter: 22px;
+  --media-cut: 18px;
   color-scheme: light;
 }
 @media (min-width: 768px) {
@@ -146,7 +147,21 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
+  font-weight: 400;
   overflow-x: clip;
+}
+
+/* Shared sharp-cut silhouette for hero artwork, banners and large visual placeholders. */
+.media-frame {
+  border-radius: 0;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--media-cut)) 0,
+    100% var(--media-cut),
+    100% 100%,
+    var(--media-cut) 100%,
+    0 calc(100% - var(--media-cut))
+  );
 }
 
 ::selection {
@@ -324,23 +339,23 @@ html.lenis, html.lenis body { height: auto; }
 /* ------------------------------------------------------------------
    Aira-style editorial system (homepage + shell)
    ------------------------------------------------------------------ */
-:root { --ink-dark: #111735; --paper-warm: #f6f7fe; --text-ink: #111735; }
+:root { --ink-dark: #111735; --paper-warm: #fbfbf8; --text-ink: #111735; }
 
-.serif { font-family: var(--font-editorial); font-weight: 400; letter-spacing: -0.035em; }
-.h-hero { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2.9rem, 1.6rem + 4.6vw, 5.4rem); line-height: .98; letter-spacing: -0.04em; }
-.h-section { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2.1rem, 1.5rem + 2.4vw, 3.5rem); line-height: 1.02; letter-spacing: -0.035em; }
-.h-card { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(1.6rem, 1.3rem + 1.1vw, 2.2rem); line-height: 1.08; letter-spacing: -0.03em; }
-.h-story { font-family: var(--font-editorial); font-weight: 400; font-size: clamp(2rem, 1.4rem + 2vw, 3.1rem); line-height: 1.04; letter-spacing: -0.035em; }
-.mono-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.serif { font-family: var(--font-editorial); font-weight: 500; letter-spacing: -0.035em; }
+.h-hero { font-family: var(--font-editorial); font-weight: 500; font-size: clamp(3.15rem, 1.65rem + 5.2vw, 6.6rem); line-height: .94; letter-spacing: -0.042em; }
+.h-section { font-family: var(--font-editorial); font-weight: 500; font-size: clamp(2.35rem, 1.55rem + 2.8vw, 4.35rem); line-height: 1; letter-spacing: -0.035em; }
+.h-card { font-family: var(--font-editorial); font-weight: 500; font-size: clamp(1.65rem, 1.3rem + 1.15vw, 2.35rem); line-height: 1.08; letter-spacing: -0.025em; }
+.h-story { font-family: var(--font-editorial); font-weight: 500; font-size: clamp(2.1rem, 1.45rem + 2.2vw, 3.5rem); line-height: 1.02; letter-spacing: -0.035em; }
+.mono-label { font-family: var(--font-mono); font-size: 11px; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; }
 
 @layer components {
 /* Pill buttons, as used across the shell */
-.pill { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: 44px; padding: 0 22px; border-radius: 999px; font-size: 14.5px; font-weight: 500; letter-spacing: -0.005em; white-space: nowrap; transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease; }
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; height: 44px; padding: 0 22px; border-radius: 999px; font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .25s ease; }
 .pill:active { transform: scale(.985); }
 .pill-light { background: #fff; color: #111735; }
-.pill-light:hover { background: #e6e8fb; }
+.pill-light:hover { background: #f0efe9; }
 .pill-dark { background: #111735; color: #fff; }
-.pill-dark:hover { background: #1f2757; }
+.pill-dark:hover { background: #5f63f2; }
 .pill-ghost-dark { color: #fff; border: 1px solid rgba(255,255,255,.2); }
 .pill-ghost-dark:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.4); }
 .pill-sm { height: 36px; padding: 0 16px; font-size: 13.25px; }
@@ -356,7 +371,7 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Navigation theme: follows the section underneath */
 .site-navbar[data-theme="dark"] { background: rgba(17,23,53,.92); color: #fff; border-color: rgba(255,255,255,.08); }
-.site-navbar[data-theme="light"] { background: rgba(246,247,254,.92); color: var(--text-ink); border-color: rgba(0,0,0,.06); }
+.site-navbar[data-theme="light"] { background: rgba(251,251,248,.9); color: var(--text-ink); border-color: rgba(17,23,53,.09); }
 .site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"],
 .site-navbar[data-theme="dark"] .nav-link { color: rgba(255,255,255,.82); }
 .site-navbar[data-theme="dark"] [data-slot="navigation-menu-trigger"]:hover,
@@ -392,3 +407,46 @@ html.lenis, html.lenis body { height: auto; }
 @keyframes drift { 0%, 100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(3%,-4%,0) scale(1.08); } }
 .drift { animation: drift 14s ease-in-out infinite; }
 .drift-b { animation: drift 18s ease-in-out -6s infinite reverse; }
+
+/* Animated Melorite voice mesh: deep navy stage with a blue → violet → magenta glow behind the orb. */
+.voice-mesh-stage {
+  background: radial-gradient(ellipse at 50% 50%, #140f3d 0%, #0b0b2a 55%, #070720 100%);
+  border: 1px solid rgb(165 168 255 / .14);
+}
+.voice-mesh-stage--transparent {
+  background: transparent;
+  border: 0;
+}
+.voice-mesh-stage--transparent .voice-mesh-glow {
+  display: none;
+}
+.voice-mesh-glow {
+  position: absolute;
+  inset: 8%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 22% 24%, rgb(56 182 255 / .55), transparent 46%),
+    radial-gradient(circle at 82% 82%, rgb(240 77 255 / .55), transparent 48%),
+    radial-gradient(circle at 50% 50%, rgb(95 99 242 / .38), transparent 62%);
+  filter: blur(34px);
+  animation: orb-glow 9s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes orb-glow { 0%, 100% { transform: scale(1) rotate(0deg); opacity: .9; } 50% { transform: scale(1.07) rotate(14deg); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .voice-mesh-glow { animation: none; } }
+
+/* Oversized closing wordmark in the footer. */
+.footer-wordmark {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 30vw;
+  line-height: .82;
+  padding-top: .06em;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+  padding-bottom: .02em;
+  color: #000;
+  transition: letter-spacing .6s cubic-bezier(.2,.7,.2,1);
+}
+.footer-wordmark:hover { letter-spacing: -.04em; }
+@media (min-width: 1700px) { .footer-wordmark { font-size: 30vw; } }

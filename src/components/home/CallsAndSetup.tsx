@@ -1,30 +1,19 @@
 import Link from "next/link";
 import { ArrowDown, Check } from "lucide-react";
 import { Reveal } from "@/components/animation/Reveal";
-import { callFlows, customSteps, startSteps } from "@/data/products";
+import { customSteps, startSteps } from "@/data/products";
 import { site } from "@/data/site";
+import { VoiceOrb } from "@/components/site/VoiceOrb";
 
 export function CallsAndSetup() {
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f6f7fe] pb-6 text-[#111735]">
+    <section data-nav="light" className="rails rails-light bg-[#fbfbf8] pb-6 text-[#111735]">
       <div className="rail-inner">
         <Reveal className="grid overflow-hidden rounded-[4px] border border-black/[.07] bg-[#fbfbff] lg:grid-cols-2">
           <div className="p-[clamp(20px,3.4vw,48px)] lg:border-r lg:border-black/[.07]">
             <p className="mono-label flex items-center gap-2 text-black/45"><span className="size-1.5 rounded-full bg-[#5f63f2]" />Melorite AI Calling<span className="text-black/20">|</span>Phone</p>
             <h3 className="h-card mt-5 max-w-[20ch]">An extra team member on the phone, all day.</h3>
-            <div className="mt-8 grid gap-px overflow-hidden rounded-xl bg-white/10 sm:grid-cols-2" style={{ background: "#0a0d1f" }}>
-              {(["inbound", "outbound"] as const).map((k) => (
-                <div key={k} className="p-5 text-white">
-                  <p className="mono-label !text-[10px] text-[#a5a8ff]">{callFlows[k].title}</p>
-                  <p className="mt-1 text-[11px] text-white/45">{callFlows[k].subtitle}</p>
-                  <ul className="mt-4 space-y-2.5 text-[12.5px] leading-snug text-white/75">
-                    {callFlows[k].steps.slice(0, 4).map((s, i) => (
-                      <li key={s} className="flex gap-2.5"><span className="mt-0.5 grid size-4 shrink-0 place-items-center rounded-full bg-[#5f63f2]/25 text-[9px] text-[#c9cbff]">{i + 1}</span>{s}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <div className="mt-8"><VoiceOrb transparent /></div>
             <Link href="/products/ai-calling" className="pill pill-dark mt-8 h-12">See AI Calling</Link>
           </div>
           <div className="p-[clamp(20px,3.4vw,48px)]">

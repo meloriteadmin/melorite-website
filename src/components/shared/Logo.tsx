@@ -10,6 +10,7 @@ export function Logo({ white, className, priority }: { white?: boolean; classNam
       width={240}
       height={51}
       priority={priority}
+      loading={priority ? "eager" : "lazy"}
       className={cn("h-[24px] w-auto", className)}
     />
   );

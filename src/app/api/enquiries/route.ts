@@ -5,7 +5,7 @@
 import { createHmac, randomUUID } from "node:crypto";
 import nodemailer from "nodemailer";
 import { enquirySchema } from "@/lib/enquiry-schema";
-import { products, enquiryTypes } from "@/data/products";
+import { productInterests, enquiryTypes } from "@/data/products";
 
 export const runtime = "nodejs";
 
@@ -55,9 +55,11 @@ function emailFields(record: Record<string, unknown>) {
     ["Email", record.workEmail],
     ["Phone", record.phone || "Not provided"],
     ["Company", record.companyName || "Not provided"],
+    ["Business type", record.businessType || "Not provided"],
+    ["Team size", record.teamSize || "Not provided"],
   ];
   if (Array.isArray(record.products) && record.products.length) {
-    fields.push(["Products", record.products.map((id) => labelFor(products, id)).join(", ")]);
+    fields.push(["Products", record.products.map((id) => labelFor(productInterests, id)).join(", ")]);
   }
   if (record.preferredDate) fields.push(["Preferred date", record.preferredDate]);
   if (record.preferredTime) fields.push(["Preferred time", record.preferredTime]);

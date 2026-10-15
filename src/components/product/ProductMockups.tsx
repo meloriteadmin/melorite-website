@@ -92,8 +92,8 @@ export function ProductHeroMock({ slug, className = "" }: { slug: string; classN
 
 export function ProductWorkspace({ slug, compact = false }: { slug: string; compact?: boolean }) {
   return (
-    <div className="overflow-hidden rounded-[12px] border border-[#262b54] bg-[#171b3f]">
-      <div className="flex h-11 items-center gap-3 border-b border-white/10 px-4 text-white/70"><i className="size-2.5 rounded-full bg-[#ff9f7a]" /><div className="flex h-7 max-w-sm flex-1 items-center gap-2 rounded-full border border-white/10 bg-white/[.06] px-3 text-[10px]"><Search className="size-3" />Search this workspace</div><span className="ml-auto text-[10px]">Melorite</span></div>
+    <div className="overflow-hidden rounded-[12px] border border-[#e3e5f6] bg-white">
+      <div className="flex h-11 items-center gap-3 border-b border-[#111735]/8 px-4 text-[#111735]/60"><i className="size-2.5 rounded-full bg-[#ff9f7a]" /><div className="flex h-7 max-w-sm flex-1 items-center gap-2 rounded-full border border-[#111735]/8 bg-[#f4f5ff] px-3 text-[10px]"><Search className="size-3" />Search this workspace</div><span className="ml-auto text-[10px]">Melorite</span></div>
       <div className={`grid bg-[#eef0f8] ${compact ? "md:grid-cols-[160px_1fr]" : "md:grid-cols-[190px_1fr_210px]"}`}>
         <aside className="hidden border-r border-[#d9dcf0] bg-[#f7f7fc] p-4 md:block"><p className="font-serif text-lg">Workspace</p><nav className="mt-6 space-y-1 text-[11px] text-[#626783]">{["Overview", "Today", "Records", "Follow-ups", "Reports"].map((x, i) => <p key={x} className={`rounded-lg px-3 py-2 ${i === 1 ? "bg-[#e9eafd] font-semibold text-[#3d3fd1]" : ""}`}>{x}</p>)}</nav></aside>
         <main className="min-w-0 p-3 sm:p-5"><div className="overflow-hidden rounded-xl border border-[#d9dcf0] bg-white"><ProductView slug={slug} /></div></main>

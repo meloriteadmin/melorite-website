@@ -32,7 +32,7 @@ export function PageHero({ label, title, lead, body, visual, tint = "#dcddfd", v
 
   if (variant === "photo") {
     return (
-      <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#fbfbf8] pt-[64px] text-[#111735]">
+      <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#ffffff] pt-[64px] text-[#111735]">
         <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 size-[520px] rounded-full opacity-80 blur-[90px]" style={{ background: tint }} />
         <div aria-hidden className="pointer-events-none absolute -left-32 top-40 size-[420px] rounded-full bg-[#e6e8ff] opacity-80 blur-[100px]" />
         <div className="rail-inner relative">
@@ -64,7 +64,7 @@ export function PageHero({ label, title, lead, body, visual, tint = "#dcddfd", v
 
   if (variant === "fan") {
     return (
-      <section data-nav="light" className="relative overflow-hidden bg-[#fbfbf8] pt-[64px] text-[#111735]" style={{ backgroundImage: "radial-gradient(800px 420px at 50% 0%, rgba(165,168,255,.35), transparent 70%)" }}>
+      <section data-nav="light" className="relative overflow-hidden bg-[#ffffff] pt-[64px] text-[#111735]" style={{ backgroundImage: "radial-gradient(800px 420px at 50% 0%, rgba(165,168,255,.35), transparent 70%)" }}>
         <div className="mx-auto flex max-w-[900px] flex-col items-center px-5 pt-[clamp(48px,7vw,104px)] text-center md:px-8">
           <motion.p {...reveal(0.05)} className="mono-label flex items-center gap-3 text-black/45"><span className="size-2 rounded-full bg-[#5f63f2]" />{label}</motion.p>
           <motion.h1 {...reveal(0.15)} className="h-hero mt-6 max-w-[15ch]">{title}</motion.h1>
@@ -76,14 +76,14 @@ export function PageHero({ label, title, lead, body, visual, tint = "#dcddfd", v
             </motion.div>
           )}
         </div>
-        {extra && <motion.div {...reveal(0.5)} className="relative mt-[clamp(32px,5vw,64px)]">{extra}<div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#fbfbf8]" /></motion.div>}
+        {extra && <motion.div {...reveal(0.5)} className="relative mt-[clamp(32px,5vw,64px)]">{extra}<div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-[#ffffff]" /></motion.div>}
       </section>
     );
   }
 
   if (variant === "news") {
     return (
-      <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#fbfbf8] pt-[64px] text-[#111735]">
+      <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#ffffff] pt-[64px] text-[#111735]">
         <div className="rail-inner relative">
           <div className={`mx-auto max-w-[900px] py-[clamp(56px,8vw,120px)] text-center ${extra ? "" : "-mx-[clamp(32px,7vw,108px)] max-w-none border-b border-black/10"}`}>
             <motion.h1 {...reveal(0.1)} className="h-hero">{title}</motion.h1>
@@ -97,7 +97,7 @@ export function PageHero({ label, title, lead, body, visual, tint = "#dcddfd", v
 
   if (variant === "editorial") {
     return (
-      <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#fbfbf8] pt-[64px] text-[#111735]" style={{ backgroundImage: "radial-gradient(900px 300px at 50% 100%, rgba(95,99,242,.20), transparent 70%)" }}>
+      <section data-nav="light" className="rails rails-light relative overflow-hidden bg-[#ffffff] pt-[64px] text-[#111735]" style={{ backgroundImage: "radial-gradient(900px 300px at 50% 100%, rgba(95,99,242,.20), transparent 70%)" }}>
         <div className="rail-inner relative">
           <div className="grid items-end gap-10 border-b border-black/10 py-[clamp(72px,10vw,150px)] lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-16">
             <div>
@@ -128,7 +128,7 @@ export function PageHero({ label, title, lead, body, visual, tint = "#dcddfd", v
   }[variant];
 
   return (
-    <section data-nav="light" className="relative overflow-hidden bg-[#fbfbf8] pt-[64px] text-[#111735]" style={{ backgroundImage: bg }}>
+    <section data-nav="light" className="relative overflow-hidden bg-[#ffffff] pt-[64px] text-[#111735]" style={{ backgroundImage: bg }}>
       {variant === "grid" && <div aria-hidden className="bg-grid pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_70%_80%_at_80%_60%,black,transparent_75%)]" />}
       {centered && <div aria-hidden className="bg-dots pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_60%_70%_at_50%_30%,black,transparent_80%)]" />}
 

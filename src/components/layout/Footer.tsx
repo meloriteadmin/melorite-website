@@ -4,10 +4,10 @@ import { products } from "@/data/products";
 import { Logo } from "@/components/shared/Logo";
 
 const columns = [
-  { title: "Products", links: [...products.map((p) => [p.name, `/products/${p.slug}`]), ["All products", "/products"]] },
-  { title: "Company", links: [["About us", "/company"], ["Why Melorite", "/why-melorite"], ["Custom solutions", "/custom-solutions"], ["Contact", "/contact"]] },
+  { title: "Products", links: products.map((p) => [p.short, `/products/${p.slug}`]) },
+  { title: "Explore", links: [["Platform", "/platform"], ["Custom Solutions", "/custom-solutions"], ["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] },
+  { title: "Company", links: [["About", "/company"], ["Contact", "/contact"]] },
   { title: "Get started", links: [["Book a demo", site.demoHref], ["Contact sales", site.salesHref]] },
-  { title: "Connect", links: [...(site.contact.email ? [[site.contact.email, `mailto:${site.contact.email}`]] : []), ...(site.contact.phone ? [[site.contact.phone, `tel:${site.contact.phone.replace(/\s/g, "")}`]] : []), ...site.social.map((s) => [s.label, s.href])] },
 ] as { title: string; links: string[][] }[];
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
   const cols = [...columns, ...(legal.length ? [{ title: "Legal", links: legal.map((l) => [l.label, l.href]) }] : [])];
 
   return (
-    <footer data-nav="light" className="bg-[#fbfbf8] text-[#111735]">
+    <footer data-nav="light" className="bg-[#f4f5ff] text-[#111735]">
       <div className="border-t border-[#111735]/10 px-5 pb-6 pt-[clamp(56px,7vw,100px)] md:px-[clamp(32px,7vw,108px)]">
         <div className="grid gap-12 lg:grid-cols-[1.1fr_2.4fr]">
           <div><Logo className="h-[26px]" /><p className="mt-5 max-w-[30ch] text-[13.5px] leading-relaxed text-black/50">{site.tagline}</p></div>

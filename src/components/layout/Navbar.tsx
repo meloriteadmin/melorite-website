@@ -16,7 +16,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { ProductsMenu } from "./MegaMenu";
+import { ProductsMenu, SimpleMenu } from "./MegaMenu";
 import { MobileMenu } from "./MobileMenu";
 
 /**
@@ -73,7 +73,9 @@ export function Navbar() {
                       <NavigationMenuTrigger data-active={active || undefined} className="text-[14.5px] font-normal tracking-normal">
                         {item.label}
                       </NavigationMenuTrigger>
-                      <NavigationMenuContent><ProductsMenu /></NavigationMenuContent>
+                      <NavigationMenuContent>
+                        {item.menu === "products" ? <ProductsMenu /> : <SimpleMenu type={item.menu} />}
+                      </NavigationMenuContent>
                     </NavigationMenuItem>
                   );
                 }
@@ -91,9 +93,6 @@ export function Navbar() {
           </NavigationMenu>
 
           <div className="flex items-center gap-2 lg:ml-3">
-            <Link href={site.salesHref} className={cn("pill pill-sm hidden md:inline-flex", dark ? "bg-white/10 text-white hover:bg-white/20" : "bg-black/[.06] text-[#111735] hover:bg-black/10")}>
-              Contact sales
-            </Link>
             <Link href={site.demoHref} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>
               Book a demo
             </Link>

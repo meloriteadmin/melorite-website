@@ -4,6 +4,8 @@ import { PageTransition } from "@/components/animation/PageTransition";
 import { ProductPageView } from "@/components/product/ProductPage";
 import { productPages } from "@/data/product-pages";
 import { productBySlug, products } from "@/data/products";
+import { productDetails } from "@/data/product-details";
+import { site } from "@/data/site";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -27,5 +29,14 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
   const product = productBySlug(slug);
   const content = productPages[slug];
   if (!product || !content) notFound();
-  return <PageTransition><ProductPageView content={content} /></PageTransition>;
+  const detail = productDetails[slug];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "SoftwareApplication", name: product.name, applicationCategory: "BusinessApplication", operatingSystem: "Web", url: `${site.url}/products/${slug}`, description: content.subhead },
+      { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Products", item: `${site.url}/products` }, { "@type": "ListItem", position: 2, name: product.name, item: `${site.url}/products/${slug}` }] },
+      { "@type": "FAQPage", mainEntity: detail.faqs.map(({ question, answer }) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) },
+    ],
+  };
+  return <PageTransition><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} /><ProductPageView content={content} /></PageTransition>;
 }

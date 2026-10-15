@@ -38,7 +38,7 @@ export function EditorialLandingHero({
   showImageAction = true,
 }: EditorialLandingHeroProps) {
   return (
-    <section data-nav="light" className="rails rails-light overflow-hidden bg-[#f9f8f6] pt-[64px] text-[#111] ">
+    <section data-nav="light" className="rails rails-light overflow-hidden bg-[#ffffff] pt-[64px] text-[#111] ">
       <div className="rail-inner">
         <div className="grid gap-10 py-[clamp(64px,9vw,136px)] lg:grid-cols-[minmax(0,1.25fr)_minmax(0,.75fr)] lg:items-center lg:gap-[clamp(48px,6vw,110px)]">
           <motion.h1 {...reveal(0.05)} className="font-sans text-[clamp(2.6rem,1.5rem+2.9vw,4.6rem)] font-medium leading-[.98] tracking-[-.055em]">

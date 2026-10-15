@@ -29,3 +29,34 @@ export function ProductsMenu() {
     </div>
   );
 }
+
+const secondaryMenus = {
+  resources: [
+    ["Blog", "/resources/blog", "Practical ideas for running a clearer business."],
+    ["Guides", "/resources/guides", "Useful, step-by-step resources for growing teams."],
+    ["Case Studies", "/resources/case-studies", "Real customer stories, published only when verified."],
+  ],
+  company: [
+    ["About Melorite", "/company", "What we build, why we exist and how we work."],
+    ["Contact", "/contact", "Talk to our team about a product or your workflow."],
+  ],
+} as const;
+
+export function SimpleMenu({ type }: { type: keyof typeof secondaryMenus }) {
+  return (
+    <div className="w-[min(390px,90vw)] p-3 text-[#111735]">
+      <ul className="space-y-1">
+        {secondaryMenus[type].map(([label, href, description]) => (
+          <li key={href}>
+            <NavigationMenuLink asChild>
+              <Link href={href} className="block rounded-md p-3 hover:bg-black/[.04]">
+                <span className="block text-[14px] font-medium">{label}</span>
+                <span className="mt-1 block text-[12px] leading-snug text-black/50">{description}</span>
+              </Link>
+            </NavigationMenuLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}

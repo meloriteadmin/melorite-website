@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, type HTMLMotionProps } from "motion/react";
-import type { CSSProperties, HTMLAttributes } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from "react";
 import { EASE, DURATION } from "@/lib/utils";
 
 type RevealProps = HTMLAttributes<HTMLDivElement> & {
@@ -10,13 +10,24 @@ type RevealProps = HTMLAttributes<HTMLDivElement> & {
   duration?: number;
 };
 
-/** A progressive fade-up that never gates content on IntersectionObserver support. */
-export function Reveal({ delay = 0, y = 24, duration = DURATION.reveal, children, ...rest }: RevealProps) {
+/** Scroll-triggered fade-up: content eases in once, as it enters the viewport. A failsafe timer reveals it regardless. */
+export function Reveal({ delay = 0, y = 28, duration = 0.9, children, ...rest }: RevealProps) {
   const { className = "", style, ...divProps } = rest;
+  const ref = useRef<HTMLDivElement>(null);
+  const [shown, setShown] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setShown(true); io.disconnect(); } }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
+    io.observe(el);
+    const failsafe = window.setTimeout(() => setShown(true), 4000);
+    return () => { io.disconnect(); window.clearTimeout(failsafe); };
+  }, []);
   return (
     <div
-      className={`reveal-safe ${className}`}
-      style={{ ...style, "--reveal-y": `${y}px`, animationDelay: `${delay}s`, animationDuration: `${duration}s` } as CSSProperties}
+      ref={ref}
+      className={`reveal ${shown ? "reveal-in" : ""} ${className}`}
+      style={{ ...style, "--reveal-y": `${y}px`, "--reveal-d": `${delay}s`, "--reveal-t": `${duration}s` } as CSSProperties}
       {...divProps}
     >
       {children}

@@ -12,18 +12,18 @@ export const icons: Record<Product["icon"], LucideIcon> = { Users, Building2, St
 /** Dark skyline hero: eyebrow, serif headline and a data card on the right. */
 export function CityHero({ eyebrow, icon: Icon, title, lead, slug, cta = "Book a demo" }: { eyebrow: string; icon?: LucideIcon; title: React.ReactNode; lead: string; slug: string; cta?: string }) {
   return (
-    <section data-nav="dark" className="rails relative isolate overflow-hidden bg-[#15171b] pt-[60px] text-white">
+    <section data-nav="light" className="rails relative isolate overflow-hidden bg-[#15171b] pt-[60px] text-[#111735]">
       <CitySky className="absolute inset-0 -z-10 size-full" />
       <div className="hero-fade absolute inset-0 -z-10" />
       <div className="rail-inner grid min-h-[min(900px,calc(100svh-60px))] items-end gap-12 pb-[clamp(48px,7vw,96px)] pt-[clamp(72px,12vw,180px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:items-center lg:gap-[clamp(32px,6vw,110px)]">
         <div className="max-w-[580px]">
-          <p className="mono-label flex items-center gap-2.5 text-white/65">
+          <p className="mono-label flex items-center gap-2.5 text-[#111735]/65">
             {Icon ? <Icon className="size-[18px]" strokeWidth={1.6} /> : <LogoMark tone="light" className="w-[22px]" />}
             {eyebrow}
           </p>
           <h1 className="h-hero mt-7">{title}</h1>
-          <p className="mt-7 max-w-[46ch] text-[clamp(1rem,.9rem+.4vw,1.2rem)] leading-[1.55] text-white/65">{lead}</p>
-          <Link href={site.demoHref} className="pill pill-light mt-9 h-[46px] px-6 text-[15px]">{cta}<ArrowRight className="size-3.5" /></Link>
+          <p className="mt-7 max-w-[46ch] text-[clamp(1rem,.9rem+.4vw,1.2rem)] leading-[1.55] text-[#111735]/65">{lead}</p>
+          <Link href={site.demoHref} className="pill pill-dark mt-9 h-[46px] px-6 text-[15px]">{cta}<ArrowRight className="size-3.5" /></Link>
         </div>
         <RecordCard slug={slug} className="w-full" />
       </div>
@@ -34,12 +34,12 @@ export function CityHero({ eyebrow, icon: Icon, title, lead, slug, cta = "Book a
 /** Centered statement over an alpenglow peak. */
 export function MountainHero({ lead, soft, sub }: { lead: string; soft: string; sub: string }) {
   return (
-    <section data-nav="dark" className="relative isolate overflow-hidden bg-[#22394b] pt-[60px] text-white">
+    <section data-nav="light" className="relative isolate overflow-hidden bg-[#22394b] pt-[60px] text-[#111735]">
       <div className="relative mx-3 mt-3 min-h-[min(760px,calc(100svh-90px))] overflow-hidden rounded-[2px] md:mx-[18px]">
         <MountainSky className="absolute inset-0 size-full" />
         <div className="relative flex min-h-[inherit] flex-col items-center justify-center px-6 pb-[16vh] pt-24 text-center">
-          <h1 className="h-hero max-w-[18ch] sm:max-w-[22ch]">{lead}<br /><span className="text-white/65">{soft}</span></h1>
-          <p className="mt-8 max-w-[56ch] text-[clamp(.95rem,.9rem+.25vw,1.1rem)] text-white/70">{sub}</p>
+          <h1 className="h-hero max-w-[18ch] sm:max-w-[22ch]">{lead}<br /><span className="text-[#111735]/65">{soft}</span></h1>
+          <p className="mt-8 max-w-[56ch] text-[clamp(.95rem,.9rem+.25vw,1.1rem)] text-[#111735]/70">{sub}</p>
         </div>
       </div>
     </section>
@@ -122,9 +122,9 @@ export function SolutionCard({ dot, title, sub, children }: { dot: string; title
 /** Numbered 2-col list of capabilities. */
 export function Capabilities({ items }: { items: string[] }) {
   return (
-    <ul className="grid border-l border-t border-line bg-white sm:grid-cols-2">
+    <ul className="grid card-grid sm:grid-cols-2">
       {items.map((t, i) => (
-        <li key={t} className="flex gap-5 border-b border-r border-line px-6 py-7">
+        <li key={t} className="flex gap-5 card px-6 py-7">
           <span className="mono-label pt-1 !text-[10.5px] text-muted/70">0{i + 1}</span>
           <span className="text-[17px] leading-snug text-ink">{t}</span>
         </li>
@@ -160,17 +160,17 @@ export function ProductGrid() {
 /** Closing call to action. */
 export function CTA({ title = "See it for yourself.", body = "Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." }: { title?: string; body?: string }) {
   return (
-    <section data-nav="dark" className="rails relative isolate overflow-hidden bg-[#15171b] text-white">
+    <section data-nav="light" className="rails relative isolate overflow-hidden bg-[#15171b] text-[#111735]">
       <CitySky className="absolute inset-0 -z-10 size-full opacity-70" />
       <div className="hero-fade absolute inset-0 -z-10" />
       <div className="rail-inner flex flex-col items-start gap-10 py-[clamp(72px,9vw,140px)] lg:flex-row lg:items-end lg:justify-between">
         <div className="mx-auto w-full max-w-[1200px] lg:flex lg:items-end lg:justify-between lg:gap-16">
           <div>
             <h2 className="h-hero max-w-[12ch]">{title}</h2>
-            <p className="mt-6 max-w-[48ch] text-[17px] leading-relaxed text-white/65">{body}</p>
+            <p className="mt-6 max-w-[48ch] text-[17px] leading-relaxed text-[#111735]/65">{body}</p>
           </div>
           <div className="mt-9 flex flex-wrap gap-3 lg:mt-0">
-            <Link href={site.demoHref} className="pill pill-light h-[48px] px-7">Book a demo<ArrowRight className="size-3.5" /></Link>
+            <Link href={site.demoHref} className="pill pill-dark h-[48px] px-7">Book a demo<ArrowRight className="size-3.5" /></Link>
             <Link href={site.salesHref} className="pill pill-ghost-dark h-[48px] px-7">Talk to sales</Link>
           </div>
         </div>

@@ -1,28 +1,24 @@
 import Link from "next/link";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
+import { audienceIcon, featureIcon } from "@/components/site/icons";
 import { Reveal } from "@/components/animation/Reveal";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { VoiceOrb } from "@/components/site/VoiceOrb";
+import { panelFor } from "@/components/site/ProductVisuals";
 import { ProductHeroMock, ProductWorkspace } from "./ProductMockups";
 import { site } from "@/data/site";
 import type { ProductPageContent } from "@/data/product-pages";
-
-const how = [
-  ["01", "Book a demo", "Show us how your team works today."],
-  ["02", "We set it up", "We prepare the product around your workflow."],
-  ["03", "You go live", "Your team starts with a clear, ready workspace."],
-];
+import { productDetails } from "@/data/product-details";
 
 export function ProductPageView({ content }: { content: ProductPageContent }) {
+  const detail = productDetails[content.slug];
   return (
     <>
-      <section data-nav="light" className="bg-[#fbfbf8] px-3 pb-3 pt-[76px] text-[#111735] sm:px-5 sm:pb-5">
-        <div className="media-frame relative isolate mx-auto grid min-h-[calc(100svh-96px)] max-w-[1600px] items-center gap-14 overflow-hidden border border-[#111735]/8 bg-[linear-gradient(135deg,#fff_0%,#fbfaf7_48%,#f2f1ff_100%)] px-6 py-[clamp(76px,9vw,132px)] md:px-[clamp(44px,8vw,128px)] lg:grid-cols-[.82fr_1.18fr]">
-          <div aria-hidden className="absolute -right-[18%] top-[-42%] -z-10 size-[64rem] rounded-full bg-[radial-gradient(circle,rgba(137,127,242,.16)_0%,rgba(169,156,247,.07)_38%,transparent_70%)]" />
-          <div aria-hidden className="absolute -bottom-[42%] left-[18%] -z-10 size-[46rem] rounded-full bg-[radial-gradient(circle,rgba(255,198,184,.13)_0%,transparent_68%)]" />
+      <section data-nav="light" className="bg-[#ffffff] px-3 pb-3 pt-[76px] text-[#111735] sm:px-5 sm:pb-5">
+        <div className={`${panelFor[content.slug] ?? "mesh-crm grain"} media-frame relative isolate mx-auto grid min-h-[calc(100svh-96px)] max-w-[1600px] items-center gap-14 px-6 py-[clamp(64px,8vw,112px)] md:px-[clamp(44px,8vw,128px)] xl:grid-cols-[.95fr_1.05fr]`}>
           <Reveal>
-            <p className="mono-label flex items-center gap-3 text-[#111735]/58"><i className="size-2 rounded-full bg-[#5f63f2]" />{content.eyebrow}</p>
-            <h1 className="h-hero mt-7 max-w-[11ch] text-[#111735]">{content.headline[0]} <span className="text-[#111735]/48">{content.headline[1]}</span></h1>
+            <p className="eyebrow-pill">{content.eyebrow}</p>
+            <h1 className="h-hero mt-7 max-w-[14ch] text-[#111735] xl:!text-[clamp(3.5rem,4.6vw,4.75rem)]">{content.headline[0]} <span className="text-[#4b4fe0]">{content.headline[1]}</span></h1>
             <p className="mt-7 max-w-[46ch] text-[18px] leading-[1.55] text-[#111735]/66">{content.subhead}</p>
             <div className="mt-9 flex flex-wrap gap-3">
               <Link href={site.demoHref} className="pill pill-dark h-12 px-7">Book a demo <ArrowRight className="size-4" /></Link>
@@ -46,63 +42,101 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
         </div>
       </section>
 
-      <section data-nav="light" className="rails rails-light bg-[#f2f1eb] py-[clamp(88px,10vw,148px)] text-[#111735]">
-        <div className="rail-inner mx-auto grid max-w-[1440px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-24">
-          <Reveal><p className="mono-label text-[#5f63f2]">The problem</p><h2 className="h-section mt-5 max-w-[12ch]">{content.problemTitle}</h2></Reveal>
-          <Reveal delay={0.08} className="space-y-6 border-t border-[#111735]/14 pt-7 text-[clamp(1.15rem,1rem+.45vw,1.45rem)] leading-[1.55] text-[#111735]/64">
+      <section data-nav="light" className="bg-white py-[clamp(56px,6vw,96px)] text-[#111735]">
+        <div className="rail-inner grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14">
+          <Reveal><p className="eyebrow-pill">The problem</p><h2 className="h-section mt-5">{content.problemTitle}</h2></Reveal>
+          <Reveal delay={0.08} className="card space-y-4 p-7 text-[17px] leading-[1.6] text-[#111735]/66 sm:p-9">
             {content.problemCopy.map((copy) => <p key={copy}>{copy}</p>)}
           </Reveal>
         </div>
       </section>
 
-      <section id="features" data-nav="light" className="rails rails-light scroll-mt-20 bg-[#fbfbf8] py-[clamp(88px,10vw,148px)] text-[#111735]">
-        <div className="rail-inner mx-auto max-w-[1440px]">
-          <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end">
-            <div><p className="mono-label text-[#5f63f2]">The solution</p><h2 className="h-section mt-5 max-w-[13ch]">Every {content.workspace}, always up to date.</h2></div>
-            <p className="max-w-[44ch] text-[18px] leading-[1.55] text-[#111735]/58 lg:justify-self-end">{content.showcaseOne.body}</p>
+      <section data-nav="light" className="bg-[#f4f5ff] py-[clamp(56px,6vw,96px)] text-[#111735]">
+        <div className="rail-inner">
+          <Reveal className="text-center"><p className="eyebrow-pill">Core workflow</p><h2 className="h-section mx-auto mt-5">{detail.workflowTitle}</h2></Reveal>
+          <Reveal className="card mt-10 p-6 sm:p-10">
+            <ol className="grid gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 xl:flex xl:justify-between">
+              {detail.workflow.map((step, i) => <li key={step} className="relative flex items-center gap-4 xl:flex-1 xl:flex-col xl:gap-4 xl:text-center"><span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#7a7eff] to-[#4b4fe0] text-[14px] font-semibold text-white shadow-[0_14px_30px_-12px_rgba(95,99,242,.9)] ring-8 ring-[#eeeffe]">{String(i + 1).padStart(2, "0")}</span>{i < detail.workflow.length - 1 && <span aria-hidden className="absolute left-[calc(50%+34px)] right-[calc(-50%+34px)] top-6 hidden h-px bg-gradient-to-r from-[#5f63f2]/50 to-[#5f63f2]/10 xl:block" />}<h3 className="text-[16px] font-semibold leading-tight tracking-[-.02em]">{step}</h3></li>)}
+            </ol>
           </Reveal>
-          <div className="mt-14 grid border-l border-t border-[#111735]/12 md:grid-cols-2 xl:grid-cols-4">
-            {content.features.map((feature, i) => (
-              <Reveal key={feature.title} delay={(i % 4) * .04} className="min-h-56 border-b border-r border-[#111735]/12 p-7">
-                <span className="grid size-9 place-items-center rounded-full bg-[#eeeffe] text-[#5f63f2]"><Sparkles className="size-4" /></span>
-                <p className="mono-label mt-8 text-[#111735]/42">{feature.source}</p>
-                <h3 className="mt-3 text-[23px] font-bold leading-none tracking-[-.035em]">{feature.title}</h3>
-                <p className="mt-4 text-[15px] leading-[1.5] text-[#111735]/55">{feature.body}</p>
-              </Reveal>
-            ))}
+        </div>
+      </section>
+
+      {detail.perspectives && (
+        <section data-nav="light" className="panel-mesh py-[clamp(56px,6vw,96px)] text-[#111735]">
+          <div className="rail-inner">
+            <Reveal><p className="eyebrow-pill">Two sides, one workflow</p><h2 className="h-section mt-5">The right view for every conversation.</h2></Reveal>
+            <div className="mt-10 grid gap-5 lg:grid-cols-2">
+              {detail.perspectives.map((panel, i) => (
+                <Reveal key={panel.label} delay={i * .06} className="card p-7 sm:p-9">
+                  <p className="mono-label text-[#4b4fe0]">{panel.label}</p>
+                  <h3 className="mt-4 max-w-[20ch] text-[26px] font-semibold leading-[1.1] tracking-[-.035em]">{panel.title}</h3>
+                  <div className="mt-7 grid gap-2.5 sm:grid-cols-2">{panel.items.map((item) => <p key={item} className="flex items-center gap-2.5 rounded-xl bg-[#f4f5ff] px-4 py-3 text-[14px] font-medium"><Check className="size-4 shrink-0 text-[#4b4fe0]" />{item}</p>)}</div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section id="features" data-nav="light" className="scroll-mt-20 bg-white py-[clamp(56px,6vw,96px)] text-[#111735]">
+        <div className="rail-inner">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6">
+            <div><p className="eyebrow-pill">The solution</p><h2 className="h-section mt-5">Every {content.workspace}, always up to date.</h2></div>
+            <p className="max-w-[44ch] text-[17px] leading-[1.55] text-[#111735]/58">{content.showcaseOne.body}</p>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {content.features.map((feature, i) => {
+              const Icon = featureIcon(feature.title, i);
+              const tones = ["mesh-crm", "mesh-estate", "mesh-clinic", "mesh-agency", "mesh-commerce", "mesh-calling"];
+              return (
+                <Reveal key={feature.title} delay={(i % 4) * .05} className="card group flex flex-col p-6">
+                  <span className={`${tones[i % tones.length]} grain relative grid size-12 place-items-center overflow-hidden rounded-2xl text-[#2f33b8] shadow-[inset_0_0_0_1px_rgba(255,255,255,.6)]`}><Icon className="relative z-10 size-5" strokeWidth={1.9} /></span>
+                  <h3 className="mt-6 text-[20px] font-semibold leading-tight tracking-[-.03em]">{feature.title}</h3>
+                  <p className="mt-2 text-[15px] leading-[1.5] text-[#111735]/58">{feature.body}</p>
+                  <span className="mt-5 self-start rounded-full bg-[#f4f5ff] px-3 py-1 text-[11.5px] font-medium text-[#4b4fe0]">{feature.source}</span>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      <section data-nav="light" className="rails rails-light bg-[#eeeffe] py-[clamp(88px,10vw,148px)] text-[#111735]">
-        <div className="rail-inner mx-auto max-w-[1440px]">
-          <Reveal><p className="mono-label text-[#5f63f2]">A calmer workspace</p><h2 className="h-section mt-5 max-w-[13ch]">{content.showcaseOne.title}</h2></Reveal>
-          <Reveal className="mt-12 rounded-[22px] border border-[#111735]/10 bg-white/60 p-3 sm:p-7"><ProductWorkspace slug={content.slug} /></Reveal>
+      <section data-nav="light" className="bg-[#f4f5ff] py-[clamp(56px,6vw,96px)] text-[#111735]">
+        <div className="rail-inner">
+          <Reveal className="text-center"><p className="eyebrow-pill">A calmer workspace</p><h2 className="h-section mx-auto mt-5">{content.showcaseOne.title}</h2></Reveal>
+          <Reveal className={`${panelFor[content.slug] ?? "mesh-crm grain"} relative mt-10 overflow-hidden rounded-[28px] p-3 sm:p-8`}><div className="relative z-10 rounded-[20px] bg-white/70 p-3 backdrop-blur sm:p-6"><ProductWorkspace slug={content.slug} /></div></Reveal>
         </div>
       </section>
 
-      <section data-nav="light" className="rails rails-light bg-[#fbfbf8] py-[clamp(88px,10vw,148px)] text-[#111735]">
-        <div className="rail-inner mx-auto grid max-w-[1440px] items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
-          <Reveal><ProductWorkspace slug={content.slug} compact /></Reveal>
-          <Reveal delay={0.08}>
-            <p className="mono-label text-[#5f63f2]">{content.showcaseTwo.number} / Workflow</p>
-            <h2 className="h-section mt-5">{content.showcaseTwo.title}</h2>
-            <p className="mt-6 text-[18px] leading-[1.55] text-[#111735]/58">{content.showcaseTwo.body}</p>
-            <ul className="mt-8 border-t border-[#111735]/12">
-              {content.signals.map((signal) => <li key={signal} className="flex gap-3 border-b border-[#111735]/12 py-4 text-[15px]"><Check className="mt-0.5 size-4 shrink-0 text-[#5f63f2]" />{signal}</li>)}
-            </ul>
-          </Reveal>
+      {detail.chapters.map((chapter, i) => (
+        <section key={chapter.eyebrow} data-nav="light" className={`py-[clamp(56px,6vw,96px)] text-[#111735] ${i % 2 ? "bg-[#f4f5ff]" : "bg-white"}`}>
+          <div className="rail-inner grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+            <Reveal className={i % 2 ? "lg:order-2" : ""}>
+              <div className={`${panelFor[content.slug] ?? "mesh-crm grain"} relative overflow-hidden rounded-[28px] p-4 sm:p-7`}><div className="relative z-10"><ProductWorkspace slug={content.slug} compact /></div></div>
+            </Reveal>
+            <Reveal delay={.07} className={i % 2 ? "lg:order-1" : ""}>
+              <p className="eyebrow-pill">{chapter.eyebrow}</p>
+              <h2 className="h-story mt-5">{chapter.title}</h2>
+              <p className="mt-5 max-w-[46ch] text-[17px] leading-[1.6] text-[#111735]/60">{chapter.body}</p>
+              <ul className="mt-7 grid gap-2.5 sm:grid-cols-2">{chapter.points.map((point) => <li key={point} className="flex items-center gap-2.5 rounded-xl border border-[#111735]/8 bg-white px-4 py-3 text-[14.5px] font-medium shadow-sm"><Check className="size-4 shrink-0 text-[#4b4fe0]" />{point}</li>)}</ul>
+            </Reveal>
+          </div>
+        </section>
+      ))}
+
+      <section data-nav="light" className="bg-white py-[clamp(56px,6vw,96px)] text-[#111735]">
+        <div className="rail-inner">
+          <Reveal className="flex flex-wrap items-end justify-between gap-6"><div><p className="eyebrow-pill">Who it’s for</p><h2 className="h-section mt-5">Built for the people doing the work.</h2></div></Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {detail.audiences.map((audience, i) => { const Icon = audienceIcon(audience, i); return <Reveal key={audience} delay={i * .05} className="card flex flex-col gap-10 p-6"><span className="icon-chip"><Icon className="size-5" /></span><h3 className="text-[19px] font-semibold tracking-[-.025em]">{audience}</h3></Reveal>; })}
+          </div>
         </div>
       </section>
 
-      <section data-nav="light" className="rails rails-light bg-[#f2f1eb] py-[clamp(88px,10vw,132px)] text-[#111735]">
-        <div className="rail-inner mx-auto max-w-[1440px]">
-          <Reveal><p className="mono-label text-[#5f63f2]">How it works</p><h2 className="h-section mt-5">From demo to day one.</h2></Reveal>
-          <ol className="mt-12 grid border-l border-t border-[#111735]/12 md:grid-cols-3">
-            {how.map(([number, title, body]) => <li key={number} className="min-h-60 border-b border-r border-[#111735]/12 p-8"><p className="mono-label text-[#5f63f2]">{number}</p><h3 className="mt-14 text-[28px] font-bold tracking-[-.04em]">{title}</h3><p className="mt-3 max-w-[28ch] text-[16px] leading-[1.5] text-[#111735]/55">{body}</p></li>)}
-          </ol>
-        </div>
-      </section>
+      <section data-nav="light" className="panel-mesh py-[clamp(56px,6vw,96px)] text-[#111735]"><div className="rail-inner flex flex-wrap items-end justify-between gap-8"><Reveal><p className="eyebrow-pill">{detail.related.label}</p><h2 className="h-story mt-5">{detail.related.title}</h2><p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#111735]/62">{detail.related.body}</p></Reveal><Reveal delay={.07}><Link href={detail.related.href} className="pill pill-dark h-12 px-7">Explore the connection<ArrowRight className="size-4" /></Link></Reveal></div></section>
+
+      <section data-nav="light" className="bg-white py-[clamp(56px,6vw,96px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[920px]"><Reveal className="text-center"><p className="eyebrow-pill">FAQ</p><h2 className="h-section mx-auto mt-5">Common questions.</h2></Reveal><div className="mt-10 space-y-3">{detail.faqs.map(({ question, answer }, i) => <Reveal key={question} delay={i * .035}><details className="card group px-6"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-[17px] font-semibold tracking-[-.02em]"><span>{question}</span><span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#eeeffe] text-[#4b4fe0] transition-transform group-open:rotate-45">+</span></summary><p className="max-w-[68ch] pb-6 text-[15.5px] leading-[1.6] text-[#111735]/60">{answer}</p></details></Reveal>)}</div></div></section>
 
       <FinalCTA title={`See ${content.eyebrow} at work.`} text="Bring us your current process. We’ll show you how the product can make it clearer, faster and easier for the whole team." />
     </>

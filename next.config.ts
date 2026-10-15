@@ -18,15 +18,18 @@ const nextConfig: NextConfig = {
   async redirects() {
     const r = (source: string, destination: string) => ({ source, destination, permanent: true });
     return [
-      r("/platform", "/"), r("/platform/:path*", "/"),
-      r("/resources", "/company"),
+      r("/why-melorite", "/platform"),
       r("/ai", "/products/ai-calling"), r("/ai/:path*", "/products/ai-calling"),
+      r("/ai-agents", "/products/ai-calling"), r("/ai-calling", "/products/ai-calling"),
       r("/business-applications", "/products"), r("/business-applications/:path*", "/products"),
       r("/industries", "/products"), r("/industries/:path*", "/products"),
       r("/solutions/hospital", "/products/clinic"), r("/solutions/clinic", "/products/clinic"),
       r("/solutions/real-estate", "/products/real-estate"), r("/solutions/marketing-agency", "/products/agency"),
+      r("/solutions/ecommerce", "/products/commerce"), r("/solutions/sales", "/products/crm"),
       r("/solutions", "/products"), r("/solutions/:path*", "/products"),
       r("/products/crm-growth", "/products/crm"),
+      r("/products/real-estate-crm", "/products/real-estate"), r("/products/clinic-management", "/products/clinic"),
+      r("/products/agency-management", "/products/agency"), r("/products/ecommerce", "/products/commerce"),
       r("/products/:slug(finance|hrms|projects|service|procurement-inventory)", "/products"),
     ];  },
 };

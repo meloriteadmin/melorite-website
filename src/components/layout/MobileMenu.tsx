@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { mainNav } from "@/data/navigation";
 import { products } from "@/data/products";
 import { site } from "@/data/site";
@@ -26,21 +26,32 @@ export function MobileMenu() {
       <SheetTrigger asChild>
         <button type="button" aria-label="Open menu" className="grid size-10 place-items-center rounded-full bg-white text-[#111] lg:hidden"><Menu className="size-5" /></button>
       </SheetTrigger>
-      <SheetContent side="right" className="gap-0 border-l border-[#111735]/10 bg-[#fbfbf8] p-0 text-[#111735]" data-lenis-prevent>
+      <SheetContent side="right" className="gap-0 border-l border-[#111735]/10 bg-[#ffffff] p-0 text-[#111735]" data-lenis-prevent>
         <SheetHeader className="h-16 justify-center border-b border-[#111735]/10 px-5">
           <SheetTitle asChild><span><Logo className="h-[22px]" /><span className="sr-only">Menu</span></span></SheetTitle>
           <SheetDescription className="sr-only">Site navigation</SheetDescription>
         </SheetHeader>
         <nav className="no-scrollbar flex-1 overflow-y-auto px-5 py-6" aria-label="Mobile">
-          <p className="mono-label text-[#5f63f2]">Products</p>
-          <ul className="mt-3">
-            {products.map((p) => (
-              <li key={p.slug}><Link href={`/products/${p.slug}`} onClick={close} className="block border-b border-[#111735]/10 py-3.5 text-[24px] font-bold tracking-[-.035em]">{p.name}</Link></li>
-            ))}
-          </ul>
-          <ul className="mt-6">
-            {mainNav.filter((n) => !n.menu).map((n) => (
-              <li key={n.href}><Link href={n.href} onClick={close} className="block border-b border-[#111735]/10 py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}</Link></li>
+          <details className="group border-b border-[#111735]/10" open>
+            <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[24px] font-bold tracking-[-.035em]">Products<ChevronDown className="size-5 transition-transform group-open:rotate-180" /></summary>
+            <ul className="pb-4 pl-2">
+              {products.map((p) => <li key={p.slug}><Link href={`/products/${p.slug}`} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{p.name}</Link></li>)}
+              <li><Link href="/products" onClick={close} className="block py-2.5 text-[17px] font-medium text-[#4b4fe0]">All products</Link></li>
+            </ul>
+          </details>
+          <ul>
+            {mainNav.filter((n) => n.menu !== "products").map((n) => (
+              <li key={n.href}>
+                {n.menu ? (
+                  <details className="group border-b border-[#111735]/10">
+                    <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}<ChevronDown className="size-5 transition-transform group-open:rotate-180" /></summary>
+                    <div className="pb-4 pl-2">
+                      <Link href={n.href} onClick={close} className="block py-2.5 text-[17px] font-medium text-[#4b4fe0]">Overview</Link>
+                      {(n.menu === "resources" ? [["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] : [["About", "/company"], ["Contact", "/contact"]]).map(([label, href]) => <Link key={href} href={href} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{label}</Link>)}
+                    </div>
+                  </details>
+                ) : <Link href={n.href} onClick={close} className="block border-b border-[#111735]/10 py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}</Link>}
+              </li>
             ))}
           </ul>
         </nav>

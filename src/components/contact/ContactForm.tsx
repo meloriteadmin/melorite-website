@@ -6,7 +6,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { enquirySchema, type EnquiryInput } from "@/lib/enquiry-schema";
-import { enquiryTypes, preferredTimes, products } from "@/data/products";
+import { businessTypes, enquiryTypes, preferredTimes, productInterests, teamSizes } from "@/data/products";
 import { cn } from "@/lib/utils";
 
 type Status = { state: "idle" } | { state: "success"; reference: string } | { state: "error"; message: string };
@@ -34,7 +34,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
   const { register, handleSubmit, reset, setValue, control, formState: { errors, isSubmitting } } = useForm<EnquiryInput>({
     resolver: zodResolver(enquirySchema),
     mode: "onTouched",
-    defaultValues: { fullName: "", workEmail: "", phone: "", companyName: "", products: [], enquiryType: defaultType, preferredDate: "", preferredTime: "", message: "", consent: undefined as unknown as true, website: "", startedAt: 0 },
+    defaultValues: { fullName: "", workEmail: "", phone: "", companyName: "", businessType: "", teamSize: "", products: [], enquiryType: defaultType, preferredDate: "", preferredTime: "", message: "", consent: undefined as unknown as true, website: "", startedAt: 0 },
   });
   const selected = useWatch({ control, name: "products" }) ?? [];
   const type = useWatch({ control, name: "enquiryType" });
@@ -45,7 +45,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
     const t = params.get("enquiry");
     if (t && enquiryTypes.some((e) => e.value === t)) setValue("enquiryType", t);
     const p = params.get("product");
-    if (p && products.some((x) => x.id === p)) setValue("products", [p]);
+    if (p && productInterests.some((x) => x.id === p)) setValue("products", [p]);
   }, [setValue]);
 
   const onSubmit = async (data: EnquiryInput) => {
@@ -95,12 +95,14 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
         <Field id="workEmail" label="Email" error={errors.workEmail?.message}><input id="workEmail" type="email" inputMode="email" autoComplete="email" className={input} {...register("workEmail")} {...a11y("workEmail")} /></Field>
         <Field id="phone" label="Phone number" optional error={errors.phone?.message}><input id="phone" type="tel" inputMode="tel" autoComplete="tel" className={input} {...register("phone")} {...a11y("phone")} /></Field>
         <Field id="companyName" label="Business name" optional error={errors.companyName?.message}><input id="companyName" autoComplete="organization" className={input} {...register("companyName")} {...a11y("companyName")} /></Field>
+        <Field id="businessType" label="Business type" optional error={errors.businessType?.message}><select id="businessType" className={input} {...register("businessType")}><option value="">Choose your business type</option>{businessTypes.map((value) => <option key={value} value={value}>{value === "real-estate" ? "Real estate" : value[0].toUpperCase() + value.slice(1)}</option>)}</select></Field>
+        <Field id="teamSize" label="Team size" optional error={errors.teamSize?.message}><select id="teamSize" className={input} {...register("teamSize")}><option value="">Choose team size</option>{teamSizes.map((value) => <option key={value} value={value}>{value} people</option>)}</select></Field>
       </div>
 
       <fieldset className="mt-8">
         <legend className="mb-3 flex w-full items-baseline justify-between text-[13.5px] font-medium">Products of interest<span className="text-[12px] font-normal text-black/40">Optional</span></legend>
         <div className="flex flex-wrap gap-2">
-          {products.map((p) => {
+          {productInterests.map((p) => {
             const on = selected.includes(p.id);
             return (
               <label key={p.id} className={cn("cursor-pointer rounded-[4px] border px-3 py-2 text-[13.5px] transition-colors has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-[#5f63f2]/25", on ? "border-[#5f63f2] bg-[#eeeffe] text-[#3c3fc4]" : "border-black/15 text-black/65 hover:border-black/40")}>

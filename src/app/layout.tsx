@@ -16,7 +16,7 @@ const leagueSpartan = League_Spartan({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Melorite | Connected Business Platform",
+    default: "Melorite | Software That Fits Your Business",
     template: "%s | Melorite",
   },
   description: site.description,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fbfbf8",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -42,7 +42,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${leagueSpartan.variable} antialiased`}>
-      <body className="min-h-dvh bg-[#fbfbf8]">
+      <body className="min-h-dvh bg-[#ffffff]">
         <Providers>
           <Navbar />
           <main id="main" tabIndex={-1} className="outline-none">

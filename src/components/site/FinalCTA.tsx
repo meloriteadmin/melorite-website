@@ -3,7 +3,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { site } from "@/data/site";
 import { Reveal } from "@/components/animation/Reveal";
 
-const perks = ["Free demo", "We set it up for you", "Simple monthly plans"];
+const perks = ["Free demo", "Guided setup", "A clear next step"];
 
 export function FinalCTA({ title = "See it for yourself.", text = "Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." }: { title?: string; text?: string }) {
   return (

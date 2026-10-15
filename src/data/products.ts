@@ -100,7 +100,7 @@ export const reasons = [
 ] as const;
 
 export const customBuilds = ["Custom features added to any Melorite product", "Workflows and approvals made for your process", "Connections with the tools you already use", "Dashboards and reports you actually need", "Portals for your customers, partners or team", "Complete software, built from scratch"];
-export const customSteps = [["We listen.", "We learn how your business runs and what’s slowing you down."], ["We plan.", "You get a clear scope, timeline and cost before we begin."], ["We build.", "You see progress along the way and share feedback as we go."], ["We stay with you.", "We launch it with your team and keep supporting it."]] as const;
+export const customSteps = [["Discovery", "We learn how the work runs today, where it slows down and what a better outcome looks like."], ["Plan", "You get a clear scope, delivery approach and commercial plan before the build begins."], ["Build", "We create the workflow in useful stages and review progress with the people who will use it."], ["Launch", "We prepare the workspace, help the team understand it and move the agreed process live."], ["Support", "We stay available after launch and help the solution evolve as the business changes."]] as const;
 export const startSteps = [["Book a demo", "Tell us about your business. We’ll show you exactly how Melorite works for you."], ["We set it up", "We set everything up around the way your team works. You don’t have to figure it out alone."], ["You go live", "Your team starts using it from day one, and we’re still here whenever you need us."]] as const;
 export const painPoints = ["A patient calls after hours and books with another clinic.", "A buyer asks about a flat, and nobody calls back for two days.", "A client asks “what’s the status?” for the fifth time this week.", "A COD order comes back because no one confirmed it.", "Your team spends more time on spreadsheets than on real work."];
 
@@ -111,3 +111,6 @@ export const enquiryTypes = [
   { value: "general", label: "General enquiry" },
 ] as const;
 export const preferredTimes = ["morning", "afternoon", "evening", "flexible"] as const;
+export const businessTypes = ["sales", "real-estate", "clinic", "agency", "commerce", "other"] as const;
+export const teamSizes = ["1-5", "6-20", "21-50", "51-200", "200+"] as const;
+export const productInterests = [...products.map(({ id, name }) => ({ id, name })), { id: "custom-solution", name: "Custom Solution" }] as const;

@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { enquiryTypes, preferredTimes, products } from "@/data/products";
+import { businessTypes, enquiryTypes, preferredTimes, productInterests, teamSizes } from "@/data/products";
 
 /** Shared between the client form and the server route — one source of validation truth. */
-export const productIds = products.map((p) => p.id) as [string, ...string[]];
+export const productIds = productInterests.map((p) => p.id) as [string, ...string[]];
 
 export const enquirySchema = z.object({
   fullName: z.string().trim().min(2, "Please enter your full name.").max(120),
@@ -13,6 +13,8 @@ export const enquirySchema = z.object({
     .max(40)
     .refine((v) => v === "" || /^[+()\d\s.-]{7,}$/.test(v), "Please enter a valid phone number."),
   companyName: z.string().trim().max(160),
+  businessType: z.union([z.enum(businessTypes), z.literal("")]).optional(),
+  teamSize: z.union([z.enum(teamSizes), z.literal("")]).optional(),
   products: z.array(z.enum(productIds)).max(productIds.length),
   enquiryType: z.enum(enquiryTypes.map((e) => e.value) as [string, ...string[]], { message: "Please choose an enquiry type." }),
   preferredDate: z.string().trim().max(10).optional(),

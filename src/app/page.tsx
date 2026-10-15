@@ -2,14 +2,9 @@ import type { Metadata } from "next";
 import { site } from "@/data/site";
 import { PageTransition } from "@/components/animation/PageTransition";
 import { Hero } from "@/components/home/Hero";
-import { LeadFlow } from "@/components/home/LeadFlow";
-import { LeadsTable } from "@/components/home/LeadsTable";
-import { CallsAndSetup } from "@/components/home/CallsAndSetup";
-import { Stats } from "@/components/home/Stats";
-import { Stories } from "@/components/home/Stories";
 import { ProductCards } from "@/components/home/ProductCards";
 import { WhyList } from "@/components/home/WhyList";
-import { EditorialFeature } from "@/components/home/EditorialFeature";
+import { BusinessProblem, CallingFeature, CustomSolutionsIntro, GettingStarted, PlatformIntro } from "@/components/home/HomeSections";
 import { FinalCTA } from "@/components/site/FinalCTA";
 
 export const metadata: Metadata = {
@@ -33,15 +28,14 @@ export default function HomePage() {
     <PageTransition>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Hero />
-      <LeadFlow />
-      <LeadsTable />
-      <CallsAndSetup />
-      <Stats />
-      <EditorialFeature />
-      <Stories />
+      <BusinessProblem />
       <ProductCards />
+      <PlatformIntro />
+      <CallingFeature />
+      <CustomSolutionsIntro />
       <WhyList />
-      <FinalCTA />
+      <GettingStarted />
+      <FinalCTA title="See Melorite in action." text="Book a demo and see how the right Melorite product can work around your business." />
     </PageTransition>
   );
 }

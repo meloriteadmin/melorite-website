@@ -28,10 +28,10 @@ export const productPages: Record<string, ProductPageContent> = {
   crm: {
     slug: "crm",
     eyebrow: "Melorite CRM",
-    headline: ["Find every lead.", "Follow up on time."],
-    subhead: "Keep every enquiry, conversation and next step in one calm workspace, so your team can sell, not search.",
+    headline: ["Never lose", "a lead again."],
+    subhead: "Every enquiry, customer, follow-up and sales opportunity in one place.",
     problemThing: "pipeline",
-    problemTitle: "Your pipeline only knows what someone remembered to write down.",
+    problemTitle: "Your pipeline shouldn’t depend on memory.",
     problemCopy: [
       "A lead arrives on WhatsApp. A quote lives in someone’s inbox. The next call is written in a notebook.",
       "By the time your team pieces it together, the customer has moved on. That’s why we built Melorite CRM.",
@@ -56,10 +56,10 @@ export const productPages: Record<string, ProductPageContent> = {
   "real-estate": {
     slug: "real-estate",
     eyebrow: "Melorite Real Estate",
-    headline: ["Know every unit.", "Move every buyer forward."],
-    subhead: "Manage availability, visits, payments and buyer conversations in one place, so your team can sell homes, not chase sheets.",
+    headline: ["From first enquiry", "to final booking."],
+    subhead: "Manage projects, inventory, buyers, visits, bookings, payments and documents in one place.",
     problemThing: "project sheet",
-    problemTitle: "Your project sheet only knows what someone remembered to update.",
+    problemTitle: "Property sales need one source of truth.",
     problemCopy: [
       "A buyer asks for a unit that was put on hold yesterday. A site visit happens, but the notes never reach the sales desk.",
       "The gap becomes a missed booking or an awkward call. That’s why we built Melorite Real Estate.",
@@ -84,10 +84,10 @@ export const productPages: Record<string, ProductPageContent> = {
   clinic: {
     slug: "clinic",
     eyebrow: "Melorite Clinic",
-    headline: ["Keep the day moving.", "Keep patients cared for."],
-    subhead: "Appointments, patient history, prescriptions and billing stay together, so you can focus on patients, not paperwork.",
+    headline: ["Less paperwork.", "More time with patients."],
+    subhead: "Appointments, patient records, prescriptions and billing in one simple system.",
     problemThing: "patient record",
-    problemTitle: "Your patient record only knows what someone remembered to enter.",
+    problemTitle: "Patient care needs context, not more paperwork.",
     problemCopy: [
       "A patient calls after hours. The front desk cannot see the last prescription. A follow-up is meant to happen, but nobody owns it.",
       "Small gaps make care feel disjointed. That’s why we built Melorite Clinic.",
@@ -112,10 +112,10 @@ export const productPages: Record<string, ProductPageContent> = {
   agency: {
     slug: "agency",
     eyebrow: "Melorite Agency",
-    headline: ["Run the work clearly.", "Keep clients in the loop."],
+    headline: ["Run your agency smoothly.", "Keep clients in the loop."],
     subhead: "Plan content, assign work, collect approvals and share progress in one place, so your team can create, not chase.",
     problemThing: "client workspace",
-    problemTitle: "Your client workspace only knows what someone remembered to copy across.",
+    problemTitle: "Your client work shouldn’t live across five places.",
     problemCopy: [
       "The brief is in chat. The latest design is in a thread. The approval is buried in an email, and the client asks for status again.",
       "The work is good, but the experience feels scattered. That’s why we built Melorite Agency.",
@@ -140,10 +140,10 @@ export const productPages: Record<string, ProductPageContent> = {
   commerce: {
     slug: "commerce",
     eyebrow: "Melorite Commerce",
-    headline: ["Run every order.", "Grow every repeat sale."],
-    subhead: "Products, orders, payments and delivery stay in one view, so you can grow the brand, not juggle tools.",
+    headline: ["Your online store.", "Made simple."],
+    subhead: "Run your storefront, products, orders, inventory, customers and payments from one clear workspace.",
     problemThing: "order sheet",
-    problemTitle: "Your order sheet only knows what someone remembered to reconcile.",
+    problemTitle: "Orders move faster when the details agree.",
     problemCopy: [
       "A COD order ships before it is confirmed. Stock changes in one place but not another. A repeat buyer is treated like a stranger.",
       "The store keeps selling, while the team cleans up behind it. That’s why we built Melorite Commerce.",
@@ -168,10 +168,10 @@ export const productPages: Record<string, ProductPageContent> = {
   "ai-calling": {
     slug: "ai-calling",
     eyebrow: "Melorite AI Calling",
-    headline: ["Answer every call.", "Keep every promise."],
-    subhead: "Melorite AI answers incoming calls and makes outgoing ones, so customers get a useful response even when your team is busy.",
+    headline: ["An extra team member", "on the phone, all day."],
+    subhead: "AI-powered calls that answer enquiries, follow up with customers, book appointments and keep your team informed.",
     problemThing: "call log",
-    problemTitle: "Your call log only knows what someone remembered after hanging up.",
+    problemTitle: "Every call should end with a clear next step.",
     problemCopy: [
       "A caller reaches voicemail at 9 pm. A new lead waits until morning. A booking is agreed, but the details never reach the team.",
       "The phone keeps ringing after the workday ends. That’s why we built Melorite AI Calling.",

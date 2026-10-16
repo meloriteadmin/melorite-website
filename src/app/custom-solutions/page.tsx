@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { createElement } from "react";
-import { AppWindow, ArrowRight, BarChart3, Blocks, Check, GitBranch, LayoutDashboard, LockKeyhole, Plug, UsersRound } from "lucide-react";
+import { AppWindow, BarChart3, Blocks, Check, GitBranch, LayoutDashboard, LockKeyhole, Plug, UsersRound } from "lucide-react";
 import { customBuilds, customSteps } from "@/data/products";
 import { PageTransition } from "@/components/animation/PageTransition";
 import { Reveal } from "@/components/animation/Reveal";
 import { InnerHero } from "@/components/site/InnerHero";
 import { FinalCTA } from "@/components/site/FinalCTA";
-import { CellGrid, GoodFor } from "@/components/site/Cells";
+import { GoodFor } from "@/components/site/Cells";
 import { site } from "@/data/site";
+import { FolderCollections } from "@/components/site/FolderCollections";
+import Timeline from "@/components/ui/timeline";
 
 export const metadata: Metadata = {
   title: "Custom Solutions",
@@ -66,21 +67,30 @@ export default function CustomSolutionsPage() {
       <section data-nav="light" className="rails rails-light bg-[#ffffff] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner">
           <Reveal><p className="eyebrow-pill">What we build</p><h2 className="h-section mt-5">What we can build for you</h2></Reveal>
-          <div className="mt-10"><CellGrid items={customBuilds} /></div>
-          <Reveal id="how-it-works" className="mt-16 scroll-mt-28"><p className="eyebrow-pill">How it works</p><h2 className="h-section mt-5">From first conversation to launch.</h2></Reveal>
-          <ol className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-            {customSteps.map(([t, d], i) => (
-              <Reveal key={t} delay={i * 0.05}>
-                <li className="card h-full p-6">
-                  <span className="grid size-11 place-items-center rounded-full bg-gradient-to-br from-[#7a7eff] to-[#4b4fe0] text-[14px] font-semibold text-white shadow-[0_14px_30px_-12px_rgba(95,99,242,.9)]">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="mt-6 text-[20px] font-semibold tracking-[-0.03em]">{t}</h3>
-                  <p className="mt-2 text-[14.5px] leading-snug text-[#111735]/58">{d}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
+          <FolderCollections
+            className="mt-10"
+            collections={[0, 2, 4].map((start, i) => ({
+              label: ["Product extensions", "Connected operations", "Purpose-built software"][i],
+              meta: "2 capabilities",
+              art: (["aurora", "verdant", "dusk"] as const)[i],
+              files: customBuilds.slice(start, start + 2).map((name) => ({ name, meta: "Discuss this capability", href: "/contact" })),
+            }))}
+          />
         </div>
       </section>
+      <div id="how-it-works" className="scroll-mt-16">
+        <Timeline
+          eyebrow="How it works"
+          title="From first conversation to launch."
+          periodLabel="Discovery to ongoing support"
+          items={customSteps.map(([title, body], i) => ({
+            id: `custom-step-${i + 1}`,
+            label: `Stage ${String(i + 1).padStart(2, "0")}`,
+            title,
+            content: body,
+          }))}
+        />
+      </div>
             <section data-nav="light" className="panel-mesh py-[clamp(56px,6.5vw,96px)] text-[#111735]"><div className="rail-inner grid gap-5 lg:grid-cols-3"><Reveal delay={0.0} className="card p-7"><span className="icon-chip">{createElement(Plug, { className: "size-5" })}</span><p className="mono-label mt-7 text-[#4b4fe0]">Integrations</p><h3 className="mt-2 text-[22px] font-semibold leading-tight tracking-[-.03em]">Connect the tools that matter.</h3><p className="mt-3 text-[15px] leading-[1.55] text-[#111735]/60">Where supported, we can connect Melorite with the systems your business already depends on.</p></Reveal><Reveal delay={0.06} className="card p-7"><span className="icon-chip">{createElement(LayoutDashboard, { className: "size-5" })}</span><p className="mono-label mt-7 text-[#4b4fe0]">Portals</p><h3 className="mt-2 text-[22px] font-semibold leading-tight tracking-[-.03em]">Give each audience a clear view.</h3><p className="mt-3 text-[15px] leading-[1.55] text-[#111735]/60">Create focused customer, partner or team portals with the right information and actions.</p></Reveal><Reveal delay={0.12} className="card p-7"><span className="icon-chip">{createElement(AppWindow, { className: "size-5" })}</span><p className="mono-label mt-7 text-[#4b4fe0]">Complete software</p><h3 className="mt-2 text-[22px] font-semibold leading-tight tracking-[-.03em]">Build a separate application.</h3><p className="mt-3 text-[15px] leading-[1.55] text-[#111735]/60">When extending a product is not the right answer, we can plan and build a separate application around the requirement.</p></Reveal></div></section>
       <GoodFor>Businesses with a process of their own, teams that have outgrown spreadsheets, and anyone who needs Melorite to do a little more.</GoodFor>
       <section data-nav="light" className="rails rails-light bg-[#ffffff] py-[clamp(72px,9vw,116px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">Example use cases</p><h2 className="h-section mt-5 max-w-[14ch]">Specific software for specific work.</h2></Reveal><div className="mt-12 grid card-grid md:grid-cols-2">{useCases.map(([title, body], i) => <Reveal key={title} delay={(i % 2) * .05} className="min-h-52 card p-7"><p className="eyebrow-pill">Sample use case</p><h3 className="mt-7 text-[24px] font-semibold tracking-[-.035em]">{title}</h3><p className="mt-4 max-w-[44ch] text-[15.5px] leading-[1.55] text-[#111735]/55">{body}</p></Reveal>)}</div></div></section>

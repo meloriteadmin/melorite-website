@@ -1,13 +1,13 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, FileText, Newspaper } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/animation/Reveal";
 import { PageTransition } from "@/components/animation/PageTransition";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { ResourceArtwork } from "./Artwork";
 import { InnerHero } from "@/components/site/InnerHero";
 import { articles, caseStudyThemes, guides, resourceCategories, resourceTopics, type Article } from "@/data/resources";
+import { FolderCollections } from "@/components/site/FolderCollections";
 
-const icons = [Newspaper, BookOpen, FileText];
 export { ResourceArtwork };
 
 function ArticleCard({ article, index, wide = false }: { article: Article; index: number; wide?: boolean }) {
@@ -28,7 +28,16 @@ function ResourcesHub() {
   return <>
     <ResourceHero label="Resources" title="Useful ideas for running the work." body="Practical articles, guides and honest customer stories for teams that want clearer operations." />
     <section data-nav="light" className="rails rails-light bg-[#ffffff] py-[clamp(72px,9vw,120px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">Featured content</p><h2 className="h-section mt-5">Start with the workflow.</h2></Reveal><div className="mt-12"><ArticleCard article={articles[0]} index={0} wide /></div></div></section>
-    <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,116px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><div className="grid card-grid md:grid-cols-3">{resourceCategories.map((item, i) => { const Icon = icons[i]; return <Reveal key={item.href} delay={i * .05} className="card p-8"><Icon className="size-5 text-[#5f63f2]" /><h2 className="h-card mt-10">{item.title}</h2><p className="mt-4 text-[15.5px] leading-[1.55] text-[#111735]/55">{item.description}</p><Link href={item.href} className="mt-7 inline-flex items-center gap-2 border-b border-[#111735] pb-1 text-sm font-semibold">Explore {item.title}<ArrowRight className="size-4" /></Link></Reveal>; })}</div></div></section>
+    <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,116px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">Browse the library</p><h2 className="h-section mt-5">Open the collection you need.</h2></Reveal><FolderCollections className="mt-10" collections={resourceCategories.map((item, i) => ({
+      label: item.title,
+      meta: item.description,
+      art: (["aurora", "glacier", "verdant"] as const)[i],
+      files: i === 0
+        ? articles.slice(0, 3).map((article) => ({ name: article.title, meta: article.readTime, href: `/resources/blog/${article.slug}` }))
+        : i === 1
+          ? guides.slice(0, 3).map((guide) => ({ name: guide.title, meta: guide.category, href: guide.href }))
+          : caseStudyThemes.slice(0, 3).map(([title]) => ({ name: title, meta: "Story library", href: item.href })),
+    }))} /></div></section>
     <LatestArticles count={3} />
     <Topics />
   </>;
@@ -50,7 +59,7 @@ function Guides() {
   return <>
     <ResourceHero label="Guides" title="Practical guides for growing teams." body="Use these focused resources to map the work, choose a sensible starting point and prepare your team for change." />
     <section data-nav="light" className="rails rails-light bg-[#ffffff] py-[clamp(72px,9vw,120px)] text-[#111735]"><div className="rail-inner mx-auto grid max-w-[1440px] items-center gap-10 lg:grid-cols-[.8fr_1.2fr]"><Reveal><p className="eyebrow-pill">Featured guide</p><h2 className="h-section mt-5 max-w-[13ch]">The Business Workflow Audit.</h2><p className="mt-6 max-w-[42ch] text-[17px] leading-[1.6] text-[#111735]/58">A practical starting point for documenting owners, hand-offs, repeated work and the places where information goes missing.</p><Link href={guides[0].href} className="pill pill-dark mt-8 h-12">Read the companion article<ArrowRight className="size-4" /></Link></Reveal><Reveal delay={.07}><ResourceArtwork index={5} /></Reveal></div></section>
-    <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,116px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">Browse guides</p><h2 className="h-section mt-5">A guide for each kind of work.</h2></Reveal><div className="mt-12 grid card-grid md:grid-cols-2 lg:grid-cols-3">{groups.map((group, i) => { const guide = guides.find((g) => g.category === group)!; return <Reveal key={group} delay={(i % 3) * .04} className="flex min-h-64 flex-col card overflow-hidden"><ResourceArtwork kind={guide.category} compact /><div className="flex flex-1 flex-col p-7"><p className="mono-label text-[#4b4fe0]">{guide.category}</p><h3 className="mt-5 text-[24px] font-semibold leading-[1.08] tracking-[-.035em]">{guide.title}</h3><p className="mt-4 text-[15px] leading-[1.55] text-[#111735]/55">{guide.summary}</p><Link href={guide.href} className="mt-auto inline-flex items-center gap-2 pt-7 text-sm font-semibold">Open resource<ArrowRight className="size-4" /></Link></div></Reveal>; })}</div></div></section>
+    <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,116px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">Browse guides</p><h2 className="h-section mt-5">A guide for each kind of work.</h2><p className="mt-5 max-w-[48ch] text-[17px] leading-[1.6] text-[#111735]/58">Each folder opens to the practical guide for that team.</p></Reveal><FolderCollections className="mt-10" collections={groups.map((group, i) => { const guide = guides.find((g) => g.category === group)!; return { label: group, meta: "1 focused guide", art: (["aurora", "glacier", "verdant", "dusk", "ember"] as const)[i % 5], files: [{ name: guide.title, meta: guide.summary, href: guide.href }] }; })} /></div></section>
   </>;
 }
 

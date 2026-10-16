@@ -5,6 +5,7 @@ import { PageTransition } from "@/components/animation/PageTransition";
 import { Reveal } from "@/components/animation/Reveal";
 import { InnerHero } from "@/components/site/InnerHero";
 import { ContactForm } from "./ContactForm";
+import Timeline from "@/components/ui/timeline";
 
 export function ContactPage({ type = "demo" }: { type?: string }) {
   const isDemo = type === "demo";
@@ -31,7 +32,7 @@ export function ContactPage({ type = "demo" }: { type?: string }) {
         </div>
         </div>
       </InnerHero>
-      {isDemo ? <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,112px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">What happens next</p><h2 className="h-section mt-5">Three straightforward steps.</h2></Reveal><ol className="mt-10 grid card-grid md:grid-cols-3">{startSteps.map(([t, d], i) => <Reveal key={t} delay={i * .05} className="min-h-52 card p-7"><p className="eyebrow-pill">0{i + 1}</p><h3 className="mt-8 text-[24px] font-semibold tracking-[-.035em]">{i === 0 ? "Tell us about your business" : i === 1 ? "We understand your workflow" : "We show the relevant product"}</h3><p className="mt-4 text-[15px] leading-[1.55] text-[#111735]/55">{d}</p></Reveal>)}</ol></div></section> : <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,112px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">How we can help</p><h2 className="h-section mt-5">Choose the closest starting point.</h2></Reveal><div className="mt-10 grid card-grid md:grid-cols-2 lg:grid-cols-4">{enquiryPaths.map(([Icon, title, body], i) => <Reveal key={title} delay={i * .04} className="min-h-56 card p-7"><Icon className="size-5 text-[#5f63f2]" /><h3 className="mt-9 text-[22px] font-semibold tracking-[-.03em]">{title}</h3><p className="mt-4 text-[14.5px] leading-[1.55] text-[#111735]/55">{body}</p></Reveal>)}</div></div></section>}
+      {isDemo ? <Timeline eyebrow="What happens next" title="Three straightforward steps." periodLabel="Your request to a useful demo" items={startSteps.map(([, body], i) => ({ id: `demo-step-${i + 1}`, label: `Step ${String(i + 1).padStart(2, "0")}`, title: i === 0 ? "Tell us about your business" : i === 1 ? "We understand your workflow" : "We show the relevant product", content: body }))} /> : <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,112px)] text-[#111735]"><div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">How we can help</p><h2 className="h-section mt-5">Choose the closest starting point.</h2></Reveal><div className="mt-10 grid card-grid md:grid-cols-2 lg:grid-cols-4">{enquiryPaths.map(([Icon, title, body], i) => <Reveal key={title} delay={i * .04} className="min-h-56 card p-7"><Icon className="size-5 text-[#5f63f2]" /><h3 className="mt-9 text-[22px] font-semibold tracking-[-.03em]">{title}</h3><p className="mt-4 text-[14.5px] leading-[1.55] text-[#111735]/55">{body}</p></Reveal>)}</div></div></section>}
     </PageTransition>
   );
 }

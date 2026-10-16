@@ -32,6 +32,7 @@ export function ProductsMenu() {
 
 const secondaryMenus = {
   resources: [
+    ["Resources overview", "/resources", "Browse the complete library of articles, guides and customer stories."],
     ["Blog", "/resources/blog", "Practical ideas for running a clearer business."],
     ["Guides", "/resources/guides", "Useful, step-by-step resources for growing teams."],
     ["Case Studies", "/resources/case-studies", "Real customer stories, published only when verified."],

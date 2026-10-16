@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { AppWindow, ArrowRight, BarChart3, Bot, GitBranch, LayoutDashboard, MessageCircleQuestion, PackageX, PhoneMissed, Plug, Puzzle, FileSpreadsheet, Check, Clock3, FileCheck2, PhoneCall, Users, Database, Workflow, Zap } from "lucide-react";
+import { AppWindow, ArrowRight, BarChart3, Bot, GitBranch, LayoutDashboard, MessageCircleQuestion, PackageX, PhoneMissed, Plug, Puzzle, FileSpreadsheet, Check, Clock3, Users, Database, Workflow, Zap } from "lucide-react";
 import { Reveal } from "@/components/animation/Reveal";
 import { VoiceOrb } from "@/components/site/VoiceOrb";
 import { painPoints, startSteps } from "@/data/products";
+import Timeline from "@/components/ui/timeline";
 
 const platformItems = [
   ["People", "Keep users, teams and responsibilities clear."],
@@ -77,13 +78,17 @@ export function CustomSolutionsIntro() {
 }
 
 export function GettingStarted() {
-  const icons = [PhoneCall, FileCheck2, Clock3];
-  const meshes = ["mesh-crm", "mesh-estate", "mesh-agency"];
   return (
-    <section data-nav="light" className="rails rails-light bg-[#f4f5ff] py-[clamp(72px,9vw,120px)] text-[#111735]">
-      <div className="rail-inner mx-auto max-w-[1440px]"><Reveal><p className="eyebrow-pill">Getting started</p><h2 className="h-section mt-5">Three clear steps to go live.</h2></Reveal>
-        <ol className="mt-12 grid gap-5 md:grid-cols-3">{startSteps.map(([title, body], i) => { const Icon = icons[i]; return <Reveal key={title} delay={i * .06} className="card overflow-hidden p-2.5"><div className={`${meshes[i]} grain relative grid aspect-[1.7] place-items-center overflow-hidden rounded-[18px]`}><span className="absolute left-4 top-3 text-[56px] font-semibold leading-none tracking-[-0.06em] text-white/80">0{i + 1}</span><span className="relative z-10 grid size-16 place-items-center rounded-2xl bg-white/85 text-[#4b4fe0] shadow-[0_18px_40px_-18px_rgba(17,23,53,.5)] backdrop-blur"><Icon className="size-7" /></span></div><div className="p-5 pb-6"><h3 className="text-[24px] font-semibold tracking-[-.035em]">{title}</h3><p className="mt-3 text-[15.5px] leading-[1.5] text-[#111735]/58">{body}</p></div></Reveal>; })}</ol>
-      </div>
-    </section>
+    <Timeline
+      eyebrow="Getting started"
+      title="Three clear steps to go live."
+      periodLabel="Demo to day one"
+      items={startSteps.map(([title, body], i) => ({
+        id: `getting-started-${i + 1}`,
+        label: `Step ${String(i + 1).padStart(2, "0")}`,
+        title,
+        content: body,
+      }))}
+    />
   );
 }

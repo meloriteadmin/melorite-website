@@ -5,7 +5,7 @@ import { Logo } from "@/components/shared/Logo";
 
 const columns = [
   { title: "Products", links: products.map((p) => [p.short, `/products/${p.slug}`]) },
-  { title: "Explore", links: [["Platform", "/platform"], ["Custom Solutions", "/custom-solutions"], ["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] },
+  { title: "Explore", links: [["Platform", "/platform"], ["Custom Solutions", "/custom-solutions"], ["Resources", "/resources"], ["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] },
   { title: "Company", links: [["About", "/company"], ["Contact", "/contact"]] },
   { title: "Get started", links: [["Book a demo", site.demoHref], ["Contact sales", site.salesHref]] },
 ] as { title: string; links: string[][] }[];

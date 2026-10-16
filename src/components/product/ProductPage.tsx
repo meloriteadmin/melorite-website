@@ -9,6 +9,7 @@ import { ProductHeroMock, ProductWorkspace } from "./ProductMockups";
 import { site } from "@/data/site";
 import type { ProductPageContent } from "@/data/product-pages";
 import { productDetails } from "@/data/product-details";
+import Timeline from "@/components/ui/timeline";
 
 export function ProductPageView({ content }: { content: ProductPageContent }) {
   const detail = productDetails[content.slug];
@@ -51,16 +52,19 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
         </div>
       </section>
 
-      <section data-nav="light" className="bg-[#f4f5ff] py-[clamp(56px,6vw,96px)] text-[#111735]">
-        <div className="rail-inner">
-          <Reveal className="text-center"><p className="eyebrow-pill">Core workflow</p><h2 className="h-section mx-auto mt-5">{detail.workflowTitle}</h2></Reveal>
-          <Reveal className="card mt-10 p-6 sm:p-10">
-            <ol className="grid gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 xl:flex xl:justify-between">
-              {detail.workflow.map((step, i) => <li key={step} className="relative flex items-center gap-4 xl:flex-1 xl:flex-col xl:gap-4 xl:text-center"><span className="relative z-10 grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-[#7a7eff] to-[#4b4fe0] text-[14px] font-semibold text-white shadow-[0_14px_30px_-12px_rgba(95,99,242,.9)] ring-8 ring-[#eeeffe]">{String(i + 1).padStart(2, "0")}</span>{i < detail.workflow.length - 1 && <span aria-hidden className="absolute left-[calc(50%+34px)] right-[calc(-50%+34px)] top-6 hidden h-px bg-gradient-to-r from-[#5f63f2]/50 to-[#5f63f2]/10 xl:block" />}<h3 className="text-[16px] font-semibold leading-tight tracking-[-.02em]">{step}</h3></li>)}
-            </ol>
-          </Reveal>
-        </div>
-      </section>
+      <Timeline
+        eyebrow="Core workflow"
+        title={detail.workflowTitle}
+        periodLabel={`${detail.workflow.length} connected stages`}
+        items={detail.workflow.map((step, i) => ({
+          id: `${content.slug}-workflow-${i + 1}`,
+          label: `Stage ${String(i + 1).padStart(2, "0")}`,
+          title: step,
+          content: i === 0
+            ? `The ${content.workspace} starts with the information your team needs to act.`
+            : "Every update stays connected, giving the next person clear context and a sensible next action.",
+        }))}
+      />
 
       {detail.perspectives && (
         <section data-nav="light" className="panel-mesh py-[clamp(56px,6vw,96px)] text-[#111735]">

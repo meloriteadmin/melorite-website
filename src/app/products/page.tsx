@@ -6,8 +6,9 @@ import { PageTransition } from "@/components/animation/PageTransition";
 import { Reveal } from "@/components/animation/Reveal";
 import { InnerHero } from "@/components/site/InnerHero";
 import { FinalCTA } from "@/components/site/FinalCTA";
-import { ProductVisual, panelFor, tintFor } from "@/components/site/ProductVisuals";
+import { ProductVisual, panelFor } from "@/components/site/ProductVisuals";
 import { productIcons } from "@/components/layout/MegaMenu";
+import { FolderCollections } from "@/components/site/FolderCollections";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -19,7 +20,11 @@ export default function ProductsPage() {
   return (
     <PageTransition>
       <InnerHero label="Products" title="Software for the way your business actually works." body="Six focused products for sales, real estate, clinics, agencies, online sellers and businesses that depend on phone conversations." primary={{ label: "Book a demo", href: "/book-demo" }} secondary={{ label: "Talk to sales", href: "/contact" }} mesh="estate">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{products.map((p) => { const I = productIcons[p.icon]; return <Link key={p.slug} href={`/products/${p.slug}`} className="group rounded-[22px] bg-white/90 p-6 text-left shadow-[0_20px_50px_-30px_rgba(17,23,53,.45)] backdrop-blur transition-transform hover:-translate-y-1"><span className="icon-chip"><I className="size-5" /></span><h3 className="mt-6 text-[21px] font-semibold tracking-[-.03em]">{p.name}</h3><p className="mt-2 text-[14.5px] leading-snug text-[#111735]/58">{p.summary}</p><span className="mt-5 inline-flex items-center gap-1.5 text-[14px] font-semibold text-[#4b4fe0]">Explore <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" /></span></Link>; })}</div>
+        <FolderCollections collections={[
+          { label: "Sales and conversations", meta: "2 products", art: "aurora", files: products.filter((p) => ["crm", "ai-calling"].includes(p.slug)).map((p) => ({ name: p.name, meta: p.kicker, href: `/products/${p.slug}` })) },
+          { label: "Places and people", meta: "2 products", art: "glacier", files: products.filter((p) => ["real-estate", "clinic"].includes(p.slug)).map((p) => ({ name: p.name, meta: p.kicker, href: `/products/${p.slug}` })) },
+          { label: "Clients and commerce", meta: "2 products", art: "dusk", files: products.filter((p) => ["agency", "commerce"].includes(p.slug)).map((p) => ({ name: p.name, meta: p.kicker, href: `/products/${p.slug}` })) },
+        ]} />
       </InnerHero>
       <section data-nav="light" className="rails rails-light bg-[#ffffff] py-[clamp(64px,8vw,120px)] text-[#111735]">
         <div className="rail-inner space-y-[clamp(48px,6vw,88px)]">

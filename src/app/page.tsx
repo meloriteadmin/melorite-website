@@ -1,3 +1,4 @@
+import { ConversationAnalytics } from "@/components/home/HomeVisuals";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { PageTransition } from "@/components/animation/PageTransition";
@@ -20,6 +21,7 @@ export default function HomePage() {
       <BusinessProblem />
       <PlatformIntro />
       <CallingFeature />
+      <ConversationAnalytics />
       <CustomSolutionsIntro />
       <WhyList />
       <ExploreCards />

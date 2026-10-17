@@ -225,24 +225,13 @@ function ClinicA() {
 }
 
 function ClinicB() {
-  return (
-    <>
-      <div className="pane absolute left-[22px] top-[26px] w-[476px] p-4">
-        <div className="flex items-center gap-3"><span className="grid size-11 place-items-center rounded-2xl bg-gradient-to-br from-[#8f94ff] to-[#4b4fe0] text-[14px] font-bold text-white">AR</span>
-          <div className="flex-1"><p className={`text-[13px] font-semibold ${ink}`}>Ananya Rao · 34 F</p><p className={`text-[9.5px] ${soft}`}>Last visit 12 Sep · Hypertension review</p></div><Tag tone="green">In consultation</Tag></div>
-        <div className="mt-3 rounded-xl bg-white/60 px-3 pt-2"><div className="flex items-center justify-between"><p className={`text-[9.5px] font-semibold uppercase tracking-[.12em] ${soft}`}>Live ECG</p><p className={`text-[11px] font-semibold ${ink}`}>72 bpm</p></div><Ecg className="h-[48px] w-full" /></div>
-      </div>
-      <div className="absolute left-[22px] top-[186px] grid w-[476px] grid-cols-3 gap-3">
-        {[["Blood pressure", "118/76", "Normal", "green"], ["Weight", "62.4 kg", "−0.8 kg", "indigo"], ["Glucose", "98 mg/dL", "Fasting", "amber"]].map(([k, v, s, t]) => (
-          <div key={k} className="pane px-3 py-2.5"><p className={`text-[9px] ${soft}`}>{k}</p><p className={`mt-0.5 text-[16px] font-semibold ${ink}`}>{v}</p><Tag tone={t as "green" | "indigo" | "amber"}>{s}</Tag></div>
-        ))}
-      </div>
-      <div className="pane absolute bottom-[26px] left-[22px] flex w-[476px] items-center gap-3 px-3.5 py-3">
-        <span className="grid size-9 place-items-center rounded-xl bg-[#111735] text-white"><Sparkles className="size-4" /></span>
-        <div className="flex-1"><p className={`text-[11px] font-semibold ${ink}`}>Telmisartan 40 mg · once daily · 30 days</p><p className={`text-[9px] ${soft}`}>Auto-filled from last prescription</p></div><Tag tone="indigo">Ready to send</Tag>
-      </div>
-    </>
-  );
+  return <div className="clinic-schedule pane absolute inset-[22px] overflow-hidden p-4">
+    <div className="flex items-center justify-between"><div><p className="text-[13px] font-semibold">Your clinic, at a glance</p><p className="mt-1 text-[9px] text-black/40">Appointments · Thursday, 15 October</p></div><Tag tone="indigo">Front desk</Tag></div>
+    <div className="mt-4 grid grid-cols-3 gap-2">{[["Appointments","18"],["Checked in","6"],["Available slots","4"]].map(([label,value])=><div key={label} className="rounded-xl bg-[#f0effa] p-3"><p className="text-[8px] text-black/45">{label}</p><strong className="mt-1 block text-[19px] font-medium">{value}</strong></div>)}</div>
+    <div className="mt-4 flex items-center justify-between border-b border-black/5 pb-2 text-[9px]"><span className="font-semibold">Upcoming appointments</span><span className="text-black/40">View calendar →</span></div>
+    {[["10:00","Riya Shah","Consultation","Checked in"],["10:30","Aman Patel","Follow-up","Confirmed"],["11:00","Neha Rao","Consultation","Confirmed"]].map(([time,name,kind,status],i)=><div key={time} className="flex items-center gap-3 border-b border-black/5 py-3"><span className="text-[10px] text-black/45">{time}</span><span className="grid size-7 place-items-center rounded-full bg-[#e9e6fa] text-[9px] text-[#6861c7]">{name.split(" ").map(n=>n[0]).join("")}</span><div className="flex-1"><p className="text-[10px] font-medium">{name}</p><p className="mt-0.5 text-[8px] text-black/40">{kind}</p></div><Tag tone={i===0 ? "green" : "slate"}>{status}</Tag></div>)}
+    <div className="mt-3 flex items-center gap-2 text-[9px] text-[#6861c7]"><CalendarCheck size={12}/>Appointments, records and billing in one place.</div>
+  </div>;
 }
 
 /* ------------------------------ Agency ------------------------------ */
@@ -393,7 +382,7 @@ function CallingB() {
       <div className="pane absolute left-[22px] top-[26px] flex h-[328px] w-[206px] flex-col items-center justify-center p-4">
         <div className="relative grid size-[150px] place-items-center">
           {[0, 1, 2].map((k) => <i key={k} className="absolute inset-0 rounded-full border border-[#4b4fe0]/50" style={{ animation: `ring-out 3.2s ease-out ${k * 1.05}s infinite` }} />)}
-          <span className="grid size-[84px] place-items-center rounded-full bg-gradient-to-br from-[#4b4fe0] via-[#8f6bf0] to-[#e259b5] text-white shadow-[0_18px_40px_-12px_rgba(95,99,242,.7)]"><Phone className="size-7" /></span>
+          <span className="call-signal" aria-hidden="true"><i/><i/><i/><i/><i/></span>
         </div>
         <p className={`mt-4 text-[12px] font-semibold ${ink}`}>Campaign · Reminders</p><p className={`text-[9.5px] ${soft}`}>212 of 300 contacts called</p>
         <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-[#111735]/10"><motion.div className="h-full rounded-full bg-gradient-to-r from-[#4b4fe0] to-[#e259b5]" initial={{ width: 0 }} whileInView={{ width: "70%" }} viewport={{ once: true }} transition={{ duration: 1.4 }} /></div>

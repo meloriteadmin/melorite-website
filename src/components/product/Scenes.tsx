@@ -69,7 +69,7 @@ function CrmA() {
   return (
     <>
       {lanes.map((lane, li) => (
-        <div key={lane.name} className="absolute top-[26px] h-[246px] w-[152px] rounded-[18px] border border-white/70 bg-white/30 p-2 backdrop-blur-md" style={{ left: 22 + li * 164 }}>
+        <div key={lane.name} className="absolute top-[26px] h-[246px] w-[152px] rounded-[24px] border border-white/70 bg-white/30 p-2 backdrop-blur-md" style={{ left: 22 + li * 164 }}>
           <div className="mb-2 flex h-[14px] items-center justify-between px-1"><span className={`text-[10.5px] font-semibold ${ink}`}>{lane.name}</span><Tag tone={lane.tone}>{lane.cards.length}</Tag></div>
           <div className="space-y-2">
             {lane.cards.map((c, k) => c ? (
@@ -198,7 +198,7 @@ function ClinicA() {
   const slots: [string, string, string, boolean][] = [["10:00", "Ananya Rao", "Check-up", true], ["10:30", "Vikram Das", "Follow-up", true], ["11:15", "Sana Khan", "Dental", false], ["12:00", "Ishaan Gupta", "Skin consult", false]];
   return (
     <>
-      <div className="absolute left-[168px] top-[14px] h-[352px] w-[190px] rounded-[18px] border-[6px] border-[#111735] bg-white/85 p-3 shadow-[0_30px_60px_-24px_rgba(17,23,53,.6)] backdrop-blur-md">
+      <div className="absolute left-[168px] top-[14px] h-[352px] w-[190px] rounded-[24px] border-[6px] border-[#111735] bg-white/85 p-3 shadow-[0_30px_60px_-24px_rgba(17,23,53,.6)] backdrop-blur-md">
         <div className="mx-auto h-[14px] w-[56px] rounded-full bg-[#111735]" />
         <p className={`mt-3 text-[20px] font-semibold leading-none tracking-[-.04em] ${ink}`}>Today</p><p className={`text-[8.5px] ${soft}`}>Dr. Mehta · 12 appointments</p>
         <div className="relative mt-3 space-y-1.5">
@@ -423,13 +423,15 @@ const scenes: Record<string, Record<Variant, () => React.JSX.Element>> = {
 const meshFor: Record<string, string> = { crm: "mesh-crm", "real-estate": "mesh-estate", clinic: "mesh-clinic", agency: "mesh-agency", commerce: "mesh-commerce", "ai-calling": "mesh-calling" };
 
 /** A product scene on its own pastel mesh stage. Always the same 520:380 footprint. */
-export function SceneStage({ slug, variant = "a", className = "" }: { slug: string; variant?: Variant; className?: string }) {
+export function SceneStage({ slug, variant = "a", className = "", bare = false }: { slug: string; variant?: Variant; className?: string; bare?: boolean }) {
   const Scene = (scenes[slug] ?? scenes.crm)[variant];
+  if (bare) return <div className={className}><div role="img" aria-label={`Illustrative ${slug} workspace with sample data`}><ScaleBox><Scene /></ScaleBox></div><p className="mt-2 text-center text-[11px] opacity-70">Illustrative workspace · Sample data</p></div>;
   return (
-    <div className={`scene-stage ${meshFor[slug] ?? "mesh-crm"} ${className}`}>
+    <div role="img" aria-label={`Illustrative ${slug} workspace with sample data`} className={`scene-stage ${meshFor[slug] ?? "mesh-crm"} ${className}`}>
       <i aria-hidden className="absolute -left-10 -top-10 size-40 rounded-full bg-white/50 blur-3xl" />
       <i aria-hidden className="absolute -bottom-12 -right-8 size-44 rounded-full bg-white/40 blur-3xl" />
       <ScaleBox><Scene /></ScaleBox>
+      <span className="absolute bottom-2 right-3 text-[10px] text-white/70">Illustrative workspace · Sample data</span>
     </div>
   );
 }

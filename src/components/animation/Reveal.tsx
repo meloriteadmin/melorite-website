@@ -15,9 +15,12 @@ export function Reveal({ delay = 0, y = 28, duration = 0.9, children, ...rest }:
   const { className = "", style, ...divProps } = rest;
   const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
+  const [pending, setPending] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (el.getBoundingClientRect().top < window.innerHeight || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    setPending(true);
     const io = new IntersectionObserver(([entry]) => { if (entry.isIntersecting) { setShown(true); io.disconnect(); } }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
     io.observe(el);
     const failsafe = window.setTimeout(() => setShown(true), 4000);
@@ -26,7 +29,7 @@ export function Reveal({ delay = 0, y = 28, duration = 0.9, children, ...rest }:
   return (
     <div
       ref={ref}
-      className={`reveal ${shown ? "reveal-in" : ""} ${className}`}
+      className={`reveal ${pending && !shown ? "reveal-pending" : ""} ${shown ? "reveal-in" : ""} ${className}`}
       style={{ ...style, "--reveal-y": `${y}px`, "--reveal-d": `${delay}s`, "--reveal-t": `${duration}s` } as CSSProperties}
       {...divProps}
     >

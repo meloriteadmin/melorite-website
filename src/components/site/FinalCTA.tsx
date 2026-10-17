@@ -1,28 +1,28 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
 import { site } from "@/data/site";
 import { Reveal } from "@/components/animation/Reveal";
 
-const perks = ["Free demo", "Guided setup", "A clear next step"];
-
-export function FinalCTA({ title = "See it for yourself.", text = "Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." }: { title?: string; text?: string }) {
+export function FinalCTA({ title = "See it for yourself.", text, href = site.demoHref, label = "Book a demo" }: { title?: string; text?: string; href?: string; label?: string }) {
   return (
-    <section data-nav="light" className="py-[clamp(72px,9vw,124px)] text-[#111735]">
-      <div>
-        <Reveal className="glass glass-sheen relative isolate overflow-hidden !rounded-none border-y px-6 py-[clamp(72px,9vw,120px)] text-center">
-          <div aria-hidden className="absolute -left-[12%] -top-[28%] -z-10 size-[62%] rounded-full bg-[#8e92ff]/25 blur-[85px]" />
-          <div aria-hidden className="absolute -right-[12%] -top-[24%] -z-10 size-[58%] rounded-full bg-[#ffcbb8]/30 blur-[90px]" />
-          <div aria-hidden className="absolute -bottom-[38%] left-[20%] -z-10 h-[58%] w-[62%] rounded-full bg-[#777cff]/25 blur-[75px]" />
-          <p className="mono-label flex items-center justify-center gap-3 text-[#777b86]"><span className="size-2 rounded-full bg-[#5f63f2]" />Get started</p>
-          <h2 className="h-section mx-auto mt-6 max-w-[13ch]">{title}</h2>
-          <p className="mx-auto mt-7 max-w-[48ch] text-[18px] leading-[1.5] text-[#111735]/58">{text}</p>
-          <div className="mt-9 flex flex-wrap justify-center gap-3">
-            <Link href={site.demoHref} className="pill pill-dark h-12 px-8">Book a demo <ArrowRight className="size-4" /></Link>
-            <Link href={site.salesHref} className="pill pill-glass h-12 px-8">Contact sales</Link>
-          </div>
-          <ul className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-[14px] text-[#111735]/52">
-            {perks.map((perk) => <li key={perk} className="flex items-center gap-2"><Check className="size-4 text-[#5f63f2]" />{perk}</li>)}
-          </ul>
+    <section data-nav="light" className="px-3 py-[clamp(40px,5vw,80px)] sm:px-5">
+      <div className="mx-auto max-w-[1304px] rounded-[30px] border border-[#e4e3df] bg-white/70 p-1.5">
+        <Reveal className="cta-matte relative overflow-hidden rounded-[24px] px-6 pb-[clamp(48px,5vw,72px)] pt-[clamp(48px,5vw,72px)] text-center text-white">
+          <svg aria-hidden viewBox="0 0 1300 420" preserveAspectRatio="xMidYMax slice" className="pointer-events-none absolute inset-0 size-full">
+            <g fill="#fff">
+              <polygon points="150,420 330,170 510,420" opacity=".07" />
+              <polygon points="330,420 510,150 690,420" opacity=".05" />
+              <polygon points="610,420 800,130 990,420" opacity=".08" />
+              <polygon points="860,420 1040,190 1220,420" opacity=".06" />
+              <rect x="540" y="250" width="220" height="220" transform="rotate(45 650 360)" opacity=".05" />
+            </g>
+            <g fill="none" stroke="#fff" strokeWidth="1" opacity=".16">
+              <polygon points="330,420 510,150 690,420" />
+              <polygon points="610,420 800,130 990,420" />
+            </g>
+          </svg>
+          <h2 className="relative mx-auto max-w-[20ch] text-[clamp(2rem,1.4rem+2.6vw,3.6rem)] font-light leading-[1.18] tracking-[-0.03em]">{title}</h2>
+          {text && <p className="relative mx-auto mt-5 max-w-[56ch] text-[16px] leading-relaxed text-white/75">{text}</p>}
+          <Link href={href} className="pill relative mt-10 h-12 bg-[#26283a] px-8 text-white hover:bg-[#33364d]">{label}</Link>
         </Reveal>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Building2, Headset, Megaphone, ShoppingBag, Stethoscope, Users } from "lucide-react";
 import { site } from "@/data/site";
 import { EASE } from "@/lib/utils";
 import { ProductShowcase } from "./ProductShowcase";
@@ -10,24 +10,17 @@ import { WaveRibbon } from "@/components/site/WaveRibbon";
 
 const reveal = (delay: number) => ({ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay, ease: EASE } });
 
-const logos = ["Real estate", "Clinics", "Agencies", "Online sellers", "Sales teams", "AI calling"];
+const trust = [[Users, "Sales teams", "Leads and follow-ups"], [Building2, "Real estate", "Projects and buyers"], [Stethoscope, "Clinics", "Appointments and records"], [Megaphone, "Agencies", "Clients and approvals"], [ShoppingBag, "Online sellers", "Orders and stock"], [Headset, "AI calling", "Calls answered 24/7"]] as const;
 
 export function Hero() {
   return (
-    <section data-nav="light" className="hero-bg relative overflow-hidden pt-[72px] text-[#111735]">
+    <section data-nav="light" className="hero-bg relative overflow-hidden pt-6 text-[#111735]">
       <div className="relative mx-auto flex max-w-[1400px] flex-col items-center px-5 pt-[clamp(48px,7vw,104px)] text-center md:px-8">
-        <motion.div {...reveal(0.05)}>
-          <Link href="/products/ai-calling" className="group inline-flex items-center gap-2.5 rounded-full border border-[#5f63f2]/20 bg-white/60 py-1.5 pl-1.5 pr-4 text-[14px] shadow-[inset_0_1px_0_#fff,0_10px_30px_-18px_rgba(95,99,242,.7)] backdrop-blur-xl transition-shadow hover:shadow-md">
-            <span className="rounded-full bg-[#5f63f2] px-3 py-1 text-[12.5px] font-medium text-white">New</span>
-            <span className="font-medium">Introducing Melorite AI Calling</span>
-            <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
-          </Link>
-        </motion.div>
-        <motion.h1 {...reveal(0.15)} className="h-hero mt-7 max-w-[14ch] !text-[clamp(3rem,1.6rem+5.2vw,6.2rem)] !font-medium !leading-[.98] !tracking-[-0.05em]">
+        <motion.h1 initial={false} className="h-hero mt-7 max-w-[14ch] !text-[clamp(3rem,1.6rem+5.2vw,6.2rem)] !font-medium !leading-[.98] !tracking-[-0.05em]">
           Software that <span className="text-[#4b4fe0]">fits your business.</span>
         </motion.h1>
-        <motion.p {...reveal(0.28)} className="mt-6 max-w-[54ch] text-[clamp(1.05rem,.95rem+.45vw,1.3rem)] leading-snug text-[#111735]/62">
-          Ready-to-use software for real estate, clinics, agencies, online sellers and sales teams, plus AI calling that answers and makes your calls.
+        <motion.p initial={false} className="mt-6 max-w-[54ch] text-[clamp(1.05rem,.95rem+.45vw,1.3rem)] leading-snug text-[#111735]/62">
+          Melorite provides CRM, real estate management, clinic management, agency operations, ecommerce and AI calling software, built on a connected business platform.
         </motion.p>
         <motion.div {...reveal(0.4)} className="mt-9 flex flex-wrap justify-center gap-3">
           <Link href={site.demoHref} className="pill pill-dark h-[52px] px-8 text-[16px] shadow-[0_18px_40px_-18px_rgba(17,23,53,.8)]">Book a demo<ArrowRight className="size-4" /></Link>
@@ -37,18 +30,24 @@ export function Hero() {
 
       <WaveRibbon className="mt-[clamp(8px,2vw,24px)] h-[clamp(260px,36vw,540px)]" />
 
-      <div className="relative py-6">
-        <p className="mb-3 text-center text-[12px] font-semibold uppercase tracking-[.14em] text-[#111735]/40">Built for teams in</p>
-        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-          <div className="marquee-track gap-14 text-[24px] font-semibold tracking-[-0.03em] text-[#4b4fe0]/45">
-            {[...logos, ...logos, ...logos, ...logos].map((l, i) => <span key={i} className="pr-14">{l}</span>)}
-          </div>
+      <div className="mx-auto max-w-[1400px] px-5 py-[clamp(40px,5vw,72px)] md:px-12">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="text-[clamp(1.1rem,1rem+.5vw,1.5rem)] text-[#111735]/80">Built for the way these teams work</p>
+          <Link href="/products" className="pill pill-glass">Explore products</Link>
+        </div>
+        <div className="cells mt-8 grid-cols-2 md:grid-cols-3">
+          {trust.map(([Icon, name, note]) => (
+            <div key={name} className="flex items-center gap-4 bg-white/50 p-6 sm:p-8">
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#111735]/[.05] text-[#111735]/70"><Icon className="size-5" strokeWidth={1.6} /></span>
+              <div><p className="text-[17px] font-medium tracking-[-.02em]">{name}</p><p className="text-[13px] text-[#111735]/50">{note}</p></div>
+            </div>
+          ))}
         </div>
       </div>
-    
-      <div className="px-3 pb-3 pt-[clamp(40px,6vw,88px)] sm:px-5 sm:pb-5">
-        <div className="glass glass-sheen mx-auto max-w-[1400px] rounded-[18px] px-4 py-[clamp(28px,5vw,72px)] sm:px-[clamp(20px,5vw,72px)]">
-          <div className="mx-auto mb-10 max-w-[640px] text-center"><p className="eyebrow-pill">See it working</p><h2 className="h-section mx-auto mt-5">One product for every kind of business.</h2><p className="mt-4 text-[17px] text-[#111735]/60">Hover the dock, pick yours and look inside.</p></div>
+
+      <div className="border-t border-[#e4e3df] px-3 pb-3 pt-[clamp(40px,6vw,88px)] sm:px-5 sm:pb-5">
+        <div className="mx-auto max-w-[1304px]">
+          <div className="mx-auto mb-10 max-w-[1304px]"><p className="eyebrow-pill">See it working</p><h2 className="h-section mt-5 max-w-[16ch]">One product for every kind of business.</h2><p className="mt-4 text-[17px] text-[#111735]/60">Pick yours and look inside.</p></div>
           <ProductShowcase />
         </div>
       </div>

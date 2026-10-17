@@ -1,3 +1,5 @@
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
@@ -9,16 +11,12 @@ import { FinalCTA } from "@/components/site/FinalCTA";
 import { FolderCollections } from "@/components/site/FolderCollections";
 import { ProductGrid } from "@/components/home/ProductCards";
 
-export const metadata: Metadata = {
-  title: "Products",
-  description: "Pick the product made for your business: CRM, Real Estate, Clinic, Agency, Commerce and AI Calling. Each is ready to use from day one.",
-  alternates: { canonical: "/products" },
-};
+export const metadata: Metadata = pageMetadata("/products", "Business Software Products", "Compare six focused Melorite products for sales, property, clinic, agency, ecommerce and phone workflows. Choose the software that fits your team.");
 
 export default function ProductsPage() {
   return (
-    <PageTransition>
-      <InnerHero label="Products" title="Software for the way your business actually works." body="Six focused products for sales, real estate, clinics, agencies, online sellers and businesses that depend on phone conversations." primary={{ label: "Book a demo", href: "/book-demo" }} secondary={{ label: "Talk to sales", href: "/contact" }} mesh="estate">
+    <PageTransition><Breadcrumbs items={[{ name: "Products" }]} />
+      <InnerHero label="Business Software Products" title="Software for the way your business actually works." body="Six focused products for sales, real estate, clinics, agencies, online sellers and businesses that depend on phone conversations." primary={{ label: "Book a demo", href: "/book-demo" }} secondary={{ label: "Talk to sales", href: "/contact" }} mesh="estate">
         <FolderCollections collections={[
           { label: "Sales and conversations", meta: "2 products", art: "aurora", files: products.filter((p) => ["crm", "ai-calling"].includes(p.slug)).map((p) => ({ name: p.name, meta: p.kicker, href: `/products/${p.slug}` })) },
           { label: "Places and people", meta: "2 products", art: "glacier", files: products.filter((p) => ["real-estate", "clinic"].includes(p.slug)).map((p) => ({ name: p.name, meta: p.kicker, href: `/products/${p.slug}` })) },

@@ -1,9 +1,10 @@
 "use client";
 
+import { demoHrefForPath } from "@/lib/links";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { mainNav } from "@/data/navigation";
-import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/Logo";
 import {
@@ -30,8 +31,13 @@ export function Navbar() {
   return (
     <header
       data-theme="light"
-      className="site-navbar fixed inset-x-0 top-0 z-50"
+      className="site-navbar sticky top-0 z-50"
     >
+      <div className="announce hidden h-9 items-center justify-center gap-3 px-4 text-[12.5px] sm:flex">
+        <span className="rounded-full bg-[#5f63f2] px-2 py-0.5 text-[10.5px] font-semibold">New</span>
+        <span className="text-white/85">Introducing Melorite AI Calling — an assistant that answers and makes your calls.</span>
+        <Link href="/products/ai-calling" className="font-semibold text-white underline-offset-4 hover:underline">Learn more →</Link>
+      </div>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
         Skip to content
       </a>
@@ -67,7 +73,8 @@ export function Navbar() {
         </NavigationMenu>
 
         <div className="col-start-3 flex items-center gap-2">
-          <Link href={site.demoHref} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>Book a demo</Link>
+          <Link href="/contact" className="pill pill-sm pill-glass hidden md:inline-flex">Contact us</Link>
+          <Link href={demoHrefForPath(pathname)} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>Book a demo</Link>
           <MobileMenu />
         </div>
       </div></div>

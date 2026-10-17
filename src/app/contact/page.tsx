@@ -1,8 +1,8 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { ContactPage } from "@/components/contact/ContactPage";
 
-const description = "Talk to Melorite about the product made for your business, a custom solution, or a free demo.";
-export const metadata: Metadata = { title: "Contact", description, alternates: { canonical: "/contact" }, openGraph: { title: "Contact Melorite", description, url: "/contact" } };
+export const metadata: Metadata = pageMetadata("/contact", "Contact Melorite | Sales, Support & Business Enquiries", "Contact Melorite about product selection, sales, support or custom business software. Share your workflow and reach the team by email or phone.");
 
 export default function Page() {
   return <ContactPage type="sales" />;

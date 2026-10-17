@@ -31,7 +31,8 @@ const nextConfig: NextConfig = {
       r("/products/real-estate-crm", "/products/real-estate"), r("/products/clinic-management", "/products/clinic"),
       r("/products/agency-management", "/products/agency"), r("/products/ecommerce", "/products/commerce"),
       r("/products/:slug(finance|hrms|projects|service|procurement-inventory)", "/products"),
-    ];  },
+    ];
+  },
 };
 
 export default nextConfig;

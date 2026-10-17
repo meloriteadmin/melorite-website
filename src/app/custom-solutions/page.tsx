@@ -1,3 +1,5 @@
+import { Breadcrumbs } from "@/components/site/Breadcrumbs";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { AppWindow, LayoutDashboard, Plug, Plus } from "lucide-react";
 import { customBuilds, customSteps } from "@/data/products";
@@ -6,17 +8,11 @@ import { Reveal } from "@/components/animation/Reveal";
 import { InnerHero } from "@/components/site/InnerHero";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { GoodFor } from "@/components/site/Cells";
-import { site } from "@/data/site";
 import { FolderCollections } from "@/components/site/FolderCollections";
 import Timeline from "@/components/ui/timeline";
 import { WorkflowGraph } from "@/components/site/WorkflowGraph";
 
-export const metadata: Metadata = {
-  title: "Custom Solutions",
-  description: "Sometimes ready-made software isn’t quite enough. Melorite can add to its products or build something new around exactly how you work.",
-  alternates: { canonical: "/custom-solutions" },
-  openGraph: { title: "Custom Business Software | Melorite", description: "Extend a Melorite product or build software around your workflow.", url: "/custom-solutions" },
-};
+export const metadata: Metadata = pageMetadata("/custom-solutions", "Custom Business Software Development", "Extend a Melorite product or plan a custom business application, workflow, portal or report around your team’s process. Discuss your requirements.");
 
 const customCases = [
   ["An unusual workflow", "Your team follows a process that standard software does not cover cleanly."],
@@ -48,15 +44,15 @@ const capabilities = [
 
 export default function CustomSolutionsPage() {
   return (
-    <PageTransition>
-      <InnerHero label="Custom solutions" title="Software built around exactly how you work." body="Extend a Melorite product or build a focused application around your process, users and decisions, with a clear scope before development begins." primary={{ label: "Discuss your project", href: site.demoHref }} secondary={{ label: "See how it works", href: "#how-it-works" }} mesh="calling"><div className="mx-auto max-w-[1080px]"><WorkflowGraph /></div></InnerHero>
+    <PageTransition><Breadcrumbs items={[{ name: "Custom Solutions" }]} />
+      <InnerHero label="Custom Business Software Development" title="Software built around exactly how you work." body="Extend a Melorite product or build a focused application around your process, users and decisions, with a clear scope before development begins." primary={{ label: "Discuss your project", href: "/contact?enquiry=custom&product=custom-solution" }} secondary={{ label: "See how it works", href: "#how-it-works" }} mesh="calling"><div className="mx-auto max-w-[1080px]"><WorkflowGraph /></div></InnerHero>
 
       <section data-nav="light" className="py-[clamp(72px,9vw,120px)] text-[#111735]">
         <div className="rail-inner mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-20">
           <Reveal><p className="eyebrow-pill">When it makes sense</p><h2 className="h-section mt-5 max-w-[14ch]">When the workflow matters more than the template.</h2></Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {customCases.map(([title, body], i) => (
-              <Reveal key={title} delay={i * .05} className="glass glass-sheen glass-lift flex min-h-[220px] flex-col rounded-[14px] p-6">
+              <Reveal key={title} delay={i * .05} className="glass glass-sheen glass-lift flex min-h-[220px] flex-col rounded-[16px] p-6">
                 <span className="grid size-10 place-items-center rounded-full bg-[#5f63f2]/12 text-[13px] font-bold text-[#4b4fe0]">0{i + 1}</span>
                 <h3 className="mt-auto pt-8 text-[20px] font-semibold tracking-[-.03em]">{title}</h3>
                 <p className="mt-2 text-[15px] leading-[1.55] text-[#111735]/58">{body}</p>
@@ -95,7 +91,7 @@ export default function CustomSolutionsPage() {
           {capabilities.map(({ Icon, label, title, body, ...rest }, i) => {
             const dark = "dark" in rest;
             return (
-              <Reveal key={label} delay={i * .06} className={`${dark ? "glass-dark" : "glass"} glass-sheen flex min-h-[340px] flex-col rounded-[14px] p-7 sm:p-8`}>
+              <Reveal key={label} delay={i * .06} className={`${dark ? "glass-dark" : "glass"} glass-sheen flex min-h-[340px] flex-col rounded-[16px] p-7 sm:p-8`}>
                 <span className={`grid size-12 place-items-center rounded-2xl ${dark ? "bg-white/10 text-[#a5a8ff]" : "icon-chip !size-12"}`}><Icon className="size-5" strokeWidth={1.8} /></span>
                 <div className="mt-auto pt-10"><p className={`mono-label ${dark ? "text-white/45" : "text-[#4b4fe0]"}`}>{label}</p><h3 className="mt-3 max-w-[14ch] text-[28px] font-semibold leading-[1.05] tracking-[-.04em]">{title}</h3><p className={`mt-4 text-[15.5px] leading-[1.6] ${dark ? "text-white/60" : "text-[#111735]/60"}`}>{body}</p></div>
               </Reveal>
@@ -111,7 +107,7 @@ export default function CustomSolutionsPage() {
           <Reveal><p className="eyebrow-pill">Example use cases</p><h2 className="h-section mt-5 max-w-[14ch]">Specific software for specific work.</h2></Reveal>
           <div className="mt-12 grid gap-4 md:grid-cols-2">
             {useCases.map(([title, body], i) => (
-              <Reveal key={title} delay={(i % 2) * .05} className="glass glass-sheen glass-lift flex min-h-[230px] flex-col rounded-[14px] p-7">
+              <Reveal key={title} delay={(i % 2) * .05} className="glass glass-sheen glass-lift flex min-h-[230px] flex-col rounded-[16px] p-7">
                 <p className="mono-label text-[#4b4fe0]">Sample 0{i + 1}</p>
                 <h3 className="mt-auto pt-8 text-[24px] font-semibold tracking-[-.035em]">{title}</h3>
                 <p className="mt-3 max-w-[48ch] text-[15.5px] leading-[1.55] text-[#111735]/58">{body}</p>
@@ -126,7 +122,7 @@ export default function CustomSolutionsPage() {
           <Reveal className="text-center"><p className="eyebrow-pill">FAQ</p><h2 className="h-section mx-auto mt-5">Questions before discovery.</h2></Reveal>
           <div className="mt-10 space-y-3">
             {faqs.map(([question, answer]) => (
-              <details key={question} className="glass group rounded-[14px] px-6">
+              <details key={question} className="glass group rounded-[16px] px-6">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-[17px] font-semibold tracking-[-.02em]"><span>{question}</span><span className="grid size-8 shrink-0 place-items-center rounded-full bg-[#5f63f2]/12 text-[#4b4fe0] transition-transform group-open:rotate-45"><Plus className="size-4" /></span></summary>
                 <p className="max-w-[68ch] pb-6 text-[15.5px] leading-[1.6] text-[#111735]/60">{answer}</p>
               </details>
@@ -135,7 +131,7 @@ export default function CustomSolutionsPage() {
         </div>
       </section>
 
-      <FinalCTA title="Discuss your project." text="Share what’s slowing you down. We’ll help identify whether a product extension or a complete custom application is the better fit." />
+      <FinalCTA href="/contact?enquiry=custom&product=custom-solution" label="Discuss your project" title="Discuss your project." text="Share what’s slowing you down. We’ll help identify whether a product extension or a complete custom application is the better fit." />
     </PageTransition>
   );
 }

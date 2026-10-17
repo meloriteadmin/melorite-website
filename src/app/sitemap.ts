@@ -13,5 +13,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/contact", priority: 0.6 },
     { path: "/book-demo", priority: 0.6 },
   ];
-  return routes.map((r) => ({ url: `${site.url}${r.path}`, lastModified: new Date(), changeFrequency: "monthly", priority: r.priority }));
+  return routes.map((r) => ({ url: `${site.url}${r.path}`, changeFrequency: "monthly", priority: r.priority }));
 }

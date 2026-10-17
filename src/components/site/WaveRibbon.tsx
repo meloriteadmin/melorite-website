@@ -41,6 +41,7 @@ function build(r: Ribbon, t: number) {
 }
 
 export function WaveRibbon({ className = "" }: { className?: string }) {
+  const container = useRef<HTMLDivElement>(null);
   const refs = useRef<Record<string, SVGPathElement | null>>({});
 
   useEffect(() => {
@@ -58,18 +59,22 @@ export function WaveRibbon({ className = "" }: { className?: string }) {
     };
     draw();
     if (reduce) return;
+    let visible = true;
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
+    if (container.current) observer.observe(container.current);
     const loop = (now: number) => {
+      if (!visible || document.hidden || now - last < 33) { if (!visible || document.hidden) last = now; raf = requestAnimationFrame(loop); return; }
       t += Math.min(0.05, (now - last) / 1000);
       last = now;
       draw();
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
+    return () => { cancelAnimationFrame(raf); observer.disconnect(); };
   }, []);
 
   return (
-    <div aria-hidden className={`pointer-events-none relative w-full overflow-hidden ${className}`}>
+    <div ref={container} aria-hidden className={`pointer-events-none relative w-full overflow-hidden ${className}`}>
       <svg viewBox="0 0 1600 560" preserveAspectRatio="xMidYMid slice" className="h-full w-full [mask-image:linear-gradient(to_bottom,transparent,black_16%,black_80%,transparent)]">
         <defs>
           {RIBBONS.map((r) => (
@@ -81,9 +86,9 @@ export function WaveRibbon({ className = "" }: { className?: string }) {
         <g style={{ isolation: "isolate" }}>
           {RIBBONS.map((r) => (
             <g key={r.id} style={{ mixBlendMode: "multiply" }}>
-              <path ref={(el) => { refs.current[`${r.id}-f`] = el; }} fill={`url(#${r.id}-g)`} fillOpacity={r.fill} />
-              <path ref={(el) => { refs.current[`${r.id}-s`] = el; }} fill="none" stroke={`url(#${r.id}-g)`} strokeWidth=".7" strokeOpacity=".45" />
-              <path ref={(el) => { refs.current[`${r.id}-e`] = el; }} fill="none" stroke={`url(#${r.id}-g)`} strokeWidth="1.2" strokeOpacity=".9" />
+              <path d={build(r, 0.6).fill} ref={(el) => { refs.current[`${r.id}-f`] = el; }} fill={`url(#${r.id}-g)`} fillOpacity={r.fill} />
+              <path d={build(r, 0.6).strands} ref={(el) => { refs.current[`${r.id}-s`] = el; }} fill="none" stroke={`url(#${r.id}-g)`} strokeWidth=".7" strokeOpacity=".45" />
+              <path d={build(r, 0.6).edge} ref={(el) => { refs.current[`${r.id}-e`] = el; }} fill="none" stroke={`url(#${r.id}-g)`} strokeWidth="1.2" strokeOpacity=".9" />
             </g>
           ))}
         </g>

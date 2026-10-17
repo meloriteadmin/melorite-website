@@ -1,3 +1,6 @@
+import { Analytics } from "@/components/analytics/Analytics";
+import { siteIdentity } from "@/components/site/SiteIdentity";
+import { jsonLd } from "@/lib/seo";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { site } from "@/data/site";
@@ -13,6 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Melorite",
   },
   description: site.description,
+  verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
   applicationName: "Melorite",
   authors: [{ name: "Melorite" }],
   creator: "Melorite",
@@ -34,13 +38,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className="antialiased">
+    <html lang="en" className="antialiased">
       <body className="min-h-dvh">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(siteIdentity) }} />
+        <Analytics />
         <Providers>
           <Navbar />
-          <main id="main" tabIndex={-1} className="outline-none">
-            {children}
-          </main>
+          <div className="frame">
+            <main id="main" tabIndex={-1} className="outline-none">
+              {children}
+            </main>
+          </div>
           <Footer />
           <FloatingDemo />
         </Providers>

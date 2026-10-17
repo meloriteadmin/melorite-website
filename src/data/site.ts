@@ -1,23 +1,8 @@
 const defaultSiteUrl = "https://melorite.com";
 
-function getSiteUrl() {
-  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-
-  if (!configuredUrl) return defaultSiteUrl;
-
-  try {
-    const url = new URL(configuredUrl);
-    return url.protocol === "http:" || url.protocol === "https:"
-      ? url.toString().replace(/\/$/, "")
-      : defaultSiteUrl;
-  } catch {
-    return defaultSiteUrl;
-  }
-}
-
 export const site = {
   name: "Melorite",
-  url: getSiteUrl(),
+  url: defaultSiteUrl,
   tagline: "Software that fits your business. Built for your industry, simple for your team.",
   description:
     "Ready-to-use software for real estate, clinics, marketing agencies, online sellers and sales teams, plus AI calling that answers and makes your calls.",
@@ -34,6 +19,7 @@ export const site = {
   },
   /** Official social accounts only. Add URLs when they exist. */
   social: [
+    { label: "Facebook", href: process.env.NEXT_PUBLIC_FACEBOOK_URL ?? "https://www.facebook.com/melorite" },
     { label: "LinkedIn", href: "https://www.linkedin.com/company/melorite/" },
     { label: "Instagram", href: "https://instagram.com/melorite_" },
   ] as { label: string; href: string }[],

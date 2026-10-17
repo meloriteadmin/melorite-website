@@ -1,5 +1,7 @@
 "use client";
 
+import { demoHrefForPath } from "@/lib/links";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -57,7 +59,7 @@ export function MobileMenu() {
         </nav>
         <div className="flex gap-3 border-t border-[#111735]/10 p-5">
           <Link href={site.salesHref} onClick={close} className="pill flex-1 border border-[#111735]/15">Contact sales</Link>
-          <Link href={site.demoHref} onClick={close} className="pill pill-dark flex-1">Book a demo</Link>
+          <Link href={demoHrefForPath(pathname)} onClick={close} className="pill pill-dark flex-1">Book a demo</Link>
         </div>
       </SheetContent>
     </Sheet>

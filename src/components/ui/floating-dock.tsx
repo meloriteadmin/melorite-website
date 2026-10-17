@@ -67,7 +67,7 @@ export function Dock({ items, className }: { items: DockItem[]; className?: stri
   const mouseX = useMotionValue(Infinity);
   return (
     <div onMouseMove={(e) => mouseX.set(e.clientX)} onMouseLeave={() => mouseX.set(Infinity)}
-      className={cn("flex items-end gap-2 rounded-[14px] border border-white/80 bg-gradient-to-b from-white/70 to-white/40 p-2.5 shadow-[inset_0_1px_0_#fff,0_24px_60px_-24px_rgba(60,63,196,.55)] backdrop-blur-2xl backdrop-saturate-150", className)}
+      className={cn("flex items-end gap-2 rounded-[16px] border border-white/80 bg-gradient-to-b from-white/70 to-white/40 p-2.5 shadow-[inset_0_1px_0_#fff,0_24px_60px_-24px_rgba(60,63,196,.55)] backdrop-blur-2xl backdrop-saturate-150", className)}
       style={{ height: BASE + 20 }}>
       {items.map((item) => <DockIcon key={item.label} item={item} mouseX={mouseX} />)}
     </div>

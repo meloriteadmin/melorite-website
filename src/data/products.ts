@@ -91,10 +91,10 @@ export const callFlows = {
 
 export const reasons = [
   ["It already fits", "Each product is built for one kind of business, so it works the way you already do."],
-  ["Quick to start", "You’re up and running in days, not months."],
+  ["Guided setup", "We plan setup around your workflow and the scope your team needs."],
   ["Easy for everyone", "Clean, simple screens your team will understand from day one."],
   ["Saves your time", "Reminders and simple workflows take care of the repetitive work."],
-  ["Your data is safe", "Stored securely, and you decide who sees what."],
+  ["Controlled access", "Decide who can access the records relevant to their work. Discuss hosting and security requirements during setup."],
   ["Grows with you", "Add people, branches and features whenever you need them."],
   ["We’re with you", "Real people to help you set up, and to support you long after you go live."],
 ] as const;

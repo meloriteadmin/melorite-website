@@ -1,5 +1,7 @@
 "use client";
 
+import { demoHrefForPath } from "@/lib/links";
+
 import { usePathname } from "next/navigation";
 import { Boxes, Building2, CalendarCheck, Home, Layers, Mail, Puzzle } from "lucide-react";
 import { FloatingDock, type DockItem } from "@/components/ui/floating-dock";
@@ -16,7 +18,7 @@ export function FloatingDemo() {
     { label: "Custom Solutions", href: "/custom-solutions", icon: Puzzle, desktopOnly: true },
     { label: "Company", href: "/company", icon: Building2, desktopOnly: true },
     { label: "Contact", href: "/contact", icon: Mail, desktopOnly: true },
-    { label: "Book a demo", href: "/book-demo", icon: CalendarCheck, primary: true },
+    { label: "Book a demo", href: demoHrefForPath(pathname), icon: CalendarCheck, primary: true },
   ].map((i) => ({ ...i, active: on(i.href) }));
   return <FloatingDock items={items} />;
 }

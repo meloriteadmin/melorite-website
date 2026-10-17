@@ -171,7 +171,7 @@ body {
 
 /* Keep document scrolling native. This preserves trackpad momentum and avoids
    competing scroll positions on fast upward/downward gestures. */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -662,11 +662,11 @@ section[data-nav="light"], footer[data-nav="light"] { background-color: transpar
 .glass, .glass-soft, .glass-tint, .card, .card-grid > *, .pane {
   border: 1px solid rgb(17 23 53 / .09) !important; box-shadow: none !important;
 }
-.glass, .card, .card-grid > * { background: rgb(255 255 255 / .6) !important; border-radius: 14px; }
-.pane { border-radius: 10px; background: rgb(255 255 255 / .78); }
+.glass, .card, .card-grid > * { background: #fff !important; }
+.pane { border-radius: 12px; background: rgb(255 255 255 / .78); }
 .glass-dark { border: 1px solid rgb(255 255 255 / .1); box-shadow: none; }
 .glass-lift:hover, .card:hover { transform: translateY(-2px); border-color: rgb(95 99 242 / .35) !important; box-shadow: none !important; }
-.scene-stage { border-radius: 12px; border: 1px solid rgb(17 23 53 / .07); box-shadow: none; }
+.scene-stage { border-radius: 16px; border: 1px solid rgb(17 23 53 / .07); box-shadow: none; }
 .icon-chip { border-radius: 10px; box-shadow: none; background: rgb(95 99 242 / .1); }
 .eyebrow-pill { box-shadow: none; border: 1px solid rgb(95 99 242 / .18); }
 .media-frame, .panel-mesh { border-radius: 0 !important; margin: 0 !important; border: 0; }
@@ -679,7 +679,7 @@ section[data-nav="light"], footer[data-nav="light"] { background-color: transpar
    Plain backgrounds; gradient only in hero areas. Apple system type.
    ================================================================== */
 .aurora { display: none; }
-html, body { background: #fff; }
+html, body { background: #fafafa; }
 body { font-feature-settings: normal; -webkit-font-smoothing: antialiased; }
 .hero-bg { background-image:
   radial-gradient(900px 480px at 12% -10%, rgb(165 168 255 / .5), transparent 65%),
@@ -693,3 +693,159 @@ body { font-feature-settings: normal; -webkit-font-smoothing: antialiased; }
 .eyebrow-pill { background: none !important; border: 0 !important; padding: 0 !important; box-shadow: none !important; color: #4b4fe0; }
 .container-x { max-width: 1400px; padding-inline: clamp(20px, 3.5vw, 48px); }
 .site-navbar .nav-bar > div { max-width: 1400px; }
+
+/* ==================================================================
+   Sarvam-inspired system: paper canvas, hairline white cards, one warm hero gradient,
+   floating "windows" with a frosted halo ring.
+   ================================================================== */
+.glass, .glass-soft, .glass-tint, .card, .card-grid > *, .pane { border-color: #e9e9ec !important; }
+.glass-soft { background: #fff; }
+.glass-tint { background: #f3f3ff; }
+.hero-bg { background-image:
+  radial-gradient(1000px 520px at 15% -12%, rgb(255 205 170 / .55), transparent 62%),
+  radial-gradient(900px 520px at 85% -8%, rgb(160 166 255 / .5), transparent 62%),
+  linear-gradient(180deg, #f3f3ff 0%, #fafafa 100%) !important; }
+.window { border-radius: 24px; background: rgb(255 255 255 / .35); border: 1px solid rgb(255 255 255 / .8); padding: 10px; box-shadow: 0 0 0 1px #e9e9ec, 0 24px 60px -30px rgb(60 63 196 / .25); }
+.window-inner { border-radius: 16px; overflow: hidden; background: #fff; border: 1px solid #e9e9ec; }
+.cta-block { background: linear-gradient(180deg, #111735 0%, #1b2160 55%, #5a5fe8 135%); color: #fff; }
+.site-navbar .nav-bar { background: rgb(250 250 250 / .85); }
+.announce { background: #111735; color: #fff; }
+
+/* Line texture (Aira / ElevenLabs feel): fine vertical column rules that fade out; far less gradient. */
+.lines-bg, .hero-bg { background-image:
+  repeating-linear-gradient(90deg, rgb(17 23 53 / .055) 0 1px, transparent 1px 96px) !important; background-position: center top; }
+.hero-bg { background-image:
+  radial-gradient(900px 360px at 50% -10%, rgb(95 99 242 / .12), transparent 70%),
+  repeating-linear-gradient(90deg, rgb(17 23 53 / .055) 0 1px, transparent 1px 96px) !important; background-color: #fafafa; }
+.hero-bg, .lines-bg { mask-image: none; }
+.cta-block { background: #111735; background-image: repeating-linear-gradient(90deg, rgb(255 255 255 / .06) 0 1px, transparent 1px 88px); }
+.cta-block > i { display: none; }
+.panel-mesh { background: #f1f1f8 !important; background-image: repeating-linear-gradient(90deg, rgb(17 23 53 / .05) 0 1px, transparent 1px 96px) !important; animation: none !important; }
+.panel-mesh::after { display: none; }
+
+
+/* ==================================================================
+   ElevenLabs-style frame: paper page, a ruled content column (vertical rails at the
+   container edge), full-width hairlines between sections, dots where they cross,
+   and warm-grey "UI frames" holding the product graphics.
+   ================================================================== */
+:root { --rule: #e4e3df; --frame: 1400px; }
+html, body { background: #fafaf8; }
+.hero-bg, .lines-bg { background-image: none !important; background-color: transparent !important; }
+.frame { position: relative; }
+.frame::before, .frame::after { content: ""; position: absolute; top: 0; bottom: 0; width: 1px; background: var(--rule); pointer-events: none; z-index: 0; }
+.frame::before { left: max(0px, calc((100% - var(--frame)) / 2)); }
+.frame::after { right: max(0px, calc((100% - var(--frame)) / 2)); }
+@media (max-width: 1100px) { .frame::before, .frame::after { display: none; } }
+main section[data-nav] { position: relative; border-top: 1px solid var(--rule); }
+main section[data-nav]::after { content: ""; position: absolute; left: 0; right: 0; top: -3px; height: 5px; pointer-events: none; z-index: 2;
+  background:
+    radial-gradient(circle, #111 1.6px, transparent 2.2px) calc((100% - var(--frame)) / 2 - 2px) 0 / 5px 5px no-repeat,
+    radial-gradient(circle, #111 1.6px, transparent 2.2px) calc(100% - (100% - var(--frame)) / 2 - 3px) 0 / 5px 5px no-repeat; }
+@media (max-width: 1100px) { main section[data-nav]::after { display: none; } }
+main section.panel-mesh { border-top: 1px solid var(--rule); }
+
+/* Warm-grey frames for product graphics */
+.mesh-crm, .mesh-estate, .mesh-clinic, .mesh-agency, .mesh-commerce, .mesh-calling {
+  background: radial-gradient(circle at 85% 8%, rgb(95 99 242 / .10), transparent 45%), #f1f0ec !important; }
+.mesh-crm::after, .mesh-estate::after, .mesh-clinic::after, .mesh-agency::after, .mesh-commerce::after, .mesh-calling::after { display: none; }
+.scene-stage { border: 1px solid var(--rule); }
+.scene-stage::before { background-image: none; }
+.window { background: #f1f0ec; border: 1px solid var(--rule); box-shadow: none; }
+.panel-mesh { background: #f1f0ec !important; background-image: none !important; }
+.glass, .card, .card-grid > *, .glass-soft, .pane, .window-inner { border-color: var(--rule) !important; }
+.footer-wordmark { background: none; color: #111735; -webkit-text-fill-color: #111735; opacity: .06; }
+
+/* Headlines: light, large, quiet */
+.h-hero, .h-section, .h-story, .h-card, .text-display, .text-h1, .text-h2 { font-weight: 500; letter-spacing: -0.035em; }
+
+/* Bordered cell grid (logo-wall style) */
+.cells { display: grid; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.cells > * { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+/* Light closing card + Sarvam-style footer wordmark */
+.cta-light { background: radial-gradient(700px 260px at 50% 130%, rgb(95 99 242 / .16), transparent 70%), #f1f0ec; }
+.footer-wordmark { background: linear-gradient(180deg, #5f63f2 0%, rgb(95 99 242 / .06) 85%) !important; -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; -webkit-text-fill-color: transparent !important; opacity: 1 !important; }
+
+/* Cards: warm-grey, borderless; vivid brand gradient for stages and the featured card */
+.glass, .card, .card-grid > *, .glass-soft { background: #f3f2ef !important; border: 0 !important; }
+.glass-tint { background: #ecebf7 !important; border: 0 !important; }
+.glass-lift:hover, .card:hover { background: #ecebe6 !important; border: 0 !important; transform: none; }
+.window-inner { border: 0 !important; }
+.brand-grad, .mesh-crm, .mesh-estate, .mesh-clinic, .mesh-agency, .mesh-commerce, .mesh-calling {
+  background:
+    radial-gradient(60% 55% at 12% 92%, #ff9a76 0%, rgb(255 154 118 / 0) 70%),
+    radial-gradient(55% 60% at 92% 10%, #a9afff 0%, rgb(169 175 255 / 0) 70%),
+    linear-gradient(140deg, #3436b8 0%, #5f63f2 52%, #8c91ff 100%) !important; }
+.mesh-estate { background-position: 30% 0 !important; }
+.scene-stage { border: 0; }
+
+html, html.lenis { scroll-behavior: auto !important; }
+
+/* Closing card: night-to-periwinkle vertical wash with concentric arcs */
+.cta-dusk { background: linear-gradient(180deg, #0e1230 0%, #1a2060 45%, #5f63f2 100%); }
+.cta-dusk .pill-dark { background: #111735; }
+
+/* Matte gradient: soft ink-to-periwinkle wash with fine grain */
+.cta-matte { background-color: #1b2160;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #14172e 0%, #2a3070 50%, #7f86d9 100%); background-blend-mode: soft-light, normal; }
+
+.cta-matte { background-color: #8d98e0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E"),
+    linear-gradient(180deg, #181a2c 0%, #3b4170 45%, #6a74b8 75%, #909cde 100%); background-blend-mode: soft-light, normal; }
+
+/* ==================================================================
+   Matte gradients: moody diagonal light over an ink base, with heavy film grain.
+   ================================================================== */
+.brand-grad, .mesh-crm, .mesh-estate, .mesh-clinic, .mesh-agency, .mesh-commerce, .mesh-calling, .cta-matte, .glass-dark {
+  background-color: #1d2354 !important;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(115deg, transparent 18%, rgb(138 151 232 / .5) 34%, transparent 52%),
+    radial-gradient(70% 60% at 8% 4%, #8f9bea 0%, rgb(143 155 234 / 0) 70%),
+    linear-gradient(165deg, #5560c4 0%, #2c3478 42%, #14172f 100%) !important;
+  background-blend-mode: overlay, soft-light, normal, normal !important;
+  background-size: 220px 220px, auto, auto, auto !important; background-repeat: repeat, no-repeat, no-repeat, no-repeat !important; background-position: 0 0, 0 0, 0 0, 0 0 !important; }
+.mesh-estate { background-position: 0 0, 0 0, 0 0, 0 0 !important; }
+
+/* Content is visible in server HTML; only enhanced, below-fold reveals are delayed. */
+.reveal { opacity: 1; transform: none; }
+.reveal.reveal-pending { opacity: 0; transform: translate3d(0, 10px, 0); }
+@media (prefers-reduced-motion: reduce) { .reveal.reveal-pending { opacity: 1; transform: none; } }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid #4b4fe0; outline-offset: 4px; }
+
+/* ==================================================================
+   Minimal pass: quiet nav hover, solid dropdown, matte footer wordmark.
+   ================================================================== */
+.site-navbar .nav-link, .site-navbar [data-slot="navigation-menu-trigger"] { position: relative; background: transparent !important; border-radius: 8px; color: #6b6b68; transition: color .2s; }
+.site-navbar[data-theme="light"] .nav-link:is(:hover, :focus-visible),
+.site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"]:is(:hover, :focus-visible, [data-state="open"]) { background: transparent !important; color: #111735 !important; }
+.site-navbar[data-theme="light"] .nav-link[data-active="true"],
+.site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"][data-active="true"] { background: transparent !important; color: #111735 !important; }
+.site-navbar .nav-link::after, .site-navbar [data-slot="navigation-menu-trigger"]::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: 3px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.site-navbar .nav-link:is(:hover, :focus-visible)::after, .site-navbar [data-slot="navigation-menu-trigger"]:is(:hover, :focus-visible, [data-state="open"])::after,
+.site-navbar .nav-link[data-active="true"]::after, .site-navbar [data-slot="navigation-menu-trigger"][data-active="true"]::after { transform: scaleX(1); }
+
+/* Dropdown: opaque panel, no blur or glow behind it, clear item hover */
+[data-slot="navigation-menu-viewport"] { background: #fff !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; border: 1px solid #e4e3df !important; box-shadow: 0 18px 40px -24px rgb(17 23 53 / .25) !important; }
+[data-slot="navigation-menu-content"] a:hover, [data-slot="navigation-menu-content"] a:focus-visible { background: #f3f2ef !important; }
+
+.footer-wordmark { background: linear-gradient(180deg, #b9bbf3 0%, #dcddf6 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; opacity: 1 !important; font-size: 22vw; font-weight: 700; letter-spacing: -.05em; }
+.footer-wordmark:hover { letter-spacing: -.05em; }
+@media (min-width: 1700px) { .footer-wordmark { font-size: 22vw; } }
+
+/* Section-line intersections: no dots. */
+main section[data-nav]::after { display: none !important; }
+
+/* Footer wordmark: dark matte multi-colour gradient with fine grain. */
+.footer-wordmark {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"),
+    linear-gradient(100deg, #1b1f4b 0%, #2f3490 20%, #5a3d9e 40%, #8c3f86 58%, #b4545f 74%, #d1823f 88%, #e0b23c 100%) !important;
+  background-blend-mode: soft-light, normal !important;
+  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; color: transparent !important; opacity: 1 !important;
+}

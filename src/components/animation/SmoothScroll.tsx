@@ -25,26 +25,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const prevPath = useRef(pathname);
 
-  useEffect(() => {
-    if (QA || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
-    let lenis: Lenis | undefined;
-    let cancelled = false;
-    import("lenis").then(({ default: LenisCtor }) => {
-      if (cancelled) return;
-      lenis = new LenisCtor({ lerp: 0.085, wheelMultiplier: 1, smoothWheel: true, anchors: { offset: -64 } });
-      window.__lenis = lenis;
-      const tick = (t: number) => { lenis?.raf(t); raf = requestAnimationFrame(tick); };
-      raf = requestAnimationFrame(tick);
-    });
-    return () => {
-      cancelled = true;
-      cancelAnimationFrame(raf);
-      lenis?.destroy();
-      window.__lenis = undefined;
-    };
-  }, []);
-
   // Client-side navigations land at the top (or at the hash target). Skipped on first load.
   useEffect(() => {
     if (prevPath.current === pathname) return;

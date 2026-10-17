@@ -10,7 +10,7 @@ export function CellGrid({ items }: { items: readonly string[] }) {
       {items.map((t, i) => {
         const Icon = cellIcons[i % cellIcons.length];
         return (
-          <Reveal key={t} delay={(i % 3) * 0.06} className="glass glass-sheen glass-lift flex min-h-[190px] flex-col gap-8 rounded-[14px] p-6">
+          <Reveal key={t} delay={(i % 3) * 0.06} className="glass glass-sheen glass-lift flex min-h-[190px] flex-col gap-8 rounded-[16px] p-6">
             <span className={`${["mesh-crm", "mesh-estate", "mesh-agency", "mesh-calling", "mesh-clinic", "mesh-commerce"][i % 6]} grain relative grid size-12 place-items-center overflow-hidden rounded-2xl text-[#2f33b8]`}><Icon className="relative z-10 size-5" strokeWidth={1.9} /></span>
             <p className="text-[17px] font-semibold leading-snug tracking-[-.02em]">{t}</p>
           </Reveal>
@@ -24,8 +24,8 @@ export function GoodFor({ children }: { children: React.ReactNode }) {
   return (
     <section data-nav="light" className="py-[clamp(56px,6.5vw,96px)] text-[#111735]">
       <div className="rail-inner">
-        <Reveal className="mesh-calling grain relative overflow-hidden rounded-[18px] border border-white/70 px-6 py-[clamp(40px,6vw,80px)] text-center sm:px-12">
-          <div className="relative z-10 mx-auto max-w-[820px]"><p className="eyebrow-pill">Good for</p><p className="h-story mx-auto mt-5">{children}</p></div>
+        <Reveal className="mesh-calling grain relative overflow-hidden rounded-[24px] border border-white/70 px-6 py-[clamp(40px,6vw,80px)] text-center sm:px-12">
+          <div className="relative z-10 mx-auto max-w-[820px] text-white"><p className="eyebrow-pill !text-[#c9cbff]">Good for</p><p className="h-story mx-auto mt-5">{children}</p></div>
         </Reveal>
       </div>
     </section>

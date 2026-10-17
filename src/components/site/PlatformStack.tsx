@@ -31,8 +31,8 @@ export function PlatformStack() {
       </div>
       <div className="h-5 lg:hidden" />
 
-      <div className="glass glass-sheen rounded-[28px] p-2.5">
-        <div className="glass-dark rounded-[20px] px-5 py-3.5">
+      <div className="glass glass-sheen rounded-[14px] p-2.5">
+        <div className="glass-dark rounded-[14px] px-5 py-3.5">
           <div className="flex items-center justify-between gap-3">
             <p className="text-[15px] font-semibold tracking-[-.02em]">Melorite Platform</p>
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[11px] font-medium text-white/80"><Lock className="size-3" />Role-based access</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { BookOpen, Boxes, Building2, CalendarCheck, Home, Layers, Mail, Puzzle } from "lucide-react";
+import { Boxes, Building2, CalendarCheck, Home, Layers, Mail, Puzzle } from "lucide-react";
 import { FloatingDock, type DockItem } from "@/components/ui/floating-dock";
 
 /** Site-wide quick navigation as a macOS-style dock. */
@@ -14,7 +14,6 @@ export function FloatingDemo() {
     { label: "Products", href: "/products", icon: Boxes },
     { label: "Platform", href: "/platform", icon: Layers },
     { label: "Custom Solutions", href: "/custom-solutions", icon: Puzzle, desktopOnly: true },
-    { label: "Resources", href: "/resources", icon: BookOpen },
     { label: "Company", href: "/company", icon: Building2, desktopOnly: true },
     { label: "Contact", href: "/contact", icon: Mail, desktopOnly: true },
     { label: "Book a demo", href: "/book-demo", icon: CalendarCheck, primary: true },

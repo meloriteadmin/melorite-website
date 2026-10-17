@@ -1134,9 +1134,9 @@ const DEFAULTS = {
   darkBackground: "#111735",
   textColor: "#111735",
   accentColor: "#4b4fe0",
-  headingFont: "var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif",
-  accentFont: "var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif",
-  bodyFont: "var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif",
+  headingFont: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif",
+  accentFont: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif",
+  bodyFont: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif",
 }
 
 /* ────────────────────────────────────────────────────────────────────

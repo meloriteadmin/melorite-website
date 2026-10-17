@@ -132,7 +132,7 @@ export function PageHero({ label, title, lead, body, visual, tint = "#dcddfd", v
       {variant === "grid" && <div aria-hidden className="bg-grid pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_70%_80%_at_80%_60%,black,transparent_75%)]" />}
       {centered && <div aria-hidden className="bg-dots pointer-events-none absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_60%_70%_at_50%_30%,black,transparent_80%)]" />}
 
-      <div className={`relative mx-auto max-w-[1240px] px-5 md:px-8 ${variant === "split" ? "grid items-center gap-12 py-[clamp(48px,6vw,96px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]" : "py-[clamp(56px,8vw,120px)]"}`}>
+      <div className={`relative mx-auto max-w-[1400px] px-5 md:px-8 ${variant === "split" ? "grid items-center gap-12 py-[clamp(48px,6vw,96px)] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)]" : "py-[clamp(56px,8vw,120px)]"}`}>
         <div className={centered ? "mx-auto flex max-w-[860px] flex-col items-center text-center" : ""}>
           <motion.p {...reveal(0.05)} className="mono-label flex items-center gap-2 text-[#111735]/55"><span className="h-px w-6 bg-[#5f63f2]" />{label}</motion.p>
           <motion.h1 {...reveal(0.15)} className={centered ? "h-hero mt-6 max-w-[16ch]" : variant === "split" ? "mt-6 max-w-[14ch] font-sans text-[clamp(2.6rem,1.5rem+3.8vw,4.6rem)] font-medium leading-[1] tracking-[-0.05em]" : "mt-6 max-w-[16ch] font-sans text-[clamp(2.8rem,1.5rem+4.4vw,5rem)] font-medium leading-[.98] tracking-[-0.055em]"}>{title}</motion.h1>

@@ -61,7 +61,7 @@ export function WhyCards() {
   return (
     <div className="mt-10 grid gap-5 md:grid-cols-3">
       {cards.map(({ Icon, title, body, mesh, Visual }, i) => (
-        <Reveal key={title} delay={i * 0.1} className="glass glass-sheen glass-lift flex flex-col overflow-hidden rounded-[30px] p-2.5">
+        <Reveal key={title} delay={i * 0.1} className="glass glass-sheen glass-lift flex flex-col overflow-hidden rounded-[14px] p-2.5">
           <div className={`${mesh} grain relative grid aspect-[1.35] place-items-center overflow-hidden rounded-[18px]`}>
             <span className="absolute left-4 top-4 z-10 grid size-10 place-items-center rounded-xl bg-white/80 text-[#4b4fe0] shadow-[inset_0_1px_0_#fff,0_8px_18px_-10px_rgba(95,99,242,.6)] backdrop-blur"><Icon className="size-[18px]" strokeWidth={1.8} /></span>
             <div className="relative z-10 w-full pt-8"><Visual /></div>

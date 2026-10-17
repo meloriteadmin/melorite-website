@@ -112,7 +112,7 @@ function NavigationMenuViewport({
         data-slot="navigation-menu-viewport"
         data-lenis-prevent
         className={cn(
-          "origin-top-center relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] max-h-[calc(100dvh-5.5rem)] w-full no-scrollbar overflow-x-hidden overflow-y-auto overscroll-contain rounded-[26px] border border-white/80 bg-gradient-to-b from-white/85 to-white/60 text-popover-foreground shadow-[inset_0_1px_0_#fff,0_30px_70px_-30px_rgb(60_63_196/0.5)] backdrop-blur-2xl backdrop-saturate-150 transition-[width,height] duration-200 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] md:w-[var(--radix-navigation-menu-viewport-width)]",
+          "origin-top-center relative mt-3 h-[var(--radix-navigation-menu-viewport-height)] max-h-[calc(100dvh-5.5rem)] w-full no-scrollbar overflow-x-hidden overflow-y-auto overscroll-contain rounded-[14px] border border-white/80 bg-white/[.98] text-popover-foreground shadow-[inset_0_1px_0_#fff,0_30px_70px_-30px_rgb(60_63_196/0.5)] backdrop-blur-2xl backdrop-saturate-150 transition-[width,height] duration-200 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-[0.98] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-[0.98] md:w-[var(--radix-navigation-menu-viewport-width)]",
           className
         )}
         {...props}

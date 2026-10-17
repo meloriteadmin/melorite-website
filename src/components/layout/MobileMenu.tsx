@@ -24,7 +24,7 @@ export function MobileMenu() {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <button type="button" aria-label="Open menu" className="grid size-10 place-items-center rounded-full bg-white text-[#111] lg:hidden"><Menu className="size-5" /></button>
+        <button type="button" aria-label="Open menu" className="grid size-12 place-items-center rounded-full text-[#111735] lg:hidden"><Menu className="size-5" /></button>
       </SheetTrigger>
       <SheetContent side="right" className="gap-0 border-l border-[#111735]/10 bg-[#ffffff] p-0 text-[#111735]" data-lenis-prevent>
         <SheetHeader className="h-16 justify-center border-b border-[#111735]/10 px-5">
@@ -47,7 +47,7 @@ export function MobileMenu() {
                     <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}<ChevronDown className="size-5 transition-transform group-open:rotate-180" /></summary>
                     <div className="pb-4 pl-2">
                       <Link href={n.href} onClick={close} className="block py-2.5 text-[17px] font-medium text-[#4b4fe0]">Overview</Link>
-                      {(n.menu === "resources" ? [["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] : [["About", "/company"], ["Contact", "/contact"]]).map(([label, href]) => <Link key={href} href={href} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{label}</Link>)}
+                      {([["About", "/company"], ["Contact", "/contact"]]).map(([label, href]) => <Link key={href} href={href} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{label}</Link>)}
                     </div>
                   </details>
                 ) : <Link href={n.href} onClick={close} className="block border-b border-[#111735]/10 py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}</Link>}

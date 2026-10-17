@@ -7,11 +7,11 @@
    Melorite design tokens
    ------------------------------------------------------------------ */
 @theme inline {
-  --font-sans: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
-  --font-brand: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
-  --font-editorial: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-league-spartan), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-brand: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-editorial: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
@@ -357,7 +357,7 @@ html.lenis, html.lenis body { height: auto; }
 .rails::before { left: clamp(16px, 4.2vw, 60px); }
 .rails::after { right: clamp(16px, 4.2vw, 60px); }
 .rails-light { --rail: rgba(0,0,0,.07); }
-.rail-inner { max-width: 1240px; margin-inline: auto; padding-inline: clamp(20px, 4vw, 48px); position: relative; z-index: 1; }
+.rail-inner { max-width: 1400px; margin-inline: auto; padding-inline: clamp(20px, 3.5vw, 48px); position: relative; z-index: 1; }
 
 @media (max-width: 430px) {
   .h-hero { font-size: clamp(2.5rem, 10.6vw, 2.9rem); line-height: 1; }
@@ -514,7 +514,7 @@ section[class*="py-[clamp"] { padding-block: clamp(56px, 6.5vw, 96px) !important
 
 /* Slow living gradients on every mesh surface */
 @keyframes mesh-shift { 0% { background-position: 0% 0%; } 100% { background-position: 100% 100%; } }
-.mesh-crm, .mesh-estate, .mesh-clinic, .mesh-agency, .mesh-commerce, .mesh-calling, .panel-mesh { background-size: 160% 160%; animation: mesh-shift 22s ease-in-out infinite alternate; }
+
 
 /* Platform stack diagram motion */
 @keyframes flow-down { 0% { transform: translateY(-8px); opacity: 0; } 20%, 80% { opacity: 1; } 100% { transform: translateY(46px); opacity: 0; } }
@@ -534,16 +534,16 @@ details > summary + * { animation: faq-in .35s var(--ease-out-expo); }
    Glass system — modern, premium glassmorphism on the Melorite palette
    Layers: aurora backdrop → translucent surfaces → bright hairline edges
    ================================================================== */
-html { background: #f3f4ff; }
+html { background: #ffffff; }
 body { background: transparent; }
 
 .aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
   background: linear-gradient(180deg, #f6f6ff 0%, #f1f2ff 45%, #f8f3ff 100%); }
-.aurora i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .62; will-change: transform; animation: aurora-drift 26s ease-in-out infinite alternate; }
-.aurora i:nth-child(1) { width: 52vw; height: 52vw; left: -14vw; top: -18vw; background: #a9adff; }
-.aurora i:nth-child(2) { width: 44vw; height: 44vw; right: -12vw; top: 6vh; background: #ffc9e4; animation-delay: -7s; animation-duration: 32s; }
-.aurora i:nth-child(3) { width: 48vw; height: 48vw; left: 22vw; bottom: -26vw; background: #ffd9bf; animation-delay: -13s; animation-duration: 30s; }
-.aurora i:nth-child(4) { width: 34vw; height: 34vw; left: -8vw; bottom: 8vh; background: #b7dcff; animation-delay: -4s; animation-duration: 36s; opacity: .5; }
+.aurora i { position: absolute; border-radius: 50%; opacity: 1; will-change: transform; animation: aurora-drift 30s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { width: 52vw; height: 52vw; left: -14vw; top: -18vw; background: radial-gradient(closest-side, #a9adff, transparent); }
+.aurora i:nth-child(2) { width: 44vw; height: 44vw; right: -12vw; top: 6vh; background: radial-gradient(closest-side, #cfc6ff, transparent); animation-delay: -7s; animation-duration: 32s; }
+.aurora i:nth-child(3) { width: 48vw; height: 48vw; left: 22vw; bottom: -26vw; background: radial-gradient(closest-side, #e3d9ff, transparent); animation-delay: -13s; animation-duration: 30s; }
+.aurora i:nth-child(4) { width: 34vw; height: 34vw; left: -8vw; bottom: 8vh; background: radial-gradient(closest-side, #b7dcff, transparent); animation-delay: -4s; animation-duration: 36s; opacity: .5; }
 .aurora::after { content: ""; position: absolute; inset: 0; opacity: .5;
   background-image: radial-gradient(rgb(95 99 242 / .16) 1px, transparent 1.2px); background-size: 28px 28px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 78%); }
@@ -556,7 +556,7 @@ section[data-nav="light"], footer[data-nav="light"] { background-color: transpar
 .glass {
   position: relative;
   background: linear-gradient(140deg, rgb(255 255 255 / .74), rgb(255 255 255 / .36));
-  -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(18px) saturate(160%);
   border: 1px solid rgb(255 255 255 / .78);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / .95), inset 0 -1px 0 rgb(95 99 242 / .07), 0 1px 2px rgb(17 23 53 / .04), 0 30px 64px -36px rgb(60 63 196 / .38);
 }
@@ -610,7 +610,7 @@ section[data-nav="light"], footer[data-nav="light"] { background-color: transpar
 .site-navbar[data-theme="dark"] .nav-capsule { background: linear-gradient(140deg, rgb(33 40 98 / .8), rgb(17 23 53 / .7)); border-color: rgb(255 255 255 / .16); box-shadow: inset 0 1px 0 rgb(255 255 255 / .16), 0 18px 44px -24px rgb(17 23 53 / .8); }
 
 /* Product scene stages: pastel mesh with orbs, hosting glass panes */
-.scene-stage { position: relative; overflow: hidden; isolation: isolate; border-radius: 26px; border: 1px solid rgb(255 255 255 / .7); box-shadow: inset 0 1px 0 rgb(255 255 255 / .8); }
+.scene-stage { contain: layout paint; position: relative; overflow: hidden; isolation: isolate; border-radius: 26px; border: 1px solid rgb(255 255 255 / .7); box-shadow: inset 0 1px 0 rgb(255 255 255 / .8); }
 .scene-stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgb(255 255 255 / .22) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .22) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%); }
 .pane { border-radius: 16px; background: linear-gradient(145deg, rgb(255 255 255 / .8), rgb(255 255 255 / .5)); -webkit-backdrop-filter: blur(16px) saturate(170%); backdrop-filter: blur(16px) saturate(170%); border: 1px solid rgb(255 255 255 / .9); box-shadow: inset 0 1px 0 #fff, 0 18px 40px -22px rgb(40 44 140 / .5); }
 
@@ -621,3 +621,75 @@ section[data-nav="light"], footer[data-nav="light"] { background-color: transpar
 @keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 .float-y { animation: float-y 6s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .float-y { animation: none; } }
+
+/* Navbar: split chips — active link reads as a brand-tinted pill */
+.site-navbar[data-theme="light"] .nav-link[data-active="true"],
+.site-navbar[data-theme="light"] [data-slot="navigation-menu-trigger"][data-active="true"] { background-color: rgb(95 99 242 / .12) !important; color: #3c3fc4 !important; }
+
+/* ==================================================================
+   Calm pass: minimal glass, no scroll flicker.
+   Backdrop blur is expensive and re-computes while content scrolls over a
+   fixed backdrop, so it is kept only on tiny fixed chrome (nav, dock, menus).
+   Content surfaces get the same frosted look from translucent gradients.
+   ================================================================== */
+.aurora i { animation: none !important; will-change: auto; }
+.aurora::after { display: none; }
+.glass, .glass-soft, .glass-dark, .glass-tint, .card, .card-grid > *, .pane, .eyebrow-pill, .pill-glass, .scene-stage {
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+.glass { background: rgb(255 255 255 / .62); box-shadow: inset 0 1px 0 rgb(255 255 255 / .9), 0 1px 2px rgb(17 23 53 / .04), 0 18px 40px -28px rgb(60 63 196 / .28); }
+.glass-soft { background: rgb(255 255 255 / .5); box-shadow: inset 0 1px 0 rgb(255 255 255 / .8); }
+.glass-tint { background: rgb(238 239 255 / .6); box-shadow: inset 0 1px 0 rgb(255 255 255 / .9), 0 18px 40px -28px rgb(95 99 242 / .35); }
+.glass-dark { background: linear-gradient(160deg, #1a2160, #111735); box-shadow: inset 0 1px 0 rgb(255 255 255 / .14), 0 24px 50px -30px rgb(17 23 53 / .6); }
+.card, .card-grid > * { background: rgb(255 255 255 / .62) !important; box-shadow: inset 0 1px 0 rgb(255 255 255 / .9), 0 18px 40px -28px rgb(60 63 196 / .28); }
+.pane { background: rgb(255 255 255 / .72); box-shadow: inset 0 1px 0 #fff, 0 10px 24px -16px rgb(40 44 140 / .35); }
+.glass-sheen::before { display: none; }
+.glass-lift:hover { transform: translateY(-3px); box-shadow: inset 0 1px 0 #fff, 0 26px 48px -28px rgb(95 99 242 / .4); }
+.float-y, .bob { animation: none !important; }
+.reveal { transform: translate3d(0, var(--reveal-y, 28px), 0); }
+.reveal.reveal-in { transform: none; }
+.panel-mesh, .media-frame { box-shadow: none; }
+
+/* Navbar: one plain bar */
+.nav-capsule { background: none; border: 0; box-shadow: none; backdrop-filter: none; }
+.site-navbar .nav-bar { background: rgb(255 255 255 / .82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid rgb(17 23 53 / .06); }
+.reveal { transform: translate3d(0, 10px, 0); will-change: auto; transition-duration: .45s !important; }
+.reveal.reveal-in { transform: none; }
+
+/* ==================================================================
+   Minimal pass: hairline borders, tighter corners, almost no shadow.
+   ================================================================== */
+.glass, .glass-soft, .glass-tint, .card, .card-grid > *, .pane {
+  border: 1px solid rgb(17 23 53 / .09) !important; box-shadow: none !important;
+}
+.glass, .card, .card-grid > * { background: rgb(255 255 255 / .6) !important; border-radius: 14px; }
+.pane { border-radius: 10px; background: rgb(255 255 255 / .78); }
+.glass-dark { border: 1px solid rgb(255 255 255 / .1); box-shadow: none; }
+.glass-lift:hover, .card:hover { transform: translateY(-2px); border-color: rgb(95 99 242 / .35) !important; box-shadow: none !important; }
+.scene-stage { border-radius: 12px; border: 1px solid rgb(17 23 53 / .07); box-shadow: none; }
+.icon-chip { border-radius: 10px; box-shadow: none; background: rgb(95 99 242 / .1); }
+.eyebrow-pill { box-shadow: none; border: 1px solid rgb(95 99 242 / .18); }
+.media-frame, .panel-mesh { border-radius: 0 !important; margin: 0 !important; border: 0; }
+.pill-dark { background: #111735; box-shadow: none; }
+.pill-dark:hover { background: #4b4fe0; }
+.pill:hover { box-shadow: none; transform: none; }
+.pill-glass { box-shadow: none; border: 1px solid rgb(17 23 53 / .12); background: rgb(255 255 255 / .6); }
+
+/* ==================================================================
+   Plain backgrounds; gradient only in hero areas. Apple system type.
+   ================================================================== */
+.aurora { display: none; }
+html, body { background: #fff; }
+body { font-feature-settings: normal; -webkit-font-smoothing: antialiased; }
+.hero-bg { background-image:
+  radial-gradient(900px 480px at 12% -10%, rgb(165 168 255 / .5), transparent 65%),
+  radial-gradient(800px 460px at 92% 0%, rgb(214 200 255 / .45), transparent 65%),
+  linear-gradient(180deg, #f4f5ff 0%, #fff 100%) !important; }
+.text-display, .text-h1, .text-h2, .serif, .h-hero, .h-section, .h-card, .h-story { font-weight: 600; letter-spacing: -0.03em; }
+.h-hero { letter-spacing: -0.04em; }
+.footer-wordmark { font-weight: 700; }
+
+/* Sarvam-style restraint: eyebrows become quiet labels, gutters stay slim. */
+.eyebrow-pill { background: none !important; border: 0 !important; padding: 0 !important; box-shadow: none !important; color: #4b4fe0; }
+.container-x { max-width: 1400px; padding-inline: clamp(20px, 3.5vw, 48px); }
+.site-navbar .nav-bar > div { max-width: 1400px; }

@@ -14,8 +14,8 @@ const logos = ["Real estate", "Clinics", "Agencies", "Online sellers", "Sales te
 
 export function Hero() {
   return (
-    <section data-nav="light" className="relative overflow-hidden pt-[72px] text-[#111735]">
-      <div className="relative mx-auto flex max-w-[1100px] flex-col items-center px-5 pt-[clamp(48px,7vw,104px)] text-center md:px-8">
+    <section data-nav="light" className="hero-bg relative overflow-hidden pt-[72px] text-[#111735]">
+      <div className="relative mx-auto flex max-w-[1400px] flex-col items-center px-5 pt-[clamp(48px,7vw,104px)] text-center md:px-8">
         <motion.div {...reveal(0.05)}>
           <Link href="/products/ai-calling" className="group inline-flex items-center gap-2.5 rounded-full border border-[#5f63f2]/20 bg-white/60 py-1.5 pl-1.5 pr-4 text-[14px] shadow-[inset_0_1px_0_#fff,0_10px_30px_-18px_rgba(95,99,242,.7)] backdrop-blur-xl transition-shadow hover:shadow-md">
             <span className="rounded-full bg-[#5f63f2] px-3 py-1 text-[12.5px] font-medium text-white">New</span>
@@ -37,17 +37,17 @@ export function Hero() {
 
       <WaveRibbon className="mt-[clamp(8px,2vw,24px)] h-[clamp(260px,36vw,540px)]" />
 
-      <div className="glass-soft relative mx-auto my-2 max-w-[1240px] rounded-[28px] py-5">
+      <div className="relative py-6">
         <p className="mb-3 text-center text-[12px] font-semibold uppercase tracking-[.14em] text-[#111735]/40">Built for teams in</p>
         <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-          <div className="marquee-track gap-14 text-[22px] font-semibold tracking-[-0.03em] text-[#111735]/35">
+          <div className="marquee-track gap-14 text-[24px] font-semibold tracking-[-0.03em] text-[#4b4fe0]/45">
             {[...logos, ...logos, ...logos, ...logos].map((l, i) => <span key={i} className="pr-14">{l}</span>)}
           </div>
         </div>
       </div>
     
       <div className="px-3 pb-3 pt-[clamp(40px,6vw,88px)] sm:px-5 sm:pb-5">
-        <div className="glass glass-sheen mx-auto max-w-[1360px] rounded-[40px] px-4 py-[clamp(28px,5vw,72px)] sm:px-[clamp(20px,5vw,72px)]">
+        <div className="glass glass-sheen mx-auto max-w-[1400px] rounded-[18px] px-4 py-[clamp(28px,5vw,72px)] sm:px-[clamp(20px,5vw,72px)]">
           <div className="mx-auto mb-10 max-w-[640px] text-center"><p className="eyebrow-pill">See it working</p><h2 className="h-section mx-auto mt-5">One product for every kind of business.</h2><p className="mt-4 text-[17px] text-[#111735]/60">Hover the dock, pick yours and look inside.</p></div>
           <ProductShowcase />
         </div>

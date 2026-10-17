@@ -198,7 +198,7 @@ function ClinicA() {
   const slots: [string, string, string, boolean][] = [["10:00", "Ananya Rao", "Check-up", true], ["10:30", "Vikram Das", "Follow-up", true], ["11:15", "Sana Khan", "Dental", false], ["12:00", "Ishaan Gupta", "Skin consult", false]];
   return (
     <>
-      <div className="absolute left-[168px] top-[14px] h-[352px] w-[190px] rounded-[34px] border-[6px] border-[#111735] bg-white/85 p-3 shadow-[0_30px_60px_-24px_rgba(17,23,53,.6)] backdrop-blur-md">
+      <div className="absolute left-[168px] top-[14px] h-[352px] w-[190px] rounded-[18px] border-[6px] border-[#111735] bg-white/85 p-3 shadow-[0_30px_60px_-24px_rgba(17,23,53,.6)] backdrop-blur-md">
         <div className="mx-auto h-[14px] w-[56px] rounded-full bg-[#111735]" />
         <p className={`mt-3 text-[20px] font-semibold leading-none tracking-[-.04em] ${ink}`}>Today</p><p className={`text-[8.5px] ${soft}`}>Dr. Mehta · 12 appointments</p>
         <div className="relative mt-3 space-y-1.5">

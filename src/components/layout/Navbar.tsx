@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import { mainNav } from "@/data/navigation";
 import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
@@ -24,82 +23,54 @@ import { MobileMenu } from "./MobileMenu";
  */
 export function Navbar() {
   const pathname = usePathname();
-  const [theme, setTheme] = useState<"dark" | "light">("light");
-
-  useEffect(() => {
-    // The bar adopts the theme of whichever [data-nav] section sits beneath it.
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const stack = document.elementsFromPoint(window.innerWidth / 2, 30);
-      const host = stack.map((el) => el.closest("[data-nav]")).find(Boolean) as HTMLElement | null;
-      setTheme(host?.dataset.nav === "dark" ? "dark" : "light");
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, [pathname]);
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
-  const dark = theme === "dark";
+  const dark = false;
 
   return (
     <header
-      data-theme={theme}
-      className="site-navbar pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-colors duration-300 md:px-5"
+      data-theme="light"
+      className="site-navbar fixed inset-x-0 top-0 z-50"
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
         Skip to content
       </a>
-      <div className="nav-capsule pointer-events-auto mx-auto flex h-[56px] max-w-[1360px] items-center justify-between gap-6 rounded-full pl-6 pr-2 md:pl-8">
-        <Link href="/" aria-label="Melorite home" className="shrink-0 rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none">
-          <Logo white={dark} priority className="h-[24px] md:h-[26px]" />
+      <div className="nav-bar"><div className="mx-auto grid h-16 max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-3 px-5 md:px-8">
+        <Link href="/" aria-label="Melorite home" className="rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none">
+          <Logo white={dark} priority className="h-[22px] md:h-[24px]" />
         </Link>
 
-        <div className="flex items-center gap-1 xl:gap-2">
-          <NavigationMenu aria-label="Main" className="hidden lg:flex" viewport>
-            <NavigationMenuList className="gap-0.5">
-              {mainNav.map((item) => {
-                const active = isActive(item.href);
-                if (item.menu) {
-                  return (
-                    <NavigationMenuItem key={item.href}>
-                      <NavigationMenuTrigger data-active={active || undefined} className="text-[14.5px] font-normal tracking-normal">
-                        {item.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        {item.menu === "products" ? <ProductsMenu /> : <SimpleMenu type={item.menu} />}
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  );
-                }
+        <NavigationMenu aria-label="Main" className="hidden justify-self-center lg:flex" viewport>
+          <NavigationMenuList className="gap-0.5">
+            {mainNav.map((item) => {
+              const active = isActive(item.href);
+              const tone = "rounded-full px-4 py-2 text-[14px] font-medium tracking-normal";
+              if (item.menu) {
                 return (
                   <NavigationMenuItem key={item.href}>
-                    <NavigationMenuLink asChild active={active}>
-                      <Link href={item.href} aria-current={active ? "page" : undefined} className={cn(navigationMenuTriggerStyle(), "nav-link text-[14.5px] font-normal tracking-normal")}>
-                        {item.label}
-                      </Link>
-                    </NavigationMenuLink>
+                    <NavigationMenuTrigger data-active={active || undefined} className={tone}>{item.label}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      {item.menu === "products" ? <ProductsMenu /> : <SimpleMenu type={item.menu} />}
+                    </NavigationMenuContent>
                   </NavigationMenuItem>
                 );
-              })}
-            </NavigationMenuList>
-          </NavigationMenu>
+              }
+              return (
+                <NavigationMenuItem key={item.href}>
+                  <NavigationMenuLink asChild active={active}>
+                    <Link href={item.href} data-active={active || undefined} aria-current={active ? "page" : undefined} className={cn(navigationMenuTriggerStyle(), "nav-link", tone)}>{item.label}</Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              );
+            })}
+          </NavigationMenuList>
+        </NavigationMenu>
 
-          <div className="flex items-center gap-2 lg:ml-3">
-            <Link href={site.demoHref} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>
-              Book a demo
-            </Link>
-            <MobileMenu />
-          </div>
+        <div className="col-start-3 flex items-center gap-2">
+          <Link href={site.demoHref} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>Book a demo</Link>
+          <MobileMenu />
         </div>
-      </div>
+      </div></div>
     </header>
   );
 }

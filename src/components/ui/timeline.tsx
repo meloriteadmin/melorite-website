@@ -193,7 +193,7 @@ export default function Timeline({
 
 function TimelineCopy({ item, mutedTextColor }: { item: TimelineItem; mutedTextColor: string }) {
   return (
-    <div data-timeline-copy className="glass glass-sheen my-3 w-[min(70vw,285px)] rounded-[24px] p-5">
+    <div data-timeline-copy className="glass glass-sheen my-3 w-[min(70vw,285px)] rounded-[14px] p-5">
       <p className="mono-label inline-flex rounded-full bg-[#5f63f2]/12 px-2.5 py-1 !text-[10.5px] text-[#4346d6]">{item.label}</p>
       <h3 className="mt-3 text-[clamp(1.3rem,2vw,1.75rem)] font-semibold leading-[1.08] tracking-[-.035em]">{item.title}</h3>
       <p className="mt-2.5 text-[14.5px] leading-[1.5]" style={{ color: mutedTextColor }}>{item.content}</p>

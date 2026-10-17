@@ -25,8 +25,8 @@ const path = (a: N, b: N) => {
 /** A node-and-wire workflow canvas: unlike the product dashboards, this shows how custom work is *routed*. */
 export function WorkflowGraph() {
   return (
-    <div aria-label="Sample custom workflow: a request is reviewed, approved, sent to the customer and fed into portals, reports and integrations" className="glass glass-sheen rounded-[28px] p-2.5">
-      <div className="relative overflow-hidden rounded-[22px] border border-white/70 bg-white/35">
+    <div aria-label="Sample custom workflow: a request is reviewed, approved, sent to the customer and fed into portals, reports and integrations" className="glass glass-sheen rounded-[14px] p-2.5">
+      <div className="relative overflow-hidden rounded-[14px] border border-white/70 bg-white/35">
         <ScaleBox w={900} h={400}>
           <svg viewBox="0 0 900 400" className="absolute inset-0 size-full">
             {edges.map(([a, b], i) => {

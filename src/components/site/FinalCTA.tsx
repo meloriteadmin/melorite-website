@@ -8,8 +8,8 @@ const perks = ["Free demo", "Guided setup", "A clear next step"];
 export function FinalCTA({ title = "See it for yourself.", text = "Book a free demo and we’ll walk you through the product made for your business, using your own way of working. No pressure. Just a friendly conversation." }: { title?: string; text?: string }) {
   return (
     <section data-nav="light" className="py-[clamp(72px,9vw,124px)] text-[#111735]">
-      <div className="rail-inner mx-auto max-w-[1440px]">
-        <Reveal className="glass glass-sheen relative isolate overflow-hidden rounded-[40px] px-6 py-[clamp(72px,9vw,120px)] text-center">
+      <div>
+        <Reveal className="glass glass-sheen relative isolate overflow-hidden !rounded-none border-y px-6 py-[clamp(72px,9vw,120px)] text-center">
           <div aria-hidden className="absolute -left-[12%] -top-[28%] -z-10 size-[62%] rounded-full bg-[#8e92ff]/25 blur-[85px]" />
           <div aria-hidden className="absolute -right-[12%] -top-[24%] -z-10 size-[58%] rounded-full bg-[#ffcbb8]/30 blur-[90px]" />
           <div aria-hidden className="absolute -bottom-[38%] left-[20%] -z-10 h-[58%] w-[62%] rounded-full bg-[#777cff]/25 blur-[75px]" />

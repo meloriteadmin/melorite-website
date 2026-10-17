@@ -13,8 +13,8 @@ export function ProductGrid() {
         const Icon = productIcons[product.icon];
         return (
           <Reveal key={product.slug} delay={(index % 3) * 0.06} className="min-w-0">
-            <Link href={`/products/${product.slug}`} className="glass glass-sheen glass-lift group flex h-full flex-col rounded-[30px] p-2.5 text-[#111735]">
-              <SceneStage slug={product.slug} className="!rounded-[22px]" />
+            <Link href={`/products/${product.slug}`} className="glass glass-sheen glass-lift group flex h-full flex-col rounded-[14px] p-2.5 text-[#111735]">
+              <SceneStage slug={product.slug} className="!rounded-[14px]" />
               <div className="flex flex-1 flex-col px-3.5 pb-3 pt-5">
                 <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/80 bg-white/60 py-1 pl-1 pr-3 text-[11px] font-semibold uppercase tracking-[.1em] text-[#4b4fe0]">
                   <span className="grid size-6 place-items-center rounded-full bg-[#5f63f2]/12"><Icon className="size-3.5" /></span>{product.kicker}

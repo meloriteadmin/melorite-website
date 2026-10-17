@@ -15,7 +15,7 @@ export function ProductShowcase() {
   const current = products.find((p) => p.slug === active) ?? products[0];
   const items = products.map((p) => ({ label: p.short, icon: productIcons[p.icon], active: p.slug === active, onSelect: () => setActive(p.slug) }));
   return (
-    <div className="mx-auto max-w-[1180px]">
+    <div className="mx-auto max-w-[1400px]">
       <div className="flex justify-center pt-10"><Dock items={items} /></div>
       <div className="mt-8 grid items-center gap-8 md:grid-cols-[.8fr_1.2fr] md:gap-12">
         <AnimatePresence mode="wait">
@@ -28,8 +28,8 @@ export function ProductShowcase() {
           </motion.div>
         </AnimatePresence>
         <AnimatePresence mode="wait">
-          <motion.div key={current.slug} initial={{ opacity: 0, y: 16, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, scale: .98 }} transition={{ duration: 0.35 }} className="glass rounded-[32px] p-2.5">
-            <SceneStage slug={current.slug} variant="b" className="!rounded-[24px]" />
+          <motion.div key={current.slug} initial={{ opacity: 0, y: 16, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, scale: .98 }} transition={{ duration: 0.35 }} className="glass rounded-[18px] p-2.5">
+            <SceneStage slug={current.slug} variant="b" className="!rounded-[14px]" />
           </motion.div>
         </AnimatePresence>
       </div>

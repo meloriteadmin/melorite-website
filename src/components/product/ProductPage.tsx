@@ -1,3 +1,7 @@
+import { AgentIntro } from "@/components/site/AgentIntro";
+import { VoiceDemo } from "@/components/site/VoiceDemo";
+import { CapabilityRail } from "@/components/site/CapabilityRail";
+import { WorkflowShowcase } from "@/components/site/WorkflowShowcase";
 import { workflowCopy } from "@/data/workflows";
 import { productBySlug } from "@/data/products";
 import { productSeo } from "@/data/seo";
@@ -24,6 +28,7 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
   return (
     <>
       <Breadcrumbs items={[{ name: "Products", href: "/products" }, { name: content.eyebrow }]} schema={false} />
+      {content.slug === "ai-calling" ? <AgentIntro title={content.headline.join(" ")} body={content.subhead} /> : (
       <section data-nav="light" className="hero-bg px-3 pb-6 pt-10 text-[#111735] sm:px-5">
         <div className="mx-auto grid max-w-[1400px] items-center gap-12 px-5 py-[clamp(32px,5vw,72px)] sm:px-12 xl:grid-cols-[.9fr_1.1fr]">
           <Reveal>
@@ -46,6 +51,8 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
           </Reveal>
         </div>
       </section>
+      )}
+      {content.slug === "ai-calling" && <VoiceDemo />}
 
       <section data-nav="light" className="py-[clamp(56px,6vw,96px)] text-[#111735]">
         <div className="rail-inner">
@@ -57,6 +64,10 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
           </Reveal>
         </div>
       </section>
+
+      {content.slug === "ai-calling" && <WorkflowShowcase calling />}
+
+      {content.slug === "agency" && <CapabilityRail />}
 
       <Timeline
         eyebrow="Core workflow"
@@ -93,18 +104,15 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
             <div><p className={eyebrow}>The solution</p><h2 className="h-section mt-5">Every {content.workspace}, always up to date.</h2></div>
             <p className="max-w-[44ch] text-[17px] leading-[1.55] text-[#111735]/58">{content.showcaseOne.body}</p>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {content.features.map((feature, i) => {
-              const Icon = featureIcon(feature.title, i);
-              return (
-                <Reveal key={feature.title} delay={(i % 3) * .05} className="glass glass-sheen glass-lift flex min-h-[260px] flex-col rounded-[16px] p-5">
-                  <span className="icon-chip"><Icon className="size-5" strokeWidth={1.8} /></span>
-                  <h3 className="mt-6 text-[20px] font-semibold leading-tight tracking-[-.03em]">{feature.title}</h3>
-                  <p className="mt-2 text-[15px] leading-[1.5] text-[#111735]/58">{feature.body}</p>
-                  <span className="mt-auto self-start rounded-full border border-white/80 bg-white/60 px-3 py-1 text-[11.5px] font-medium text-[#4b4fe0]">{feature.source}</span>
-                </Reveal>
-              );
-            })}
+          <div className="product-feature-split mt-10">
+            <div className="product-feature-rows">
+              {content.features.map((feature) => <article key={feature.title}>
+                <h3>{feature.title}</h3>
+                <p>{feature.body}</p>
+                <span>{feature.source}</span>
+              </article>)}
+            </div>
+            <div className="product-feature-preview"><div><SceneStage slug={content.slug} variant="b" /><p className="preview-label mt-4 text-center">Illustrative workspace · sample data</p></div></div>
           </div>
         </div>
       </section>

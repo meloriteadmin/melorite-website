@@ -7,22 +7,30 @@ const teams = [[Users, "Sales teams"], [Building2, "Real estate"], [Stethoscope,
 
 export function Hero() {
   return (
-    <section data-nav="light" className="eleven-hero">
-      <div className="rail-inner">
-        <div className="eleven-hero-heading">
-          <div>
-            <h1>Bring your business<br className="hidden sm:block" /> together.</h1>
-            <div className="mt-7 flex flex-wrap gap-3">
+    <section data-nav="light" className="eleven-hero melorite-opening">
+      <div className="opening-intro">
+        <div className="rail-inner">
+          <div className="opening-heading">
+            <h1>Bring your business together.</h1>
+            <p className="opening-description">Software that fits your business.<br />Built for your people. Connected to the way you work.</p>
+            <div className="opening-actions">
               <Link href={site.demoHref} className="pill pill-dark">Book a demo</Link>
               <Link href="/products" className="pill pill-glass">Explore products <ArrowUpRight className="size-4" /></Link>
             </div>
           </div>
-          <p>One connected platform for your customers, your team, and everything in between. Discover purpose-built software for sales, real estate, clinics, agencies, commerce, and AI calling.</p>
+          <div className="eleven-team-wall">
+            <p>Built for the people moving business forward</p>
+            <div>{teams.map(([Icon, name]) => <Link href="/products" key={name}><Icon size={23} strokeWidth={1.5} /><span>{name}</span></Link>)}</div>
+          </div>
         </div>
-        <ProductShowcase />
-        <div className="eleven-team-wall">
-          <p>Built for the people moving business forward</p>
-          <div>{teams.map(([Icon, name]) => <Link href="/products" key={name}><Icon size={23} strokeWidth={1.5} /><span>{name}</span></Link>)}</div>
+      </div>
+      <div className="opening-products">
+        <div className="rail-inner">
+          <div className="opening-products-heading">
+            <h2 className="h-section">The platform your<br />business builds on.</h2>
+            <p className="opening-products-description">Find your workspace. Make it work for you.</p>
+          </div>
+          <ProductShowcase />
         </div>
       </div>
     </section>

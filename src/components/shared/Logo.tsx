@@ -17,7 +17,7 @@ export function Logo({ white, className, priority }: { white?: boolean; classNam
 }
 
 /**
- * The "m" symbol from the official logo (with its red accent) — used for hubs,
+ * The "m" symbol from the current navy-and-purple wordmark — used for hubs,
  * small marks and icons. Pass a white `color` (or `tone="light"`) on dark surfaces.
  */
 export function LogoMark({ className, color, tone }: { className?: string; color?: string; tone?: "light" | "dark" }) {

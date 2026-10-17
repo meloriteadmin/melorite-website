@@ -1,3 +1,4 @@
+import { CapabilityRail } from "@/components/site/CapabilityRail";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -131,6 +132,7 @@ export default function CustomSolutionsPage() {
         </div>
       </section>
 
+      <CapabilityRail />
       <FinalCTA href="/contact?enquiry=custom&product=custom-solution" label="Discuss your project" title="Discuss your project." text="Share what’s slowing you down. We’ll help identify whether a product extension or a complete custom application is the better fit." />
     </PageTransition>
   );

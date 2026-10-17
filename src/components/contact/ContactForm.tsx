@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 type Status = { state: "idle" } | { state: "success"; reference: string } | { state: "error"; message: string };
 
-const input = "w-full rounded-[4px] border border-black/15 bg-white px-4 py-3 text-[15px] outline-none transition-colors placeholder:text-black/35 focus:border-[#5f63f2] focus:ring-[3px] focus:ring-[#5f63f2]/15 aria-[invalid=true]:border-red-500";
+const input = "w-full rounded-2xl border border-white/90 bg-white/65 px-4 py-3 shadow-[inset_0_1px_2px_rgba(17,23,53,.05)] backdrop-blur text-[15px] outline-none transition-colors placeholder:text-black/35 focus:border-[#5f63f2] focus:ring-[3px] focus:ring-[#5f63f2]/15 aria-[invalid=true]:border-red-500";
 
 function Field({ id, label, optional, error, className, children }: { id: string; label: string; optional?: boolean; error?: string; className?: string; children: React.ReactNode }) {
   return (
@@ -67,7 +67,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
 
   if (status.state === "success") {
     return (
-      <div role="status" aria-live="polite" className="flex min-h-[480px] flex-col items-center justify-center rounded-[4px] border border-black/[.08] bg-white p-10 text-center">
+      <div role="status" aria-live="polite" className="flex min-h-[480px] flex-col items-center justify-center glass rounded-[28px] p-10 text-center">
         <span className="grid size-14 place-items-center rounded-full bg-[#eeeffe] text-[#4b4fe0]"><CheckCircle2 className="size-7" aria-hidden /></span>
         <h3 className="h-card mt-6">Thank you. We’ll be in touch.</h3>
         <p className="mt-3 max-w-[42ch] text-[15.5px] leading-relaxed text-black/55">A member of the Melorite team will review your details and reply to your email address. No pressure, just a friendly conversation.</p>
@@ -78,7 +78,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate aria-busy={isSubmitting} className="relative rounded-[4px] border border-black/[.08] bg-white p-[clamp(20px,3vw,40px)]">
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate aria-busy={isSubmitting} className="glass glass-sheen relative rounded-[28px] p-[clamp(20px,3vw,40px)]">
       <fieldset>
         <legend className="mb-3 text-[13.5px] font-medium">What can we help with?</legend>
         <div role="radiogroup" className="flex flex-wrap gap-2">
@@ -105,7 +105,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
           {productInterests.map((p) => {
             const on = selected.includes(p.id);
             return (
-              <label key={p.id} className={cn("cursor-pointer rounded-[4px] border px-3 py-2 text-[13.5px] transition-colors has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-[#5f63f2]/25", on ? "border-[#5f63f2] bg-[#eeeffe] text-[#3c3fc4]" : "border-black/15 text-black/65 hover:border-black/40")}>
+              <label key={p.id} className={cn("cursor-pointer rounded-xl border px-3 py-2 text-[13.5px] transition-colors has-[:focus-visible]:ring-[3px] has-[:focus-visible]:ring-[#5f63f2]/25", on ? "border-[#5f63f2] bg-[#eeeffe] text-[#3c3fc4]" : "border-black/15 text-black/65 hover:border-black/40")}>
                 <input type="checkbox" className="sr-only" checked={on} onChange={() => setValue("products", on ? selected.filter((x) => x !== p.id) : [...selected, p.id], { shouldDirty: true })} />{p.name}
               </label>
             );

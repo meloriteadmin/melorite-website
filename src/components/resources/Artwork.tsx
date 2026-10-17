@@ -23,22 +23,20 @@ function kindOf(label = ""): Kind {
   return "ops";
 }
 
-/** Illustrated card artwork: a pastel mesh gradient with a miniature product screen for the topic. */
+/** Illustrated card artwork: a pastel mesh with a floating glass tile for the topic — no screenshots, nothing cropped. */
 export function ResourceArtwork({ kind: label, index = 0, compact = false }: { kind?: string; index?: number; compact?: boolean }) {
   const order: Kind[] = ["estate", "clinic", "calling", "agency", "ops", "crm", "commerce"];
   const t = themes[label ? kindOf(label) : order[index % order.length]];
   const Icon = t.icon;
   return (
-    <div aria-hidden className={`relative overflow-hidden ${compact ? "aspect-[1.55]" : "aspect-[1.4]"}`} style={{ background: t.bg }}>
-      <div className="absolute inset-0 opacity-[.35] mix-blend-soft-light [background-image:radial-gradient(rgba(0,0,0,.55)_1px,transparent_1.2px)] [background-size:4px_4px]" />
-      <span className="absolute left-5 top-5 grid size-11 place-items-center rounded-2xl bg-white/80 text-[#4b4fe0] shadow-[0_10px_24px_-12px_rgba(17,23,53,.4)] backdrop-blur"><Icon className="size-5" /></span>
-      <span className="absolute right-5 top-6 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold text-[#111735]/70 backdrop-blur">{t.chip}</span>
-      <div className="absolute inset-x-[9%] bottom-0 top-[34%] overflow-hidden rounded-t-[18px] bg-white p-4 shadow-[0_-10px_50px_-20px_rgba(17,23,53,.35)]">
-        <p className="text-[12.5px] font-semibold tracking-tight text-[#111735]">{t.title}</p>
-        <ul className="mt-3 divide-y divide-[#111735]/[.06]">
-          {t.rows.map(([a, b]) => <li key={a} className="flex items-center justify-between gap-3 py-2 text-[11.5px]"><span className="truncate text-[#111735]/75">{a}</span><span className="shrink-0 rounded-full bg-[#eeeffe] px-2 py-0.5 text-[10px] font-medium text-[#4b4fe0]">{b}</span></li>)}
-        </ul>
-      </div>
+    <div aria-hidden className={`relative isolate overflow-hidden ${compact ? "aspect-[1.55]" : "aspect-[1.4]"}`} style={{ background: t.bg }}>
+      <div className="absolute inset-0 opacity-[.3] mix-blend-soft-light [background-image:radial-gradient(rgba(0,0,0,.55)_1px,transparent_1.2px)] [background-size:4px_4px]" />
+      <i className="absolute left-1/2 top-1/2 size-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/60" />
+      <i className="absolute left-1/2 top-1/2 size-[38%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/70" />
+      <span className="float-y glass absolute left-1/2 top-1/2 grid size-[26%] min-w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[26px]" style={{ animationDelay: `${-index * 0.9}s` }}><Icon className="size-[42%] text-[#4b4fe0]" strokeWidth={1.6} /></span>
+      <span className="glass-soft absolute left-[7%] top-[16%] rounded-full px-3 py-1.5 text-[11px] font-semibold text-[#111735]/75">{t.rows[0][0]}</span>
+      <span className="glass-soft absolute bottom-[16%] right-[7%] rounded-full px-3 py-1.5 text-[11px] font-semibold text-[#111735]/75">{t.rows[1]?.[0] ?? t.chip}</span>
+      <span className="absolute right-[9%] top-[14%] rounded-full bg-[#5f63f2] px-2.5 py-1 text-[10px] font-semibold text-white shadow-[0_8px_18px_-8px_rgba(95,99,242,.8)]">{t.chip}</span>
     </div>
   );
 }

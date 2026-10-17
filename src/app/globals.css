@@ -528,3 +528,96 @@ a, button, summary { transition: color .25s ease, background-color .25s ease, bo
 .pill:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -16px rgba(17,23,53,.5); }
 details > summary + * { animation: faq-in .35s var(--ease-out-expo); }
 @keyframes faq-in { from { opacity: 0; transform: translateY(-4px); } }
+
+
+/* ==================================================================
+   Glass system — modern, premium glassmorphism on the Melorite palette
+   Layers: aurora backdrop → translucent surfaces → bright hairline edges
+   ================================================================== */
+html { background: #f3f4ff; }
+body { background: transparent; }
+
+.aurora { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  background: linear-gradient(180deg, #f6f6ff 0%, #f1f2ff 45%, #f8f3ff 100%); }
+.aurora i { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .62; will-change: transform; animation: aurora-drift 26s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { width: 52vw; height: 52vw; left: -14vw; top: -18vw; background: #a9adff; }
+.aurora i:nth-child(2) { width: 44vw; height: 44vw; right: -12vw; top: 6vh; background: #ffc9e4; animation-delay: -7s; animation-duration: 32s; }
+.aurora i:nth-child(3) { width: 48vw; height: 48vw; left: 22vw; bottom: -26vw; background: #ffd9bf; animation-delay: -13s; animation-duration: 30s; }
+.aurora i:nth-child(4) { width: 34vw; height: 34vw; left: -8vw; bottom: 8vh; background: #b7dcff; animation-delay: -4s; animation-duration: 36s; opacity: .5; }
+.aurora::after { content: ""; position: absolute; inset: 0; opacity: .5;
+  background-image: radial-gradient(rgb(95 99 242 / .16) 1px, transparent 1.2px); background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, black, transparent 78%); }
+@keyframes aurora-drift { 0% { transform: translate3d(0,0,0) scale(1); } 100% { transform: translate3d(6vw,5vh,0) scale(1.14); } }
+@media (prefers-reduced-motion: reduce) { .aurora i { animation: none; } }
+
+/* Sections sit directly on the aurora instead of painting their own flat colour. */
+section[data-nav="light"], footer[data-nav="light"] { background-color: transparent !important; }
+
+.glass {
+  position: relative;
+  background: linear-gradient(140deg, rgb(255 255 255 / .74), rgb(255 255 255 / .36));
+  -webkit-backdrop-filter: blur(24px) saturate(170%); backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / .78);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .95), inset 0 -1px 0 rgb(95 99 242 / .07), 0 1px 2px rgb(17 23 53 / .04), 0 30px 64px -36px rgb(60 63 196 / .38);
+}
+.glass-soft {
+  background: linear-gradient(140deg, rgb(255 255 255 / .5), rgb(255 255 255 / .2));
+  -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / .6);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .8), 0 18px 40px -28px rgb(60 63 196 / .3);
+}
+.glass-dark {
+  position: relative; color: #fff;
+  background: linear-gradient(150deg, rgb(33 40 98 / .88), rgb(17 23 53 / .78));
+  -webkit-backdrop-filter: blur(24px) saturate(150%); backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgb(255 255 255 / .16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .2), 0 34px 70px -36px rgb(17 23 53 / .75);
+}
+.glass-tint {
+  background: linear-gradient(140deg, rgb(255 255 255 / .6), rgb(223 225 255 / .38));
+  -webkit-backdrop-filter: blur(22px) saturate(170%); backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / .75);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .9), 0 26px 56px -34px rgb(95 99 242 / .5);
+}
+/* Soft light that follows the top edge, like light catching a pane of glass. */
+.glass-sheen::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(120% 70% at 0% 0%, rgb(255 255 255 / .55), transparent 55%); mix-blend-mode: soft-light; }
+.glass-lift { transition: transform .45s var(--ease-out-expo), box-shadow .45s var(--ease-out-expo), border-color .3s; }
+.glass-lift:hover { transform: translateY(-5px); border-color: rgb(255 255 255 / 1); box-shadow: inset 0 1px 0 rgb(255 255 255 / 1), 0 1px 2px rgb(17 23 53 / .04), 0 40px 70px -34px rgb(95 99 242 / .55); }
+
+/* Existing primitives, upgraded to glass */
+.card, .card-grid > * {
+  background: linear-gradient(140deg, rgb(255 255 255 / .74), rgb(255 255 255 / .38)) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(170%); backdrop-filter: blur(22px) saturate(170%);
+  border: 1px solid rgb(255 255 255 / .78) !important; border-radius: 24px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / .95), 0 28px 60px -38px rgb(60 63 196 / .4);
+}
+.card:hover, .card-grid > *:hover { border-color: #fff !important; box-shadow: inset 0 1px 0 #fff, 0 38px 66px -34px rgb(95 99 242 / .55); }
+.eyebrow-pill { background: rgb(255 255 255 / .6); -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%); border: 1px solid rgb(255 255 255 / .85); box-shadow: inset 0 1px 0 #fff, 0 8px 22px -14px rgb(95 99 242 / .55); }
+.icon-chip { background: linear-gradient(145deg, rgb(255 255 255 / .9), rgb(220 221 253 / .7)); box-shadow: inset 0 1px 0 #fff, inset 0 0 0 1px rgb(95 99 242 / .12), 0 8px 18px -10px rgb(95 99 242 / .5); }
+.panel-mesh, .media-frame { border: 1px solid rgb(255 255 255 / .7); box-shadow: inset 0 1px 0 rgb(255 255 255 / .8), 0 40px 80px -50px rgb(95 99 242 / .45); }
+
+@layer components {
+  .pill-dark { background: linear-gradient(180deg, #262e6b, #111735); box-shadow: inset 0 1px 0 rgb(255 255 255 / .22), 0 10px 24px -12px rgb(17 23 53 / .7); }
+  .pill-dark:hover { background: linear-gradient(180deg, #6a6efa, #4b4fe0); }
+  .pill-glass { color: #111735; background: rgb(255 255 255 / .55); -webkit-backdrop-filter: blur(16px) saturate(170%); backdrop-filter: blur(16px) saturate(170%); border: 1px solid rgb(255 255 255 / .85); box-shadow: inset 0 1px 0 #fff, 0 8px 22px -14px rgb(17 23 53 / .4); }
+  .pill-glass:hover { background: rgb(255 255 255 / .85); }
+}
+
+/* Navigation: a floating glass capsule */
+.site-navbar { border: 0 !important; background: transparent !important; backdrop-filter: none !important; }
+.nav-capsule { background: linear-gradient(140deg, rgb(255 255 255 / .72), rgb(255 255 255 / .46)); -webkit-backdrop-filter: blur(24px) saturate(180%); backdrop-filter: blur(24px) saturate(180%); border: 1px solid rgb(255 255 255 / .85); box-shadow: inset 0 1px 0 #fff, 0 18px 44px -26px rgb(60 63 196 / .5); transition: background .3s, border-color .3s, box-shadow .3s; }
+.site-navbar[data-theme="dark"] .nav-capsule { background: linear-gradient(140deg, rgb(33 40 98 / .8), rgb(17 23 53 / .7)); border-color: rgb(255 255 255 / .16); box-shadow: inset 0 1px 0 rgb(255 255 255 / .16), 0 18px 44px -24px rgb(17 23 53 / .8); }
+
+/* Product scene stages: pastel mesh with orbs, hosting glass panes */
+.scene-stage { position: relative; overflow: hidden; isolation: isolate; border-radius: 26px; border: 1px solid rgb(255 255 255 / .7); box-shadow: inset 0 1px 0 rgb(255 255 255 / .8); }
+.scene-stage::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: linear-gradient(rgb(255 255 255 / .22) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .22) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%); }
+.pane { border-radius: 16px; background: linear-gradient(145deg, rgb(255 255 255 / .8), rgb(255 255 255 / .5)); -webkit-backdrop-filter: blur(16px) saturate(170%); backdrop-filter: blur(16px) saturate(170%); border: 1px solid rgb(255 255 255 / .9); box-shadow: inset 0 1px 0 #fff, 0 18px 40px -22px rgb(40 44 140 / .5); }
+
+@keyframes ecg-scroll { to { stroke-dashoffset: -240; } }
+@keyframes bar-bounce { 0%,100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+@keyframes ring-out { 0% { transform: scale(.55); opacity: .55; } 100% { transform: scale(1.5); opacity: 0; } }
+@keyframes shimmer-x { to { transform: translateX(100%); } }
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+.float-y { animation: float-y 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .float-y { animation: none; } }

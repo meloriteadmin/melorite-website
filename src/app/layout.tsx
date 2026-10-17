@@ -42,7 +42,8 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${leagueSpartan.variable} antialiased`}>
-      <body className="min-h-dvh bg-[#ffffff]">
+      <body className="min-h-dvh">
+        <div aria-hidden className="aurora"><i /><i /><i /><i /></div>
         <Providers>
           <Navbar />
           <main id="main" tabIndex={-1} className="outline-none">

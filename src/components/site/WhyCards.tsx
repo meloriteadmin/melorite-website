@@ -1,7 +1,7 @@
 import { ArrowRight, Blocks, Check, MousePointerClick, Network, Plus } from "lucide-react";
 import { Reveal } from "@/components/animation/Reveal";
 
-const frame = "mx-auto w-[78%] rounded-2xl bg-white p-4 text-left shadow-[0_24px_50px_-26px_rgba(17,23,53,.55)]";
+const frame = "pane mx-auto w-[78%] p-4 text-left";
 
 function Flow() {
   const steps = ["Enquiry", "Site visit", "Booking"];
@@ -12,7 +12,7 @@ function Flow() {
         {steps.map((s, i) => (
           <li key={s} className="flex items-center gap-2.5">
             <span className={`grid size-6 place-items-center rounded-full text-[10px] font-semibold ${i < 2 ? "bg-[#4b4fe0] text-white" : "bg-[#eeeffe] text-[#4b4fe0]"}`}>{i < 2 ? <Check className="size-3" /> : i + 1}</span>
-            <span className="flex-1 rounded-lg bg-[#f4f5ff] px-2.5 py-1.5 text-[12px] font-medium">{s}</span>
+            <span className="flex-1 rounded-lg bg-white/60 px-2.5 py-1.5 text-[12px] font-medium">{s}</span>
             {i < 2 && <ArrowRight className="size-3 text-[#4b4fe0]/50" />}
           </li>
         ))}
@@ -29,7 +29,7 @@ function Calm() {
       <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#eeeffe]"><i className="block h-full w-2/3 rounded-full bg-gradient-to-r from-[#7a7eff] to-[#4b4fe0]" /></div>
       <ul className="mt-3 space-y-1.5">
         {rows.map(([t, done]) => (
-          <li key={t} className="flex items-center gap-2.5 rounded-lg bg-[#f4f5ff] px-2.5 py-2 text-[12px] font-medium">
+          <li key={t} className="flex items-center gap-2.5 rounded-lg bg-white/60 px-2.5 py-2 text-[12px] font-medium">
             <span className={`grid size-4 place-items-center rounded-md ${done ? "bg-[#4b4fe0] text-white" : "border border-[#4b4fe0]/40"}`}>{done && <Check className="size-3" />}</span>
             <span className={done ? "text-[#111735]/50 line-through" : ""}>{t}</span>
           </li>
@@ -61,9 +61,9 @@ export function WhyCards() {
   return (
     <div className="mt-10 grid gap-5 md:grid-cols-3">
       {cards.map(({ Icon, title, body, mesh, Visual }, i) => (
-        <Reveal key={title} delay={i * 0.1} className="card flex flex-col overflow-hidden p-2.5">
+        <Reveal key={title} delay={i * 0.1} className="glass glass-sheen glass-lift flex flex-col overflow-hidden rounded-[30px] p-2.5">
           <div className={`${mesh} grain relative grid aspect-[1.35] place-items-center overflow-hidden rounded-[18px]`}>
-            <span className="absolute left-4 top-4 z-10 grid size-10 place-items-center rounded-xl bg-white/85 text-[#4b4fe0] shadow-sm backdrop-blur"><Icon className="size-[18px]" strokeWidth={1.8} /></span>
+            <span className="absolute left-4 top-4 z-10 grid size-10 place-items-center rounded-xl bg-white/80 text-[#4b4fe0] shadow-[inset_0_1px_0_#fff,0_8px_18px_-10px_rgba(95,99,242,.6)] backdrop-blur"><Icon className="size-[18px]" strokeWidth={1.8} /></span>
             <div className="relative z-10 w-full pt-8"><Visual /></div>
           </div>
           <div className="p-5 pb-6">

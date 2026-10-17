@@ -52,12 +52,12 @@ export function Navbar() {
   return (
     <header
       data-theme={theme}
-      className="site-navbar fixed inset-x-0 top-0 z-50 border-b backdrop-blur-md transition-[background-color,border-color,color] duration-300"
+      className="site-navbar pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-colors duration-300 md:px-5"
     >
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
         Skip to content
       </a>
-      <div className="flex h-[64px] items-center justify-between gap-6 px-5 md:px-8 xl:px-[58px]">
+      <div className="nav-capsule pointer-events-auto mx-auto flex h-[56px] max-w-[1360px] items-center justify-between gap-6 rounded-full pl-6 pr-2 md:pl-8">
         <Link href="/" aria-label="Melorite home" className="shrink-0 rounded-md focus-visible:ring-[3px] focus-visible:ring-ring/35 focus-visible:outline-none">
           <Logo white={dark} priority className="h-[24px] md:h-[26px]" />
         </Link>

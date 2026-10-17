@@ -14,8 +14,8 @@ export function ProductsMenu() {
           return (
             <li key={p.slug}>
               <NavigationMenuLink asChild>
-                <Link href={`/products/${p.slug}`} className="flex-row items-start gap-3 rounded-md p-3 hover:bg-black/[.04]">
-                  <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-md bg-[#eeeffe] text-[#4b4fe0]"><I className="size-4" /></span>
+                <Link href={`/products/${p.slug}`} className="flex-row items-start gap-3 rounded-2xl p-3 hover:bg-white/70">
+                  <span className="icon-chip !size-9 !rounded-xl shrink-0"><I className="size-4" /></span>
                   <span><span className="block text-[14px] font-medium">{p.name}</span><span className="mt-0.5 block text-[12px] leading-snug text-black/50">{p.summary}</span></span>
                 </Link>
               </NavigationMenuLink>
@@ -24,7 +24,7 @@ export function ProductsMenu() {
         })}
       </ul>
       <div className="mt-2 border-t border-black/[.07] pt-2">
-        <NavigationMenuLink asChild><Link href="/products" className="flex-row justify-between rounded-md px-3 py-2 text-[13px] text-black/60 hover:bg-black/[.04] hover:text-black">View all products <span aria-hidden>→</span></Link></NavigationMenuLink>
+        <NavigationMenuLink asChild><Link href="/products" className="flex-row justify-between rounded-xl px-3 py-2 text-[13px] text-black/60 hover:bg-white/70 hover:text-black">View all products <span aria-hidden>→</span></Link></NavigationMenuLink>
       </div>
     </div>
   );
@@ -50,7 +50,7 @@ export function SimpleMenu({ type }: { type: keyof typeof secondaryMenus }) {
         {secondaryMenus[type].map(([label, href, description]) => (
           <li key={href}>
             <NavigationMenuLink asChild>
-              <Link href={href} className="block rounded-md p-3 hover:bg-black/[.04]">
+              <Link href={href} className="block rounded-2xl p-3 hover:bg-white/70">
                 <span className="block text-[14px] font-medium">{label}</span>
                 <span className="mt-1 block text-[12px] leading-snug text-black/50">{description}</span>
               </Link>

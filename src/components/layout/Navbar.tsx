@@ -34,9 +34,9 @@ export function Navbar() {
       className="site-navbar sticky top-0 z-50"
     >
       <div className="announce hidden h-9 items-center justify-center gap-3 px-4 text-[12.5px] sm:flex">
-        <span className="rounded-full bg-[#5f63f2] px-2 py-0.5 text-[10.5px] font-semibold">New</span>
-        <span className="text-white/85">Introducing Melorite AI Calling — an assistant that answers and makes your calls.</span>
-        <Link href="/products/ai-calling" className="font-semibold text-white underline-offset-4 hover:underline">Learn more →</Link>
+        <span className="rounded-full bg-black px-2 py-0.5 text-[10.5px] font-semibold">New</span>
+        <span className="text-black/70">Introducing Melorite AI Calling — an assistant that answers and makes your calls.</span>
+        <Link href="/products/ai-calling" className="font-medium text-black underline-offset-4 hover:underline">Learn more →</Link>
       </div>
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:ring-2 focus:ring-brand">
         Skip to content

@@ -13,8 +13,8 @@ export default function HomePage() {
   return (
     <PageTransition>
       <Hero />
-      <BusinessProblem />
       <ProductCards />
+      <BusinessProblem />
       <PlatformIntro />
       <CallingFeature />
       <CustomSolutionsIntro />

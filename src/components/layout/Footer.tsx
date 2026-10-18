@@ -11,9 +11,9 @@ const icons: Record<string, React.ReactNode> = {
 
 const columns = [
   { title: "Products", links: products.map((p) => [p.short, `/products/${p.slug}`]) },
-  { title: "Explore", links: [["Platform", "/platform"], ["Custom Solutions", "/custom-solutions"]] },
-  { title: "Company", links: [["About", "/company"], ["Contact", "/contact"]] },
-  { title: "Get started", links: [["Book a demo", site.demoHref], ["Contact sales", site.salesHref]] },
+  { title: "Resources", links: [["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] },
+  { title: "Company", links: [["About Melorite", "/company"], ["Contact", "/contact"]] },
+  { title: "Get started", links: [["Book a demo", site.demoHref], ["Contact sales", site.salesHref], ["Custom Solutions", "/custom-solutions"]] },
 ] as { title: string; links: string[][] }[];
 
 export function Footer() {

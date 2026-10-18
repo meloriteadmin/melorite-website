@@ -915,7 +915,7 @@ const GF_CSS = `
   display: inline-block;
   flex: none;
   vertical-align: top;
-  font-family: ui-sans-serif, system-ui, -apple-system, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans, Arial, sans-serif);
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
   isolation: isolate;
@@ -1084,7 +1084,7 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
 }
 .gf-sheet-meta {
   flex: none;
-  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-sans, Arial, sans-serif);
   font-size: 10px;
   letter-spacing: .02em;
   color: rgba(24, 24, 27, .5);
@@ -1195,7 +1195,7 @@ canvas.gf-sheet-art[data-ready] { opacity: 1; filter: none; }
   white-space: nowrap;
 }
 .gf-meta {
-  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-family: var(--font-sans, Arial, sans-serif);
   font-size: 12px;
   letter-spacing: .03em;
   color: var(--gf-ink-soft);

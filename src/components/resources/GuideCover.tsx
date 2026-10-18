@@ -1,0 +1,8 @@
+import styles from "./GuideCover.module.css";
+
+function Illustration({product}:{product:string}) {
+  return <svg viewBox="0 0 320 260" fill="none" aria-hidden="true" className={styles.illustration}>
+    {product==='real-estate'?<><path d="M65 230V70l90-42v202M155 230V28l88 42v160M45 230h220"/><path d="M88 93h35m-35 29h35m-35 29h35m-35 29h35M180 94h35m-35 29h35m-35 29h35m-35 29h35"/><path className={styles.filled} d="M145 195h30v35h-30z"/></>:product==='agency'?<><rect x="40" y="45" width="240" height="176" rx="17"/><path d="M40 90h240M90 30v30m140-30v30M120 90v131m80-131v131M40 155h240"/><rect className={styles.filled} x="132" y="104" width="56" height="38" rx="8"/><path d="m147 123 10 9 17-19"/></>:product==='ai-calling'?<><circle cx="160" cy="130" r="91"/><circle cx="160" cy="130" r="116" className={styles.faint}/>{[35,66,101,137,101,66,35].map((height,i)=><path key={i} d={`M${76+i*28} ${130-height/2}v${height}`} strokeLinecap="round"/>)}</>:<><path d="M65 75h90q40 0 40 40v45q0 35 45 35M65 195h50q40 0 40-40v-40q0-40 40-40h45"/><rect className={styles.filled} x="38" y="49" width="54" height="54" rx="15"/><rect x="213" y="49" width="54" height="54" rx="15"/><rect x="38" y="169" width="54" height="54" rx="15"/><rect className={styles.filled} x="213" y="169" width="54" height="54" rx="15"/><circle cx="160" cy="135" r="27"/></>}
+  </svg>;
+}
+export function GuideCover({product,title}:{product:string;title:string}){return <div className={styles.cover} data-product={product}><div className={styles.spine}/><span className={styles.brand}>MELORITE / GUIDES</span><Illustration product={product}/><div className={styles.title}><span>THE PRACTICAL SERIES</span><strong>{title}</strong></div><span className={styles.arrow}>↗</span></div>}

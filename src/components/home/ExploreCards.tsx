@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/animation/Reveal";
 
 const features = [
-  { title: "A connected foundation for your business", artwork: <>One platform.<br />Every possibility.</>, category: "Platform", note: "People, records & workflows", href: "/platform", tone: "flows" },
+  { title: "Find the right workspace for your business", artwork: <>Your products.<br />Working together.</>, category: "Products", note: "People, records & workflows", href: "/products", tone: "flows" },
   { title: "Software shaped around the way you work", artwork: <>Your business.<br />Your workflow.</>, category: "Custom solutions", note: "Built around your team", href: "/custom-solutions", tone: "solutions" },
   { title: "Meet your next team member on the phone", artwork: <>A more human<br />way to connect.</>, category: "AI Calling", note: "Conversations that move work forward", href: "/products/ai-calling", tone: "voice" },
 ];

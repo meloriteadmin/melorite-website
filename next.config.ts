@@ -18,7 +18,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     const r = (source: string, destination: string) => ({ source, destination, permanent: true });
     return [
-      r("/why-melorite", "/platform"), r("/resources", "/"), r("/resources/:path*", "/"),
+      r("/why-melorite", "/products"),
       r("/ai", "/products/ai-calling"), r("/ai/:path*", "/products/ai-calling"),
       r("/ai-agents", "/products/ai-calling"), r("/ai-calling", "/products/ai-calling"),
       r("/business-applications", "/products"), r("/business-applications/:path*", "/products"),

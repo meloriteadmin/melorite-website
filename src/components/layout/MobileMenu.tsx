@@ -6,9 +6,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ChevronDown, Menu } from "lucide-react";
+import { secondaryMenus } from "./MegaMenu";
 import { mainNav } from "@/data/navigation";
 import { products } from "@/data/products";
-import { site } from "@/data/site";
 import { Logo } from "@/components/shared/Logo";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
@@ -37,7 +37,7 @@ export function MobileMenu() {
           <details className="group border-b border-[#111735]/10" open>
             <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[24px] font-bold tracking-[-.035em]">Products<ChevronDown className="size-5 transition-transform group-open:rotate-180" /></summary>
             <ul className="pb-4 pl-2">
-              {products.map((p) => <li key={p.slug}><Link href={`/products/${p.slug}`} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{p.name}</Link></li>)}
+              {products.map((p) => <li key={p.slug}><Link href={`/products/${p.slug}`} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{p.short}</Link></li>)}
               <li><Link href="/products" onClick={close} className="block py-2.5 text-[17px] font-medium text-[#4b4fe0]">All products</Link></li>
             </ul>
           </details>
@@ -48,8 +48,7 @@ export function MobileMenu() {
                   <details className="group border-b border-[#111735]/10">
                     <summary className="flex cursor-pointer list-none items-center justify-between py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}<ChevronDown className="size-5 transition-transform group-open:rotate-180" /></summary>
                     <div className="pb-4 pl-2">
-                      <Link href={n.href} onClick={close} className="block py-2.5 text-[17px] font-medium text-[#4b4fe0]">Overview</Link>
-                      {([["About", "/company"], ["Contact", "/contact"]]).map(([label, href]) => <Link key={href} href={href} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{label}</Link>)}
+                      {secondaryMenus[n.menu as keyof typeof secondaryMenus].map(([label, href]) => <Link key={href} href={href} onClick={close} className="block py-2.5 text-[17px] text-[#111735]/65">{label}</Link>)}
                     </div>
                   </details>
                 ) : <Link href={n.href} onClick={close} className="block border-b border-[#111735]/10 py-3.5 text-[24px] font-bold tracking-[-.035em]">{n.label}</Link>}
@@ -58,7 +57,6 @@ export function MobileMenu() {
           </ul>
         </nav>
         <div className="flex gap-3 border-t border-[#111735]/10 p-5">
-          <Link href={site.salesHref} onClick={close} className="pill flex-1 border border-[#111735]/15">Contact sales</Link>
           <Link href={demoHrefForPath(pathname)} onClick={close} className="pill pill-dark flex-1">Book a demo</Link>
         </div>
       </SheetContent>

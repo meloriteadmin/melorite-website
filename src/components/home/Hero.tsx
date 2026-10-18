@@ -27,7 +27,7 @@ export function Hero() {
       <div className="opening-products">
         <div className="rail-inner">
           <div className="opening-products-heading">
-            <h2 className="h-section">The platform your<br />business builds on.</h2>
+            <h2 className="h-section">The software your<br />business builds on.</h2>
             <p className="opening-products-description">Find your workspace. Make it work for you.</p>
           </div>
           <ProductShowcase />

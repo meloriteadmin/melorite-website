@@ -1,14 +1,15 @@
+import { WorkingDetails } from "./WorkingDetails";
+import { resources, resourceHref } from "@/data/resources";
 import { AgentIntro } from "@/components/site/AgentIntro";
 import { VoiceDemo } from "@/components/site/VoiceDemo";
 import { CapabilityRail } from "@/components/site/CapabilityRail";
 import { WorkflowShowcase } from "@/components/site/WorkflowShowcase";
 import { workflowCopy } from "@/data/workflows";
-import { productBySlug } from "@/data/products";
 import { productSeo } from "@/data/seo";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
-import { audienceIcon, featureIcon } from "@/components/site/icons";
+import { featureIcon } from "@/components/site/icons";
 import { Reveal } from "@/components/animation/Reveal";
 import { FinalCTA } from "@/components/site/FinalCTA";
 import { VoiceOrb } from "@/components/site/VoiceOrb";
@@ -16,7 +17,7 @@ import { SceneStage } from "@/components/product/Scenes";
 import { site } from "@/data/site";
 import type { ProductPageContent } from "@/data/product-pages";
 import { productDetails } from "@/data/product-details";
-import Timeline from "@/components/ui/timeline";
+import { ProductJourney } from "./ProductJourney";
 
 const relatedProducts: Record<string, string[]> = { crm: ["real-estate"], "real-estate": ["crm"], clinic: ["ai-calling"], agency: ["crm"], commerce: ["crm"], "ai-calling": ["real-estate", "clinic"] };
 
@@ -24,6 +25,7 @@ const eyebrow = "eyebrow-pill";
 
 export function ProductPageView({ content }: { content: ProductPageContent }) {
   const detail = productDetails[content.slug];
+  const resource = resources.find(item => item.product === content.slug && item.kind === "guides") ?? resources.find(item => item.product === content.slug)!;
   const [firstChapter, secondChapter, thirdChapter] = detail.chapters;
   return (
     <>
@@ -69,17 +71,7 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
 
       {content.slug === "agency" && <CapabilityRail />}
 
-      <Timeline
-        eyebrow="Core workflow"
-        title={detail.workflowTitle}
-        periodLabel={`${detail.workflow.length} connected stages`}
-        items={detail.workflow.map((step, i) => ({
-          id: `${content.slug}-workflow-${i + 1}`,
-          label: `Stage ${String(i + 1).padStart(2, "0")}`,
-          title: step,
-          content: workflowCopy[content.slug][i],
-        }))}
-      />
+      <ProductJourney slug={content.slug} title={detail.workflowTitle} steps={detail.workflow} descriptions={workflowCopy[content.slug]} />
 
       {detail.perspectives && (
         <section data-nav="light" className="py-[clamp(56px,6vw,96px)] text-[#111735]">
@@ -137,28 +129,7 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
         </div>
       </section>
 
-      <section data-nav="light" className="py-[clamp(56px,6vw,96px)] text-[#111735]">
-        <div className="rail-inner">
-          <Reveal><p className={eyebrow}>Who it’s for</p><h2 className="h-section mt-5">Built for the people doing the work.</h2></Reveal>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            {detail.audiences.map((audience, i) => { const Icon = audienceIcon(audience, i); return (
-              <Reveal key={audience} delay={(i % 3) * .04} className="glass glass-lift flex w-full items-center gap-4 rounded-[16px] p-4 pr-5 sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)]">
-                <span className="icon-chip shrink-0"><Icon className="size-5" /></span>
-                <span className="text-[17px] font-semibold leading-snug tracking-[-.02em]">{audience}</span>
-                <span className="ml-auto text-[12px] font-semibold text-[#111735]/30">0{i + 1}</span>
-              </Reveal>); })}
-          </div>
-        </div>
-      </section>
-
-      <section data-nav="light" className="py-[clamp(56px,6vw,96px)] text-[#111735]">
-        <div className="rail-inner">
-          <Reveal className="glass-tint glass-sheen relative flex flex-wrap items-end justify-between gap-8 overflow-hidden rounded-[24px] p-7 sm:p-10">
-            <div><p className={eyebrow}>{detail.related.label}</p><h2 className="h-story mt-5">{detail.related.title}</h2><p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-[#111735]/62">{detail.related.body}</p></div>
-            <Link href={detail.related.href} className="pill pill-dark min-h-12 !h-auto !whitespace-normal py-3 px-7 text-center">Explore {detail.related.href.startsWith("/products/") ? productBySlug(detail.related.href.split("/").pop()!)?.name : "Custom Solutions"}<ArrowRight className="size-4" /></Link>
-          </Reveal>
-        </div>
-      </section>
+      <WorkingDetails slug={content.slug} />
 
       <section data-nav="light" className="py-[clamp(56px,6vw,96px)] text-[#111735]">
         <div className="rail-inner mx-auto max-w-[920px]">
@@ -181,7 +152,7 @@ export function ProductPageView({ content }: { content: ProductPageContent }) {
           <p className="eyebrow-pill">Continue exploring</p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {(relatedProducts[content.slug] ?? []).map((slug) => <li key={slug}><Link className="glass glass-lift group flex h-full items-center justify-between gap-4 rounded-[16px] p-5 text-[16px] font-semibold tracking-[-.02em]" href={`/products/${slug}`}>{productSeo[slug].title}<ArrowUpRight className="size-4 shrink-0 text-[#4b4fe0]" /></Link></li>)}
-            <li><Link className="glass glass-lift group flex h-full items-center justify-between gap-4 rounded-[16px] p-5 text-[16px] font-semibold tracking-[-.02em]" href="/platform">How the Melorite platform works<ArrowUpRight className="size-4 shrink-0 text-[#4b4fe0]" /></Link></li>
+            <li><Link className="glass glass-lift group flex h-full items-center justify-between gap-4 rounded-[16px] p-5 text-[16px] font-semibold tracking-[-.02em]" href={resourceHref(resource)}>{resource.title}<ArrowUpRight className="size-4 shrink-0 text-[#4b4fe0]" /></Link></li>
           </ul>
         </div>
       </section>

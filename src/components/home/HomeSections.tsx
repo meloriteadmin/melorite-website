@@ -31,7 +31,7 @@ export function PlatformIntro() {
   return (
     <section data-nav="light" className="py-[clamp(80px,10vw,140px)] text-[#111735]">
       <div className="rail-inner mx-auto max-w-[1400px]">
-        <Reveal className="flex flex-wrap items-end justify-between gap-8"><div><p className="eyebrow-pill">The Melorite platform</p><h2 className="h-section mt-5 max-w-[16ch]">One platform behind every product.</h2></div><div><p className="max-w-[45ch] text-[18px] leading-[1.55] text-[#111735]/58">A consistent foundation for your people, records, workflows, automation, AI and reporting.</p><Link href="/platform" className="mt-5 inline-flex items-center gap-2 text-[15px] font-semibold text-[#4b4fe0]">Explore the Platform<ArrowRight className="size-4" /></Link></div></Reveal>
+        <Reveal className="flex flex-wrap items-end justify-between gap-8"><div><p className="eyebrow-pill">Connected business software</p><h2 className="h-section mt-5 max-w-[16ch]">Focused products. Shared ways of working.</h2></div><div><p className="max-w-[45ch] text-[18px] leading-[1.55] text-[#111735]/58">A consistent foundation for your people, records, workflows, automation, AI and reporting.</p><Link href="/products" className="mt-5 inline-flex items-center gap-2 text-[15px] font-semibold text-[#4b4fe0]">Explore the products<ArrowRight className="size-4" /></Link></div></Reveal>
         <div className="mt-12 grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
           <Reveal><FoundationVisual /></Reveal>
           <div className="grid gap-4 sm:grid-cols-2">

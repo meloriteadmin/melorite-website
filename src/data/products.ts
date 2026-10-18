@@ -19,8 +19,8 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    id: "crm", slug: "crm", name: "Melorite CRM", short: "CRM", icon: "Users",
-    summary: "Keep track of every lead, customer and follow-up, so no opportunity slips away.",
+    id: "crm", slug: "crm", name: "Melorite CRM & Growth", short: "CRM & Growth", icon: "Users",
+    summary: "Connect leads, campaigns, customers and sales follow-ups in one focused workspace.",
     headline: ["Never lose", "a lead again."],
     lead: "Every enquiry, call and follow-up, all in one place.",
     body: "You’ll always know who to call next, what they asked for last time, and which deals are about to close. No more digging through notebooks or chats.",

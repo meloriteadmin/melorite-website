@@ -5,7 +5,10 @@ import { setTimeout } from 'node:timers/promises';
 const base = process.env.SEO_TEST_URL || 'http://127.0.0.1:3187';
 let server;
 const pages = new Map();
-const paths = ['/', '/products', ...['crm','real-estate','clinic','agency','commerce','ai-calling'].map(s => `/products/${s}`), '/platform', '/custom-solutions', '/company', '/contact', '/book-demo'];
+const resourceData = await import('node:fs/promises').then(fs => fs.readFile(new URL('../src/data/resources.ts', import.meta.url), 'utf8'));
+const resourceItems = JSON.parse(resourceData.split('export const resources: Resource[] = ')[1].split(';\nexport const resourceHref')[0]);
+const resourcePaths = ['/resources', '/resources/blog', '/resources/guides', '/resources/case-studies', ...resourceItems.map(item => `/resources/${item.kind}/${item.slug}`)];
+const paths = ['/', '/products', ...['crm','real-estate','clinic','agency','commerce','ai-calling'].map(s => `/products/${s}`), '/platform', '/custom-solutions', '/company', '/contact', '/book-demo', ...resourcePaths];
 const decode = value => value?.replaceAll('&amp;', '&').replaceAll('&#x27;', "'").replaceAll('&quot;', '"');
 const attr = (html, attribute, value, target = 'content') => decode(html.match(new RegExp(`<[^>]*${attribute}="${value}"[^>]*${target}="([^"]+)"`))?.[1]);
 before(async () => {
@@ -24,7 +27,7 @@ before(async () => {
   }
 });
 after(() => server?.kill());
-test('17 public pages have unique metadata, clean canonicals, one H1 and matching social metadata', () => {
+test('all public pages have unique metadata, clean canonicals, one H1 and matching social metadata', () => {
   const titles = new Set(), descriptions = new Set();
   for (const [path, html] of pages) {
     const title = decode(html.match(/<title>(.*?)<\/title>/s)?.[1]);
@@ -73,7 +76,7 @@ test('all rendered local links, fragment targets and image assets resolve', asyn
     if (url.hash) assert.ok((await response.text()).includes(`id="${url.hash.slice(1)}"`), href);
   }
 });
-test('robots allows rendering assets and sitemap contains only 17 clean public URLs without invented dates', async () => {
+test('robots allows rendering assets and sitemap contains all clean public URLs without invented dates', async () => {
   const robots = await (await fetch(base + '/robots.txt')).text();
   assert.ok(!robots.includes('Disallow: /_next/'));
   assert.ok(robots.includes('Sitemap: https://melorite.com/sitemap.xml'));
@@ -89,13 +92,13 @@ test('demo and custom enquiry query variants retain canonical metadata', async (
   }
 });
 test('legacy redirects reach direct equivalents; unknown resource and product paths return real 404s', async () => {
-  for (const [source, dest] of [["/why-melorite", "/platform"], ["/ai", "/products/ai-calling"], ["/ai/example", "/products/ai-calling"], ["/ai-agents", "/products/ai-calling"], ["/ai-calling", "/products/ai-calling"], ["/business-applications", "/products"], ["/business-applications/example", "/products"], ["/industries", "/products"], ["/industries/example", "/products"], ["/solutions/hospital", "/products/clinic"], ["/solutions/clinic", "/products/clinic"], ["/solutions/real-estate", "/products/real-estate"], ["/solutions/marketing-agency", "/products/agency"], ["/solutions/ecommerce", "/products/commerce"], ["/solutions/sales", "/products/crm"], ["/solutions", "/products"], ["/solutions/example", "/products"], ["/products/crm-growth", "/products/crm"], ["/products/real-estate-crm", "/products/real-estate"], ["/products/clinic-management", "/products/clinic"], ["/products/agency-management", "/products/agency"], ["/products/ecommerce", "/products/commerce"], ["/products/finance", "/products"], ["/products/hrms", "/products"], ["/products/projects", "/products"], ["/products/service", "/products"], ["/products/procurement-inventory", "/products"]]) {
+  for (const [source, dest] of [["/why-melorite", "/products"], ["/ai", "/products/ai-calling"], ["/ai/example", "/products/ai-calling"], ["/ai-agents", "/products/ai-calling"], ["/ai-calling", "/products/ai-calling"], ["/business-applications", "/products"], ["/business-applications/example", "/products"], ["/industries", "/products"], ["/industries/example", "/products"], ["/solutions/hospital", "/products/clinic"], ["/solutions/clinic", "/products/clinic"], ["/solutions/real-estate", "/products/real-estate"], ["/solutions/marketing-agency", "/products/agency"], ["/solutions/ecommerce", "/products/commerce"], ["/solutions/sales", "/products/crm"], ["/solutions", "/products"], ["/solutions/example", "/products"], ["/products/crm-growth", "/products/crm"], ["/products/real-estate-crm", "/products/real-estate"], ["/products/clinic-management", "/products/clinic"], ["/products/agency-management", "/products/agency"], ["/products/ecommerce", "/products/commerce"], ["/products/finance", "/products"], ["/products/hrms", "/products"], ["/products/projects", "/products"], ["/products/service", "/products"], ["/products/procurement-inventory", "/products"]]) {
     const response = await fetch(base + source, { redirect: 'manual' });
     assert.equal(response.status, 308, source);
     assert.equal(new URL(response.headers.get('location'), base).pathname, dest);
     assert.equal((await fetch(base + dest, { redirect: 'manual' })).status, 200);
   }
-  for (const path of ['/does-not-exist','/products/does-not-exist']) {
+  for (const path of ['/does-not-exist','/products/does-not-exist','/resources/does-not-exist','/resources/blog/does-not-exist','/resources/case-studies/example']) {
     const response = await fetch(base + path);
     assert.equal(response.status, 404, path);
     assert.match(await response.text(), /noindex/);
@@ -106,4 +109,35 @@ test('invalid and automated enquiry payloads are rejected without delivery', asy
   assert.equal((await fetch(base + '/api/enquiries', { method: 'POST', headers, body: '{}' })).status, 422);
   const body = { fullName: 'Local test', workEmail: 'test@example.invalid', phone: '', companyName: '', products: [], enquiryType: 'demo', message: 'Local validation check only', consent: true, website: 'automated', startedAt: Date.now() - 5000 };
   assert.equal((await fetch(base + '/api/enquiries', { method: 'POST', headers, body: JSON.stringify(body) })).status, 400);
+});
+
+test('navigation omits the legacy platform and resource articles link to products', () => {
+  for (const [path, html] of pages) {
+    assert.ok(!/href="\/platform(?:[?#"])/.test(html), path);
+    if (/^\/resources\/(blog|guides|case-studies)\/.+/.test(path)) {
+      const schemas = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
+      assert.ok(schemas.some(s => s['@type'] === 'Article'), path);
+      assert.ok(html.includes('href="/products/'), path);
+    }
+  }
+});
+
+test('sample case studies are explicitly labelled as fictional examples', () => {
+  for (const item of resourceItems.filter(item => item.kind === 'case-studies')) {
+    assert.equal(item.example, true, item.slug);
+    const html = pages.get(`/resources/case-studies/${item.slug}`);
+    assert.ok(html.includes('Illustrative example'), item.slug);
+    assert.ok(html.includes('Fictional business scenario'), item.slug);
+    assert.ok(html.includes('not verified customer results'), item.slug);
+  }
+});
+
+test('all six product pages replace audience and related-product promotions with the visual working details section', () => {
+  for (const [path, html] of pages) {
+    if (!/^\/products\/.+/.test(path)) continue;
+    assert.ok(html.includes('The details that keep'), path);
+    assert.ok(html.includes('One record. The whole context.'), path);
+    assert.ok(!html.includes('Built for the people doing the work.'), path);
+    assert.ok(!html.includes('Let AI Calling answer, qualify and update the CRM.'), path);
+  }
 });

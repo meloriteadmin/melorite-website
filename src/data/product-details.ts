@@ -14,12 +14,13 @@ export const productDetails: Record<string, ProductDetail> = {
     workflow: ["Enquiry", "Lead", "Follow-up", "Opportunity", "Quote", "Won", "Customer"],
     audiences: ["Sales teams", "Consultants", "Service businesses", "Growing companies"],
     chapters: [
-      { eyebrow: "Lead capture", title: "Every new enquiry starts in the right place.", body: "Bring website, campaign, referral and WhatsApp enquiries into one working queue. The source, owner and first action are visible before a lead goes cold.", points: ["Source-aware lead records", "Assignment by team or territory", "Duplicate and incomplete-record review"] },
+      { eyebrow: "Lead capture", title: "Every new enquiry starts in the right place.", body: "Bring website, campaign, referral and WhatsApp enquiries into one working queue. Agree on lead scoring and assignment so the source, priority and first action are clear.", points: ["Source-aware lead records", "Assignment by team or territory", "Duplicate and incomplete-record review"] },
       { eyebrow: "Contacts & pipeline", title: "One customer history. One clear next step.", body: "Keep people, companies, opportunities, notes and quotations connected. Move deals through stages the team understands without losing the conversation behind them.", points: ["Contact and company records", "Custom sales stages", "Quotes and opportunity values"] },
-      { eyebrow: "Activities & reporting", title: "Know what needs attention today.", body: "Calls, meetings, reminders and overdue follow-ups become a useful daily view. Managers can see movement and bottlenecks without asking for another spreadsheet.", points: ["Due and overdue activities", "Sales and source reporting", "Repeatable follow-up automation"] },
+      { eyebrow: "Activities & reporting", title: "Know what needs attention today.", body: "Calls, meetings and sales sequences give follow-ups a clear rhythm. Reports connect campaign management, lead tracking and forecasting so managers can review progress without another spreadsheet.", points: ["Due and overdue activities", "Sales and source reporting", "Repeatable follow-up automation"] },
     ],
     related: { label: "Connect every call", title: "Let AI Calling answer, qualify and update the CRM.", body: "Turn phone conversations into bookings, lead updates and clear next actions for the sales team.", href: "/products/ai-calling" },
     faqs: [
+      { question: "How does CRM & Growth support a business in India?", answer: "Melorite combines CRM software for businesses with lead management, campaign tracking and sales automation. During a demo, we review your sales process, channels and setup requirements before agreeing the scope." },
       { question: "Can I import existing leads?", answer: "Yes. Existing lead and customer data can be prepared for import during setup." },
       { question: "Can multiple salespeople use it?", answer: "Yes. Leads can have clear owners so each salesperson and manager sees the work relevant to them." },
       { question: "Can leads be assigned automatically?", answer: "Assignment rules can be configured around the agreed sales workflow." },
@@ -121,7 +122,7 @@ export const productDetails: Record<string, ProductDetail> = {
       { eyebrow: "Bookings & hand-off", title: "Complete the simple task. Bring in a person when needed.", body: "Book an approved appointment or visit during the call, send a WhatsApp follow-up, or transfer the caller with the context already captured.", points: ["Calendar actions", "Warm human transfer", "CRM or workflow updates"] },
       { eyebrow: "Recordings & analytics", title: "Understand the outcome without replaying every call.", body: "Review summaries, transcripts, recordings where applicable, outcomes and next actions. Use the operational view to understand volume and where calls need human attention.", points: ["Call outcome and summary", "Transcripts and recordings", "Campaign and call analytics"] },
     ],
-    related: { label: "Keep the context", title: "Connect conversations to Melorite CRM.", body: "Give sales teams a usable customer record and next action after the call ends.", href: "/products/crm" },
+    related: { label: "Keep the context", title: "Connect conversations to Melorite CRM & Growth.", body: "Give sales teams a usable customer record and next action after the call ends.", href: "/products/crm" },
     faqs: [
       { question: "Can it answer incoming calls?", answer: "Yes. It can receive calls, understand the reason for the call and handle agreed enquiry or booking flows." },
       { question: "Can it make outbound calls?", answer: "Yes. Outbound flows can support lead follow-ups, reminders, confirmations and defined campaigns." },

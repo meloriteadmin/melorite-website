@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { resources, resourceHref } from "@/data/resources";
 import { site } from "@/data/site";
 import { products } from "@/data/products";
 
@@ -7,7 +8,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", priority: 1 },
     { path: "/products", priority: 0.9 },
     ...products.map(({ slug }) => ({ path: `/products/${slug}`, priority: 0.8 })),
-    { path: "/platform", priority: 0.8 },
+    { path: "/platform", priority: 0.5 },
+    ...["/resources", "/resources/blog", "/resources/guides", "/resources/case-studies"].map(path => ({ path, priority: 0.7 })),
+    ...resources.map(item => ({ path: resourceHref(item), priority: 0.6 })),
     { path: "/custom-solutions", priority: 0.7 },
     { path: "/company", priority: 0.7 },
     { path: "/contact", priority: 0.6 },

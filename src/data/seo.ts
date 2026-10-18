@@ -1,7 +1,7 @@
 export const productSeo: Record<string, { title: string; description: string }> = {
   "crm": {
-    "title": "CRM & Lead Management Software",
-    "description": "Capture enquiries, assign leads, manage follow-ups and quotations, and track your sales pipeline with Melorite CRM. Book a demo for your sales team."
+    "title": "CRM & Growth Software for Businesses in India",
+    "description": "Manage leads, campaigns, customer records and sales pipelines with Melorite CRM & Growth. Explore sales automation and request a demo for your business."
   },
   "real-estate": {
     "title": "Real Estate CRM & Management Software",

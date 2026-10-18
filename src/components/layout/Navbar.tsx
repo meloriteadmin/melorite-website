@@ -73,7 +73,6 @@ export function Navbar() {
         </NavigationMenu>
 
         <div className="col-start-3 flex items-center gap-2">
-          <Link href="/contact" className="pill pill-sm pill-glass hidden md:inline-flex">Contact us</Link>
           <Link href={demoHrefForPath(pathname)} className={cn("pill pill-sm hidden sm:inline-flex", dark ? "pill-light" : "pill-dark")}>Book a demo</Link>
           <MobileMenu />
         </div>

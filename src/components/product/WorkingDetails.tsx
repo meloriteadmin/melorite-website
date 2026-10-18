@@ -1,0 +1,14 @@
+import { Check, ClipboardList, GitBranch, LayoutDashboard } from "lucide-react";
+import { Reveal } from "@/components/animation/Reveal";
+import { ProductSymbol } from "@/components/brand/ProductSymbol";
+import { productBySlug } from "@/data/products";
+import { productDetails } from "@/data/product-details";
+import styles from "./WorkingDetails.module.css";
+export function WorkingDetails({slug}:{slug:string}){
+ const product=productBySlug(slug)!;const detail=productDetails[slug];
+ return <section className={styles.section} aria-labelledby={`${slug}-working-details`}><div className="rail-inner"><Reveal className={styles.heading}><h2 id={`${slug}-working-details`}>The details that keep<br/>your day moving.</h2><p>Context, ownership and the next step, kept together in {product.name}.</p></Reveal><div className={styles.grid}>
+  <Reveal className={`${styles.card} ${styles.wide} ${styles.colour}`}><div className={styles.recordVisual}><div className={styles.backText}>{detail.workflow.map((step,i)=><p key={step}><span>0{i+1}</span>{step}</p>)}</div><div className={styles.inspector}><div className={styles.recordTop}><ProductSymbol slug={slug}/><span>{product.short}</span></div>{[['Working context','Connected records'],['Responsibility','Clear owner'],['Next step','Ready to follow up']].map(([title,value],i)=><div className={styles.field} key={title}><span>{title}</span><strong>{value}</strong><div><i style={{width:`${62+i*12}%`}}/></div></div>)}<span className={styles.saved}><Check size={13}/>Context stays with the work</span></div></div><div className={styles.copy}><h3>One record. The whole context.</h3><p>Keep the details behind the task close, so the next person can pick up where the work left off.</p></div></Reveal>
+  <Reveal className={`${styles.card} ${styles.wide}`}><div className={styles.cardsVisual}>{detail.chapters.map((chapter,i)=><div key={chapter.eyebrow} className={styles.miniCard}><div className={`${styles.miniArt} ${styles[`tone${i}`]}`}><ProductSymbol slug={slug}/></div><span>{chapter.eyebrow}</span></div>)}</div><div className={styles.copy}><h3>A working view for every step.</h3><p>Move through {detail.workflow.slice(0,3).map(step=>step.toLowerCase()).join(', ')} and the work that follows, without losing the thread.</p></div></Reveal>
+  {[[ClipboardList,'Clear next actions','Keep the next task visible beside the record it belongs to.'],[GitBranch,'Connected handoffs','Give the next person the history and detail needed to act.'],[LayoutDashboard,'A useful daily view','See the work that is moving and the items needing attention.']].map(([Icon,title,copy])=>{const I=Icon as typeof Check;return <Reveal key={title as string} className={`${styles.card} ${styles.small}`}><I/><h3>{title as string}</h3><p>{copy as string}</p></Reveal>;})}
+ </div></div></section>
+}

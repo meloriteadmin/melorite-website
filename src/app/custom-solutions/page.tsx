@@ -8,12 +8,12 @@ import { PageTransition } from "@/components/animation/PageTransition";
 import { Reveal } from "@/components/animation/Reveal";
 import { InnerHero } from "@/components/site/InnerHero";
 import { FinalCTA } from "@/components/site/FinalCTA";
-import { GoodFor } from "@/components/site/Cells";
+import styles from "./CustomSolutions.module.css";
 import { FolderCollections } from "@/components/site/FolderCollections";
 import Timeline from "@/components/ui/timeline";
 import { WorkflowGraph } from "@/components/site/WorkflowGraph";
 
-export const metadata: Metadata = pageMetadata("/custom-solutions", "Custom Business Software Development", "Extend a Melorite product or plan a custom business application, workflow, portal or report around your team’s process. Discuss your requirements.");
+export const metadata: Metadata = pageMetadata("/custom-solutions", "Custom Business Software Development", "Extend Melorite with custom CRM development, business workflow automation, customer portals, dashboards and software integrations. Discuss your process.");
 
 const customCases = [
   ["An unusual workflow", "Your team follows a process that standard software does not cover cleanly."],
@@ -46,7 +46,7 @@ const capabilities = [
 export default function CustomSolutionsPage() {
   return (
     <PageTransition><Breadcrumbs items={[{ name: "Custom Solutions" }]} />
-      <InnerHero label="Custom Business Software Development" title="Software built around exactly how you work." body="Extend a Melorite product or build a focused application around your process, users and decisions, with a clear scope before development begins." primary={{ label: "Discuss your project", href: "/contact?enquiry=custom&product=custom-solution" }} secondary={{ label: "See how it works", href: "#how-it-works" }} mesh="calling"><div className="mx-auto max-w-[1080px]"><WorkflowGraph /></div></InnerHero>
+      <InnerHero label="Custom Business Software Development" title="Software built around exactly how you work." body="Extend a Melorite product or build an internal system around your workflow, users and decisions. Agree the scope before development begins." primary={{ label: "Discuss your project", href: "/contact?enquiry=custom&product=custom-solution" }} secondary={{ label: "See how it works", href: "#how-it-works" }} mesh="calling"><div className="mx-auto max-w-[1080px]"><WorkflowGraph /></div></InnerHero>
 
       <section data-nav="light" className="py-[clamp(72px,9vw,120px)] text-[#111735]">
         <div className="rail-inner mx-auto grid max-w-[1400px] gap-12 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:gap-20">
@@ -87,21 +87,12 @@ export default function CustomSolutionsPage() {
         />
       </div>
 
-      <section data-nav="light" className="panel-mesh py-[clamp(56px,6.5vw,96px)] text-[#111735]">
-        <div className="rail-inner grid gap-5 lg:grid-cols-3">
-          {capabilities.map(({ Icon, label, title, body, ...rest }, i) => {
-            const dark = "dark" in rest;
-            return (
-              <Reveal key={label} delay={i * .06} className={`${dark ? "glass-dark" : "glass"} glass-sheen flex min-h-[340px] flex-col rounded-[16px] p-7 sm:p-8`}>
-                <span className={`grid size-12 place-items-center rounded-2xl ${dark ? "bg-white/10 text-[#a5a8ff]" : "icon-chip !size-12"}`}><Icon className="size-5" strokeWidth={1.8} /></span>
-                <div className="mt-auto pt-10"><p className={`mono-label ${dark ? "text-white/45" : "text-[#4b4fe0]"}`}>{label}</p><h3 className="mt-3 max-w-[14ch] text-[28px] font-semibold leading-[1.05] tracking-[-.04em]">{title}</h3><p className={`mt-4 text-[15.5px] leading-[1.6] ${dark ? "text-white/60" : "text-[#111735]/60"}`}>{body}</p></div>
-              </Reveal>
-            );
-          })}
+      <section data-nav="light" className={styles.capabilities}>
+        <div className="rail-inner"><div className={styles.heading}><p>Built around your business</p><h2>Connect what you have.<br/>Build what you need.</h2></div>
+          <div className={styles.rows}>{capabilities.map(({Icon,label,title,body},i)=><Reveal key={label} className={styles.row}><span className={styles.number}>0{i+1}</span><span className={styles.icon}><Icon size={25} strokeWidth={1.4}/></span><div><p>{label}</p><h3>{title}</h3></div><p className={styles.body}>{body}</p></Reveal>)}</div>
+          <div className={styles.fit}><span>Made for your next step</span><h2>When your business<br/>needs its own way forward.</h2><div><p>A process of your own. A team that has outgrown spreadsheets. A product that needs to do a little more.</p><a href="/contact?enquiry=custom&product=custom-solution" className="pill pill-dark">Let’s explore the possibilities ↗</a></div></div>
         </div>
       </section>
-
-      <GoodFor>Businesses with a process of their own, teams that have outgrown spreadsheets, and anyone who needs Melorite to do a little more.</GoodFor>
 
       <section data-nav="light" className="py-[clamp(72px,9vw,116px)] text-[#111735]">
         <div className="rail-inner mx-auto max-w-[1400px]">

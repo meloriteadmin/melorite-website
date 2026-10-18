@@ -7,22 +7,26 @@ import { Reveal } from "@/components/animation/Reveal";
 export function FinalCTA({ title = "See it for yourself.", text, href = site.demoHref, label = "Book a demo" }: { title?: string; text?: string; href?: string; label?: string }) {
   const pathname = usePathname();
   const palettes: Record<string, string> = {
-    "/": "linear-gradient(120deg,#303b77,#8076b8 60%,#c88882)",
-    "/products": "linear-gradient(120deg,#4f365b,#a46d83 60%,#cf9a79)",
-    "/platform": "linear-gradient(120deg,#173d53,#397e99 60%,#89b6b6)",
-    "/custom-solutions": "linear-gradient(120deg,#513827,#a56944 60%,#d2a66f)",
-    "/company": "linear-gradient(120deg,#303e35,#6f896c 60%,#aab58b)",
-    "/products/crm": "linear-gradient(120deg,#633b38,#b2685a 60%,#d8a38c)",
-    "/products/real-estate": "linear-gradient(120deg,#314e46,#659387 60%,#a6c5ae)",
-    "/products/clinic": "linear-gradient(120deg,#1c4757,#4b91a4 60%,#a3c4c4)",
-    "/products/agency": "linear-gradient(120deg,#523d6f,#9373a6 60%,#cba0b8)",
-    "/products/commerce": "linear-gradient(120deg,#67422a,#b78247 60%,#d4b877)",
-    "/products/ai-calling": "linear-gradient(120deg,#293a70,#627cb6 60%,#b09ac4)",
+    "/resources": "linear-gradient(120deg,#6982cd,#a58ac8 60%,#d99c9d)",
+    "/resources/blog": "linear-gradient(120deg,#da8957,#cd888b 60%,#a38ec3)",
+    "/resources/guides": "linear-gradient(120deg,#658bd1,#a890d3 60%,#dba6ba)",
+    "/resources/case-studies": "linear-gradient(120deg,#81aa72,#8db39b 60%,#739fba)",
+    "/": "linear-gradient(120deg,#6676c4,#a18dd0 60%,#e1a099)",
+    "/products": "linear-gradient(120deg,#8568ae,#cb86a4 60%,#edb18a)",
+    "/platform": "linear-gradient(120deg,#4d92aa,#80b5c5 60%,#89b6b6)",
+    "/custom-solutions": "linear-gradient(120deg,#c08052,#e4a06a 60%,#f0c48e)",
+    "/company": "linear-gradient(120deg,#72956e,#9fbb89 60%,#aab58b)",
+    "/products/crm": "linear-gradient(120deg,#b77273,#d89488 60%,#d8a38c)",
+    "/products/real-estate": "linear-gradient(120deg,#639e8d,#93bfac 60%,#a6c5ae)",
+    "/products/clinic": "linear-gradient(120deg,#508fa7,#7eb9c4 60%,#a3c4c4)",
+    "/products/agency": "linear-gradient(120deg,#8e75bc,#ba95cd 60%,#cba0b8)",
+    "/products/commerce": "linear-gradient(120deg,#bd8752,#dcaf70 60%,#d4b877)",
+    "/products/ai-calling": "linear-gradient(120deg,#667dc2,#94a6d9 60%,#b09ac4)",
   };
   return (
     <section data-nav="light" className="px-3 py-[clamp(40px,5vw,80px)] sm:px-5">
       <div className="mx-auto max-w-[1304px] rounded-[30px] border border-[#e4e3df] bg-white/70 p-1.5">
-        <Reveal style={{ "--cta-page-background": `var(--story-noise), ${palettes[pathname] ?? palettes["/"]}` } as React.CSSProperties} className="cta-matte cta-page-tone relative overflow-hidden rounded-[24px] px-6 pb-[clamp(48px,5vw,72px)] pt-[clamp(48px,5vw,72px)] text-center text-white">
+        <Reveal style={{ "--cta-page-background": `var(--story-noise), ${palettes[pathname] ?? (pathname.startsWith("/resources") ? palettes["/resources"] : palettes["/"])}` } as React.CSSProperties} className="cta-matte cta-page-tone relative overflow-hidden rounded-[24px] px-6 pb-[clamp(48px,5vw,72px)] pt-[clamp(48px,5vw,72px)] text-center text-white">
           <svg aria-hidden viewBox="0 0 1300 420" preserveAspectRatio="xMidYMax slice" className="pointer-events-none absolute inset-0 size-full">
             <g fill="#fff">
               <polygon points="150,420 330,170 510,420" opacity=".07" />

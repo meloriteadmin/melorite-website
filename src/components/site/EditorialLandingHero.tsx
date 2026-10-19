@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "motion/react";
+import * as motion from "motion/react-m";
 import { Play } from "lucide-react";
 import { site } from "@/data/site";
 import { EASE } from "@/lib/utils";

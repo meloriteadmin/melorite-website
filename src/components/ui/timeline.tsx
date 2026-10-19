@@ -42,7 +42,7 @@ export default function Timeline({ eyebrow = "The journey", title = "From first 
 
   if (!items.length) return null;
   return (
-    <section data-nav="light" aria-labelledby="timeline-heading" className={`lines-bg relative border-y border-[#111735]/8 py-[clamp(64px,8vw,120px)] text-[#111735] ${className}`}>
+    <section data-nav="light" data-reference="14" aria-labelledby="timeline-heading" className={`reference-timeline lines-bg relative border-y border-[#111735]/8 py-[clamp(64px,8vw,120px)] text-[#111735] ${className}`}>
       <div className="rail-inner grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
         <header className="lg:sticky lg:top-28 lg:self-start">
           <p className="eyebrow-pill">{eyebrow}</p>

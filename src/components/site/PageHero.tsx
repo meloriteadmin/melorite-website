@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
+import * as motion from "motion/react-m";
 import { ArrowRight } from "lucide-react";
 import { site } from "@/data/site";
 import { EASE } from "@/lib/utils";

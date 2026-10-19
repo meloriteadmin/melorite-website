@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as motion from "motion/react-m";
 
 /** Thick glossy ribbon in brand indigo, drawn as layered strokes for a 3D tube feel. */
 function Ribbon({ d, w, delay = 0 }: { d: string; w: number; delay?: number }) {

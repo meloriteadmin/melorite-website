@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "analyze": "node scripts/performance-report.mjs",
     "test": "node --test scripts/seo.test.mjs"
   },
   "dependencies": {

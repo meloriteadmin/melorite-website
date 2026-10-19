@@ -1,5 +1,7 @@
 "use client";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+
+import * as motion from "motion/react-m";
+import { AnimatePresence, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";

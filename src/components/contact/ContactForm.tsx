@@ -3,15 +3,33 @@
 import { trackEvent } from "@/lib/analytics";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, type Resolver } from "react-hook-form";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
-import { enquirySchema, type EnquiryInput } from "@/lib/enquiry-schema";
+import type { EnquiryInput } from "@/lib/enquiry-schema";
 import { enquiryTypes, productInterests } from "@/data/products";
 
 type Status = { state: "idle" } | { state: "success"; reference: string } | { state: "error"; message: string };
 
 const input = "w-full rounded-lg border border-black/12 bg-white px-3 py-2 shadow-[inset_0_1px_2px_rgba(17,23,53,.05)] backdrop-blur text-[14px] outline-none transition-colors placeholder:text-black/35 focus:border-[#5f63f2] focus:ring-[3px] focus:ring-[#5f63f2]/15 aria-[invalid=true]:border-red-500";
+
+let validation: Promise<Resolver<EnquiryInput>> | undefined;
+function loadValidation() {
+  return validation ??= Promise.all([
+    import("@hookform/resolvers/zod"),
+    import("@/lib/enquiry-schema"),
+  ]).then(([{ zodResolver }, { enquirySchema }]) => zodResolver(enquirySchema)).catch((error) => {
+    validation = undefined;
+    throw error;
+  });
+}
+
+const validate: Resolver<EnquiryInput> = async (...args) => {
+  try {
+    return await (await loadValidation())(...args);
+  } catch {
+    return { values: {}, errors: { root: { type: "validate", message: "Please check your connection and try again. The form could not finish loading." } } };
+  }
+};
 
 function Field({ id, label, optional, error, className, children }: { id: string; label: string; optional?: boolean; error?: string; className?: string; children: React.ReactNode }) {
   return (
@@ -32,7 +50,7 @@ function ParamsSync({ onParams }: { onParams: (p: URLSearchParams) => void }) {
 export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const { register, handleSubmit, reset, setValue, formState: { errors, isSubmitting } } = useForm<EnquiryInput>({
-    resolver: zodResolver(enquirySchema),
+    resolver: validate,
     mode: "onTouched",
     defaultValues: { fullName: "", workEmail: "", phone: "", companyName: "", businessType: "", teamSize: "", products: [], enquiryType: defaultType, preferredDate: "", preferredTime: "", message: "", consent: undefined as unknown as true, website: "", startedAt: 0 },
   });
@@ -80,7 +98,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate aria-busy={isSubmitting} className="contact-form glass relative rounded-[16px] p-5 sm:p-6">
+    <form onSubmit={handleSubmit(onSubmit, onInvalid)} onFocusCapture={() => { void loadValidation().catch(() => {}); }} noValidate aria-busy={isSubmitting} className="contact-form glass relative rounded-[16px] p-5 sm:p-6">
       <h2 className="text-[24px] font-normal tracking-[-.03em]">{defaultType === "demo" ? "Let’s find your fit." : "How can we help?"}</h2>
       <p className="mt-2 text-[14px] leading-relaxed text-black/50">A few details, and we’ll take it from there.</p>
       <div className="mt-5 grid gap-4">
@@ -102,7 +120,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
         {errors.consent && <p id="consent-error" role="alert" className="mt-1.5 flex items-center gap-1.5 text-[13px] text-red-600"><AlertCircle className="size-3.5" aria-hidden />{errors.consent.message}</p>}
       </div>
 
-      {status.state === "error" && <div role="alert" className="mt-6 flex items-start gap-3 rounded-[4px] bg-red-50 p-4 text-[14px] text-red-700 ring-1 ring-red-200"><AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />{status.message}</div>}
+      {(status.state === "error" || errors.root?.message) && <div role="alert" className="mt-6 flex items-start gap-3 rounded-[4px] bg-red-50 p-4 text-[14px] text-red-700 ring-1 ring-red-200"><AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />{status.state === "error" ? status.message : errors.root?.message}</div>}
 
       <div className="mt-5 flex flex-col-reverse items-start gap-4 border-t border-black/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-[12.5px] text-black/45">We’ll only use your details to respond to this enquiry.</p>

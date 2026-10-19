@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata("/", "Business Management Softwar
 
 export default function HomePage() {
   return (
-    <PageTransition>
+    <div data-original-design><PageTransition>
       <Hero />
       <PlatformOverview />
       <IndustryGallery />
@@ -27,6 +27,6 @@ export default function HomePage() {
       <ExploreCards />
       <GettingStarted />
       <FinalCTA title="See Melorite in action." text="Book a demo and see how the right Melorite product can work around your business." />
-    </PageTransition>
+    </PageTransition></div>
   );
 }

@@ -1,8 +1,10 @@
 "use client";
 
+import * as motion from "motion/react-m";
+
 import Link from "next/link";
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
+import { AnimatePresence, useMotionValue, useSpring, useTransform, type MotionValue } from "motion/react";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as motion from "motion/react-m";
 import { BarChart3, Blocks, Check, GitBranch, LockKeyhole, Plug, UsersRound, type LucideIcon } from "lucide-react";
 import { ScaleBox } from "@/components/product/Scenes";
 

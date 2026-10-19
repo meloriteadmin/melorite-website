@@ -1,3 +1,4 @@
+import { ManagedPanel } from "@/components/reference-style/ManagedPanel";
 import { CapabilityRail } from "@/components/site/CapabilityRail";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
 import { pageMetadata } from "@/lib/seo";
@@ -45,7 +46,7 @@ const capabilities = [
 
 export default function CustomSolutionsPage() {
   return (
-    <PageTransition><Breadcrumbs items={[{ name: "Custom Solutions" }]} />
+    <div data-custom-solution-design><PageTransition><Breadcrumbs items={[{ name: "Custom Solutions" }]} />
       <InnerHero label="Custom Business Software Development" title="Software built around exactly how you work." body="Extend a Melorite product or build an internal system around your workflow, users and decisions. Agree the scope before development begins." primary={{ label: "Discuss your project", href: "/contact?enquiry=custom&product=custom-solution" }} secondary={{ label: "See how it works", href: "#how-it-works" }} mesh="calling"><div className="mx-auto max-w-[1080px]"><WorkflowGraph /></div></InnerHero>
 
       <section data-nav="light" className="py-[clamp(72px,9vw,120px)] text-[#111735]">
@@ -78,6 +79,7 @@ export default function CustomSolutionsPage() {
         </div>
       </section>
 
+      <ManagedPanel />
       <div id="how-it-works" className="scroll-mt-16">
         <Timeline
           eyebrow="How it works"
@@ -125,6 +127,6 @@ export default function CustomSolutionsPage() {
 
       <CapabilityRail />
       <FinalCTA href="/contact?enquiry=custom&product=custom-solution" label="Discuss your project" title="Discuss your project." text="Share what’s slowing you down. We’ll help identify whether a product extension or a complete custom application is the better fit." />
-    </PageTransition>
+    </PageTransition></div>
   );
 }

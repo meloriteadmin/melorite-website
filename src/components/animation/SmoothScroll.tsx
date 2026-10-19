@@ -3,7 +3,9 @@
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import type Lenis from "lenis";
-import { MotionConfig, MotionGlobalConfig } from "motion/react";
+import { LazyMotion, MotionConfig, MotionGlobalConfig } from "motion/react";
+
+const loadMotionFeatures = () => import("./motion-features").then((module) => module.default);
 
 declare global {
   interface Window {
@@ -16,11 +18,7 @@ declare global {
 const QA = typeof window !== "undefined" && process.env.NODE_ENV !== "production" && /[?&]qa\b/.test(window.location.search);
 if (QA) MotionGlobalConfig.skipAnimations = true;
 
-/**
- * Global motion provider. Lenis gives eased, momentum-style page scrolling; it is
- * disabled for reduced-motion users and in `?qa` mode. Dropdowns and the mobile
- * drawer opt out with `data-lenis-prevent` so they keep native scrolling.
- */
+/** Share motion preferences and load animation features after hydration. */
 export function Providers({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const prevPath = useRef(pathname);
@@ -30,15 +28,21 @@ export function Providers({ children }: { children: React.ReactNode }) {
     if (prevPath.current === pathname) return;
     prevPath.current = pathname;
     const hash = window.location.hash;
-    requestAnimationFrame(() => {
-      const el = hash ? document.querySelector(hash) : null;
+    const frame = requestAnimationFrame(() => {
+      let el: HTMLElement | null = null;
+      try {
+        el = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+      } catch {
+        // A malformed URL fragment should not interrupt navigation.
+      }
       const lenis = window.__lenis;
       if (el && lenis) lenis.scrollTo(el as HTMLElement, { immediate: true, offset: -64 });
       else if (el) el.scrollIntoView({ block: "start" });
       else if (lenis) lenis.scrollTo(0, { immediate: true });
       else window.scrollTo({ top: 0, behavior: "auto" });
     });
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
-  return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
+  return <LazyMotion features={loadMotionFeatures} strict><MotionConfig reducedMotion="user">{children}</MotionConfig></LazyMotion>;
 }

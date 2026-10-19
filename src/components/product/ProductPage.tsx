@@ -2,7 +2,7 @@ import { WorkingDetails } from "./WorkingDetails";
 import { resources, resourceHref } from "@/data/resources";
 import { AgentIntro } from "@/components/site/AgentIntro";
 import { VoiceDemo } from "@/components/site/VoiceDemo";
-import { CapabilityRail } from "@/components/site/CapabilityRail";
+import { LegacyCapabilityRail as CapabilityRail } from "@/components/site/LegacyCapabilityRail";
 import { WorkflowShowcase } from "@/components/site/WorkflowShowcase";
 import { workflowCopy } from "@/data/workflows";
 import { productSeo } from "@/data/seo";

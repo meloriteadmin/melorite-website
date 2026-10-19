@@ -141,3 +141,16 @@ test('all six product pages replace audience and related-product promotions with
     assert.ok(!html.includes('Let AI Calling answer, qualify and update the CRM.'), path);
   }
 });
+
+test('requested routes retain their original design and navigation has no Contact Us CTA', () => {
+  for (const [path, html] of pages) {
+    if (path === '/' || path === '/contact' || path === '/book-demo' || path === '/products' || path.startsWith('/products/') || path === '/resources' || path.startsWith('/resources/')) {
+      assert.ok(html.includes('data-original-design'), path);
+      assert.ok(!html.includes('brand-product-hero'), path);
+      assert.ok(!html.includes('brand-brief-stage'), path);
+    }
+    const header = html.match(/<header\b[\s\S]*?<\/header>/)?.[0] || '';
+    assert.ok(!header.includes('Contact Us'), path);
+  }
+  assert.ok(pages.get('/custom-solutions').includes('data-custom-solution-design'));
+});

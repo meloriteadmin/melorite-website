@@ -1,0 +1,48 @@
+/* Melorite refinements. Homepage and Book a Demo keep their restored presentation. */
+@scope (:root:not(:has([data-original-design]))) {
+  .brand-product-hero { padding:65px 0 85px;background:#fdfdff; }
+  .brand-product-layout { display:grid;grid-template-columns:1.03fr 1fr;gap:75px;align-items:center; }
+  .brand-product-hero .reference-product-intro { text-align:left; }
+  .brand-product-label { display:flex;align-items:center;gap:12px;font-family:Arial,'Helvetica Neue',sans-serif;font-size:12px;letter-spacing:.035em;color:#676582; }
+  .brand-product-label>svg { width:30px;height:30px;padding:6px;border:1px solid #e1dff5;background:#f2f1fc;border-radius:9px;color:#6662c7; }
+  #main .brand-product-hero h1 { font-family:Arial,'Helvetica Neue',sans-serif;font-size:clamp(44px,4.1vw,66px);font-weight:400;line-height:1.06;letter-spacing:-.055em;color:#111735;margin:28px 0 24px;max-width:11ch; }
+  #main .brand-product-hero h1>span { color:#6862d6; }
+  .brand-product-hero .reference-product-intro>p:not(.brand-product-label) { margin:0;font-size:17px;line-height:1.75;max-width:440px;color:#7b7c8c; }
+  .brand-product-hero .reference-centre { justify-content:flex-start;margin-top:30px;gap:10px; }
+  .brand-product-hero .pill-dark { background:#111735;border-color:#111735; }
+  .brand-product-hero .pill-glass { border-color:#e5e3ee;background:#f6f5fb;color:#55536d; }
+  .brand-brief-stage { position:relative;isolation:isolate;overflow:hidden;border:1px solid #d7d5f3;border-radius:24px;padding:30px;background:var(--story-noise),radial-gradient(ellipse at 100% 0%,#91ccef,transparent 65%),radial-gradient(ellipse at 0% 100%,#d3a9ea,transparent 60%),linear-gradient(135deg,#bab7f5,#e4ddfa);background-blend-mode:soft-light,normal,normal,normal; }
+  .brand-brief-stage:before { content:'';position:absolute;z-index:-1;right:-50%;top:10%;width:110%;aspect-ratio:1;border:1px solid #ffffff6b;border-radius:30%;transform:rotate(30deg); }
+  .brand-brief-stage:after { content:'';position:absolute;z-index:-1;right:-40%;top:20%;width:95%;aspect-ratio:1;border:1px solid #ffffff6b;border-radius:30%;transform:rotate(30deg); }
+  .brand-brief-heading { position:relative; }
+  .brand-brief-heading>span:first-child { font-size:9px;letter-spacing:.13em;color:#4c4c76; }
+  #main .brand-brief-heading h2 { font-family:Arial,'Helvetica Neue',sans-serif;font-size:35px;letter-spacing:-.05em;color:#222647;font-weight:400;line-height:1.1;margin-top:30px; }
+  .brand-brief-heading>p { font-size:13px;color:#686782;margin-top:15px;max-width:230px;line-height:1.7; }
+  .brand-brief-mark { position:absolute;right:0;top:25px;font-size:100px;line-height:.9;color:#ffffff5e;letter-spacing:-.12em;font-weight:700;font-family:Arial,sans-serif; }
+  .brand-brief-stage .reference-brief { position:relative;background:#fffffff2;border:1px solid #e2e0ef;box-shadow:none;padding:18px;margin:28px 0 0;border-radius:15px; }
+  .brand-brief-stage textarea { font-size:14px;min-height:82px;line-height:1.7; }
+  .brand-brief-stage textarea::placeholder { color:#a19db2; }
+  .brand-brief-stage .reference-brief>div { margin-top:8px; }
+  .brand-brief-stage .reference-brief>div>span { font-size:10px;background:#f2f1f9;color:#7f7896;padding:8px 11px; }
+  .brand-brief-stage .reference-brief button { width:31px;height:31px;background:#111735;color:#fff;font-size:17px; }
+  .brand-brief-foot { display:flex;justify-content:space-between;gap:12px;font-size:9px;color:#686483;letter-spacing:.015em;margin-top:22px; }
+  /* Each route supplies its own bright gradient. Grain provides the matte finish. */
+  #main .brand-cta { color:#111735;background-image:var(--cta-page-background)!important;background-blend-mode:soft-light,normal; }
+  #main .brand-cta h2 { font-family:Arial,'Helvetica Neue',sans-serif;color:#17203d;font-weight:400;letter-spacing:-.045em;line-height:1.15; }
+  #main .brand-cta>p { color:#34394dc9; }
+  #main .brand-cta>.pill { background:#111735;color:#fff;border:1px solid #111735; }
+  #main .brand-cta>.pill:hover { background:#292e54; }
+  #main .brand-cta>svg { opacity:.55; }
+  @media(max-width:1100px){.brand-product-layout{gap:40px}.brand-brief-stage{padding:25px}#main .brand-product-hero h1{font-size:50px}.brand-brief-mark{font-size:82px}.brand-brief-heading>p{max-width:220px}}
+  @media(max-width:767px){.brand-product-hero{padding:40px 0 60px}.brand-product-layout{grid-template-columns:1fr;gap:40px}#main .brand-product-hero h1{font-size:48px;max-width:12ch;margin-top:24px}.brand-product-label{font-size:11px}.brand-product-hero .reference-product-intro>p:not(.brand-product-label){font-size:16px;max-width:500px}.brand-product-hero .reference-centre{margin-top:25px}.brand-brief-stage{padding:26px;border-radius:20px}#main .brand-brief-heading h2{font-size:33px}.brand-brief-mark{font-size:95px;right:6px}.brand-brief-heading>p{font-size:13px;max-width:220px}.brand-brief-stage textarea{font-size:14px;min-height:85px}.brand-brief-foot{font-size:9px}#main .brand-cta h2{font-size:35px}#main .brand-cta>p{font-size:15px}}
+}
+/* Restore the original page-frame rules only on Custom Solutions. */
+body:has([data-custom-solution-design]) .frame::before,
+body:has([data-custom-solution-design]) .frame::after { display:block;background:#e4e3df; }
+body:has([data-custom-solution-design]) #main section[data-nav] { border-top:1px solid #e4e3df; }
+body:has([data-custom-solution-design]) #main section[data-nav]::after { display:block; }
+@media(max-width:1100px){
+ body:has([data-custom-solution-design]) .frame::before,
+ body:has([data-custom-solution-design]) .frame::after,
+ body:has([data-custom-solution-design]) #main section[data-nav]::after { display:none; }
+}

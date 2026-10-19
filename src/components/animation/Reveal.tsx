@@ -1,6 +1,8 @@
 "use client";
 
-import { motion, type HTMLMotionProps } from "motion/react";
+import * as motion from "motion/react-m";
+
+import { type HTMLMotionProps } from "motion/react";
 import { useEffect, useRef, useState, type CSSProperties, type HTMLAttributes } from "react";
 import { EASE, DURATION } from "@/lib/utils";
 

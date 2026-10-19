@@ -1,8 +1,10 @@
 "use client";
 
+import * as motion from "motion/react-m";
+
 import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import { ArrowRight, Check } from "lucide-react";
 import { products } from "@/data/products";
 import { SceneStage } from "@/components/product/Scenes";

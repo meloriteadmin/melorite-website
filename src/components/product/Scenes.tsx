@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { animate, AnimatePresence, motion, useInView, useMotionValue, useTransform } from "motion/react";
+import * as motion from "motion/react-m";
+
+import { createContext, useContext, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
+import { animate, AnimatePresence, useInView, useMotionValue, useReducedMotion, useTransform } from "motion/react";
 import { Bell, Check, CalendarCheck, CreditCard, Heart, MessageCircle, Package, Phone, Sparkles, TrendingUp, Truck, UserRound } from "lucide-react";
 
 /* ------------------------------------------------------------------
@@ -11,9 +13,20 @@ import { Bell, Check, CalendarCheck, CreditCard, Heart, MessageCircle, Package, 
 export const SCENE_W = 520;
 export const SCENE_H = 380;
 
+const SceneActive = createContext(false);
+const subscribeVisibility = (notify: () => void) => {
+  document.addEventListener("visibilitychange", notify);
+  return () => document.removeEventListener("visibilitychange", notify);
+};
+const getVisibility = () => !document.hidden;
+const getServerVisibility = () => false;
+
 export function ScaleBox({ children, className = "", w = SCENE_W, h = SCENE_H }: { children: ReactNode; className?: string; w?: number; h?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [s, setS] = useState(0);
+  const inView = useInView(ref);
+  const visible = useSyncExternalStore(subscribeVisibility, getVisibility, getServerVisibility);
+  const reducedMotion = useReducedMotion();
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -24,8 +37,10 @@ export function ScaleBox({ children, className = "", w = SCENE_W, h = SCENE_H }:
     return () => ro.disconnect();
   }, [w]);
   return (
-    <div ref={ref} className={`relative w-full ${className}`} style={{ height: h * s, opacity: s ? 1 : 0 }}>
-      <div className="absolute left-0 top-0 origin-top-left" style={{ width: w, height: h, transform: `scale(${s})` }}>{children}</div>
+    <div ref={ref} className={`relative w-full ${className}`} style={{ aspectRatio: `${w} / ${h}`, opacity: s ? 1 : 0 }}>
+      <SceneActive.Provider value={inView && visible && !reducedMotion}>
+        <div className="absolute left-0 top-0 origin-top-left" style={{ width: w, height: h, transform: `scale(${s})` }}>{children}</div>
+      </SceneActive.Provider>
     </div>
   );
 }
@@ -51,10 +66,15 @@ function Avatar({ name, tone = "#5f63f2" }: { name: string; tone?: string }) {
   return <span className="grid size-6 shrink-0 place-items-center rounded-full text-[9px] font-bold text-white" style={{ background: tone }}>{name.split(" ").map((n) => n[0]).join("")}</span>;
 }
 
-/** Cycles through `n` states forever, for lightweight looping demos. */
+/** Keep looping previews idle when offscreen, hidden, or motion is reduced. */
 function useCycle(n: number, ms: number) {
   const [i, setI] = useState(0);
-  useEffect(() => { const t = setInterval(() => setI((x) => (x + 1) % n), ms); return () => clearInterval(t); }, [n, ms]);
+  const active = useContext(SceneActive);
+  useEffect(() => {
+    if (!active || n < 2) return;
+    const t = setInterval(() => setI((x) => (x + 1) % n), ms);
+    return () => clearInterval(t);
+  }, [active, n, ms]);
   return i;
 }
 

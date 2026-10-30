@@ -27,14 +27,14 @@ const feature = (title: string, source: string, body: string, color: Feature["co
 export const productPages: Record<string, ProductPageContent> = {
   crm: {
     slug: "crm",
-    eyebrow: "Melorite CRM & Growth",
+    eyebrow: "Melorite CRM",
     headline: ["Never lose", "a lead again."],
     subhead: "Bring leads, campaigns, customer history and your sales pipeline into one working view.",
     problemThing: "pipeline",
     problemTitle: "Your pipeline shouldn’t depend on memory.",
     problemCopy: [
       "A lead arrives on WhatsApp. A quote lives in someone’s inbox. The next call is written in a notebook.",
-      "By the time your team pieces it together, the customer has moved on. That’s why we built Melorite CRM & Growth.",
+      "By the time your team pieces it together, the customer has moved on. That’s why we built Melorite CRM.",
     ],
     staleWarning: "6 of 8 fields are missing or outdated",
     workspace: "sales workspace",

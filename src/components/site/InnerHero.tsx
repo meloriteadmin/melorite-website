@@ -11,7 +11,7 @@ export function InnerHero({ label, title, body, primary, secondary, mesh = "crm"
       <div className="relative mx-auto flex max-w-[980px] flex-col items-center px-5 pt-[clamp(48px,7vw,96px)] text-center md:px-8">
         <Reveal><p className="eyebrow-pill">{label}</p></Reveal>
         <Reveal delay={.06}><h1 className="h-hero mt-6 max-w-[15ch] !text-[clamp(2.7rem,1.5rem+4.4vw,5.2rem)] mx-auto">{title}</h1></Reveal>
-        <Reveal delay={.12}><p className="mx-auto mt-6 max-w-[56ch] text-[clamp(1.05rem,.95rem+.4vw,1.25rem)] leading-snug text-[#111735]/62">{body}</p></Reveal>
+        <Reveal delay={.12}><p className="mx-auto mt-6 max-w-[56ch] text-[clamp(1.05rem,.95rem+.4vw,1.25rem)] leading-snug text-[#111735]/70">{body}</p></Reveal>
         {(primary || secondary) && (
           <Reveal delay={.18} className="mt-8 flex flex-wrap justify-center gap-3">
             {primary && <Link href={primary.href} className="pill pill-dark h-12 px-7">{primary.label}<ArrowRight className="size-4" /></Link>}

@@ -41,7 +41,7 @@ export const resources: Resource[] = [
         "title": "Evaluate fit with a real example",
         "paragraphs": [
           "Bring one recent enquiry to a CRM demo and follow it through assignment, calls, quotation and reporting. Ask which fields and workflows are included, what must be configured and how existing data will be prepared.",
-          "Melorite CRM & Growth brings these conversations into a focused sales workspace. Use the demo to confirm campaign tracking, sales orders and automation against your actual process."
+          "Melorite CRM brings these conversations into a focused sales workspace. Use the demo to confirm campaign tracking, sales orders and automation against your actual process."
         ],
         "steps": []
       }

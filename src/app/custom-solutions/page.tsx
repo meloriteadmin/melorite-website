@@ -92,7 +92,7 @@ export default function CustomSolutionsPage() {
       <section data-nav="light" className={styles.capabilities}>
         <div className="rail-inner"><div className={styles.heading}><p>Built around your business</p><h2>Connect what you have.<br/>Build what you need.</h2></div>
           <div className={styles.rows}>{capabilities.map(({Icon,label,title,body},i)=><Reveal key={label} className={styles.row}><span className={styles.number}>0{i+1}</span><span className={styles.icon}><Icon size={25} strokeWidth={1.4}/></span><div><p>{label}</p><h3>{title}</h3></div><p className={styles.body}>{body}</p></Reveal>)}</div>
-          <div className={styles.fit}><span>Made for your next step</span><h2>When your business<br/>needs its own way forward.</h2><div><p>A process of your own. A team that has outgrown spreadsheets. A product that needs to do a little more.</p><a href="/contact?enquiry=custom&product=custom-solution" className="pill pill-dark">Let’s explore the possibilities ↗</a></div></div>
+          <div className={styles.fit}><span>Made for your next step</span><h2>When your business<br/>needs its own way forward.</h2><div><p>A process of your own. A team that has outgrown spreadsheets. A product that needs to do a little more. Custom work can also build on the shared records, permissions and workflows of the Melorite platform.</p><div className="flex flex-wrap gap-3"><a href="/contact?enquiry=custom&product=custom-solution" className="pill pill-dark">Let’s explore the possibilities ↗</a><a href="/platform" className="pill pill-glass">Explore the Melorite platform</a></div></div></div>
         </div>
       </section>
 

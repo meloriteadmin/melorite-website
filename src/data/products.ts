@@ -19,7 +19,7 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    id: "crm", slug: "crm", name: "Melorite CRM & Growth", short: "CRM & Growth", icon: "Users",
+    id: "crm", slug: "crm", name: "Melorite CRM", short: "CRM", icon: "Users",
     summary: "Connect leads, campaigns, customers and sales follow-ups in one focused workspace.",
     headline: ["Never lose", "a lead again."],
     lead: "Every enquiry, call and follow-up, all in one place.",
@@ -113,4 +113,4 @@ export const enquiryTypes = [
 export const preferredTimes = ["morning", "afternoon", "evening", "flexible"] as const;
 export const businessTypes = ["sales", "real-estate", "clinic", "agency", "commerce", "other"] as const;
 export const teamSizes = ["1-5", "6-20", "21-50", "51-200", "200+"] as const;
-export const productInterests = [...products.map(({ id, name }) => ({ id, name })), { id: "custom-solution", name: "Custom Solution" }] as const;
+export const productInterests = [...products.map(({ id, name }) => ({ id, name })), { id: "custom-solution", name: "Custom Solutions" }] as const;

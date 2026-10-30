@@ -1,6 +1,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn } from 'node:child_process';
+import { request } from 'node:http';
 import { setTimeout } from 'node:timers/promises';
 const base = process.env.SEO_TEST_URL || 'http://127.0.0.1:3187';
 let server;
@@ -8,9 +9,19 @@ const pages = new Map();
 const resourceData = await import('node:fs/promises').then(fs => fs.readFile(new URL('../src/data/resources.ts', import.meta.url), 'utf8'));
 const resourceItems = JSON.parse(resourceData.split('export const resources: Resource[] = ')[1].split(';\nexport const resourceHref')[0]);
 const resourcePaths = ['/resources', '/resources/blog', '/resources/guides', '/resources/case-studies', ...resourceItems.map(item => `/resources/${item.kind}/${item.slug}`)];
-const paths = ['/', '/products', ...['crm','real-estate','clinic','agency','commerce','ai-calling'].map(s => `/products/${s}`), '/platform', '/custom-solutions', '/company', '/contact', '/book-demo', ...resourcePaths];
+const canonicalOrigin = 'https://www.melorite.com';
+const paths = ['/', '/products', ...['crm','real-estate','clinic','agency','commerce','ai-calling'].map(s => `/products/${s}`), '/platform', '/custom-solutions', '/company', '/contact', '/book-demo', ...resourcePaths, '/privacy', '/terms', '/security'];
 const decode = value => value?.replaceAll('&amp;', '&').replaceAll('&#x27;', "'").replaceAll('&quot;', '"');
 const attr = (html, attribute, value, target = 'content') => decode(html.match(new RegExp(`<[^>]*${attribute}="${value}"[^>]*${target}="([^"]+)"`))?.[1]);
+const localRequest = (path, headers) => new Promise((resolve, reject) => {
+  const target = new URL(base);
+  const req = request({ hostname: target.hostname, port: target.port, path, method: 'GET', headers }, response => {
+    response.resume();
+    response.on('end', () => resolve(response));
+  });
+  req.on('error', reject);
+  req.end();
+});
 before(async () => {
   if (!process.env.SEO_TEST_URL) {
     server = spawn(process.execPath, ['node_modules/next/dist/bin/next', 'start', '-p', '3187'], { stdio: 'ignore' });
@@ -35,12 +46,12 @@ test('all public pages have unique metadata, clean canonicals, one H1 and matchi
     assert.ok(title && description, path);
     assert.ok(!titles.has(title), `duplicate title: ${path}`); titles.add(title);
     assert.ok(!descriptions.has(description), `duplicate description: ${path}`); descriptions.add(description);
-    assert.equal(attr(html, 'rel', 'canonical', 'href'), `https://melorite.com${path === '/' ? '' : path}`, path);
+    assert.equal(attr(html, 'rel', 'canonical', 'href'), `${canonicalOrigin}${path === '/' ? '' : path}`, path);
     assert.equal(attr(html, 'property', 'og:title'), title, path);
     assert.equal(attr(html, 'property', 'og:description'), description, path);
     assert.equal(attr(html, 'name', 'twitter:title'), title, path);
     assert.equal(attr(html, 'name', 'twitter:description'), description, path);
-    assert.equal(attr(html, 'property', 'og:url'), `https://melorite.com${path === '/' ? '' : path}`, path);
+    assert.equal(attr(html, 'property', 'og:url'), `${canonicalOrigin}${path === '/' ? '' : path}`, path);
     assert.equal((html.match(/<h1(?:\s|>)/g) || []).length, 1, path);
     assert.ok(!/name="robots" content="[^"]*noindex/.test(html), path);
   }
@@ -79,16 +90,16 @@ test('all rendered local links, fragment targets and image assets resolve', asyn
 test('robots allows rendering assets and sitemap contains all clean public URLs without invented dates', async () => {
   const robots = await (await fetch(base + '/robots.txt')).text();
   assert.ok(!robots.includes('Disallow: /_next/'));
-  assert.ok(robots.includes('Sitemap: https://melorite.com/sitemap.xml'));
+  assert.ok(robots.includes(`Sitemap: ${canonicalOrigin}/sitemap.xml`));
   const xml = await (await fetch(base + '/sitemap.xml')).text();
   assert.equal((xml.match(/<loc>/g) || []).length, paths.length);
   assert.ok(!xml.includes('<lastmod>'));
-  for (const path of paths) assert.ok(xml.includes(`<loc>https://melorite.com${path === '/' ? '' : path}</loc>`), path);
+  for (const path of paths) assert.ok(xml.includes(`<loc>${canonicalOrigin}${path === '/' ? '' : path}</loc>`), path);
 });
 test('demo and custom enquiry query variants retain canonical metadata', async () => {
   for (const path of ['/book-demo?product=crm','/book-demo?type=custom-solution','/contact?enquiry=custom&product=custom-solution']) {
     const html = await (await fetch(base + path)).text();
-    assert.equal(attr(html, 'rel', 'canonical', 'href'), `https://melorite.com${path.split('?')[0]}`);
+    assert.equal(attr(html, 'rel', 'canonical', 'href'), `${canonicalOrigin}${path.split('?')[0]}`);
   }
 });
 test('legacy redirects reach direct equivalents; unknown resource and product paths return real 404s', async () => {
@@ -111,15 +122,46 @@ test('invalid and automated enquiry payloads are rejected without delivery', asy
   assert.equal((await fetch(base + '/api/enquiries', { method: 'POST', headers, body: JSON.stringify(body) })).status, 400);
 });
 
-test('navigation omits the legacy platform and resource articles link to products', () => {
+test('navigation discovers the platform and resource articles link to products', () => {
+  let platformLinks = 0;
   for (const [path, html] of pages) {
-    assert.ok(!/href="\/platform(?:[?#"])/.test(html), path);
+    if (path !== '/platform' && /href="\/platform(?:[?#"])/.test(html)) platformLinks++;
     if (/^\/resources\/(blog|guides|case-studies)\/.+/.test(path)) {
       const schemas = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(m => JSON.parse(m[1]));
       assert.ok(schemas.some(s => s['@type'] === 'Article'), path);
       assert.ok(html.includes('href="/products/'), path);
     }
   }
+  assert.ok(platformLinks >= 3, 'the platform should have meaningful internal links from multiple public pages');
+});
+
+test('canonical host is consistent across metadata, structured data and generated URLs', async () => {
+  for (const [path, html] of pages) {
+    assert.ok(!html.includes('https://melorite.com'), path);
+  }
+  const robots = await (await fetch(base + '/robots.txt')).text();
+  const sitemap = await (await fetch(base + '/sitemap.xml')).text();
+  assert.ok(!robots.includes('https://melorite.com'));
+  assert.ok(!sitemap.includes('https://melorite.com'));
+});
+
+test('trust pages and privacy information are linked from conversion points', () => {
+  const home = pages.get('/');
+  assert.ok(home.includes('href="/privacy"'));
+  assert.ok(home.includes('href="/terms"'));
+  assert.ok(home.includes('href="/security"'));
+  assert.ok(pages.get('/book-demo').includes('href="/privacy"'));
+  assert.ok(pages.get('/contact').includes('href="/privacy"'));
+});
+
+test('the canonical host redirect preserves the path and query in one hop', async () => {
+  if (process.env.SEO_TEST_URL) return;
+  const apex = await localRequest('/platform?source=seo-test', { host: 'melorite.com' });
+  assert.equal(apex.statusCode, 308);
+  assert.equal(apex.headers.location, `${canonicalOrigin}/platform?source=seo-test`);
+  const httpWww = await localRequest('/products/crm?source=seo-test', { host: 'www.melorite.com', 'x-forwarded-proto': 'http' });
+  assert.equal(httpWww.statusCode, 308);
+  assert.equal(httpWww.headers.location, `${canonicalOrigin}/products/crm?source=seo-test`);
 });
 
 test('sample case studies are explicitly labelled as fictional examples', () => {

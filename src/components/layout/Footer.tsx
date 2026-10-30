@@ -10,7 +10,7 @@ const icons: Record<string, React.ReactNode> = {
 };
 
 const columns = [
-  { title: "Products", links: products.map((p) => [p.short, `/products/${p.slug}`]) },
+  { title: "Products", links: [...products.map((p) => [p.short, `/products/${p.slug}`]), ["Melorite platform", "/platform"]] },
   { title: "Resources", links: [["Blog", "/resources/blog"], ["Guides", "/resources/guides"], ["Case Studies", "/resources/case-studies"]] },
   { title: "Company", links: [["About Melorite", "/company"], ["Contact", "/contact"]] },
   { title: "Get started", links: [["Book a demo", site.demoHref], ["Contact sales", site.salesHref], ["Custom Solutions", "/custom-solutions"]] },
@@ -18,18 +18,19 @@ const columns = [
 
 export function Footer() {
   const legal = [
-    { label: "Privacy policy", href: process.env.NEXT_PUBLIC_PRIVACY_URL },
-    { label: "Terms and conditions", href: process.env.NEXT_PUBLIC_TERMS_URL },
-  ].filter((l): l is { label: string; href: string } => Boolean(l.href));
-  const cols = [...columns, ...(legal.length ? [{ title: "Legal", links: legal.map((l) => [l.label, l.href]) }] : [])];
+    { label: "Privacy policy", href: "/privacy" },
+    { label: "Terms and conditions", href: "/terms" },
+    { label: "Security", href: "/security" },
+  ];
+  const cols = [...columns, { title: "Legal", links: legal.map((l) => [l.label, l.href]) }];
 
   return (
     <footer data-nav="light" className="relative overflow-hidden border-t border-[#e4e3df] bg-[#fafaf8] text-[#111735]">
       <div className="mx-auto max-w-[1400px] px-5 pt-[clamp(48px,6vw,88px)] md:px-12">
-        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.3fr_repeat(4,1fr)]">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-[1.3fr_repeat(5,1fr)]">
           <div className="col-span-full lg:col-span-1">
             <Logo className="h-[28px]" />
-            <p className="mt-3 max-w-[28ch] text-[14px] leading-relaxed text-[#111735]/55">Software that fits your business</p>
+            <p className="mt-3 max-w-[28ch] text-[14px] leading-relaxed text-[#111735]/70">Software that fits your business</p>
             <ul className="mt-6 flex items-center gap-1 -ml-2">
               {site.social.map(({ label, href }) => (
                 <li key={label}>
@@ -42,7 +43,7 @@ export function Footer() {
           </div>
           {cols.map((c) => (
             <nav key={c.title} aria-label={c.title}>
-              <p className="text-[12px] font-medium uppercase tracking-[.08em] text-[#111735]/45">{c.title}</p>
+              <p className="text-[12px] font-medium uppercase tracking-[.08em] text-[#111735]/65">{c.title}</p>
               <ul className="mt-5 space-y-3">
                 {c.links.map(([label, href]) => (
                   <li key={label + href}>
@@ -53,7 +54,7 @@ export function Footer() {
             </nav>
           ))}
         </div>
-        <div className="mt-14 flex flex-col gap-3 border-t border-[#e4e3df] pt-6 text-[13px] text-[#111735]/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-[#e4e3df] pt-6 text-[13px] text-[#111735]/65 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Melorite. All rights reserved.</p>
           {(site.contact.email || site.contact.phone) && <p className="flex flex-wrap items-center gap-x-3 gap-y-1">{site.contact.email && <a className="hover:text-[#111735]" href={`mailto:${site.contact.email}`}>{site.contact.email}</a>}{site.contact.email && site.contact.phone && <span aria-hidden>·</span>}{site.contact.phone && <a className="hover:text-[#111735]" href={`tel:+91${site.contact.phone}`}>+91 {site.contact.phone}</a>}</p>}
         </div>

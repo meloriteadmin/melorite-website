@@ -10,7 +10,14 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     const immutable = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
+    const security = [
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "X-Frame-Options", value: "DENY" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+      { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+    ];
     return [
+      { source: "/:path*", headers: security },
       { source: "/images/:path*", headers: immutable },
       { source: "/brand/:path*", headers: immutable },
     ];
@@ -18,6 +25,21 @@ const nextConfig: NextConfig = {
   async redirects() {
     const r = (source: string, destination: string) => ({ source, destination, permanent: true });
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "melorite.com" }],
+        destination: "https://www.melorite.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [
+          { type: "host", value: "www.melorite.com" },
+          { type: "header", key: "x-forwarded-proto", value: "http" },
+        ],
+        destination: "https://www.melorite.com/:path*",
+        permanent: true,
+      },
       r("/why-melorite", "/products"),
       r("/ai", "/products/ai-calling"), r("/ai/:path*", "/products/ai-calling"),
       r("/ai-agents", "/products/ai-calling"), r("/ai-calling", "/products/ai-calling"),

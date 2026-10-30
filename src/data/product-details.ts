@@ -20,7 +20,7 @@ export const productDetails: Record<string, ProductDetail> = {
     ],
     related: { label: "Connect every call", title: "Let AI Calling answer, qualify and update the CRM.", body: "Turn phone conversations into bookings, lead updates and clear next actions for the sales team.", href: "/products/ai-calling" },
     faqs: [
-      { question: "How does CRM & Growth support a business in India?", answer: "Melorite combines CRM software for businesses with lead management, campaign tracking and sales automation. During a demo, we review your sales process, channels and setup requirements before agreeing the scope." },
+      { question: "How does Melorite CRM support a business in India?", answer: "Melorite combines CRM software for businesses with lead management, campaign tracking and sales automation. During a demo, we review your sales process, channels and setup requirements before agreeing the scope." },
       { question: "Can I import existing leads?", answer: "Yes. Existing lead and customer data can be prepared for import during setup." },
       { question: "Can multiple salespeople use it?", answer: "Yes. Leads can have clear owners so each salesperson and manager sees the work relevant to them." },
       { question: "Can leads be assigned automatically?", answer: "Assignment rules can be configured around the agreed sales workflow." },
@@ -122,7 +122,7 @@ export const productDetails: Record<string, ProductDetail> = {
       { eyebrow: "Bookings & hand-off", title: "Complete the simple task. Bring in a person when needed.", body: "Book an approved appointment or visit during the call, send a WhatsApp follow-up, or transfer the caller with the context already captured.", points: ["Calendar actions", "Warm human transfer", "CRM or workflow updates"] },
       { eyebrow: "Recordings & analytics", title: "Understand the outcome without replaying every call.", body: "Review summaries, transcripts, recordings where applicable, outcomes and next actions. Use the operational view to understand volume and where calls need human attention.", points: ["Call outcome and summary", "Transcripts and recordings", "Campaign and call analytics"] },
     ],
-    related: { label: "Keep the context", title: "Connect conversations to Melorite CRM & Growth.", body: "Give sales teams a usable customer record and next action after the call ends.", href: "/products/crm" },
+    related: { label: "Keep the context", title: "Connect conversations to Melorite CRM.", body: "Give sales teams a usable customer record and next action after the call ends.", href: "/products/crm" },
     faqs: [
       { question: "Can it answer incoming calls?", answer: "Yes. It can receive calls, understand the reason for the call and handle agreed enquiry or booking flows." },
       { question: "Can it make outbound calls?", answer: "Yes. Outbound flows can support lead follow-ups, reminders, confirmations and defined campaigns." },

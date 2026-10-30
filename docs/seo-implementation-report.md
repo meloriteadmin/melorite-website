@@ -25,7 +25,7 @@ Scope: existing Next.js 16.3.6 App Router website. The repository and pre-existi
 ### Technical SEO and metadata
 
 - Added a reusable native Next.js metadata helper with complete, unique title, description, canonical, Open Graph and Twitter fields for every public page.
-- Fixed the canonical origin to `https://melorite.com`; preview/configured hostnames cannot replace the production origin. Query parameters are excluded from canonicals.
+- Fixed the canonical origin to `https://www.melorite.com`; preview/configured hostnames cannot replace the production origin. Query parameters are excluded from canonicals.
 - Allowed framework rendering assets in robots while retaining the `/api/` exclusion.
 - Included all 17 canonical public pages in the sitemap. Removed unsupported `lastModified` dates. Resource categories share the resource registry with the navigation content.
 - Retained indexability for useful commercial pages including Demo. Unknown routes return real 404 responses with noindex.

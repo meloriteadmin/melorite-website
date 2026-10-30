@@ -3,8 +3,9 @@
 import { trackEvent } from "@/lib/analytics";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useForm, type Resolver } from "react-hook-form";
+import { useForm, useWatch, type Resolver } from "react-hook-form";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+import Link from "next/link";
 import type { EnquiryInput } from "@/lib/enquiry-schema";
 import { enquiryTypes, productInterests } from "@/data/products";
 
@@ -49,11 +50,12 @@ function ParamsSync({ onParams }: { onParams: (p: URLSearchParams) => void }) {
 
 export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) {
   const [status, setStatus] = useState<Status>({ state: "idle" });
-  const { register, handleSubmit, reset, setValue, formState: { errors, isSubmitting } } = useForm<EnquiryInput>({
+  const { register, handleSubmit, reset, setValue, control, formState: { errors, isSubmitting } } = useForm<EnquiryInput>({
     resolver: validate,
     mode: "onTouched",
     defaultValues: { fullName: "", workEmail: "", phone: "", companyName: "", businessType: "", teamSize: "", products: [], enquiryType: defaultType, preferredDate: "", preferredTime: "", message: "", consent: undefined as unknown as true, website: "", startedAt: 0 },
   });
+  const selectedProduct = useWatch({ control, name: "products" })[0] ?? "";
 
   useEffect(() => setValue("startedAt", Date.now()), [setValue]);
 
@@ -100,10 +102,11 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
   return (
     <form onSubmit={handleSubmit(onSubmit, onInvalid)} onFocusCapture={() => { void loadValidation().catch(() => {}); }} noValidate aria-busy={isSubmitting} className="contact-form glass relative rounded-[16px] p-5 sm:p-6">
       <h2 className="text-[24px] font-normal tracking-[-.03em]">{defaultType === "demo" ? "Let’s find your fit." : "How can we help?"}</h2>
-      <p className="mt-2 text-[14px] leading-relaxed text-black/50">A few details, and we’ll take it from there.</p>
+      <p className="mt-2 text-[14px] leading-relaxed text-black/65">A few details, and we’ll take it from there.</p>
       <div className="mt-5 grid gap-4">
         <Field id="fullName" label="Your name" error={errors.fullName?.message}><input id="fullName" autoComplete="name" placeholder="Alex Sharma" className={input} {...register("fullName")} {...a11y("fullName")} /></Field>
         <Field id="workEmail" label="Email address" error={errors.workEmail?.message}><input id="workEmail" type="email" inputMode="email" autoComplete="email" placeholder="you@company.com" className={input} {...register("workEmail")} {...a11y("workEmail")} /></Field>
+        <Field id="productInterest" label="Product interest" optional><select id="productInterest" value={selectedProduct} onChange={(event) => setValue("products", event.target.value ? [event.target.value] : [], { shouldValidate: true })} className={input}><option value="">Help me choose</option>{productInterests.map((product) => <option key={product.id} value={product.id}>{product.name}</option>)}</select></Field>
         <Field id="message" label="What would you like help with?" error={errors.message?.message}><textarea id="message" rows={3} className={input} placeholder="A quick line about what you need…" {...register("message")} {...a11y("message")} /></Field>
       </div>
       <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden>
@@ -113,9 +116,9 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
       <input type="hidden" {...register("startedAt", { valueAsNumber: true })} />
 
       <div className="mt-6">
-        <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-black/60">
+        <label className="flex cursor-pointer items-start gap-3 text-[14px] leading-relaxed text-black/70">
           <input type="checkbox" className="mt-1 size-4 accent-[#5f63f2]" {...register("consent")} {...a11y("consent")} />
-          I agree that Melorite may contact me about this enquiry.
+          <span>I agree that Melorite may contact me about this enquiry. Read our <Link href="/privacy" className="font-medium text-[#4145cc] underline decoration-[#4145cc]/35 underline-offset-2 hover:decoration-current">Privacy Policy</Link>.</span>
         </label>
         {errors.consent && <p id="consent-error" role="alert" className="mt-1.5 flex items-center gap-1.5 text-[13px] text-red-600"><AlertCircle className="size-3.5" aria-hidden />{errors.consent.message}</p>}
       </div>
@@ -123,7 +126,7 @@ export function ContactForm({ defaultType = "demo" }: { defaultType?: string }) 
       {(status.state === "error" || errors.root?.message) && <div role="alert" className="mt-6 flex items-start gap-3 rounded-[4px] bg-red-50 p-4 text-[14px] text-red-700 ring-1 ring-red-200"><AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden />{status.state === "error" ? status.message : errors.root?.message}</div>}
 
       <div className="mt-5 flex flex-col-reverse items-start gap-4 border-t border-black/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[12.5px] text-black/45">We’ll only use your details to respond to this enquiry.</p>
+        <p className="text-[12.5px] text-black/65">We’ll only use your details to respond to this enquiry.</p>
         <button type="submit" disabled={isSubmitting} className="pill pill-dark h-10 w-full px-7 disabled:opacity-60 sm:w-auto">
           {isSubmitting ? <><Loader2 className="size-4 animate-spin" aria-hidden />Sending…</> : "Send message"}
         </button>

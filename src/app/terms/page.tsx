@@ -1,0 +1,21 @@
+import { PolicyPage } from "@/components/company/PolicyPage";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata("/terms", "Website Terms and Conditions | Melorite", "Read the terms that apply when you browse www.melorite.com, use its content or submit an enquiry to Melorite.");
+
+export default function TermsPage() {
+  return <PolicyPage title="Terms and Conditions" intro="These terms govern use of the Melorite website. Product subscriptions, implementations and custom work are governed by the separate agreement accepted for that service." sections={[
+    { title: "Using this website", paragraphs: ["You may use this website for lawful business information and enquiry purposes. You are responsible for the accuracy of information you submit and for complying with laws that apply to your use."] },
+    { title: "Product information", paragraphs: ["Website content explains Melorite products at a general level. Features, integrations, hosting, support, implementation scope, pricing and availability may depend on the agreed product setup. A website description does not replace a written proposal or service agreement."] },
+    { title: "Accounts and service responsibilities", paragraphs: ["If a Melorite service provides user accounts, the applicable product or project agreement defines access, support and service responsibilities. Users are responsible for keeping sign-in details confidential, providing authorised and accurate data, using access only for its intended business purpose and promptly reporting suspected unauthorised use."] },
+    { title: "Acceptable use", paragraphs: ["Do not attempt to disrupt the website or a Melorite service, bypass security, access another organisation's information, submit unlawful or harmful material, impersonate another person, probe for vulnerabilities without written authorisation, or use automated means in a way that damages or unreasonably burdens the service."] },
+    { title: "Demonstrations and enquiries", paragraphs: ["Submitting a form does not create a customer relationship or guarantee a demonstration time, feature, delivery date or commercial offer. We may contact you using the details supplied to understand and respond to the request."] },
+    { title: "Intellectual property", paragraphs: ["The Melorite name, brand assets, website design, text, illustrations, software demonstrations and other original content are owned by Melorite or used with permission. You may not copy, modify, publish or commercially reuse them except as permitted by law or with written permission."] },
+    { title: "Third-party links", paragraphs: ["Links to third-party websites are provided for convenience. Melorite does not control their content, availability or privacy practices. Review the third party's own terms before relying on those services."] },
+    { title: "Availability and disclaimers", paragraphs: ["We work to keep the website accurate and available, but it may contain errors or experience interruptions. To the extent permitted by law, the website is provided without warranties that it will always be uninterrupted, complete or suitable for a specific purpose."] },
+    { title: "Liability", paragraphs: ["To the extent permitted by law, Melorite is not liable for indirect or consequential loss arising only from use of, or inability to use, this public website. Nothing in these terms excludes liability that cannot legally be excluded."] },
+    { title: "Suspension and termination", paragraphs: ["We may restrict access to this public website where reasonably needed to protect it, other users or Melorite. Suspension or termination of a paid product, implementation or custom project is governed by the applicable written agreement rather than these website terms."] },
+    { title: "Changes and governing terms", paragraphs: ["We may update these website terms from time to time. Product or project agreements take priority for the services they cover. Questions about applicable law or dispute terms for a commercial engagement should be addressed in that written agreement."] },
+    { title: "Contact", paragraphs: ["Questions about these website terms can be sent through the Melorite Contact page. For a product or project, use the contact and notice process in the applicable written agreement where one exists."] },
+  ]} />;
+}

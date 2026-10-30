@@ -44,7 +44,7 @@ export const showcase: Record<string, Showcase> = {
     pain: "Your team spends more time on spreadsheets than on real work.",
   },
   crm: {
-    eyebrow: "Melorite CRM & Growth",
+    eyebrow: "Melorite CRM",
     title: "Kellner Trading",
     tag: "Sample lead",
     stats: [

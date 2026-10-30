@@ -1,4 +1,4 @@
-const defaultSiteUrl = "https://melorite.com";
+const defaultSiteUrl = "https://www.melorite.com";
 
 export const site = {
   name: "Melorite",

@@ -15,6 +15,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/company", priority: 0.7 },
     { path: "/contact", priority: 0.6 },
     { path: "/book-demo", priority: 0.6 },
+    { path: "/privacy", priority: 0.3 },
+    { path: "/terms", priority: 0.3 },
+    { path: "/security", priority: 0.4 },
   ];
   return routes.map((r) => ({ url: `${site.url}${r.path}`, changeFrequency: "monthly", priority: r.priority }));
 }
